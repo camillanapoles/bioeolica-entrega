@@ -1,0 +1,51 @@
+Metadata-Version: 2.4
+Name: physics-m3-workspace
+Version: 1.2.0
+Summary: Computational Mechanics Workspace for Multi-Scale (M³) Analysis
+Author: Physics M³ Contributors
+License: MIT
+Project-URL: Repository, https://github.com/bioeolica/physics-m3-workspace
+Project-URL: Documentation, https://physics-m3.readthedocs.io
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: scipy>=1.10
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: pytest>=7.0
+Requires-Dist: scikit-image>=0.20
+Provides-Extra: dev
+Requires-Dist: pytest-cov>=4; extra == "dev"
+Requires-Dist: pytest-xdist>=3; extra == "dev"
+Requires-Dist: ruff>=0.1; extra == "dev"
+Requires-Dist: black>=23; extra == "dev"
+Requires-Dist: pandas>=1.5; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=7; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1; extra == "docs"
+
+# Physics M³ Workspace
+
+Computational mechanics workspace for multi-scale (M³) analysis.
+Covers material characterization, FEM, CFD, topology optimization,
+experimental validation, and VVV certification.
+
+## Install
+```bash
+pip install -e .
+```
+
+## Run
+```bash
+physics-m3 demo
+```
+
+## Test
+```bash
+python -m pytest tests/ -v
+```

@@ -1,0 +1,50 @@
+{
+  "project_id": "PRODUTO-BIOENGINE-001",
+  "last_updated": "2026-06-16",
+  "workspaces": {
+    "physics-m3": {
+      "path": "workspaces/physics-m3/",
+      "modules": 34,
+      "tests": 675,
+      "description": "Computational mechanics - M³ analysis",
+      "tools": ["numpy", "scipy", "matplotlib", "cadquery"],
+      "key_data": {
+        "materials_database": "workspaces/physics-m3/data/materials/",
+        "geometry_models": "workspaces/cad-cae-platform/data/step/",
+        "mesh_database": "workspaces/cad-cae-platform/data/msh/",
+        "simulation_results": "workspaces/cad-cae-platform/data/results/",
+        "validation_reports": "workspaces/kdi-m3-bridge/data/vvv/"
+      }
+    },
+    "cad-cae-platform": {
+      "path": "workspaces/cad-cae-platform/",
+      "modules": 7,
+      "tests": 63,
+      "description": "CAD/CAE pipeline - CadQuery→Gmsh→CalculiX→VTK→DOE",
+      "tools": ["cadquery", "gmsh", "calculix-ccx", "vtk", "cupy"],
+      "cicd": ".github/workflows/ci.yml",
+      "build": "pyproject.toml - python -m build"
+    },
+    "kdi-m3-bridge": {
+      "path": "workspaces/kdi-m3-bridge/",
+      "modules": 7,
+      "tests": 73,
+      "description": "KDI M³ integration - config.json→Macro→Meso→Micro→Multi-Physics",
+      "tools": ["streamlit", "python"],
+      "config": "config.json - single source of truth"
+    }
+  },
+  "git": {
+    "branch": "main",
+    "last_commit": "e0e14c9",
+    "remote": "github.com/camillanapoles/bioeolica-dev.git",
+    "total_commits_since_session_start": 35
+  },
+  "documentation": {
+    "plans": "docs/superpowers/plans/",
+    "reports": "docs/superpowers/reports/",
+    "specs": "specs/"
+  },
+  "data_versioning": "Git LFS (not configured) + DVC (not configured)",
+  "access_control": "Public repo - GitHub"
+}

@@ -1,0 +1,149 @@
+*HEADING
+IEC 61400-2 BLADE STATIC ANALYSIS - PAPER MACHE COMPOSITE WITH GRAPHITE COATING
+BLADE: NACA 0018, 3.5M LENGTH, RATED WIND LOAD (8 M/S)
+UNITS: MM, N, S (MPA = N/MM^2)
+MESH: 50 SPANWISE SEGMENTS X 12 CHORDWISE X 4 THICKNESS = 2400 ELEMENTS
+COATING: CHORDWISE TOP/BOTTOM 0.5MM GRAPHITE LAYER
+SUBSTRATE: PAPER MACHE COMPOSITE (E=4669 MPA, NU=0.35)
+LOAD: DISTRIBUTED AERODYNAMIC LOAD FROM 8 M/S RATED WIND
+BC: CANTILEVER (ROOT FIXED, ALL DOF)
+-------------------------------------------------------------------------
+** NODE GENERATION
+** Blade axis along Y: Y=0 (root) to Y=3500 (tip)
+** Chordwise X: -175 to +175 mm scaled linearly from root to tip
+** Thickness Z: 0 to 7.2 mm (18% of chord at root, tapered)
+** Constants: NX=12 (half-chord), NY=50 (span), NZ=4 (thickness)
+** NN=13*51*5=3315, NE=12*50*4=2400
+-------------------------------------------------------------------------
+*NODE, NSET=BOTTOM_EDGE_1
+1, 0.0, 0.0, 0.0
+*NGEN, NSET=BOTTOM_EDGE_1
+1, 51, 1
+
+*NODE, NSET=BOTTOM_EDGE_NX
+601, 0.0, 0.0, 0.0
+*NGEN, NSET=BOTTOM_EDGE_NX
+601, 651, 1
+
+*NFILL, NSET=BOTTOM_FACE
+BOTTOM_EDGE_1, BOTTOM_EDGE_NX, 12, 51
+
+*NODE, NSET=TOP_EDGE_1
+2653, 0.0, 0.0, 0.0
+*NGEN, NSET=TOP_EDGE_1
+2653, 2703, 1
+
+*NODE, NSET=TOP_EDGE_NX
+3253, 0.0, 0.0, 0.0
+*NGEN, NSET=TOP_EDGE_NX
+3253, 3303, 1
+
+*NFILL, NSET=TOP_FACE
+TOP_EDGE_1, TOP_EDGE_NX, 12, 51
+
+*NFILL, NSET=ALLNODES
+BOTTOM_FACE, TOP_FACE, 4, 663
+
+** ELEMENT GENERATION -- C3D8R (8-node brick, reduced integration)
+*ELEMENT, TYPE=C3D8R, ELSET=ALLELEMS
+1, 1, 2, 53, 52, 664, 665, 716, 715
+*ELGEN, ELSET=ALLELEMS
+1, 50, 13, 1, 12, 51, 663
+
+** ELEMENT SETS FOR COATING AND SUBSTRATE
+** Bottom coating (k=0, Z=0 to 0.5mm): elements 1 to 600
+*ELSET, ELSET=COATING_BOTTOM, GENERATE
+1, 600, 1
+
+** Substrate (k=1 to 2, Z=0.5 to 6.7mm): elements 601 to 1800
+*ELSET, ELSET=SUBSTRATE, GENERATE
+601, 1800, 1
+
+** Top coating (k=3, Z=6.7 to 7.2mm): elements 1801 to 2400
+*ELSET, ELSET=COATING_TOP, GENERATE
+1801, 2400, 1
+
+** NODE SETS FOR BOUNDARY CONDITIONS
+** Root face (Y=0): fixed cantilever constraint
+*NSET, NSET=ROOT_FACE, GENERATE
+1, 3241, 51
+
+** Tip face (Y=3500): free end (no BC)
+*NSET, NSET=TIP_FACE, GENERATE
+51, 3253, 51
+
+** Mid-span section (Y=1750) for stress extraction
+*NSET, NSET=MID_SPAN, GENERATE
+26, 3278, 51
+
+** ALLNODES for output
+*NSET, NSET=ALLNODES_OUTPUT, GENERATE
+1, 3315, 1
+
+** MATERIAL DEFINITIONS
+** Composite properties from T031/T032 calibration
+*MATERIAL, NAME=PAPER_MACHE_COMPOSITE
+*ELASTIC
+4669.0, 0.35
+*DENSITY
+9.2E-10,
+
+*MATERIAL, NAME=GRAPHITE_COATING
+*ELASTIC
+8000.0, 0.22
+*DENSITY
+1.8E-09,
+
+** SOLID SECTIONS
+*SOLID SECTION, ELSET=COATING_BOTTOM, MATERIAL=GRAPHITE_COATING
+*SOLID SECTION, ELSET=SUBSTRATE, MATERIAL=PAPER_MACHE_COMPOSITE
+*SOLID SECTION, ELSET=COATING_TOP, MATERIAL=GRAPHITE_COATING
+
+** INITIAL BOUNDARY CONDITIONS
+** Root face: fully fixed (cantilever)
+*BOUNDARY
+ROOT_FACE, 1, 6
+
+** ======================================================================
+** STEP 1: STATIC LOAD - RATED WIND 8 M/S
+** Distributed aerodynamic load on blade surface
+** Load per unit area proportional to chord length
+** Max pressure at root: 120 Pa (q=0.5*rho*v^2 * Cp ~ 0.5*1.225*64*3)
+** ======================================================================
+*STEP, NAME=STATIC_RATED_WIND
+*STATIC
+0.1, 1.0, 1E-8, 0.5
+
+** Distributed load: DLOAD applied to element faces
+*DLOAD
+COATING_TOP, P1, -0.12
+COATING_BOTTOM, P1, -0.08
+
+*NODE FILE, NSET=ALLNODES_OUTPUT
+U
+RF
+
+*EL FILE, ELSET=ALLELEMS
+S
+E
+
+*NODE FILE, NSET=ROOT_FACE
+U
+RF
+
+*NODE FILE, NSET=MID_SPAN
+U
+
+*EL FILE, ELSET=SUBSTRATE
+S
+E
+
+*NODE PRINT, NSET=ROOT_FACE
+U
+RF
+
+*EL PRINT, ELSET=SUBSTRATE
+S
+E
+
+*END STEP

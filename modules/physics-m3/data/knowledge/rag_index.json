@@ -1,0 +1,101 @@
+{
+  "updated_at": "2026-06-18T20:07:45.416980+00:00",
+  "sources": {
+    "SRC-b7a01a06": {
+      "source_id": "SRC-b7a01a06",
+      "title": "Mechanical properties of recycled paper fiber composites",
+      "source_type": "article",
+      "authors": [
+        "Yadav, S.",
+        "Singh, R."
+      ],
+      "year": 2023,
+      "doi": "10.1016/j.jclepro.2023.136542",
+      "url": "",
+      "quality_score": 8,
+      "validation_status": "VERIFIED",
+      "domains": [
+        "materiais",
+        "ambiente"
+      ],
+      "tags": [
+        "material:waste_paper",
+        "material:waste_paper",
+        "material:waste_paper",
+        "material:waste_paper",
+        "material:waste_paper"
+      ],
+      "notes": "",
+      "created_at": "2026-06-18T20:07:43.133025+00:00"
+    },
+    "SRC-a8439e8d": {
+      "source_id": "SRC-a8439e8d",
+      "title": "PVA-based binders for sustainable composites",
+      "source_type": "article",
+      "authors": [
+        "Chen, L.",
+        "Wang, X."
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.compositesa.2024.108042",
+      "url": "",
+      "quality_score": 7,
+      "validation_status": "VERIFIED",
+      "domains": [
+        "materiais",
+        "construcao"
+      ],
+      "tags": [
+        "material:pva",
+        "material:pva",
+        "material:pva",
+        "material:pva",
+        "material:pva"
+      ],
+      "notes": "",
+      "created_at": "2026-06-18T20:07:43.133042+00:00"
+    },
+    "SRC-5c4b4f97": {
+      "source_id": "SRC-5c4b4f97",
+      "title": "Graphite coatings for wind turbine blade protection",
+      "source_type": "article",
+      "authors": [
+        "Martinez, P.",
+        "Silva, J."
+      ],
+      "year": 2023,
+      "doi": "10.1016/j.renene.2023.119184",
+      "url": "",
+      "quality_score": 8,
+      "validation_status": "PENDING",
+      "domains": [
+        "materiais",
+        "fluidos"
+      ],
+      "tags": [
+        "material:graphite_coating",
+        "material:graphite_coating",
+        "material:graphite_coating",
+        "material:graphite_coating",
+        "material:graphite_coating"
+      ],
+      "notes": "",
+      "created_at": "2026-06-18T20:07:43.133049+00:00"
+    },
+    "SRC-ad70a3a5": {
+      "source_id": "SRC-ad70a3a5",
+      "title": "New",
+      "source_type": "article",
+      "authors": [],
+      "year": 2025,
+      "doi": "",
+      "url": "",
+      "quality_score": 6,
+      "validation_status": "VERIFIED",
+      "domains": [],
+      "tags": [],
+      "notes": "",
+      "created_at": "2026-06-18T20:07:45.416864+00:00"
+    }
+  }
+}

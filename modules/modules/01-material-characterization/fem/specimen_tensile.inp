@@ -1,0 +1,188 @@
+*HEADING
+ASTM D638 TYPE I TENSILE TEST - PAPER MACHE COMPOSITE WITH GRAPHITE COATING
+SPECIMEN: DOGBONE, GAUGE SECTION 50MM X 13MM X 4MM (MODELED REGION)
+UNITS: MM, N, S (MPA = N/MM^2)
+MESH: GAUGE SECTION 1MM (50 X 13 X 4 DIVISIONS)
+COATING: Z=0 TO 1MM (BOTTOM) AND Z=3 TO 4MM (TOP), GRAPHITE
+SUBSTRATE: Z=1 TO 3MM, PAPER MACHE
+NOTE: Gauge section only is modeled (uniform stress state per St. Venant).
+      Full dogbone would require multi-block mesh; this captures the
+      critical gauge-section behavior with correct cross-section.
+-------------------------------------------------------------------------
+** NODE GENERATION
+** Mesh: NX=50 (X-length), NY=13 (Y-width), NZ=4 (Z-thickness)
+** Total nodes: 51 x 14 x 5 = 3570
+** Total elements: 50 x 13 x 4 = 2600
+** Constants: NX+1=51, NY+1=14, NZ+1=5, (NX+1)*(NY+1)=714
+** X from 0 to 50mm (gauge length), Y from -6.5 to +6.5mm,
+** Z from 0 to 4mm (through thickness)
+-------------------------------------------------------------------------
+*NODE, NSET=BOTTOM_EDGE_1
+1, 0.0, -6.5, 0.0
+*NGEN, NSET=BOTTOM_EDGE_1
+1, 51, 1
+
+*NODE, NSET=BOTTOM_EDGE_NY
+664, 0.0, 6.5, 0.0
+*NGEN, NSET=BOTTOM_EDGE_NY
+664, 714, 1
+
+*NFILL, NSET=BOTTOM_FACE
+BOTTOM_EDGE_1, BOTTOM_EDGE_NY, 13, 51
+
+*NODE, NSET=TOP_EDGE_1
+2857, 0.0, -6.5, 4.0
+*NGEN, NSET=TOP_EDGE_1
+2857, 2907, 1
+
+*NODE, NSET=TOP_EDGE_NY
+3520, 0.0, 6.5, 4.0
+*NGEN, NSET=TOP_EDGE_NY
+3520, 3570, 1
+
+*NFILL, NSET=TOP_FACE
+TOP_EDGE_1, TOP_EDGE_NY, 13, 51
+
+*NFILL, NSET=ALLNODES
+BOTTOM_FACE, TOP_FACE, 4, 714
+
+** ELEMENT GENERATION -- C3D8R (8-node brick, reduced integration)
+*ELEMENT, TYPE=C3D8R, ELSET=ALLELEMS
+1, 1, 2, 53, 52, 715, 716, 767, 766
+*ELGEN, ELSET=ALLELEMS
+1, 50, 13, 4, 1, 51, 714
+
+** ELEMENT SETS FOR COATING AND SUBSTRATE
+** Bottom coating (k=0, Z=0 to 1mm): elements 1 to 650
+*ELSET, ELSET=COATING_BOTTOM, GENERATE
+1, 650, 1
+
+** Substrate (k=1 to 2, Z=1 to 3mm): elements 651 to 1950
+*ELSET, ELSET=SUBSTRATE, GENERATE
+651, 1950, 1
+
+** Top coating (k=3, Z=3 to 4mm): elements 1951 to 2600
+*ELSET, ELSET=COATING_TOP, GENERATE
+1951, 2600, 1
+
+** NODE SETS FOR BOUNDARY CONDITIONS AND OUTPUT
+** X=0 face (fixed end, transition to grip section)
+** node(0,j,k) = 1 + j*51 + k*714 for j=0..13, k=0..4
+*NSET, NSET=X0_FACE, GENERATE
+1, 3520, 51
+
+** X=50 face (loaded end, prescribed displacement)
+** node(50,j,k) = 51 + j*51 + k*714 for j=0..13, k=0..4
+*NSET, NSET=XMAX_FACE, GENERATE
+51, 3570, 51
+
+** Gauge section midpoint (X=25mm) for stress/strain extraction
+** node(25,j,k) = 26 + j*51 + k*714 = 26 + 51*(j+14k)
+*NSET, NSET=GAUGE_SECTION, GENERATE
+26, 3545, 51
+
+** Gauge elements at mid-length (i=25, x=25 to 26mm) for element output
+** element(25,j,k) = 26 + 50*(j+13k) for j=0..12, k=0..3
+*ELSET, ELSET=GAUGE_ELSET, GENERATE
+26, 2576, 50
+
+** ALLNODES for output
+*NSET, NSET=ALLNODES_OUTPUT, GENERATE
+1, 3570, 1
+
+** MATERIAL DEFINITIONS
+*MATERIAL, NAME=PAPER_MACHE
+*ELASTIC
+4500.0, 0.35
+*DENSITY
+8.0E-10,
+
+*MATERIAL, NAME=GRAPHITE
+*ELASTIC
+8000.0, 0.22
+*DENSITY
+1.8E-09,
+
+** SOLID SECTIONS
+*SOLID SECTION, ELSET=COATING_BOTTOM, MATERIAL=GRAPHITE
+*SOLID SECTION, ELSET=SUBSTRATE, MATERIAL=PAPER_MACHE
+*SOLID SECTION, ELSET=COATING_TOP, MATERIAL=GRAPHITE
+
+** INITIAL BOUNDARY CONDITIONS
+** X=0 face: fixed in all translational DOF (grip constraint)
+*BOUNDARY
+X0_FACE, 1, 3
+
+** X=50 face: lateral constraints only (axial DOF prescribed in steps)
+*BOUNDARY
+XMAX_FACE, 2, 3
+
+** ======================================================================
+** STEP 1: TENSILE LOADING TO +0.5MM DISPLACEMENT
+** ======================================================================
+*STEP, NAME=TENSILE_INC1
+*STATIC
+0.1, 1.0, 1E-8, 0.5
+
+*BOUNDARY
+XMAX_FACE, 1, 1, 0.5
+
+*NODE FILE, NSET=ALLNODES_OUTPUT
+U
+RF
+
+*EL FILE, ELSET=ALLELEMS
+S
+E
+
+*NODE FILE, NSET=GAUGE_SECTION
+U
+
+*EL FILE, ELSET=GAUGE_ELSET
+S
+E
+
+*NODE PRINT, NSET=XMAX_FACE
+U
+RF
+
+*EL PRINT, ELSET=SUBSTRATE
+S
+E
+
+*END STEP
+
+** ======================================================================
+** STEP 2: TENSILE LOADING TO +1.0MM DISPLACEMENT (FINAL)
+** ======================================================================
+*STEP, NAME=TENSILE_INC2
+*STATIC
+0.1, 1.0, 1E-8, 0.5
+
+*BOUNDARY
+XMAX_FACE, 1, 1, 1.0
+
+*NODE FILE, NSET=ALLNODES_OUTPUT
+U
+RF
+
+*EL FILE, ELSET=ALLELEMS
+S
+E
+
+*NODE FILE, NSET=GAUGE_SECTION
+U
+
+*EL FILE, ELSET=GAUGE_ELSET
+S
+E
+
+*NODE PRINT, NSET=XMAX_FACE
+U
+RF
+
+*EL PRINT, ELSET=SUBSTRATE
+S
+E
+
+*END STEP

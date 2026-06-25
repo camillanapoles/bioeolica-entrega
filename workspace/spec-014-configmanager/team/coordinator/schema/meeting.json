@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "https://bioeolica.dev/schemas/coordinator-meeting-v1",
+  "title": "Schema de Reunião do Coordenador",
+  "description": "Schema para agendamento e registro de reuniões entre agentes",
+  "version": "1.0.0",
+
+  "definitions": {
+    "action_item": {
+      "type": "object",
+      "required": ["tarefa", "responsavel", "prazo"],
+      "properties": {
+        "tarefa":      { "type": "string", "minLength": 5, "description": "Descrição da tarefa" },
+        "responsavel": { "type": "string", "description": "Agente responsável" },
+        "prazo":       { "type": "string", "format": "date", "description": "Prazo ISO 8601 (YYYY-MM-DD)" },
+        "status":      { "type": "string", "enum": ["PENDENTE", "EM_ANDAMENTO", "CONCLUIDA"], "default": "PENDENTE" }
+      }
+    },
+    "deadlock_entry": {
+      "type": "object",
+      "required": ["descricao", "agentes_envolvidos", "tipo"],
+      "properties": {
+        "descricao":         { "type": "string", "minLength": 10 },
+        "agentes_envolvidos": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "tipo":              { "type": "string", "enum": ["recurso:contexto", "recurso:ferramenta", "dependencia:resultado", "dependencia:decisao", "contradicao:dado", "contradicao:metodo"] },
+        "resolucao":         { "type": "string", "description": "Descrição da resolução" }
+      }
+    }
+  },
+
+  "type": "object",
+  "required": ["pauta", "participantes", "data"],
+  "properties": {
+    "id":           { "type": "string", "pattern": "^MTG-\\d{4}$", "description": "ID da reunião (gerado automaticamente se omitido)" },
+    "pauta":        { "type": "string", "minLength": 10, "description": "Pauta principal da reunião" },
+    "participantes": { "type": "array", "items": { "type": "string" }, "minItems": 2, "description": "Agentes participantes" },
+    "data":         { "type": "string", "format": "date-time", "description": "Data/hora ISO 8601" },
+    "convocada_por": { "type": "string", "default": "coordenador" },
+    "decisoes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "decisao":     { "type": "string" },
+          "responsavel": { "type": "string" },
+          "prazo":       { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "action_items": { "type": "array", "items": { "$ref": "#/definitions/action_item" } },
+    "deadlocks":    { "type": "array", "items": { "$ref": "#/definitions/deadlock_entry" } }
+  }
+}

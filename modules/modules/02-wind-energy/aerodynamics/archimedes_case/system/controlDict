@@ -1,0 +1,82 @@
+/*---------------------------------------------------------------------------*\
+  Archimedes screw-type turbine — controlDict
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+application     pimpleFoam;
+
+startFrom       startTime;
+startTime       0;
+
+stopAt          endTime;
+endTime         300;
+
+deltaT          5e-4;
+
+writeControl    runTime;
+writeInterval   10;
+purgeWrite      0;
+
+writeFormat     binary;
+writePrecision  6;
+writeCompression compressed;
+timeFormat      general;
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    forces_archimedes
+    {
+        type            forces;
+        libs            ("libforces.so");
+        patches         (rotor);
+        p               rhoInf;
+        rhoInf          1.105;
+        CofR            (0 0 0);
+        log             yes;
+        writeControl    timeStep;
+        writeInterval   10;
+    }
+
+    forceCoeffs_archimedes
+    {
+        type            forceCoeffs;
+        libs            ("libforces.so");
+        patches         (rotor);
+        p               rhoInf;
+        rhoInf          1.105;
+        liftDir         (0 1 0);
+        dragDir         (1 0 0);
+        CofR            (0 0 0);
+        pitchAxis       (0 0 1);
+        magUInf         6.0;
+        lRef            2.5;
+        Aref            4.91;
+        log             yes;
+        writeControl    timeStep;
+        writeInterval   10;
+    }
+
+    Cm_archimedes
+    {
+        type            forces;
+        libs            ("libforces.so");
+        patches         (rotor);
+        p               rhoInf;
+        rhoInf          1.105;
+        CofR            (0 0 0);
+        log             yes;
+        writeControl    timeStep;
+        writeInterval   10;
+    }
+}

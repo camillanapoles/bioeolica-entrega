@@ -1,0 +1,26 @@
+{
+  "enabledPlugins": {
+    "ecc@ecc": true
+  },
+  "mcpServers": {
+    "gitnexus": {
+      "command": "npx",
+      "args": ["-y", "gitnexus", "mcp"]
+    }
+  },
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "mcp__gitnexus",
+      "mcp__gitnexus__*",
+      "Bash(npx gitnexus:*)",
+      "Bash(npx gitnexus *)",
+      "Bash(gitnexus:*)",
+      "Bash(npm i -g gitnexus)",
+      "Bash(node .gitnexus/run.cjs:*)",
+      "Bash(node .gitnexus/*)",
+      "Read(.gitnexus/**)",
+      "Read(//.gitnexus/**)"
+    ]
+  }
+}

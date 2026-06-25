@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: kdi-m3-bridge
+Version: 0.1.0
+Summary: KDI M³ bridge modules for multi-scale analysis
+Requires-Python: >=3.11
+Requires-Dist: numpy>=1.24

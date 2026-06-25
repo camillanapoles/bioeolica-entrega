@@ -1,0 +1,63 @@
+/*---------------------------------------------------------------------------*\
+  VAWT H-rotor Darrieus — OpenFOAM controlDict
+  Phase 6 — T049 | Solver: pimpleFoam + SRF
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+application     pimpleFoam;
+
+startFrom       startTime;
+startTime       0;
+
+stopAt          endTime;
+endTime         200;
+
+deltaT          0.001;
+writeInterval   10;
+
+purgeWrite      0;
+writeFormat     ascii;
+writePrecision  6;
+writeCompression off;
+timeFormat      general;
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    forces
+    {
+        type            forces;
+        libs            (forces);
+        patches         (blade);
+        rho             rhoInf;
+        rhoInf          1.105;
+        CofR            (0 0 0);
+        pitchAxis       (0 0 1);
+        log             true;
+    }
+
+    forceCoeffs
+    {
+        type            forceCoeffs;
+        libs            (forces);
+        patches         (blade);
+        rho             rhoInf;
+        rhoInf          1.105;
+        CofR            (0 0 0);
+        pitchAxis       (0 0 1);
+        magUInf         6.0;
+        lRef            2.5;
+        Aref            5.0;
+        log             true;
+    }
+}

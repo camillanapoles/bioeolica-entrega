@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "https://bioeolica.dev/schemas/context-ontology-v1",
+  "title": "Ontologia de Engenharia — Context Schema",
+  "description": "Schema formal de contexto para o sistema multi-agente. Define classes, propriedades, relacionamentos e regras de validação para todo contexto trocado entre agentes.",
+  "version": "1.0.0",
+
+  "ontology": {
+    "description": "A ontologia define 11 classes de engenharia. Cada instância de classe é um contexto — com schema validado, lineage, freshness e relacionamentos no grafo.",
+    "classes": {
+      "Material": {
+        "description": "Propriedades e comportamento de materiais de engenharia",
+        "required_properties": ["E", "sigma_y", "rho", "nu"],
+        "properties": {
+          "E":            { "type": "number", "unit": "GPa", "description": "Módulo de elasticidade", "min": 0.001, "max": 1000, "sanity_check": true },
+          "sigma_y":      { "type": "number", "unit": "MPa", "description": "Tensão de escoamento", "min": 0.1, "max": 10000, "sanity_check": true },
+          "sigma_u":      { "type": "number", "unit": "MPa", "description": "Tensão última", "min": 0.1, "max": 10000, "sanity_check": true },
+          "rho":          { "type": "number", "unit": "g/cm³", "description": "Densidade", "min": 0.1, "max": 25, "sanity_check": true },
+          "nu":           { "type": "number", "unit": "adimensional", "description": "Coeficiente de Poisson", "min": 0, "max": 0.5, "sanity_check": true },
+          "alpha":        { "type": "number", "unit": "1/K", "description": "Coeficiente de expansão térmica", "min": 0, "max": 1e-3 },
+          "k":            { "type": "number", "unit": "W/(m·K)", "description": "Condutividade térmica", "min": 0.001, "max": 1000 },
+          "sigma_fatigue": { "type": "object", "description": "Propriedades de fadiga", "properties": {
+            "S_N_curve": { "type": "array", "items": { "type": "object", "properties": {
+              "S": { "type": "number", "unit": "MPa" },
+              "N": { "type": "integer", "unit": "cycles", "min": 1 }
+            }}},
+            "endurance_limit": { "type": "number", "unit": "MPa" },
+            "source": { "type": "string" }
+          }},
+          "fracture_toughness": { "type": "number", "unit": "MPa·m¹ᐟ²", "description": "Tenacidade à fratura K_IC", "min": 0.1, "max": 500 }
+        },
+        "relationships": {
+          "isUsedIn":     { "type": "Component", "cardinality": "many-to-many", "description": "Material é usado no componente" },
+          "hasSubclass":  { "type": "string", "cardinality": "one", "description": "Subclasse do material (ex: Aço-Carbono, Fibra-de-Vidro/Epóxi)" },
+          "classifiedBy": { "type": "Norma", "cardinality": "many-to-many", "description": "Classificado pela norma" },
+          "evaluatedBy":  { "type": "Metodo", "cardinality": "many-to-many", "description": "Propriedade obtida pelo método" }
+        }
+      },
+
+      "Carga": {
+        "description": "Condições de carregamento aplicadas a componentes",
+        "required_properties": ["tipo", "magnitude"],
+        "properties": {
+          "tipo":         { "type": "string", "enum": ["pontual", "distribuida", "momento", "pressao", "termica", "ciclica", "impacto", "vento", "onda"], "description": "Tipo de carga" },
+          "magnitude":    { "type": "number", "unit": "N | N/m | N·m | Pa", "description": "Magnitude da carga", "min": 0 },
+          "direcao":      { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 3, "description": "Vetor direção [x, y, z]" },
+          "frequencia":   { "type": "number", "unit": "Hz", "description": "Frequência para cargas cíclicas", "min": 0 },
+          "ciclo":        { "type": "object", "properties": {
+            "tipo": { "type": "string", "enum": ["senoidal", "quadrada", "dente_serra", "espectral"] },
+            "R":    { "type": "number", "description": "Razão de tensão σ_min/σ_max" }
+          }},
+          "duracao":      { "type": "number", "unit": "s", "description": "Duração para cargas de impacto" }
+        },
+        "relationships": {
+          "actsOn":       { "type": "Component", "cardinality": "many-to-many", "description": "Carga atua no componente" },
+          "definedIn":    { "type": "Norma", "cardinality": "many-to-one", "description": "Carga definida pela norma" }
+        }
+      },
+
+      "Componente": {
+        "description": "Componente físico do sistema — geometria, massa, material",
+        "required_properties": ["nome", "geometria_ref"],
+        "properties": {
+          "nome":         { "type": "string", "description": "Nome do componente" },
+          "geometria_ref": { "type": "string", "description": "Caminho para arquivo CAD/STEP" },
+          "massa":        { "type": "number", "unit": "kg", "description": "Massa", "min": 0 },
+          "volume":       { "type": "number", "unit": "m³", "description": "Volume", "min": 0 },
+          "centro_massa": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "tole_geometrica": { "type": "string", "description": "Tolerância geométrica GD&T" }
+        },
+        "relationships": {
+          "hasMaterial":  { "type": "Material", "cardinality": "many-to-one", "description": "Componente utiliza material" },
+          "isSubcomponenteOf": { "type": "Componente", "cardinality": "many-to-one", "description": "Subcomponente de" },
+          "simulatedBy":  { "type": "Simulacao", "cardinality": "one-to-many", "description": "Simulado pela análise" }
+        }
+      },
+
+      "Norma": {
+        "description": "Norma técnica, standard ou regulamentação aplicável",
+        "required_properties": ["codigo", "orgao"],
+        "properties": {
+          "codigo":       { "type": "string", "description": "Código da norma (ex: ISO 6892-1, ASTM E8, ASME BPVC VIII)" },
+          "orgao":        { "type": "string", "enum": ["ISO", "ASTM", "ASME", "ABNT", "DIN", "IEC", "IEEE", "SAE", "NBR"], "description": "Órgão normativo" },
+          "ano":          { "type": "integer", "description": "Ano de publicação", "min": 1900, "max": 2030 },
+          "titulo":       { "type": "string", "description": "Título completo da norma" },
+          "escopo":       { "type": "string", "description": "Escopo de aplicação" }
+        },
+        "relationships": {
+          "governs":      { "type": "string", "cardinality": "many-to-many", "description": "Governa o domínio (ex: 'fadiga', 'vaso_pressao', 'eolica')" }
+        }
+      },
+
+      "Metodo": {
+        "description": "Método numérico ou analítico aplicado",
+        "required_properties": ["tipo", "precisao_esperada"],
+        "properties": {
+          "tipo":         { "type": "string", "enum": ["FEM", "FVM", "FDM", "BEM", "MPM", "SPH", "DEM", "Peridynamics", "ROM", "PINNs", "hibrido"], "description": "Tipo de método numérico" },
+          "precisao_esperada": { "type": "number", "unit": "%", "description": "Precisão esperada (erro relativo)", "min": 0.1, "max": 50 },
+          "custo_relativo": { "type": "string", "enum": ["baixo", "medio", "alto", "muito_alto"], "description": "Custo computacional relativo" },
+          "formulacao":   { "type": "string", "description": "Formulação específica (ex: 'Lagrangiana', 'Euleriana', 'ALE')" }
+        },
+        "relationships": {
+          "appliesTo":    { "type": "string", "cardinality": "many-to-many", "description": "Aplica-se ao domínio" },
+          "implementedBy": { "type": "Ferramenta", "cardinality": "many-to-many", "description": "Implementado pela ferramenta" }
+        }
+      },
+
+      "Ferramenta": {
+        "description": "Ferramenta computacional open source",
+        "required_properties": ["nome", "versao", "licenca"],
+        "properties": {
+          "nome":         { "type": "string", "description": "Nome da ferramenta" },
+          "versao":       { "type": "string", "description": "Versão semântica" },
+          "licenca":      { "type": "string", "description": "Tipo de licença (GPL, LGPL, MIT, Apache2, etc.)" },
+          "repositorio":  { "type": "string", "description": "URL do repositório", "format": "uri" },
+          "ultimo_commit": { "type": "string", "format": "date", "description": "Data do último commit" },
+          "stars":        { "type": "integer", "description": "Estrelas no GitHub", "min": 0 }
+        },
+        "relationships": {
+          "implements":   { "type": "Metodo", "cardinality": "many-to-many", "description": "Implementa método" },
+          "coupledWith":  { "type": "Ferramenta", "cardinality": "many-to-many", "description": "Acoplada com via preCICE/MOOSE" }
+        }
+      },
+
+      "Decisao": {
+        "description": "Decisão de projeto registrada com contexto e justificativa",
+        "required_properties": ["contexto", "decisao", "responsavel"],
+        "properties": {
+          "contexto":     { "type": "string", "description": "Contexto que motivou a decisão" },
+          "decisao":      { "type": "string", "description": "Decisão tomada" },
+          "responsavel":  { "type": "string", "description": "Responsável pela decisão" },
+          "alternativas": { "type": "array", "items": { "type": "string" }, "description": "Alternativas consideradas" },
+          "rationale":    { "type": "string", "description": "Justificativa técnica da decisão" },
+          "impacto":      { "type": "string", "description": "Impacto estimado da decisão" }
+        },
+        "relationships": {
+          "basedOn":      { "type": "Context", "cardinality": "many-to-many", "description": "Baseada no contexto" },
+          "resolvedBy":   { "type": "Reuniao", "cardinality": "many-to-one", "description": "Resolvida na reunião" }
+        }
+      },
+
+      "Simulacao": {
+        "description": "Execução de simulação computacional com parâmetros e resultados",
+        "required_properties": ["parametros", "resultados_ref", "ferramenta"],
+        "properties": {
+          "parametros":   { "type": "object", "description": "Parâmetros de entrada da simulação" },
+          "resultados_ref": { "type": "string", "description": "Caminho para resultados", "minLength": 1 },
+          "ferramenta":   { "type": "string", "description": "Ferramenta utilizada" },
+          "tempo_execucao": { "type": "number", "unit": "s", "description": "Tempo de execução" },
+          "malha":        { "type": "object", "properties": {
+            "tipo": { "type": "string", "enum": ["tetraedrica", "hexaedrica", "mista", "nao_estruturada"] },
+            "n_elementos": { "type": "integer", "min": 1 },
+            "n_nos": { "type": "integer", "min": 1 },
+            "refinamento": { "type": "string", "enum": ["h", "p", "hp", "adaptativo"] }
+          }},
+          "vvv_status":   { "type": "string", "enum": ["PENDING", "VERIFIED", "VALIDATED", "CERTIFIED", "FAILED"] }
+        },
+        "relationships": {
+          "uses":         { "type": "Ferramenta", "cardinality": "many-to-one", "description": "Usa ferramenta" },
+          "basedOn":      { "type": "Simulacao", "cardinality": "one-to-many", "description": "Baseada na simulação anterior" }
+        }
+      },
+
+      "Publicacao": {
+        "description": "Artigo científico, preprint ou relatório técnico",
+        "required_properties": ["titulo", "status"],
+        "properties": {
+          "titulo":       { "type": "string", "description": "Título do paper", "minLength": 5 },
+          "autores":      { "type": "array", "items": { "type": "string" }, "description": "Lista de autores" },
+          "resumo":       { "type": "string", "description": "Resumo/abstract" },
+          "status":       { "type": "string", "enum": ["rascunho", "revisao_interna", "submetido", "revisao_pares", "aceito", "publicado", "rejeitado"], "description": "Status da publicação" },
+          "doi":          { "type": "string", "description": "DOI se publicado" },
+          "preprint":     { "type": "string", "format": "uri", "description": "URL do preprint" },
+          "periodico":    { "type": "string", "description": "Periódico alvo ou de publicação" }
+        },
+        "relationships": {
+          "basedOn":      { "type": "Simulacao", "cardinality": "one-to-many", "description": "Baseado na simulação" },
+          "publishedBy":  { "type": "string", "cardinality": "many-to-one", "description": "Publicado pelo agente" }
+        }
+      },
+
+      "Reuniao": {
+        "description": "Registro de reunião entre agentes do time",
+        "required_properties": ["pauta", "participantes", "data"],
+        "properties": {
+          "pauta":        { "type": "string", "description": "Pauta da reunião", "minLength": 10 },
+          "participantes": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "data":         { "type": "string", "format": "date-time", "description": "Data da reunião" },
+          "ata":          { "type": "string", "description": "Ata textual da reunião" },
+          "decisoes":     { "type": "array", "items": { "type": "string" }, "description": "Decisões tomadas" },
+          "action_items": { "type": "array", "items": { "type": "object", "properties": {
+            "tarefa": { "type": "string" },
+            "responsavel": { "type": "string" },
+            "prazo": { "type": "string", "format": "date" }
+          }}},
+          "deadlocks":    { "type": "array", "items": { "type": "string" }, "description": "Pontos de impasse não resolvidos" }
+        },
+        "relationships": {
+          "resolves":     { "type": "Decisao", "cardinality": "one-to-many", "description": "Resolve decisões" },
+          "calledBy":     { "type": "string", "cardinality": "many-to-one", "description": "Convocada pelo coordenador" }
+        }
+      },
+
+      "ContextoRaiz": {
+        "description": "Contexto raiz do projeto — entrada F1 consolidada",
+        "required_properties": ["problem_statement", "constraints", "objective"],
+        "properties": {
+          "problem_statement": { "type": "string", "minLength": 20, "description": "Declaração formal do problema de engenharia" },
+          "constraints":  { "type": "object", "description": "Restrições de projeto, prazo, orçamento, normas" },
+          "objective":    { "type": "string", "minLength": 10, "description": "Objetivo quantitativo do projeto" },
+          "stakeholders": { "type": "array", "items": { "type": "string" }, "description": "Partes interessadas" },
+          "success_criteria": { "type": "array", "items": { "type": "string" }, "description": "Critérios de sucesso objetivos" }
+        },
+        "relationships": {
+          "hasDomain":    { "type": "string", "cardinality": "one-to-many", "description": "Domínios identificados no projeto" },
+          "hasMeeting":   { "type": "Reuniao", "cardinality": "one-to-many" },
+          "hasPublication": { "type": "Publicacao", "cardinality": "one-to-many" }
+        }
+      }
+    },
+
+    "relationship_types": {
+      "directional": {
+        "one-to-one":   "Cada instância de A se relaciona com exatamente uma instância de B",
+        "one-to-many":  "Cada instância de A se relaciona com múltiplas instâncias de B",
+        "many-to-one":  "Múltiplas instâncias de A compartilham a mesma instância de B",
+        "many-to-many": "Múltiplas instâncias de A se relacionam com múltiplas instâncias de B"
+      },
+      "semantic_labels": {
+        "isUsedIn":       "composição — A é usado em B",
+        "hasSubclass":    "especialização — A é subclasse de B",
+        "classifiedBy":   "classificação — A é classificado por B",
+        "evaluatedBy":    "avaliação — A é avaliado por B",
+        "actsOn":         "ação — A atua sobre B",
+        "definedIn":      "definição — A é definido em B",
+        "hasMaterial":    "composição — A usa material B",
+        "isSubcomponenteOf": "composição — A é subcomponente de B",
+        "simulatedBy":    "criação — A é simulado por B",
+        "governs":        "regulação — A governa B",
+        "appliesTo":      "aplicação — A se aplica a B",
+        "implementedBy":  "implementação — A é implementado por B",
+        "implements":     "implementação — A implementa B",
+        "coupledWith":    "acoplamento — A é acoplado com B",
+        "basedOn":        "derivação — A é baseado em B",
+        "resolvedBy":     "resolução — A é resolvido por B",
+        "uses":           "uso — A usa B",
+        "publishedBy":    "criação — A é publicado por B",
+        "calls":          "coordenação — A convoca B (coordenador → reunião)",
+        "classifies":     "classificação — A classifica B (norma → material)"
+      }
+    }
+  },
+
+  "validation_rules": {
+    "freshness": {
+      "score_calculation": "max(0, 1 - months_since_create / 24)",
+      "thresholds": {
+        "green":  { "min_score": 0.75, "action": "PASS — contexto recente e válido", "max_months": 6 },
+        "yellow": { "min_score": 0.5,  "action": "WARNING — contexto envelhecendo, marcar para revalidação", "max_months": 12 },
+        "red":    { "min_score": 0.25, "action": "WARNING — contexto antigo, revalidar antes de usar", "max_months": 18 },
+        "stale":  { "min_score": 0,    "action": "FAIL — contexto expirado, exigir revalidação antes de publicar", "max_months": 24 }
+      },
+      "auto_revalidate": "Após ultrapassar yellow (12 meses), agente coordenador agenda revalidação automática com o agente responsável"
+    },
+
+    "sanity_check": {
+      "description": "Verificação de plausibilidade física — valores dentro de limites conhecidos da engenharia",
+      "rules": [
+        { "class": "Material", "property": "E",       "min": 0.001, "max": 1000,  "unit": "GPa",    "fail_message": "Módulo de elasticidade fora do range de engenharia (0.001-1000 GPa)" },
+        { "class": "Material", "property": "sigma_y", "min": 0.1,   "max": 10000, "unit": "MPa",    "fail_message": "Tensão de escoamento fora do range de engenharia (0.1-10000 MPa)" },
+        { "class": "Material", "property": "rho",     "min": 0.1,   "max": 25,    "unit": "g/cm³",  "fail_message": "Densidade fora do range de engenharia (0.1-25 g/cm³)" },
+        { "class": "Material", "property": "nu",      "min": 0,     "max": 0.5,   "unit": "",       "fail_message": "Coeficiente de Poisson fora do range físico (0-0.5)" },
+        { "class": "Carga",    "property": "magnitude","min": 0,     "max": 1e9,   "unit": "N",      "fail_message": "Magnitude de carga negativa ou extremamente alta (>1e9 N)" },
+        { "class": "Simulacao","property": "parametros.malha.n_elementos", "min": 1, "max": 1e9, "fail_message": "Número de elementos inválido" }
+      ],
+      "class_specific": {
+        "AcoCarbono":    { "E": {"min": 190, "max": 215},  "sigma_y": {"min": 200, "max": 1200}, "rho": {"min": 7.7, "max": 8.1} },
+        "AcoInox":       { "E": {"min": 190, "max": 210},  "sigma_y": {"min": 200, "max": 1500}, "rho": {"min": 7.7, "max": 8.1} },
+        "Aluminio":      { "E": {"min": 65,  "max": 75},   "sigma_y": {"min": 30,  "max": 700},  "rho": {"min": 2.6, "max": 2.9} },
+        "Titanio":       { "E": {"min": 100, "max": 120},  "sigma_y": {"min": 300, "max": 1200}, "rho": {"min": 4.4, "max": 4.6} },
+        "FibraVidroEpoxi": { "E": {"min": 15,  "max": 50}, "sigma_y": {"min": 200, "max": 900},  "rho": {"min": 1.5, "max": 2.1} },
+        "FibraCarbonoEpoxi": { "E": {"min": 70, "max": 250}, "sigma_y": {"min": 500, "max": 2500}, "rho": {"min": 1.4, "max": 1.8} },
+        "Polimero":      { "E": {"min": 0.1, "max": 5},     "sigma_y": {"min": 10,  "max": 100},  "rho": {"min": 0.9, "max": 1.5} }
+      }
+    },
+
+    "lineage": {
+      "description": "Rastreabilidade completa de cada contexto — quem criou, quando, baseado em quê",
+      "required_fields": ["created_by", "version", "created_at", "based_on"],
+      "fields": {
+        "created_by": { "type": "string", "description": "Agente que criou o contexto (ex: agent-materiais)" },
+        "version":    { "type": "string", "description": "Versão semântica do contexto (ex: 1.2.0)" },
+        "created_at": { "type": "string", "format": "date-time", "description": "Timestamp ISO 8601 de criação" },
+        "updated_at": { "type": "string", "format": "date-time", "description": "Timestamp da última atualização" },
+        "based_on":   { "type": "array", "items": { "type": "string" }, "description": "Lista de LOG-UUIDs do WAL que originaram este contexto" },
+        "freshness":  { "type": "number", "description": "Score de freshness 0-1 calculado automaticamente", "min": 0, "max": 1 },
+        "quality_gate_status": { "type": "object", "description": "Status dos 4 quality gates", "properties": {
+          "schema":   { "type": "string", "enum": ["PASS", "FAIL", "PENDING"] },
+          "sanity":   { "type": "string", "enum": ["PASS", "FAIL", "PENDING"] },
+          "freshness": { "type": "string", "enum": ["PASS", "WARNING", "FAIL"] },
+          "revisor":  { "type": "string", "enum": ["PASS", "FAIL", "PENDING"] }
+        }}
+      }
+    }
+  }
+}

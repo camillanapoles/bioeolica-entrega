@@ -1,0 +1,207 @@
+"""Config Manager — single JSON source of truth for all parameters.
+
+All modules read from this config. Zero hardcoded defaults.
+Frontend writes/reads the same config.json.
+Supports multiple scenarios via different config files.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+from copy import deepcopy
+from pathlib import Path
+from typing import Any, Optional
+
+DEFAULT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "config.default.json")
+
+
+class ConfigManager:
+    """Load, validate, and serve config values.
+
+    Usage:
+        cfg = ConfigManager.load("config.json")
+        altitude = cfg.get("environment.altitude_m", 100)
+        cfg.set("environment.altitude_m", 500)
+        cfg.save("scenario_2.json")
+    """
+
+    def __init__(self, data: dict):
+        self._data = deepcopy(data)
+
+    @classmethod
+    def load(cls, path: str | Path) -> "ConfigManager":
+        """Load config from a JSON file.
+
+        Parameters
+        ----------
+        path : str | Path
+            Path to config.json.
+
+        Returns
+        -------
+        ConfigManager
+        """
+        path = str(path)
+        if not os.path.exists(path):
+            if os.path.exists(DEFAULT_CONFIG_PATH):
+                path = DEFAULT_CONFIG_PATH
+            else:
+                raise FileNotFoundError(f"Config not found: {path}")
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        return cls(data)
+
+    @classmethod
+    def from_defaults(cls) -> "ConfigManager":
+        """Load from default config file."""
+        return cls.load(DEFAULT_CONFIG_PATH)
+
+    def get(self, key_path: str, default: Any = None) -> Any:
+        """Get a value by dot-separated path.
+
+        Examples
+        --------
+        cfg.get("environment.altitude_m")       → 100
+        cfg.get("material.E_GPa")               → 210
+        cfg.get("nonexistent.key", "fallback")   → "fallback"
+        """
+        keys = key_path.split(".")
+        value = self._data
+        try:
+            for k in keys:
+                value = value[k]
+            return value
+        except (KeyError, TypeError, IndexError):
+            return default
+
+    def set(self, key_path: str, value: Any) -> "ConfigManager":
+        """Set a value by dot-separated path. Creates intermediate dicts."""
+        keys = key_path.split(".")
+        target = self._data
+        for k in keys[:-1]:
+            if k not in target or not isinstance(target[k], dict):
+                target[k] = {}
+            target = target[k]
+        target[keys[-1]] = value
+        return self
+
+    def section(self, prefix: str) -> dict:
+        """Get an entire section as a dict.
+
+        Examples
+        --------
+        cfg.section("environment")
+        # → {"altitude_m": 100, "wind_class": "II", ...}
+        """
+        return self.get(prefix, {})
+
+    def save(self, path: str | Path, indent: int = 2) -> str:
+        """Save config to a JSON file.
+
+        Parameters
+        ----------
+        path : str | Path
+            Output path.
+        indent : int, optional
+            JSON indentation (default 2).
+
+        Returns
+        -------
+        path : str
+        """
+        path = str(path)
+        with open(path, "w") as f:
+            json.dump(self._data, f, indent=indent)
+        return path
+
+    def copy(self) -> "ConfigManager":
+        """Create a deep copy for independent modification."""
+        return ConfigManager(deepcopy(self._data))
+
+    def validate(self) -> list[str]:
+        """Validate required keys exist. Returns error messages."""
+        errors = []
+        required = [
+            "environment.altitude_m",
+            "environment.wind_class",
+            "material.E_GPa",
+            "material.nu",
+            "geometry.length_mm",
+        ]
+        for key in required:
+            if self.get(key) is None:
+                errors.append(f"Missing required key: {key}")
+        return errors
+
+    @property
+    def data(self) -> dict:
+        return self._data
+
+
+def create_default_config(path: str | None = None) -> str:
+    """Create the default config.json file.
+
+    Parameters
+    ----------
+    path : str, optional
+        Output path. Default: config.default.json next to this module.
+
+    Returns
+    -------
+    path : str
+    """
+    path = path or DEFAULT_CONFIG_PATH
+    
+    default = {
+        "project": {
+            "name": "default",
+            "description": "Default configuration",
+            "author": "user",
+            "version": "1.0.0",
+        },
+        "environment": {
+            "altitude_m": 100,
+            "wind_class": "II",
+            "wind_speed_ref_ms": 30.0,
+            "exposure": "rural",
+            "safety_class": "CC2",
+        },
+        "geometry": {
+            "type": "box",
+            "length_mm": 100,
+            "width_mm": 20,
+            "height_mm": 20,
+        },
+        "mesh": {
+            "element_size": 3.0,
+            "element_order": 1,
+            "algorithm_3d": 6,
+        },
+        "material": {
+            "name": "STEEL",
+            "E_GPa": 210,
+            "nu": 0.3,
+            "rho_kgm3": 7850,
+            "yield_strength_MPa": 250,
+        },
+        "solver": {
+            "type": "static",
+            "force_N": {"x": 0, "y": 0, "z": -100},
+            "max_iterations": 100,
+            "tolerance": 1e-4,
+        },
+        "kdi": {
+            "macro": {"enabled": True, "analysis_type": "wind_loading"},
+            "meso": {"enabled": True, "analysis_type": "stress_concentration"},
+            "micro": {"enabled": False, "analysis_type": "homogenization"},
+        },
+        "output": {
+            "format": "json",
+            "export_vtk": False,
+            "report_level": "detailed",
+        },
+    }
+    with open(path, "w") as f:
+        json.dump(default, f, indent=2)
+    return path

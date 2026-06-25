@@ -1,0 +1,16 @@
+[project]
+name = "cad-cae-platform"
+version = "0.1.0"
+description = "CAD/CAE geometry and mesh modules"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = [".", "src"]
+include = ["modules*", "cad_cae*", "src/cad_cae*"]

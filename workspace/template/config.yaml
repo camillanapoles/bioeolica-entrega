@@ -1,0 +1,29 @@
+# Bioeólica Dev — Default Configuration
+# This file is the single source of truth for project settings.
+
+project:
+  name: bioeolica-dev
+  version: 0.1.0
+  workspaces:
+    - physics-m3
+    - cad-cae-platform
+    - kdi-m3-bridge
+
+physics_m3:
+  fem:
+    default_mesh_size: 0.1
+    solver: calculix
+  materials:
+    database_path: data/materials/master_db.json
+
+kdi_m3_bridge:
+  log_level: INFO
+  map_unico_path: data/mapa_unico.json
+  knowledge_base_path: data/knowledge/rag_index.json
+
+logging:
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - console
+    - file
+  file_path: logs/bioeolica.log

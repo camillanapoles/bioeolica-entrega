@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "https://bioeolica.dev/schemas/quality-gates-v1",
+  "title": "Quality Gates de Contexto",
+  "description": "Configuração dos 4 quality gates que todo contexto deve atravessar antes de ser publicado no shared/ e disponibilizado para outros agentes.",
+  "version": "1.0.0",
+
+  "gates": {
+    "gate_1_schema_validation": {
+      "name": "GATE 1 — Validação de Schema",
+      "description": "O contexto segue a ontologia? Campos obrigatórios preenchidos? Tipos corretos?",
+      "enabled": true,
+      "order": 1,
+      "on_fail": "REJECT — contexto não é persistido. Retornar erros de validação para o agente emissor.",
+
+      "checks": [
+        {
+          "id": "required_fields",
+          "description": "Campos obrigatórios preenchidos conforme classe ontológica",
+          "rule": "Para a classe do contexto, todos os required_properties devem estar presentes e não-nulos",
+          "fail_message": "Campo obrigatório ausente: {field}"
+        },
+        {
+          "id": "type_validation",
+          "description": "Tipos dos valores correspondem ao schema (number, string, array, object)",
+          "rule": "Cada propriedade deve ter o tipo declarado no ontology.json",
+          "fail_message": "Tipo inválido para {field}: esperado {expected}, recebido {received}"
+        },
+        {
+          "id": "enum_validation",
+          "description": "Valores enum estão dentro do conjunto permitido",
+          "rule": "Propriedades com enum devem ter valor dentro do conjunto definido",
+          "fail_message": "Valor {value} não é válido para {field}. Valores permitidos: {allowed}"
+        },
+        {
+          "id": "min_max_validation",
+          "description": "Valores numéricos dentro dos limites min/max do schema",
+          "rule": "Propriedades com min/max devem respeitar os limites",
+          "fail_message": "Valor {value} fora do range [{min}, {max}] para {field}"
+        },
+        {
+          "id": "format_validation",
+          "description": "Campos com formato específico (date-time, uri) seguem o formato esperado",
+          "rule": "Propriedades com format devem estar no formato ISO correspondente",
+          "fail_message": "Formato inválido para {field}: esperado {format}"
+        },
+        {
+          "id": "lineage_fields",
+          "description": "Campos obrigatórios de lineage preenchidos (created_by, version, based_on)",
+          "rule": "Lineage deve conter created_by, version, e pelo menos um based_on",
+          "fail_message": "Lineage incompleta: faltando {field}"
+        }
+      ],
+
+      "on_pass": "Prosseguir para GATE 2"
+    },
+
+    "gate_2_sanity_check": {
+      "name": "GATE 2 — Sanity Check",
+      "description": "O contexto é fisicamente plausível?",
+      "enabled": true,
+      "order": 2,
+      "on_fail": "REJECT + justificativa técnica. Retornar ao agente emissor com sugestão de correção.",
+
+      "checks": [
+        {
+          "id": "physical_range",
+          "description": "Valores dentro de ranges físicos conhecidos da engenharia",
+          "rule": "Consultar ontology.validation_rules.sanity_check.rules",
+          "fail_message": "Sanity FAIL: {fail_message}",
+          "examples": [
+            "E=700 GPa para compósito → FAIL (máx 50 GPa para fibra-vidro, 250 GPa para fibra-carbono)",
+            "sigma_y=3500 MPa para alumínio → FAIL (máx 700 MPa)",
+            "rho=0.1 g/cm³ para metal → FAIL (mín 1.5 g/cm³)",
+            "nu=0.8 para material isotrópico → FAIL (máx 0.5)"
+          ]
+        },
+        {
+          "id": "dimensional_consistency",
+          "description": "Unidades consistentes entre propriedades relacionadas",
+          "rule": "E e sigma_y devem estar na mesma ordem de grandeza para a mesma classe de material (tipicamente E ≈ 100-1000 × sigma_y)",
+          "fail_message": "Relação E/sigma_y={ratio} fora do range esperado (100-1000) para {material}. Verifique unidades."
+        },
+        {
+          "id": "class_specific_ranges",
+          "description": "Ranges específicos por subclasse de material",
+          "rule": "Consultar ontology.validation_rules.sanity_check.class_specific",
+          "fail_message": "Valor {value} para {property} fora do range específico de {subclass}: [{min}, {max}]",
+          "examples": [
+            "Aço carbono com E=150 GPa → FAIL (mín 190 GPa)",
+            "Alumínio com E=80 GPa → FAIL (máx 75 GPa)",
+            "Fibra-carbono/epóxi com rho=2.5 g/cm³ → FAIL (máx 1.8 g/cm³)"
+          ]
+        }
+      ],
+
+      "on_pass": "Prosseguir para GATE 3. Se todas as verificações lineares passam, o contexto é fisicamente plausível."
+    },
+
+    "gate_3_freshness": {
+      "name": "GATE 3 — Freshness Check",
+      "description": "O contexto ainda é válido? Dado envelhecido pode estar desatualizado.",
+      "enabled": true,
+      "order": 3,
+      "score_calculation": "max(0, 1 - months_since_create / 24)",
+
+      "checks": [
+        {
+          "id": "freshness_score",
+          "description": "Score de freshness calculado a partir da data de criação",
+          "rule": "freshness = max(0, 1 - months_since_create / 24)",
+          "tiers": {
+            "green":  { "score_min": 0.75, "max_months": 6,  "status": "PASS",  "action": "Contexto recente. Publicar normalmente." },
+            "yellow": { "score_min": 0.5,  "max_months": 12, "status": "WARNING", "action": "Contexto envelhecendo. Marcar para revalidação em até 30 dias. Publicar permitido com warning." },
+            "red":    { "score_min": 0.25, "max_months": 18, "status": "FAIL",  "action": "Contexto antigo. Exigir revalidação pelo agente responsável antes de publicar." },
+            "stale":  { "score_min": 0,    "max_months": 24, "status": "FAIL",  "action": "Contexto expirado. Revalidação obrigatória. Não publicar sem nova verificação." }
+          }
+        },
+        {
+          "id": "source_recency",
+          "description": "Fontes citadas no contexto são recentes?",
+          "rule": "Fontes com mais de 24 meses sem revalidação marcadas como PENDING até revalidação",
+          "fail_message": "Fonte {source} tem mais de 24 meses. Revalidar antes de publicar."
+        },
+        {
+          "id": "auto_revalidate_trigger",
+          "description": "Se freshness < 0.5 (yellow+), acionar revalidação automática",
+          "rule": "Agente coordenador agenda revalidação com o agente responsável. Prazo: 30 dias para yellow, 7 dias para red/stale."
+        }
+      ],
+
+      "on_pass": "Prosseguir para GATE 4",
+      "on_warning": "Publicar com warning. Coordenador agenda revalidação em background.",
+      "on_fail": "Requisitar revalidação ao agente responsável antes de publicar."
+    },
+
+    "gate_4_revisor_hostil": {
+      "name": "GATE 4 — Revisor Hostil",
+      "description": "Revisão independente por outro agente. Aplica P6 (Revisor Hostil Autônomo e Independente) — busca contradições, inconsistências e falhas no contexto.",
+      "enabled": true,
+      "order": 4,
+      "on_fail": "Retornar ao agente emissor com relatório de revisão. Máximo 3 retentativas.",
+
+      "checks": [
+        {
+          "id": "contradiction_detection",
+          "description": "O contexto contradiz algum contexto existente no shared/?",
+          "rule": "Comparar com contextos da mesma classe no projeto. Se houver contradição, resolver antes de publicar.",
+          "fail_message": "Contradição detectada com {existing_context}: {property} = {existing_value} vs. {new_value}",
+          "resolution": "Matriz de prioridade: (1) peer-reviewed, (2) norma, (3) data sheet, (4) estimativa. Se mesma prioridade, convocar reunião entre agentes."
+        },
+        {
+          "id": "internal_consistency",
+          "description": "O contexto é internamente consistente? Relações entre propriedades são fisicamente coerentes?",
+          "rule": "Verificar: E/sigma_y na ordem 100-1000? rho/E consistente com classe? nu dentro de 0-0.5?",
+          "fail_message": "Inconsistência interna: {issue}",
+          "examples": [
+            "E=210 GPa e sigma_y=50 MPa → E/sigma_y=4200, muito alto para aço (esperado 200-500). Verificar sigma_y.",
+            "E=0.5 GPa e rho=7.8 g/cm³ → impossível para metal com E tão baixo. Verificar E."
+          ]
+        },
+        {
+          "id": "omission_detection",
+          "description": "Há omissões críticas? Propriedades esperadas para a classe estão ausentes sem justificativa?",
+          "rule": "Para Material, espera-se no mínimo E, sigma_y, rho, nu. Se ausentes, exigir justificativa.",
+          "fail_message": "Propriedade esperada {property} ausente para classe {class}. Justificativa: {justification}"
+        },
+        {
+          "id": "source_quality",
+          "description": "Fontes citadas têm quality_score ≥ 7/10?",
+          "rule": "Fontes com quality_score < 7 são 'referência fria' — não devem ser usadas como única fonte para um contexto publicado",
+          "fail_message": "Fonte {source} tem quality_score={score} < 7. Necessária fonte adicional de maior qualidade."
+        },
+        {
+          "id": "order_of_magnitude",
+          "description": "Os valores passam no teste de ordem de grandeza (sanity check final)?",
+          "rule": "Aplicar heurísticas: módulo de elasticidade de metal nunca < 10 GPa, densidade de metal nunca < 1.5 g/cm³, etc.",
+          "fail_message": "Ordem de grandeza suspeita: {value} para {property} em {class} — verificar unidades ou digitação."
+        }
+      ],
+
+      "revision_coordinator": {
+        "description": "Fluxo de revisão coordenada pelo agente coordenador",
+        "flow": {
+          "step_1": "Agente A publica contexto → coordenador registra no grafo como PENDING (quality_gate_status.revisor = PENDING)",
+          "step_2": "Coordenador designa agente B para revisão (preferencialmente agente com maior proficiência no domínio)",
+          "step_3": "Agente B aplica P6 (Revisor Hostil) — busca contradições, inconsistências, omissões",
+          "step_4": "Se PASS → coordenador atualiza quality_gate_status.revisor = PASS, contexto liberado em shared/",
+          "step_5": "Se FAIL → coordenador devolve ao agente A com relatório de revisão. A corrige e re-submete",
+          "step_6": "Máximo 3 retentativas. Se 3ª falha, coordenador convoca reunião entre A, B e coordenador para resolução"
+        }
+      },
+
+      "on_pass": "✅ Contexto certificado. Publicar em shared/ e notificar agentes subscriptores via canal de propagação.",
+      "on_retry_limit": "ESCALAÇÃO: coordenador convoca reunião entre agente A, revisor B e coordenador. Decisão final por voto: coordenador tem voto de desempate."
+    }
+  },
+
+  "aggregate_status": {
+    "description": "Status consolidado dos 4 gates para um contexto",
+    "states": {
+      "ALL_PASS":    "Contexto certificado. Publicado em shared/. Disponível para todos os agentes.",
+      "GATES_PENDING": "Contexto criado mas aguardando passagem pelos gates. Visível apenas para o agente criador.",
+      "GATE1_FAIL":  "Schema inválido. Corrigir conforme erro de validação.",
+      "GATE2_FAIL":  "Sanity check falhou. Revisar valores fisicamente.",
+      "GATE3_FAIL":  "Freshness expirado. Revalidar fontes.",
+      "GATE4_FAIL":  "Revisor hostil rejeitou. Corrigir conforme relatório de revisão.",
+      "GATE4_RETRY": "Revisor hostil na {n}ª retentativa (máx 3)."
+    }
+  }
+}

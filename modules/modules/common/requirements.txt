@@ -1,0 +1,50 @@
+# =============================================================================
+# Python Dependencies — Composite Biomaterial for Wind Energy
+# Part of T003 — Phase 1 Setup
+# Python 3.10+ virtual environment requirements
+# Reference: plan.md Technical Context
+# =============================================================================
+# Install: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+# =============================================================================
+
+# === Core Scientific Computing ===
+numpy>=1.24,<2.0          # Array operations, linear algebra
+scipy>=1.10,<2.0          # Optimization, interpolation, signal processing
+pandas>=2.0,<3.0          # Data structures for tabular data
+
+# === Visualization ===
+matplotlib>=3.7,<4.0      # Publication-quality plotting
+seaborn>=0.12,<1.0        # Statistical data visualization
+plotly>=5.14,<6.0         # Interactive visualizations
+
+# === Data I/O ===
+python-dateutil>=2.8      # Date parsing
+pyyaml>=6.0,<7.0          # YAML configuration
+jsonschema>=4.17,<5.0     # JSON Schema validation for WAL logs
+toml>=0.10,<1.0           # TOML configuration parsing
+
+# === Machine Learning / Surrogate Models ===
+torch>=2.0,<3.0           # PyTorch — neural network surrogate models
+deepxde>=1.10,<2.0        # Physics-Informed Neural Networks (PINNs)
+
+# === Mesh Processing ===
+meshio>=5.0,<6.0          # Mesh format conversion (compatible with CalculiX)
+pygmsh>=7.0,<8.0          # Gmsh Python interface for mesh generation
+
+# === Web / API ===
+requests>=2.28,<3.0       # HTTP requests for data retrieval
+
+# === Progress & Logging ===
+tqdm>=4.64,<5.0           # Progress bars for long-running tasks
+coloredlogs>=15.0,<16.0   # Colored logging output
+
+# === UUID Generation ===
+# (stdlib uuid module used — no additional dependency needed)
+
+# === SQLite ===
+# (stdlib sqlite3 module used — no additional dependency needed)
+
+# === Testing ===
+pytest>=7.4,<8.0          # Test framework
+pytest-cov>=4.1,<5.0      # Coverage reporting
+pytest-xdist>=3.3,<4.0    # Parallel test execution

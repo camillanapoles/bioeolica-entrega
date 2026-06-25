@@ -1,0 +1,198 @@
+*HEADING
+ASTM D790 FLEXURAL TEST (3-POINT BENDING) - PAPER MACHE COMPOSITE
+SPECIMEN: 80MM X 10MM X 4MM RECTANGULAR PRISM
+SUPPORT SPAN: 64MM (8MM OVERHANG EACH SIDE)
+UNITS: MM, N, S (MPA = N/MM^2)
+MESH: 1MM GLOBAL (80 X 10 X 4 DIVISIONS)
+COATING: Z=0 TO 1MM (BOTTOM, TENSION FACE) AND Z=3 TO 4MM (TOP, COMPRESSION FACE)
+SUBSTRATE: Z=1 TO 3MM, PAPER MACHE
+SUPPORTS: BOTTOM SURFACE AT X=8MM AND X=72MM (Z=0)
+LOAD: TOP SURFACE AT X=40MM (Z=4)
+-------------------------------------------------------------------------
+** NODE GENERATION
+** Mesh: NX=80 (X-length), NY=10 (Y-width), NZ=4 (Z-thickness)
+** Total nodes: 81 x 11 x 5 = 4455
+** Total elements: 80 x 10 x 4 = 3200
+** Constants: NX+1=81, NY+1=11, NZ+1=5, (NX+1)*(NY+1)=891
+** X from 0 to 80mm, Y from -5 to +5mm, Z from 0 to 4mm
+-------------------------------------------------------------------------
+*NODE, NSET=BOTTOM_EDGE_1
+1, 0.0, -5.0, 0.0
+*NGEN, NSET=BOTTOM_EDGE_1
+1, 81, 1
+
+*NODE, NSET=BOTTOM_EDGE_NY
+811, 0.0, 5.0, 0.0
+*NGEN, NSET=BOTTOM_EDGE_NY
+811, 891, 1
+
+*NFILL, NSET=BOTTOM_FACE
+BOTTOM_EDGE_1, BOTTOM_EDGE_NY, 10, 81
+
+*NODE, NSET=TOP_EDGE_1
+3565, 0.0, -5.0, 4.0
+*NGEN, NSET=TOP_EDGE_1
+3565, 3645, 1
+
+*NODE, NSET=TOP_EDGE_NY
+4375, 0.0, 5.0, 4.0
+*NGEN, NSET=TOP_EDGE_NY
+4375, 4455, 1
+
+*NFILL, NSET=TOP_FACE
+TOP_EDGE_1, TOP_EDGE_NY, 10, 81
+
+*NFILL, NSET=ALLNODES
+BOTTOM_FACE, TOP_FACE, 4, 891
+
+** ELEMENT GENERATION -- C3D8R (8-node brick, reduced integration)
+*ELEMENT, TYPE=C3D8R, ELSET=ALLELEMS
+1, 1, 2, 83, 82, 892, 893, 974, 973
+*ELGEN, ELSET=ALLELEMS
+1, 80, 10, 4, 1, 81, 891
+
+** ELEMENT SETS FOR COATING AND SUBSTRATE
+** Bottom coating (k=0, Z=0 to 1mm, tension face): elements 1 to 800
+*ELSET, ELSET=COATING_BOTTOM, GENERATE
+1, 800, 1
+
+** Substrate (k=1 to 2, Z=1 to 3mm): elements 801 to 2400
+*ELSET, ELSET=SUBSTRATE, GENERATE
+801, 2400, 1
+
+** Top coating (k=3, Z=3 to 4mm, compression face): elements 2401 to 3200
+*ELSET, ELSET=COATING_TOP, GENERATE
+2401, 3200, 1
+
+** NODE SETS FOR SUPPORTS AND LOADING
+** Left support: bottom face (Z=0) at X=8mm (i=8), all Y
+** node(8,j,0) = 9 + j*81
+*NSET, NSET=LEFT_SUPPORT, GENERATE
+9, 819, 81
+
+** Right support: bottom face (Z=0) at X=72mm (i=72), all Y
+** node(72,j,0) = 73 + j*81
+*NSET, NSET=RIGHT_SUPPORT, GENERATE
+73, 883, 81
+
+** Center node on left support (prevents rigid body X-translation)
+*NSET, NSET=LEFT_SUPPORT_CENTER, GENERATE
+9, 9, 1
+
+** Loading line: top face (Z=4mm) at midspan X=40mm (i=40), all Y
+** node(40,j,4) = 41 + j*81 + 4*891 = 3605 + j*81
+*NSET, NSET=LOAD_LINE, GENERATE
+3605, 4415, 81
+
+** Midspan cross-section (X=40mm) for stress/strain extraction
+** node(40,j,k) = 41 + 81*(j + 11*k) for j=0..10, k=0..4
+*NSET, NSET=CENTER_SECTION, GENERATE
+41, 4415, 81
+
+** TOTAL LOAD SET (for reaction force extraction)
+*NSET, NSET=TOTAL_LOAD
+LOAD_LINE
+
+** MATERIAL DEFINITIONS
+*MATERIAL, NAME=PAPER_MACHE
+*ELASTIC
+4500.0, 0.35
+*DENSITY
+8.0E-10,
+
+*MATERIAL, NAME=GRAPHITE
+*ELASTIC
+8000.0, 0.22
+*DENSITY
+1.8E-09,
+
+** SOLID SECTIONS
+*SOLID SECTION, ELSET=COATING_BOTTOM, MATERIAL=GRAPHITE
+*SOLID SECTION, ELSET=SUBSTRATE, MATERIAL=PAPER_MACHE
+*SOLID SECTION, ELSET=COATING_TOP, MATERIAL=GRAPHITE
+
+** INITIAL BOUNDARY CONDITIONS
+** Left support: fix Z-displacement (DOF 3) at bottom surface
+*BOUNDARY
+LEFT_SUPPORT, 3, 3
+
+** Right support: fix Z-displacement (DOF 3) at bottom surface
+*BOUNDARY
+RIGHT_SUPPORT, 3, 3
+
+** Constrain X-translation (DOF 1) at center of left support to prevent
+** rigid body sliding along the beam axis
+*BOUNDARY
+LEFT_SUPPORT_CENTER, 1, 1
+
+** ======================================================================
+** STEP 1: FLEXURAL LOADING TO -1.0MM AT MIDSPAN
+** ======================================================================
+*STEP, NAME=FLEXURAL_INC1
+*STATIC
+0.1, 1.0, 1E-8, 0.5
+
+*BOUNDARY
+LOAD_LINE, 3, 3, -1.0
+
+*NODE FILE, NSET=ALLNODES
+U
+RF
+
+*EL FILE, ELSET=ALLELEMS
+S
+E
+
+*NODE FILE, NSET=CENTER_SECTION
+U
+RF
+
+*NODE PRINT, NSET=TOTAL_LOAD
+U
+RF
+
+*EL PRINT, ELSET=COATING_BOTTOM
+S
+E
+
+*EL PRINT, ELSET=COATING_TOP
+S
+E
+
+*END STEP
+
+** ======================================================================
+** STEP 2: FLEXURAL LOADING TO -2.0MM AT MIDSPAN (FINAL)
+** ======================================================================
+*STEP, NAME=FLEXURAL_INC2
+*STATIC
+0.1, 1.0, 1E-8, 0.5
+
+*BOUNDARY
+LOAD_LINE, 3, 3, -2.0
+
+*NODE FILE, NSET=ALLNODES
+U
+RF
+
+*EL FILE, ELSET=ALLELEMS
+S
+E
+
+*NODE FILE, NSET=CENTER_SECTION
+U
+RF
+
+*NODE PRINT, NSET=TOTAL_LOAD
+U
+RF
+
+*EL PRINT, ELSET=COATING_BOTTOM
+S
+E
+
+*EL PRINT, ELSET=COATING_TOP
+S
+E
+
+*END STEP

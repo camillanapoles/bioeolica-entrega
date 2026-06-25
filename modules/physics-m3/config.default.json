@@ -1,0 +1,62 @@
+{
+  "project": {
+    "name": "default",
+    "description": "Default configuration",
+    "author": "user",
+    "version": "1.0.0"
+  },
+  "environment": {
+    "altitude_m": 100,
+    "wind_class": "II",
+    "wind_speed_ref_ms": 30.0,
+    "exposure": "rural",
+    "safety_class": "CC2"
+  },
+  "geometry": {
+    "type": "box",
+    "length_mm": 100,
+    "width_mm": 20,
+    "height_mm": 20
+  },
+  "mesh": {
+    "element_size": 3.0,
+    "element_order": 1,
+    "algorithm_3d": 6
+  },
+  "material": {
+    "name": "STEEL",
+    "E_GPa": 210,
+    "nu": 0.3,
+    "rho_kgm3": 7850,
+    "yield_strength_MPa": 250
+  },
+  "solver": {
+    "type": "static",
+    "force_N": {
+      "x": 0,
+      "y": 0,
+      "z": -100
+    },
+    "max_iterations": 100,
+    "tolerance": 1e-4
+  },
+  "kdi": {
+    "macro": {
+      "enabled": true,
+      "analysis_type": "wind_loading"
+    },
+    "meso": {
+      "enabled": true,
+      "analysis_type": "stress_concentration"
+    },
+    "micro": {
+      "enabled": false,
+      "analysis_type": "homogenization"
+    }
+  },
+  "output": {
+    "format": "json",
+    "export_vtk": false,
+    "report_level": "detailed"
+  }
+}

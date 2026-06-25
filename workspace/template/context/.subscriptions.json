@@ -1,0 +1,9 @@
+{
+  "subscribers": [
+    {
+      "agent_id": "coordinator",
+      "context_pattern": "*",
+      "subscribed_at": "2026-06-09T15:48:42+0000"
+    }
+  ]
+}

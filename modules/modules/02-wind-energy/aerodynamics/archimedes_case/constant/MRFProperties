@@ -1,0 +1,23 @@
+/*---------------------------------------------------------------------------*\
+  Archimedes screw-type turbine — MRF Properties (horizontal axis)
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      MRFProperties;
+}
+
+MRF
+{
+    cellZone    rotorZone;
+    active      yes;
+
+    origin      (0 0 0);
+    axis        (1 0 0);  // Horizontal axis (wind direction)
+
+    rpm         REPLACE_RPM;  // Set by Allrun per TSR
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "https://bioeolica.dev/schemas/context-index-v1",
+  "title": "Índice de Contexto do Projeto",
+  "description": "Árvore completa de todos os contextos do projeto, organizados por classe e domínio. Cada entrada lista arquivos de contexto com seus metadados de lineage e freshness.",
+  "version": "1.0.0",
+
+  "project": {
+    "name": null,
+    "created_at": null,
+    "updated_at": null
+  },
+
+  "index": {
+    "materials": {
+      "base_path": "materials/",
+      "description": "Propriedades, comportamento e seleção de materiais",
+      "entries": []
+    },
+    "loads": {
+      "base_path": "loads/",
+      "description": "Condições de carregamento — forças, pressões, momentos, ciclos",
+      "entries": []
+    },
+    "constraints": {
+      "base_path": "constraints/",
+      "description": "Restrições de projeto — normas, limites, condições de contorno",
+      "entries": []
+    },
+    "components": {
+      "base_path": "components/",
+      "description": "Componentes físicos do sistema — geometria, material, massa",
+      "entries": []
+    },
+    "methods": {
+      "base_path": "methods/",
+      "description": "Métodos numéricos selecionados por domínio e escala",
+      "entries": []
+    },
+    "tools": {
+      "base_path": "tools/",
+      "description": "Ferramentas computacionais — versão, licença, implementação",
+      "entries": []
+    },
+    "decisions": {
+      "base_path": "decisions/",
+      "description": "Decisões de projeto registradas com rationale e alternatives",
+      "entries": []
+    },
+    "simulations": {
+      "base_path": "simulations/",
+      "description": "Simulações executadas — parâmetros, resultados, status VVV",
+      "entries": []
+    },
+    "publications": {
+      "base_path": "publications/",
+      "description": "Artigos e relatórios gerados a partir das análises",
+      "entries": []
+    },
+    "meetings": {
+      "base_path": "meetings/",
+      "description": "Reuniões do time — atas, decisões, action items",
+      "entries": []
+    },
+    "lineage": {
+      "base_path": "lineage/",
+      "description": "Rastreabilidade — linhagem de cada contexto",
+      "entries": []
+    }
+  },
+
+  "entry_schema": {
+    "type": "object",
+    "required": ["id", "class", "title", "file", "created_by", "created_at", "freshness", "version"],
+    "properties": {
+      "id":         { "type": "string", "pattern": "^CTX-[A-Z]{2,4}-[0-9]{4}$", "description": "Identificador único do contexto, ex: CTX-MAT-0001" },
+      "class":      { "type": "string", "enum": ["Material", "Carga", "Componente", "Norma", "Metodo", "Ferramenta", "Decisao", "Simulacao", "Publicacao", "Reuniao"], "description": "Classe ontológica do contexto" },
+      "title":      { "type": "string", "description": "Título descritivo do contexto" },
+      "file":       { "type": "string", "description": "Caminho relativo ao arquivo de contexto" },
+      "created_by": { "type": "string", "description": "Agente que criou (ex: agent-materiais)" },
+      "created_at": { "type": "string", "format": "date-time", "description": "Timestamp ISO 8601" },
+      "updated_at": { "type": "string", "format": "date-time", "description": "Última atualização" },
+      "freshness":  { "type": "number", "description": "Score 0-1 (1 = recente, 0 = expirado)", "min": 0, "max": 1 },
+      "version":    { "type": "string", "description": "Versão semântica", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+      "tags":       { "type": "array", "items": { "type": "string" }, "description": "Tags para busca" },
+      "depends_on": { "type": "array", "items": { "type": "string" }, "description": "IDs de contexto dos quais este depende" }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+#!/bin/bash
+#---------------------------------------------------------------------------*
+#  Archimedes screw-type turbine — CFD runner
+#  Uses pimpleFoam + MRF for horizontal-axis rotating zone
+#  TSR study for paper-mache + graphite coated blades
+#---------------------------------------------------------------------------*
+
+cd "${0%/*}" || exit 1
+
+# Clean
+if [ -d processor* ]; then foamListTimes -rm; rm -rf processor*; fi
+
+# Settings
+ROTOR_DIAMETER=2.5
+TIP_SPEED_RATIOS=(1.5 2.0 2.5 3.0 3.5)
+WIND_SPEEDS=(3.0 6.0 8.0)
+
+# BlockMesh (background domain)
+blockMesh > log.blockMesh 2>&1
+
+# Refine around rotor region
+refineMesh -dict system/refineDict -overwrite > log.refineMesh 2>&1
+
+# Decompose for parallel
+decomposePar > log.decomposePar 2>&1
+
+for TSR in "${TIP_SPEED_RATIOS[@]}"; do
+    for V in "${WIND_SPEEDS[@]}"; do
+        OMEGA=$(echo "scale=6; 2 * $TSR * $V / ($ROTOR_DIAMETER / 2)" | bc -l)
+        RPM=$(echo "scale=2; $OMEGA * 60 / (2 * 3.14159)" | bc -l)
+
+        CASE_DIR="TSR_${TSR}_V${V}"
+        mkdir -p "$CASE_DIR"
+
+        # Copy 0/ with BCs for this wind speed
+        rm -rf "$CASE_DIR/0"
+        cp -r 0/ "$CASE_DIR/0/"
+        sed -i "s/VALUE/$V/g" "$CASE_DIR/0/U"
+        sed -i "s/VALUE/$V/g" "$CASE_DIR/0/p"
+
+        # Set MRFProperties RPM
+        rm -rf "$CASE_DIR/constant"
+        cp -r constant/ "$CASE_DIR/constant/"
+        sed -i "s/REPLACE_RPM/$RPM/g" "$CASE_DIR/constant/MRFProperties"
+
+        # Run pimpleFoam (parallel)
+        mpirun -np 4 pimpleFoam -case "$CASE_DIR" > "$CASE_DIR/log.pimpleFoam" 2>&1
+
+        # Sample forces
+        postProcessing -case "$CASE_DIR" -func forces > "$CASE_DIR/log.forces" 2>&1
+        postProcessing -case "$CASE_DIR" -func forceCoeffs > "$CASE_DIR/log.forceCoeffs" 2>&1
+
+        echo "ARCHIMEDES: TSR=$TSR V=${V}m/s RPM=$RPM → exit $?"
+    done
+done
+
+# Aggregate results
+echo "--- Archimedes TSR sweep complete ---"
+python3 ../archimedes_case/post_process.py 2>/dev/null || true

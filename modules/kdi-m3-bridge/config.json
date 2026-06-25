@@ -1,0 +1,73 @@
+{
+  "project": {
+    "name": "default",
+    "description": "Default KDI-M³ analysis scenario",
+    "version": "1.0.0"
+  },
+  "environment": {
+    "altitude_m": 100,
+    "wind_class": "II",
+    "wind_speed_ref_ms": 30.0,
+    "exposure": "rural",
+    "safety_class": "CC2"
+  },
+  "geometry": {
+    "type": "box",
+    "length_mm": 100,
+    "width_mm": 20,
+    "height_mm": 20
+  },
+  "mesh": {
+    "element_size": 3.0,
+    "element_order": 1,
+    "reorder": 1
+  },
+  "material": {
+    "name": "STEEL",
+    "E_GPa": 210,
+    "nu": 0.3,
+    "rho_kgm3": 7850,
+    "yield_strength_MPa": 250,
+    "fiber": "waste_paper",
+    "matrix": "pva",
+    "coating": "graphite_coating",
+    "V_f": 0.15
+  },
+  "material_db": {
+    "fiber": {
+      "waste_paper": { "E_GPa": 5.0, "nu": 0.3, "G_GPa": 1.92, "density_kgm3": 800, "tensile_MPa": 30 },
+      "jute": { "E_GPa": 26.5, "nu": 0.33, "G_GPa": 10.0, "density_kgm3": 1460, "tensile_MPa": 400 },
+      "hemp": { "E_GPa": 35.0, "nu": 0.32, "G_GPa": 13.3, "density_kgm3": 1500, "tensile_MPa": 550 }
+    },
+    "matrix": {
+      "pva": { "E_GPa": 2.0, "nu": 0.35, "G_GPa": 0.74, "density_kgm3": 1200, "tensile_MPa": 30 },
+      "epoxy": { "E_GPa": 3.5, "nu": 0.35, "G_GPa": 1.30, "density_kgm3": 1160, "tensile_MPa": 60 },
+      "starch": { "E_GPa": 1.5, "nu": 0.38, "G_GPa": 0.54, "density_kgm3": 1500, "tensile_MPa": 15 }
+    },
+    "coating": {
+      "graphite_coating": { "E_GPa": 8.0, "nu": 0.25, "G_GPa": 3.2, "density_kgm3": 2000, "tensile_MPa": 15 },
+      "bio_epoxy_coating": { "E_GPa": 3.0, "nu": 0.35, "G_GPa": 1.11, "density_kgm3": 1150, "tensile_MPa": 30 }
+    }
+  },
+  "solver": {
+    "type": "static",
+    "force_N": {"x": 0, "y": 0, "z": -100},
+    "fixed_nodes": [1, 2, 3, 4, 5],
+    "max_iterations": 100
+  },
+  "kdi": {
+    "macro": {"enabled": true},
+    "meso": {"enabled": true},
+    "micro": {"enabled": false}
+  },
+  "design_optimization": {
+    "n_levels": 3,
+    "objectives": ["mass", "stress"],
+    "maximize": [false, false]
+  },
+  "output": {
+    "format": "json",
+    "export_vtk": false,
+    "report_level": "detailed"
+  }
+}

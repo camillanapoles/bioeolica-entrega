@@ -1,0 +1,17 @@
+{
+  "project": "PRODUTO-COMPOSITE-001",
+  "updated_at": "2026-06-15T17:14:58.114157+00:00",
+  "entries": {
+    "MAP-f53addd818be": {
+      "id": "MAP-f53addd818be",
+      "domain": "demo",
+      "name": "test",
+      "data_type": "result",
+      "version": "1.0.0",
+      "created_at": "2026-06-15T17:14:58.114136+00:00",
+      "parent_id": null,
+      "validation_status": "PENDING",
+      "tags": []
+    }
+  }
+}

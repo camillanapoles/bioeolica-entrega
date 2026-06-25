@@ -1,0 +1,9 @@
+# SRF Properties (Single Rotating Frame)
+# Rotating zone centered on blade rotation axis
+
+SRF
+{
+    origin      (0 0 0);
+    axis        (0 0 1);
+    rpm         40;  // ~125 RPM at TSR=3, V=6 m/s
+}

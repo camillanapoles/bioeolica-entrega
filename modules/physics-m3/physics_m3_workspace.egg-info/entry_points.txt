@@ -1,0 +1,2 @@
+[console_scripts]
+physics-m3 = modules.__main__:main

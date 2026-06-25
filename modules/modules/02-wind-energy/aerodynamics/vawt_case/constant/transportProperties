@@ -1,0 +1,16 @@
+/*---------------------------------------------------------------------------*\
+  VAWT H-rotor Darrieus — transport properties (SST k-omega)
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+
+transportModel  Newtonian;
+
+nu              1.78e-05;  // Kinematic viscosity at 40°C, semi-arid

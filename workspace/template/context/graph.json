@@ -1,0 +1,110 @@
+{
+  "graph": {
+    "version": "1.0",
+    "project": "__PROJECT_NAME__",
+    "description": "Grafo de Conhecimento — serialização de todos os nós (contextos) e arestas (relacionamentos) do projeto",
+    "updated_at": null,
+    "node_count": 0,
+    "edge_count": 0
+  },
+
+  "nodes": {
+    "description": "Array de nós do grafo — cada nó é uma instância de contexto com tipo, propriedades e lineage",
+    "items": {
+      "type": "object",
+      "required": ["id", "type", "name", "properties", "lineage"],
+      "properties": {
+        "id": { "type": "string", "description": "UUID do contexto" },
+        "type": { "type": "string", "enum": ["Material", "Carga", "Componente", "Norma", "Metodo", "Ferramenta", "Decisao", "Simulacao", "Publicacao", "Reuniao", "Contexto_Raiz"] },
+        "name": { "type": "string", "description": "Nome legível do nó" },
+        "properties": { "type": "object", "description": "Propriedades específicas do tipo (conforme ontology.json)" },
+        "lineage": {
+          "type": "object",
+          "required": ["created_by", "version", "created_at", "freshness_score", "validation_status"],
+          "properties": {
+            "created_by": { "type": "string" },
+            "version": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+            "based_on": { "type": "array", "items": { "type": "string" } },
+            "created_at": { "type": "string", "format": "date-time" },
+            "updated_at": { "type": "string", "format": "date-time" },
+            "freshness_score": { "type": "number", "minimum": 0, "maximum": 1 },
+            "validation_status": { "type": "string", "enum": ["VERIFIED", "PENDING", "DISPUTED", "DEPRECATED"] }
+          }
+        }
+      }
+    }
+  },
+
+  "edges": {
+    "description": "Array de arestas direcionadas entre nós — define relacionamentos semânticos",
+    "items": {
+      "type": "object",
+      "required": ["source_id", "target_id", "relationship"],
+      "properties": {
+        "source_id": { "type": "string", "description": "ID do nó origem" },
+        "target_id": { "type": "string", "description": "ID do nó destino" },
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "isUsedIn", "hasProperty", "validatedBy",
+            "actsOn", "originatesFrom",
+            "hasMaterial", "hasLoad", "partOf", "governedBy",
+            "governs", "supersedes", "referencedBy",
+            "uses", "appliesTo", "basedOn",
+            "implements", "couplesWith",
+            "resolves", "triggedBy",
+            "hasAgent", "hasDomain", "hasMaterial", "hasComponent",
+            "hasLoad", "hasMeeting", "hasPublication", "hasSimulation"
+          ]
+        },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1, "description": "Força da relação (0=fraca, 1=forte)" },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "created_at": { "type": "string", "format": "date-time" },
+            "created_by": { "type": "string" },
+            "coupling_type": { "type": "string", "enum": ["forte", "fraco", "serial", "nenhum"] }
+          }
+        }
+      }
+    }
+  },
+
+  "query_examples": {
+    "find_path": {
+      "description": "Encontrar caminho entre dois nós",
+      "cypher": "MATCH (start {id: $start_id}), (end {id: $end_id}), path = shortestPath((start)-[*]-(end)) RETURN path"
+    },
+    "neighborhood": {
+      "description": "Encontrar todos os nós diretamente conectados a um nó",
+      "query": "MATCH (n {id: $node_id})-[r]-(connected) RETURN connected.type, connected.name, r.relationship, r.weight"
+    },
+    "domain_coverage": {
+      "description": "Verificar cobertura de domínios",
+      "query": "MATCH (root:Contexto_Raiz {project: $project})-[r:hasDomain]->(d) RETURN d.name, d.properties.coverage_percentage"
+    }
+  },
+
+  "index_strategy": {
+    "material_by_name": {
+      "field": "properties.name",
+      "type": "hash",
+      "description": "Busca rápida de material por nome"
+    },
+    "node_by_type": {
+      "field": "type",
+      "type": "inverted_index",
+      "description": "Listar todos os nós de um tipo"
+    },
+    "edge_by_relationship": {
+      "field": "relationship",
+      "type": "inverted_index",
+      "description": "Listar todas as arestas de um tipo de relacionamento"
+    },
+    "stale_nodes": {
+      "field": "lineage.freshness_score",
+      "type": "range_index",
+      "description": "Encontrar nós com freshness_score abaixo do limiar"
+    }
+  }
+}

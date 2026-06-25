@@ -1,0 +1,18 @@
+# Physics M³ Workspace — Core Requirements
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+pytest>=7.0
+jupyter>=1.0
+nbformat>=5.0
+
+# Visualization
+mplcursors>=0.5
+
+# Data
+pyyaml>=6.0
+
+# Optional: FEM solvers (install if FEniCS tools needed)
+# fenics>=2019.1.0
+# sfepy>=2023.0
+# scikit-fem>=8.0
