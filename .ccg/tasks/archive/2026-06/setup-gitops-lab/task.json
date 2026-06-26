@@ -1,0 +1,23 @@
+{
+  "id": "setup-gitops-lab",
+  "title": "Provisionar GitOps + CI/CD + Actions para Laboratorio Virtual Multi-Agente (Lab1 Material + Lab2 Gerador)",
+  "status": "completed",
+  "complexity": "L",
+  "risk": "medium",
+  "domain": "infra+material+energia",
+  "currentPhase": "completed",
+  "nextAction": "Archive",
+  "createdAt": "2026-06-26T02:30:00Z",
+  "completedAt": "2026-06-26T11:30:00Z",
+  "branch": "main (merged from audit/fsm-f1-f9-conformidade)",
+  "deliverables": {
+    "infra": ".github/workflows/{ci,spec-gate,gitnexus-impact,vvv-certify}.yml + specs/lab1-material/{000,001}.yaml + GITOPS.md",
+    "lab1": "workspace/lab1-material-papel-mache-grafite/ - 28 modulos Python TDD (core/materials/ensaios/fabricacao/sim/economico) + 39 testes PASS",
+    "lab2": "workspace/lab2-gerador-eolico-savonius/ - 9 modulos Python TDD (aero/estrutural/gerador/economico) + 14 testes PASS",
+    "fsm": "context/F1-F9-*/ - 18 artefatos canonicos (Lab1 9 + Lab2 9)",
+    "auditorias": "AUDITORIA_FINAL.md + AUDITORIA_CONFORMIDADE_FSM.md + AUDITORIA_HOSTIL_DUAL.md",
+    "testes": "56/56 pytest PASS exit 0",
+    "pqms": "8.74/10 (alvo >= 7.0)"
+  },
+  "fsm_conformidade": "F1-F9 completo conforme INSTRUCTIONS.md (3083 linhas mapeadas em chunks)"
+}
