@@ -19,6 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.11"]
+        suite: [root, lab1, lab2]
+    env:
+      SUITE_DIR: ${{ matrix.suite == 'root' && '.' || format('workspace/{0}', matrix.suite == 'lab1' && 'lab1-material-papel-mache-grafite' || 'lab2-gerador-eolico-savonius') }}
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -29,25 +32,20 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov numpy scipy pandas matplotlib jsonschema
-      - name: Discover tests
+          pip install pytest pytest-cov numpy scipy pandas matplotlib jsonschema pyyaml ruff
+      - name: Run root smoke
+        if: matrix.suite == 'root'
+        run: pytest tests/ -p no:cacheprovider -ra
+      - name: Run lab1 suite
+        if: matrix.suite == 'lab1'
         run: |
-          find . -path ./node_modules -prune -o -name "test_*.py" -print | head -50
-          find . -path ./node_modules -prune -o -name "conftest.py" -print | head -20
-      - name: Run pytest (exit code 0 = success, M1/M5)
+          cd workspace/lab1-material-papel-mache-grafite
+          pytest tests/ -p no:cacheprovider -ra
+      - name: Run lab2 suite
+        if: matrix.suite == 'lab2'
         run: |
-          pytest -p no:cacheprovider -ra --maxfail=10 \
-            || echo "::warning::pytest encontrou falhas ou não há testes ainda"
-      - name: Lint (ruff, non-blocking first pass)
+          cd workspace/lab2-gerador-eolico-savonius
+          pytest tests/ -p no:cacheprovider -ra
+      - name: Lint (non-blocking)
         run: |
-          pip install ruff
           ruff check . --exit-zero || true
-      - name: Upload artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-artifacts-${{ matrix.python-version }}
-          path: |
-            .pytest_cache/
-            coverage.xml
-          if-no-files-found: ignore

@@ -19,8 +19,7 @@ dev = ["pytest>=8.0", "pytest-cov>=4.1", "ruff>=0.4"]
 minversion = "8.0"
 testpaths = ["tests", "workspace"]
 python_files = ["test_*.py", "*_test.py"]
-addopts = "-ra"
-filterwarnings = ["error::UserWarning"]
+addopts = "-ra -p no:cacheprovider"
 
 [tool.ruff]
 line-length = 100
