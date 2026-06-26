@@ -1,59 +1,59 @@
 {
   "_meta": {
-    "doc": "Mapa Unico de Informacao — SSOT consolidado Lab1+Lab2 (Mandato 2, INPUT.md)",
-    "version": 2,
-    "principio": "Toda variavel/dado vive em JSON provido por SQLite (P$0)",
+    "doc": "Mapa Unico de Informacao — SSOT consolidado Lab1+Lab2 (Mandato 2 INPUT.md)",
+    "version": 3,
+    "principio": "Toda variavel/dado vive em JSON provido por SQLite (P$0).",
+    "regra_dados": "Valores numericos NUNCA aqui — sempre referencia por codigo ao catalog.json / SQLite. Use core/build_ssot.py para exportar.",
     "atualizado": "2026-06-26",
     "labs": ["lab1-material", "lab2-gerador"]
   },
   "lab1_material": {
     "objetivo": "Estudo cientifico do composto papel-mache + grafite-po (spray/ultrassom) substituindo fibra de vidro",
     "modulos": {
-      "core": ["db.py (SQLite v1)", "json_store.py (espelho SSOT)", "config.py", "orchestrator.py"],
+      "core": ["db.py (SQLite v1)", "json_store.py (espelho SSOT)", "config.py", "orchestrator.py", "build_ssot.py"],
       "materials": ["catalog.json (4 materiais: matriz/carga/compos/ref)"],
       "ensaios": ["tracao (Voigt/Reuss/Halpin-Tsai)", "fadiga (Basquin/Coffin-Manson)",
                   "impacto (Charpy proxy)", "dureza (Shore D)", "atrito (Archard)",
                   "fluencia (Norton)", "termico (Fourier)"],
       "fabricacao": ["moldagem (Kamal-Sourour)", "extrusao (Hagen-Poiseuille)",
                      "sinterizacao (Arrhenius)", "ultrassom (dispersao)", "spray_grafite"],
-      "sim": ["m3 (Macro-Meso-Micro)", "envelhecimento (Monte Carlo numpy)",
+      "sim": ["m3 (Macro-Meso-Micro)", "envelhecimento (Monte Carlo numpy, baseline linear)",
               "macro (ciclos termicos, UV)"],
-      "economico": ["custo/kg", "payback", "VPL", "escalabilidade comunitaria",
-                    "indice sustentabilidade"]
+      "economico": ["custo/kg", "payback", "VPL", "escalabilidade comunitaria", "indice sustentabilidade"]
     },
-    "material_alvo": {
+    "material_alvo_ref": {
       "codigo": "PM-COMPOS-15G",
-      "densidade_kg_m3": 820.0,
-      "modulo_young_pa": 3.4e9,
-      "resistencia_pa": 30.0e6,
-      "shore_d": 80,
-      "nota": "Substitui fibra de vidro E (dens 2550, E 72GPa, sigma 3450MPa)"
+      "ver_em": "materials/catalog.json (fonte unica de verdade)",
+      "baseline_substituido_ref": { "codigo": "VIDRO-EGLASS-REF", "ver_em": "materials/catalog.json" }
     },
     "ensaios_cobertura": ["tracao", "fadiga", "impacto", "dureza", "atrito", "fluencia", "termico"],
-    "tempo_vida_util": "Via Monte Carlo (sim/envelhecimento.py)",
-    "testes_status": "38/38 PASS"
+    "tempo_vida_util": "sim/envelhecimento.py (Monte Carlo; baseline linear — ver review.md W3)",
+    "testes_status": "39/39 PASS"
   },
   "lab2_gerador": {
     "objetivo": "Gerador eolico Savonius (e extensao Arquimedes) usando composto Lab1",
     "modulos": {
-      "aerodinamica": ["savonius.py (Cp Gaussiano, Betz)", "perfil.py (Arquimedes)"],
-      "estrutural": ["pa.py (massa, flap, fator seguranca)"],
-      "gerador": ["pmg.py (PMG PMSG)", "integrador.py (curva potencia)", "lab_orchestrator.py"],
-      "economico": ["orcamento.py (compos vs fibra)"]
+      "l2_aerodinamica": ["savonius.py (Cp Gaussiano, Betz)", "perfil.py (Arquimedes)"],
+      "l2_estrutural": ["pa.py (massa, flap, fator seguranca)"],
+      "l2_gerador": ["pmg.py (PMG PMSG)", "integrador.py (curva potencia)", "lab_orchestrator.py"],
+      "l2_economico": ["orcamento.py (compos vs fibra)", "viabilidade_lab1.py (ponte DRY)"]
     },
-    "integracao_lab1": "Importa core.db, materials.loader, ensaios.tracao",
+    "integracao_lab1": "Importa core.db, materials.loader, ensaios.tracao via conftest.py (sys.path)",
     "escala_comunitaria": "Nordeste/CO Brasil, projeto FINEP",
+    "integracao_pendente": "workspace/bioeolica-nordeste-irrigacao (ver review.md)",
     "testes_status": "14/14 PASS"
   },
   "workflow_gitops": {
     "branches": ["main", "develop", "feature/spec-XXX"],
-    "actions": ["ci.yml", "spec-gate.yml (HUMAN_GATE M7)", "gitnexus-impact.yml (M0/M4)",
-                "vvv-certify.yml (P$4)"],
-    "specs": ["specs/lab1-material/000-foundation.yaml", "specs/lab1-material/001-tracao.yaml"]
+    "actions": ["ci.yml (matrix root/lab1/lab2)", "spec-gate.yml (HUMAN_GATE M7)",
+                "gitnexus-impact.yml (M0/M4)", "vvv-certify.yml (P$4)"],
+    "specs_existentes": ["specs/lab1-material/000-foundation.yaml", "specs/lab1-material/001-tracao.yaml"],
+    "specs_pendentes": ["specs/lab2-gerador/* (review W5)"]
   },
   "vvv_status": {
-    "verification": "pytest exit code 0 (M1/M5) — Lab1 38/38, Lab2 14/14",
-    "validation": "Modelos analiticos/semi-empiricos com fontes VVV citadas em cada modulo",
-    "certification": "Workflow vvv-certify.yml emite artifact PASS/FAIL por lab"
+    "verification": "pytest exit code 0 (M1/M5) — Root 3 + Lab1 39 + Lab2 14 = 56/56",
+    "validation": "Modelos analiticos/semi-empiricos com fontes VVV citadas em cada modulo (ver docstrings)",
+    "certification": "Workflow vvv-certify.yml emite artifact PASS/FAIL por lab",
+    "revisao_hostil": ".ccg/tasks/setup-gitops-lab/review.md (3 Critical corrigidos nesta revision)"
   }
 }

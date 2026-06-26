@@ -59,8 +59,9 @@ def test_pipeline_completo_lab1_lab2(tmp_path):
     orch2.registrar_simulacao("orcamento_pa", "economico", {}, orc)
     db2.close()
 
-    # === SSOT consolidado ===
-    ssot = build_ssot(db1_path, db2_path, tmp_path / "ssot_consolidado.json")
+    # === SSOT consolidado (nova API: dict label=path) ===
+    ssot = build_ssot({"lab1": db1_path, "lab2": db2_path},
+                      tmp_path / "ssot_consolidado.json")
     assert "lab1" in ssot and "lab2" in ssot
     assert len(ssot["lab1"]["results"]) >= 3
     assert len(ssot["lab1"]["simulacoes"]) >= 2

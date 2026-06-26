@@ -1,7 +1,12 @@
-"""core/build_ssot.py — gera mapa unico de informacao a partir do SQLite dos labs.
+"""core/build_ssot.py — gera SSOT consolidado a partir de N SQLite (workflow arrastável).
 
-Workflow arrastavel: roda em qualquer ambiente (local, CI). Sem hardcoded.
-Uso: python -m core.build_ssot --lab1 <db> --lab2 <db> --out <json>
+Uso:
+  python -m core.build_ssot \
+      --db lab1=path/to/lab1.db \
+      --db lab2=path/to/lab2.db \
+      --out data/json/ssot_consolidado.json
+
+Sem nomes de laboratório hardcoded (P$1): os rótulos vêm da CLI.
 """
 from __future__ import annotations
 
@@ -11,41 +16,51 @@ import sys
 from pathlib import Path
 
 _THIS = Path(__file__).resolve().parent
-_LAB2 = _THIS.parents[0].parent / "lab2-gerador-eolico-savonius"
-for p in (str(_THIS.parents[0]), str(_LAB2)):
-    if p not in sys.path:
-        sys.path.insert(0, p)
+if str(_THIS) not in sys.path:
+    sys.path.insert(0, str(_THIS))
 
 from core.db import Database  # noqa: E402
 
 
-def build_ssot(lab1_db_path: str, lab2_db_path: str, out_path: Path) -> dict:
-    out = {"_meta": {"doc": "SSOT gerado por build_ssot.py", "labs": ["lab1", "lab2"]}}
-    for label, db_path in [("lab1", lab1_db_path), ("lab2", lab2_db_path)]:
-        if db_path == ":memory:" or not Path(db_path).exists():
-            out[label] = {"status": "vazio", "path": db_path}
-            continue
-        db = Database(db_path)
-        out[label] = {
-            "materials": [dict(r) for r in db.connection.execute("SELECT * FROM materials")],
-            "results": [dict(r) for r in db.connection.execute("SELECT * FROM results")],
-            "simulacoes": [dict(r) for r in db.connection.execute("SELECT * FROM simulacoes")],
-        }
-        db.close()
+def _dump_db(db_path: str) -> dict:
+    if db_path == ":memory:" or not Path(db_path).exists():
+        return {"status": "vazio", "path": db_path}
+    db = Database(db_path)
+    out = {
+        "materials": [dict(r) for r in db.connection.execute("SELECT * FROM materials")],
+        "results": [dict(r) for r in db.connection.execute("SELECT * FROM results")],
+        "simulacoes": [dict(r) for r in db.connection.execute("SELECT * FROM simulacoes")],
+    }
+    db.close()
+    return out
+
+
+def build_ssot(dbs: dict[str, str], out_path: Path) -> dict:
+    out = {"_meta": {"doc": "SSOT gerado por build_ssot.py", "labs": list(dbs)}}
+    for label, db_path in dbs.items():
+        out[label] = _dump_db(db_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(out, ensure_ascii=False, indent=2, default=str))
     return out
 
 
+def _parse_kv(s: str) -> tuple[str, str]:
+    if "=" not in s:
+        raise SystemExit(f"--db exige formato label=caminho (recebido: {s})")
+    k, v = s.split("=", 1)
+    return k.strip(), v.strip()
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Gera SSOT consolidado dos labs.")
-    ap.add_argument("--lab1", default=":memory:")
-    ap.add_argument("--lab2", default=":memory:")
+    ap.add_argument("--db", action="append", required=True,
+                    help="label=caminho.db (repita para cada lab)")
     ap.add_argument("--out", default="data/json/ssot_consolidado.json")
     args = ap.parse_args()
+    dbs = dict(_parse_kv(x) for x in args.db)
     p = Path(args.out)
-    build_ssot(args.lab1, args.lab2, p)
-    print(f"SSOT -> {p}")
+    build_ssot(dbs, p)
+    print(f"SSOT -> {p}  labs={list(dbs)}")
     return 0
 
 
