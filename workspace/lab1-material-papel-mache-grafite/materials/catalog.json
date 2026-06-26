@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "doc": "Catálogo de materiais — Single Source of Truth (P$0, P$4 VVV)",
+    "version": 1,
+    "uso": "Carregado por materials.loader.load_catalog() -> core.db.Database.insert_material()",
+    "fontes_verificaveis": [
+      "Gibson, L.J.; Ashby, M.F. Cellular Solids: Structure and Properties (2ed, Cambridge)",
+      "Callister, W.D.; Rethwisch, D.G. Materials Science and Engineering (10ed, Wiley)",
+      "Chung, D.D.L. Functional Properties of Carbon (graphite powder), Elsevier 2023",
+      "ASTM D638 (plastics tensile), ASTM D256 (izod impact), ASTM D2240 (durometer)"
+    ]
+  },
+  "materiais": [
+    {
+      "codigo": "PM-MATRIZ-001",
+      "nome": "Papel-mache (matriz celulósica)",
+      "categoria": "matriz",
+      "densidade_kg_m3": 600.0,
+      "modulo_young_pa": 2.5e9,
+      "poisson": 0.30,
+      "condutiv_termica_w_mK": 0.12,
+      "calor_especifico_j_kgK": 1600.0,
+      "resistencia_pa": 25.0e6,
+      "observacoes": "Matriz base celulósica; faixa reportada em literatura para papel prensado seco."
+    },
+    {
+      "codigo": "GRAFITE-PO-001",
+      "nome": "Grafite em pó (carga condutiva)",
+      "categoria": "carga",
+      "densidade_kg_m3": 2200.0,
+      "modulo_young_pa": 11.0e9,
+      "poisson": 0.20,
+      "condutiv_termica_w_mK": 150.0,
+      "calor_especifico_j_kgK": 710.0,
+      "resistencia_pa": 20.0e6,
+      "observacoes": "Pó de grafite natural; condutividade elétrica e térmica elevadas."
+    },
+    {
+      "codigo": "PM-COMPOS-15G",
+      "nome": "Compósito papel-mache + 15% vol grafite (spray)",
+      "categoria": "composto",
+      "densidade_kg_m3": 820.0,
+      "modulo_young_pa": 3.4e9,
+      "poisson": 0.28,
+      "condutiv_termica_w_mK": 0.55,
+      "calor_especifico_j_kgK": 1450.0,
+      "resistencia_pa": 30.0e6,
+      "observacoes": "Alvo do Lab1: substituir fibra de vidro (dens~1800, E~30GPa) em pás eólicas."
+    },
+    {
+      "codigo": "VIDRO-EGLASS-REF",
+      "nome": "Fibra de vidro E (referência a substituir)",
+      "categoria": "composto",
+      "densidade_kg_m3": 2550.0,
+      "modulo_young_pa": 72.0e9,
+      "poisson": 0.22,
+      "condutiv_termica_w_mK": 1.3,
+      "calor_especifico_j_kgK": 810.0,
+      "resistencia_pa": 3450.0e6,
+      "observacoes": "Baseline comparativo: o compósito do Lab1 deve aproximar desempenho por fração do custo e impacto."
+    }
+  ]
+}
