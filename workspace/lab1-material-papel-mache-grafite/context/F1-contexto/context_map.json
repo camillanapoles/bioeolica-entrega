@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "fase": "F1",
+    "doc": "Context_map - Capturar Contexto (INSTRUCTIONS.md F1)",
+    "data": "2026-06-26",
+    "validation": "problem_statement/available_data/constraints/objective preenchidos"
+  },
+  "problem_statement": "Desenvolver e caracterizar computacionalmente um compósito ecológico (papel-machê + 15% vol grafite em pó, aplicado por spray ou ultrassom) que substitua a fibra de vidro E na fabricação de pás para geradores eólicos de eixo vertical (Savonius/Arquimedes), voltados a pequenas comunidades do Nordeste e Centro-Oeste brasileiros, no contexto do projeto FINEP bioeolica.",
+  "available_data": {
+    "materiais": "ver materials/catalog.json (matriz PM-MATRIZ-001, carga GRAFITE-PO-001, compos PM-COMPOS-15G, baseline VIDRO-EGLASS-REF)",
+    "geometria": "Pa Savonius: D=1.0m, H=1.5m, corda=0.2m, espessura=0.02m (parametrizavel)",
+    "cargas": "Vento Nordeste/CO 3-10 m/s (curva Weibull tipica); ciclos termicos diarios deltaT~15C",
+    "dados_experimentais": "AUSENTES - valores do catalog.json sao estimativas de literatura (Gibson-Ashby, Callister). Validacao experimental = proxima fase.",
+    "normas": "IEC 61400-2 (small wind), ASTM D638/D256/D2240 (ensaios polimeros)"
+  },
+  "constraints": {
+    "projeto": "Densidade < fibra vidro (2550 kg/m3); custo < R$30/kg; Shore D > 60",
+    "prazo": "Fase computacional entregue 2026-06-26; fase experimental pendente",
+    "orcamento": "Indefinido (FINEP); proxy: custo compósito R$12/kg vs fibra R$30-40/kg",
+    "normas": "IEC 61400-2, ASTM D638/D256/D2240/E466/E606",
+    "sustentabilidade": "Materiais renovaveis (celulose) + carga mineral (grafite); biodegradavel parcial"
+  },
+  "objective": "Quantitativo: (1) E_c >= 3 GPa via Halpin-Tsai (xi=2); (2) Savonius 1m@8m/s >= 80W eletrico (eta>=65%); (3) custo <= R$15/kg; (4) pytest exit 0 em todos modulos (M1/M5).",
+  "5w1h": {
+    "What": "Compósito papel-machê + grafite para pa de gerador eolico Savonius",
+    "Why": "Substituir fibra de vidro (cara, nao-renovavel) em comunidades isoladas",
+    "Where": "Nordeste e Centro-Oeste do Brasil (finep bioeolica)",
+    "When": "Fase computacional 2026-06; experimental pendente",
+    "Who": "Comunidades pequenas + projeto FINEP + orquestrador KDI mech-electro-materials-scientist",
+    "How": "Engenharia computacional modular TDD (analitico/semi-empirico, CPU-only)",
+    "How_much": "Custo alvo R$12/kg (60% abaixo fibra); Savonius 1m ~80W@8m/s"
+  },
+  "ishikawa": {
+    "causa_efeito": {
+      "Material": [
+        "matriz celulose hidrofila",
+        "grafite anisotropico",
+        "interface fraca PM-grafite"
+      ],
+      "Metodo": [
+        "spray (nao-uniforme)",
+        "ultrassom (energia dependente)",
+        "cura dependente T/t"
+      ],
+      "Maquina": [
+        "prensa manual comunitaria",
+        "ultrassom baixa potencia",
+        "forno limitado"
+      ],
+      "Medida": [
+        "ensaios virtuais sem validacao fisica",
+        "incerteza nao quantificada IC95%"
+      ],
+      "Meio": [
+        "UV intenso Nordeste",
+        "umidade alta",
+        "ciclos termicos diarios"
+      ],
+      "Mao_de_obra": [
+        "producao artesanal comunitaria",
+        "variabilidade alto entre lotes"
+      ]
+    },
+    "efeito_central": "Vida util da pa em ambiente real"
+  },
+  "stakeholders": [
+    {
+      "ator": "Comunidades rurais NE/CO",
+      "interesse": "energia barata/autonomia",
+      "poder": "alto (beneficiario)"
+    },
+    {
+      "ator": "FINEP",
+      "interesse": "inovacao + sustentabilidade",
+      "poder": "alto (funder)"
+    },
+    {
+      "ator": "Orquestrador KDI",
+      "interesse": "rigor cientifico VVV",
+      "poder": "alto (executor)"
+    },
+    {
+      "actor": "Meio ambiente",
+      "interesse": "materiais renovaveis",
+      "poder": "passivo"
+    }
+  ],
+  "ciclos_operacao": {
+    "mecanico": "rotacao Savonius ~120 RPM @ 8 m/s; 1e8+ ciclos/vida",
+    "termico": "deltaT diario ~15C; 365 ciclos/ano",
+    "uv": "exposicao solar direta ~6h/dia; degradacao foto-oxidativa"
+  },
+  "cargas_quantitativas": {
+    "vento_design": "8 m/s (faixa 3-10)",
+    "tensao_flap_pa": "calculada em l2_estrutural/pa.py (sigma=Mc/I)",
+    "torque_turbina": "~9 Nm @ 8 m/s (Savonius 1m)",
+    "temperatura_operacao": "20-45 C ambiente tropical"
+  },
+  "next": "F2"
+}

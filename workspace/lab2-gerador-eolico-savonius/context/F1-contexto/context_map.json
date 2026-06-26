@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "fase": "F1 (Lab2)",
+    "doc": "Context_map Lab2 - Gerador eolico Savonius",
+    "data": "2026-06-26",
+    "heranca": "Lab2 herda catalog de Lab1 (materials/catalog.json). Foco Lab2 = converter energia eolica->eletrica."
+  },
+  "problem_statement": "Projetar um gerador eolico de eixo vertical Savonius D=1.0m H=1.5m usando pas do compasito PM+15%grafite (Lab1), para entregar >=80W eletricos @8m/s em comunidades isoladas NE/CO.",
+  "available_data": {
+    "geometria": "Savonius D=1.0m, H=1.5m, tsr_opt=0.8, Cp_max=0.25",
+    "vento": "3-10 m/s faixa operacao, design 8 m/s",
+    "material_pa": "PM-COMPOS-15G (E_c=3.4GPa, sigma_y=30MPa) - ver Lab1",
+    "pmg": "PMGParams Ke=2.0, R_interno=1.5 ohm, perdas=3W"
+  },
+  "constraints": {
+    "projeto": "P_saida >= 80W @8m/s; rpm <= 200 (seguranca); ruido < 45dB(A)",
+    "normas": "IEC 61400-2 (small wind), ABNT NBR 5410",
+    "orcamento": "Turbina completa < R$1500 (alvo comunitario)"
+  },
+  "objective": "Quantitativo: P_saida@8m/s >= 80W; payback <= 8 anos; pytest exit 0 (14 testes Lab2).",
+  "5w1h": {
+    "What": "Gerador eolico Savonius compasito PM+grafite",
+    "Why": "Autonomia energetica comunidades rurais",
+    "Where": "NE/CO Brasil (FINEP bioeolica)",
+    "When": "Fase computacional 2026-06",
+    "Who": "Orquestrador + subagentes CCG",
+    "How": "Modelo analitico+semi-empirico integrado (aero+estrutural+eletrico+economico)",
+    "How_much": "< R$1500/turbina, LCOE R$0.3-0.5/kWh"
+  },
+  "next": "F2"
+}

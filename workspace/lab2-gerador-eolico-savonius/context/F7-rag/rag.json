@@ -1,0 +1,7 @@
+{
+  "_meta": {"fase": "F7 (Lab2)", "doc": "RAG Lab2 - subconjunto Lab1 aplicavel"},
+  "fontes_lab2": ["RAG-007 (Boldea PMG)", "RAG-008 (IEC 61400-2)", "RAG-012 (Burton wind)", "RAG-013 (Paris fadiga)"],
+  "total": 4,
+  "qs_medio": 9.5,
+  "next": "F8"
+}

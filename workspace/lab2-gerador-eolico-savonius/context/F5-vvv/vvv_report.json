@@ -1,0 +1,9 @@
+{
+  "_meta": {"fase": "F5 (Lab2)", "doc": "VVV Lab2", "heranca": "Lab2 herda VVV Lab1 para materiais/termo"},
+  "verificacao": {"unidades_SI": "PASS", "balanco_energetico": "PASS (P_saida=82.95W < P_turb=117.6W)", "pytest_14_14": "PASS"},
+  "validacao": {"Cp_max_0.25_vs_literatura": "PASS (Savonius tipico 0.15-0.30)", "Betz_limite": "PASS (0.25 < 0.593)", "Faraday": "PASS"},
+  "validada": {"fontes": "Boldea 2015 (PMG), Burton 2011 (wind), IEC 61400-2", "qs_medio": "9.3"},
+  "certificacao": "PASS-CONDITIONAL (experimental pendente)",
+  "return_conditions": "Nenhuma acionada",
+  "next": "F6"
+}

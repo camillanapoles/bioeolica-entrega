@@ -1,0 +1,10 @@
+{
+  "_meta": {"fase": "F3 (Lab2)", "doc": "Scale_analysis Lab2", "heranca": "M3 por dominio relevante Lab2"},
+  "fluidos": {"macro": "P_cinetica Betz 0.5*rho*A*v^3 = 470W@8m/s", "meso": "Cp(tsr) gaussiano pico 0.25@tsr=0.8", "micro": "camada limite, separacao na pa convexa"},
+  "mecanica": {"macro": "torque 9.19 Nm, momento fletor raiz", "meso": "tensao distribuida sigma=Mc/I", "micro": "concentracao na raiz, fadiga"},
+  "eletricidade": {"macro": "PMG trifasico + retificador CC 12/24V", "meso": "V_fase=omega*N*Phi (Faraday)", "micro": "B_gap 0.6T ferrite"},
+  "energia": {"macro": "P_saida=82.95W@8m/s", "meso": "eta_total~0.17 (Cp*eta_mec*eta_PMG*eta_reg)", "micro": "perdas Joule+histerese"},
+  "economico": {"macro": "LCOE R$0.3-0.5/kWh, payback 5-8a", "meso": "custo R$1500/turbina", "micro": "insumos detalhados"},
+  "integracao_entre_escalas": "Micro->meso->macro multiplicativo em energia; deterministico em mecanica",
+  "next": "F4"
+}

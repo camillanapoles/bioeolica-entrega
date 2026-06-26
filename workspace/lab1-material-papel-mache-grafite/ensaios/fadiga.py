@@ -7,7 +7,12 @@ from dataclasses import dataclass
 
 @dataclass
 class BasquinParams:
-    sigma_f_linha: float   # coeficiente de resistência à fadiga (Pa)
+    """Coeficiente de resistência à fadiga.
+
+    Fisica: sigma_f_linha deve ser ≈ 1.0-1.5 * sigma_uts (Callister cap. 8).
+    Para o composto (sigma_uts=30MPa): sigma_f_linha ~ 40MPa (nao > sigma_uts).
+    """
+    sigma_f_linha: float   # coeficiente de resistência à fadiga (Pa), <= 1.5*sigma_uts
     b: float               # expoente de Basquin (negativo, ~ -0.05 a -0.12)
 
 

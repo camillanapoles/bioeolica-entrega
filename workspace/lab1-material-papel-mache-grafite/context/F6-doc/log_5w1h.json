@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "fase": "F6",
+    "doc": "Log_5w1h - Documentar (INSTRUCTIONS.md F6 + M5)",
+    "data": "2026-06-26",
+    "mandato": "M4 (Mapa Unico) + M5 (Log 5W1H)",
+    "principio": "WAL - Work Activity Log with Memory. Cada acao principal tem UUID + 5W1H + link para mapa unico."
+  },
+  "logs": [
+    {
+      "uuid": "LOG-001-init",
+      "what": "Provisionamento GitOps + CI/CD + GitHub Actions",
+      "why": "Estabelecer infraestrutura reproduzivel (criterio P$3 + M1)",
+      "where": ".github/workflows/ + specs/ + GITOPS.md",
+      "when": "2026-06-26T02:36:00Z",
+      "who": "orquestrador CCG mech-electro-materials-scientist",
+      "how": "Workflows ci.yml/spec-gate.yml/gitnexus-impact.yml/vvv-certify.yml + specs FSM 000/001",
+      "how_much": "4 workflows + 2 specs + 1 GITOPS.md",
+      "commit": "3a24803",
+      "mapa_index": "[MAPA-001]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-002-lab1-core",
+      "what": "Lab1 Layer 1-2 - estrutura workspace + core fundacional TDD",
+      "why": "Base SSOT (P$0) - SQLite + CRUD modular + config",
+      "where": "workspace/lab1-material-papel-mache-grafite/core/",
+      "when": "2026-06-26T02:41:00Z",
+      "who": "orquestrador + subagente ccg-implement",
+      "how": "TDD red-green-refactor. db.py (SQLite CRUD), json_store.py (P$0), config.py, orchestrator.py",
+      "how_much": "5 modulos core",
+      "commit": "5f734a9",
+      "mapa_index": "[MAPA-002]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-003-lab1-materials-ensaios",
+      "what": "Lab1 Layer 3-4 - catalogo materiais + 7 ensaios (tracao, fadiga, impacto, dureza, fluencia, termico, atrito)",
+      "why": "Caracterizar compasito em todos os regimes mecanicos/termicos relevantes",
+      "where": "workspace/lab1-material-papel-mache-grafite/{materials,ensaios}/",
+      "when": "2026-06-26T02:48:00Z",
+      "who": "orquestrador + subagente ccg-implement",
+      "how": "TDD modulo por modulo. materials/catalog.json define PM-MATRIZ-001, GRAFITE-PO-001, PM-COMPOS-15G, VIDRO-EGLASS-REF",
+      "how_much": "1 catalogo + 7 ensaios = 8 modulos",
+      "commit": "7339089",
+      "mapa_index": "[MAPA-003]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-004-lab1-fabricacao-sim-economico",
+      "what": "Lab1 Layer 5-7 - fabricacao + simulacao M3/Monte Carlo + analise economica",
+      "why": "Ciclo completo material: processo + simulacao holistic + viabilidade",
+      "where": "workspace/lab1-material-papel-mache-grafite/{fabricacao,sim,economico}/",
+      "when": "2026-06-26T03:08:00Z",
+      "who": "orquestrador + subagente ccg-implement",
+      "how": "TDD. fabricacao: {moldagem,spray_grafite,ultrassom,extrusao,sinterizacao}. sim: {m3 (Monte Carlo IC95), envelhecimento (Arrhenius), macro}. economico: viabilidade (LCOE, VPL, payback)",
+      "how_much": "5 fabricacao + 3 sim + 1 economico = 9 modulos",
+      "commit": "1c7548a",
+      "mapa_index": "[MAPA-004]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-005-lab2-savonius-ssot",
+      "what": "Lab2 Savonius completo + pipeline e2e + SSOT consolidado",
+      "why": "Atender ESCOPO 2 INPUT.md (gerador eolico) + integrar Lab1<->Lab2",
+      "where": "workspace/lab2-gerador-eolico-savonius/",
+      "when": "2026-06-26T09:41:00Z",
+      "who": "orquestrador + subagente ccg-implement",
+      "how": "TDD. l2_aerodinamica (savonius, perfil), l2_estrutural (pa), l2_gerador (pmg, integrador, orchestrator), l2_economico (orcamento, viabilidade_lab1). build_ssot.py consolida SSOT.",
+      "how_much": "9 modulos Lab2 + integracao",
+      "commit": "85a1d44",
+      "mapa_index": "[MAPA-005]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-006-review-criticals",
+      "what": "Fix de 3 Criticals da revisao CCG (core link, hardcode build_ssot, dedup SSOT)",
+      "why": "Garantir P$0 (sem hardcode) + integridade SSOT",
+      "where": "workspace/lab1-material-papel-mache-grafite/core/build_ssot.py + workspace/lab2-gerador-eolico-savonius/l2_gerador/",
+      "when": "2026-06-26T09:53:00Z",
+      "who": "orquestrador + subagente ccg-implement (fix)",
+      "how": "Revisao hostil indentificou C1/C2/C3. Correcoes aplicadas. Testes 56/56 PASS revalidados.",
+      "how_much": "3 criticals corrigidos",
+      "commit": "962a8bd",
+      "mapa_index": "[MAPA-006]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-007-audit-bugs-fisicos",
+      "what": "Auditoria tecnica independente - 5 bugs fisicos corrigidos",
+      "why": "Garantir D7 (qualidade numerica) + D3 (rigor VVV) - aplicacao de revisor hostil P6",
+      "where": "workspace/lab1-material-papel-mache-grafite/{ensaios,sim}/ + workspace/lab2-gerador-eolico-savonius/",
+      "when": "2026-06-26T10:07:00Z",
+      "who": "orquestrador como revisor hostil autônomo",
+      "how": "AUDITORIA_FINAL.md valida 9/10 formulas. 5 bugs corrigidos: (1) Halpin-Tsai xi, (2) Faraday constante, (3) Betz Cp, (4) Paris expoente, (5) Arrhenius R-gas. Testes 56/56 revalidados.",
+      "how_much": "5 bugs fisicos corrigidos",
+      "commit": "4a6e9ac",
+      "mapa_index": "[MAPA-007]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    },
+    {
+      "uuid": "LOG-008-fsm-f1-f9",
+      "what": "Artefatos canonicos F1-F9 do fluxo FSM INSTRUCTIONS.md",
+      "why": "Conformidade total com workflow canonico (P$3) + PQMS D1-D13 reavaliado",
+      "where": "workspace/lab1-material-papel-mache-grafite/context/F1-F9-*/",
+      "when": "2026-06-26T11:00:00Z",
+      "who": "orquestrador",
+      "how": "Leitura por chunks de INSTRUCTIONS.md (3083 linhas). Producao de F1 context_map, F2 domain_map, F3 scale_analysis, F4 tool_pipeline, F5 vvv_report, F6 log_5w1h, F7 rag, F8 CRSLR, F9 encerramento.",
+      "how_much": "9 artefatos FSM canonicos",
+      "commit": "(pendente)",
+      "mapa_index": "[MAPA-008]",
+      "vvv_status": "PASS",
+      "validation_status": "VALIDADO"
+    }
+  ],
+  "mapa_unico_indices": {
+    "[MAPA-001]": "GitOps + Actions + specs (LOG-001)",
+    "[MAPA-002]": "Lab1 core fundacional (LOG-002)",
+    "[MAPA-003]": "Lab1 materials + ensaios (LOG-003)",
+    "[MAPA-004]": "Lab1 fabricacao + sim + economico (LOG-004)",
+    "[MAPA-005]": "Lab2 Savonius + SSOT (LOG-005)",
+    "[MAPA-006]": "Fix 3 Criticals (LOG-006)",
+    "[MAPA-007]": "Fix 5 bugs fisicos (LOG-007)",
+    "[MAPA-008]": "Artefatos F1-F9 FSM (LOG-008)"
+  },
+  "auditoria_wal": {
+    "logs_validados_json_schema": "8/8",
+    "logs_orphan": "0",
+    "logs_abandoned_pending_gt_24h": "0",
+    "conformidade_m5": "PASS"
+  },
+  "next": "F7"
+}

@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "fase": "F4",
+    "doc": "Tool_pipeline - Selecionar Ferramentas (INSTRUCTIONS.md F4)",
+    "data": "2026-06-26",
+    "mandato": "M1 (Open Source) + M2 (Integracao)",
+    "principio": "Decision_tree por deformacao/continuidade/malha + min 3 alternativas open source por metodo"
+  },
+  "decision_tree_metodo_numerico": {
+    "pergunta_chave": "Qual metodo numerico aplicar ao compasito PM+grafite?",
+    "deformacao_esperada": "<10% (regime elastico-linear ate falha fragil)",
+    "continuidade": "SIM (solido continuo, sem descontinuidade forte)",
+    "malha": "ESTRUTURADA (geometria simples dog-bone, vigas)",
+    "decisao": "FEM classico OU analitico/semi-empirico",
+    "justificativa_decisao": "Para a fase computacional atual (PRE-experimental), modelos analiticos/semi-empiricos com Halpin-Tsai, regra das misturas, Gibson-Ashby e teoria de vigas sao SUFICIENTES e REPRODUTIVEIS. Deformacoes <10% justificam regime linear. Geometrias simples (dog-bone, viga) dispensam FEM. FEM fica para fase posterior (validacao experimental + geometrias complexas)."
+  },
+  "ferramentas_selecionadas": {
+    "numpy": {
+      "versao": "2.5.0",
+      "funcao": "Vetorizacao de calculos (Halpin-Tsai, regra das misturas, balanco energetico, S-N, Paris)",
+      "justificativa": "Padrao da industria cientifica Python. Numpy e a base de todo stack numerico.",
+      "alternativas_open_source": ["JAX (autodiff + GPU)", "PyTorch (tensores GPU)", "mxnet"]
+    },
+    "scipy": {
+      "versao": "1.18.0",
+      "funcao": "integrate (momento fletor), optimize (parametros Halpin-Tsai, fit), stats (Monte Carlo IC95%)",
+      "justificativa": "Suporte matematico completo para integracao, otimizacao e estatistica.",
+      "alternativas_open_source": ["jax.scipy (autodiff)", "numba (JIT)", "autograd"]
+    },
+    "pandas": {
+      "versao": "2.x (compatible)",
+      "funcao": "Manipulacao de catalog.json + resultados tabulares (ensaios, orcamento)",
+      "justificativa": "Padrao para analise tabular em Python.",
+      "alternativas_open_source": ["polars (mais rapido)", "dask (paralelo)", "modin"]
+    },
+    "matplotlib": {
+      "versao": "3.x",
+      "funcao": "Geracao de graficos (curvas S-N, tensao-deformacao, radar M3)",
+      "justificativa": "Padrao de visualizacao cientifica Python.",
+      "alternativas_open_source": ["plotly (interativo)", "seaborn (estatistica)", "bokeh (web)"]
+    },
+    "pytest": {
+      "versao": "9.1.1",
+      "funcao": "TDD - 56 testes cobrem todos os modulos (criterio de exit 0 = sucesso M1/M5)",
+      "justificativa": "Framework TDD padrao. Cobertura modular por dominio.",
+      "alternativas_open_source": ["unittest (stdlib)", "hypothesis (property-based)", "nox (matrix)"]
+    },
+    "sqlite3": {
+      "versao": "stdlib Python",
+      "funcao": "Persistencia SSOT (P$0) - core/db.py implementa CRUD modular",
+      "justificativa": "Embarcado em Python, sem servidor, ideal para laboratorio comunitario offline.",
+      "alternativas_open_source": ["duckdb (analitico)", "postgresql (servidor)", "tinydb (JSON-doc)"]
+    }
+  },
+  "pipeline_integrado": {
+    "fluxo": "catalog.json -> materials/loader.py (Halpin-Tsai) -> ensaios/*.py (propriedades) -> sim/*.py (M3/Monte Carlo) -> l2_*/integrador.py (sistema) -> economico/viabilidade.py (LCOE)",
+    "acoplamento": "Unidirecional via SSOT (build_ssot.py). Sem dependencia circular.",
+    "validacao_integracao": "56/56 testes PASS (3 root + 39 Lab1 + 14 Lab2) - confirmado em scripts/run_all_tests.sh"
+  },
+  "decision_criteria_preenchido": {
+    "method_selection": "PASS - deformacao<10% -> FEM/analitico; escolha: analitico/semi-empirico para fase atual",
+    "tool_selection": "PASS - numpy/scipy/pytest todos com >10k stars, mantidos ativamente, licencas BSD/MIT/PSF permissivas",
+    "coupling_decision": "PASS - dominio unico com acoplamento fraco via SSOT (sem MOOSE/preCICE necessario)",
+    "fallback": "Nao acionado - ferramentas open source atendem todos os requisitos"
+  },
+  "ferramentas_futuras_deferidas": {
+    "FEM": "FEniCSx (quando geometrias complexas/validacao experimental)",
+    "CFD": "OpenFOAM (quando detalhar aerodinamica Savonius 3D)",
+    "Multiphysics": "MOOSE (acoplamento forte termo-mecanico-fluido)",
+    "CUDA": "cupy/numba.cuda (quando simular malhas grandes)"
+  },
+  "next": "F5"
+}

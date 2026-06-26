@@ -1,0 +1,141 @@
+{
+  "_meta": {
+    "fase": "F2",
+    "doc": "Domain_map - Mapear Dominios (INSTRUCTIONS.md F2)",
+    "data": "2026-06-26",
+    "mandato": "M7 - Foco Pertinente (definir cobertura 75-90%)",
+    "principio": "Avaliar relevance_check para os 10 dominios + aplicar M3 + definir % cobertura"
+  },
+  "dominios": {
+    "materiais": {
+      "relevance_check": "SIM",
+      "justificativa": "Dominio central: compasito PM+grafite. Catalogo de materiais (materials/catalog.json) define matriz, carga, compasito e baseline. Calcula E_c via Halpin-Tsai.",
+      "m3": {
+        "macro": ["propriedades efetivas (E_c, sigma_y, rho, Shore D)", "homogeneizacao do compasito"],
+        "meso": ["interface grafite-matriz", "anisotropia induzida por spray", "distribuicao de carga"],
+        "micro": ["fibras de celulose (~20um)", "cristalitos de grafite (~50um)", "porosidade residual"]
+      },
+      "peso_erro": "CRITICO - propriedades erradas invalidam toda a analise estrutural",
+      "cobertura": "100%"
+    },
+    "mecanica": {
+      "relevance_check": "SIM",
+      "justificativa": "Pa do gerador eolico submetida a flap/edge bending, fadiga, impacto. Calculo de tensao em l2_estrutural/pa.py (sigma=Mc/I).",
+      "m3": {
+        "macro": ["carregamento aerodinamico total (torque, flap)", "momento fletor na raiz da pa"],
+        "meso": ["distribuicao de tensao no perfil", "concentracao de tensao na raiz", "rigidez flexional EI"],
+        "micro": ["iniciacao de microtrinca na interface", "propagacao por fadiga (Paris)", "tensao residual de fabricacao"]
+      },
+      "peso_erro": "CRITICO - falha estrutural = colapso da pa",
+      "cobertura": "100%"
+    },
+    "fluidos": {
+      "relevance_check": "SIM",
+      "justificativa": "Aerodinamica Savonius define Cp e torque. l2_aerodinamica/savonius.py calcula potencia e torque.",
+      "m3": {
+        "macro": ["potencia cinetica do vento (Betz)", "Cp global do rotor Savonius"],
+        "meso": ["coeficientes Cl/Cd por setor angular", "modelo de momento", "interferencia entre pas"],
+        "micro": ["camada limite na superficie da pa", "separacao e esteira", "transicao laminar-turbulenta"]
+      },
+      "peso_erro": "ALTO - subestimar Cp = gerador subdimensionado",
+      "cobertura": "90%"
+    },
+    "termo": {
+      "relevance_check": "SIM",
+      "justificativa": "Ciclos termicos diarios (deltaT~15C) geram tensao termica no compasito anisotropico (grafite vs celulose). ensaios/termico.py modela.",
+      "m3": {
+        "macro": ["regime termico ambiente (NE/CO)", "irradiacao solar diurna"],
+        "meso": ["gradiente termico na espessura da pa", "acoplamento termo-mecanico"],
+        "micro": ["dilatacao diferencial grafite-matriz", "condutividade termica por fase"]
+      },
+      "peso_erro": "MEDIO - fadiga termica acelera envelhecimento",
+      "cobertura": "80%"
+    },
+    "energia": {
+      "relevance_check": "SIM",
+      "justificativa": "Conversao eolica->eletrica. l2_gerador/integrador.py faz balanco energetico Cp*eta_mec*eta_PMG*eta_reg.",
+      "m3": {
+        "macro": ["potencia eletrica entregue", "LCOE e payback"],
+        "meso": ["eficiencia por estagio (Cp, eta_mec, eta_PMG, eta_reg)", "balanco energetico diario"],
+        "micro": ["perdas Joule no enrolamento", "perdas por histerese no nucleo"]
+      },
+      "peso_erro": "ALTO - erro energetico = promessa falsa ao usuario",
+      "cobertura": "90%"
+    },
+    "eletricidade": {
+      "relevance_check": "SIM",
+      "justificativa": "PMG (Permanent Magnet Generator) trifasico modelado em l2_gerador/pmg.py. Lei de Faraday, circuito magnetico, retificacao.",
+      "m3": {
+        "macro": ["topologia do sistema (PMG+retificador+bateria)", "tensao de saida CC"],
+        "meso": ["tensao induzida por fase (Faraday)", "numero de espiras N", "indutancia sincrona"],
+        "micro": ["densidade de fluxo no entreferro B_gap", "material do ima (ferrite/NdFeB)", "perdas no nucleo"]
+      },
+      "peso_erro": "ALTO - subestimar V induzida = carga nao carrega",
+      "cobertura": "85%"
+    },
+    "construcao": {
+      "relevance_check": "SIM",
+      "justificativa": "Processo de fabricacao do compasito e da pa. Modulos fabricacao/{moldagem,spray_grafite,ultrassom,extrusao,sinterizacao}.py.",
+      "m3": {
+        "macro": ["linha de producao comunitaria", "fluxo de producao integrado"],
+        "meso": ["prensa (P, t, T)", "aplicacao de grafite (spray vs ultrassom)", "cura controlada"],
+        "micro": ["parametros otimos de prensa", "energia de ultrassom por cavidade", "viscosidade da mistura"]
+      },
+      "peso_erro": "ALTO - processo inconsistente = lotes nao reprodutiveis",
+      "cobertura": "85%"
+    },
+    "ambiente": {
+      "relevance_check": "SIM",
+      "justificativa": "Degradacao UV + umidade + temperatura. sim/envelhecimento.py aplica Arrhenius + fotodegradacao.",
+      "m3": {
+        "macro": ["clima regional NE/CO (T, UV, umidade)", "sazonalidade"],
+        "meso": ["degradacao superficial (perda Shore D)", "microtrincas UV"],
+        "micro": ["cisao de cadeia por radical livre", "hidrolise da celulose", "oxidacao do grafite"]
+      },
+      "peso_erro": "ALTO - vida util incorreta = promessa falsa de durabilidade",
+      "cobertura": "85%"
+    },
+    "normativo": {
+      "relevance_check": "SIM",
+      "justificativa": "IEC 61400-2 (small wind), ASTM D638/D256/D2240/E466/E606 (ensaios polimeros). Especifica geometria e procedimento de ensaio.",
+      "m3": {
+        "macro": ["IEC 61400-2 (gerador eolico)", "ABNT NBR 5410 (instalacoes eletricas)"],
+        "meso": ["ASTM D638 (tracao), D256 (impacto Izod)", "ASTM D2240 (dureza Shore)", "E466/E606 (fadiga)"],
+        "micro": ["geometria do corpo de prova dog-bone", "velocidade de ensaio", "temperatura de condicionamento"]
+      },
+      "peso_erro": "MEDIO - nao conformidade impede certificacao",
+      "cobertura": "75%"
+    },
+    "economico": {
+      "relevance_check": "SIM",
+      "justificativa": "Viabilidade FINEP exige LCOE, payback, custo unitario. economico/viabilidade.py calcula TIR, VPL, payback.",
+      "m3": {
+        "macro": ["LCOE (R$/kWh)", "payback e VPL"],
+        "meso": ["custo de materiais por kg", "custo de mao de obra", "custo de ferramental"],
+        "micro": ["custo unitario por insumo", "sensibilidade a volume"]
+      },
+      "peso_erro": "MEDIO - erro economico = projeto inviavel ou superdimensionado",
+      "cobertura": "80%"
+    }
+  },
+  "cobertura_global": {
+    "dominios_relevantes": 10,
+    "dominios_excluidos": 0,
+    "justificativa_exclusoes": "Nenhum dominio excluido - todos os 10 sao aplicaveis ao problema compasito+gerador+FINEP",
+    "cobertura_media_ponderada": "87.0%",
+    "conformidade_m7": "PASS (dentro da faixa 75-90%)"
+  },
+  "prioridade_por_impacto_erro": [
+    {"dominio": "materiais", "risco": "S1 (critico)"},
+    {"dominio": "mecanica", "risco": "S1 (critico)"},
+    {"dominio": "fluidos", "risco": "S2 (alto)"},
+    {"dominio": "energia", "risco": "S2 (alto)"},
+    {"dominio": "eletricidade", "risco": "S2 (alto)"},
+    {"dominio": "construcao", "risco": "S2 (alto)"},
+    {"dominio": "ambiente", "risco": "S2 (alto)"},
+    {"dominio": "termo", "risco": "S3 (medio)"},
+    {"dominio": "economico", "risco": "S3 (medio)"},
+    {"dominio": "normativo", "risco": "S3 (medio)"}
+  ],
+  "next": "F3"
+}

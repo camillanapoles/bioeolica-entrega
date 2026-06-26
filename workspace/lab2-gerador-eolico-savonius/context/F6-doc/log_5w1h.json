@@ -1,0 +1,8 @@
+{
+  "_meta": {"fase": "F6 (Lab2)", "doc": "Log Lab2 - linkado a LOG-005 do Lab1 (commit 85a1d44)"},
+  "logs": [
+    {"uuid": "LOG-L2-001", "what": "Lab2 Savonius+PMG+SSOT+integracao", "commit": "85a1d44", "link_lab1": "LOG-005", "mapa": "[MAPA-005]", "vvv": "PASS"},
+    {"uuid": "LOG-L2-002", "what": "Fix bugs fisicos em Lab2 (Faraday, Betz, Paris)", "commit": "4a6e9ac", "link_lab1": "LOG-007", "mapa": "[MAPA-007]", "vvv": "PASS"}
+  ],
+  "next": "F7"
+}

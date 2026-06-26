@@ -1,0 +1,7 @@
+{
+  "_meta": {"fase": "F4 (Lab2)", "doc": "Tool_pipeline Lab2 - herda Lab1"},
+  "ferramentas": {"numpy": "2.5.0", "scipy": "1.18.0", "pytest": "9.1.1"},
+  "pipeline": "savonius.py -> pa.py (estrutural) -> pmg.py + integrador.py -> orchestrator -> orcamento.py + viabilidade_lab1.py",
+  "validacao_integracao": "14/14 testes Lab2 PASS exit 0",
+  "next": "F5"
+}

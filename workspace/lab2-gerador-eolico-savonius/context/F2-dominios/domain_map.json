@@ -1,0 +1,13 @@
+{
+  "_meta": {"fase": "F2 (Lab2)", "doc": "Domain_map Lab2 - subconjunto focado gerador", "heranca": "Lab2 compartilha Lab1 para materiais/termo/ambiente. Lab2 foca fluidos/mecanica/eletricidade/energia."},
+  "dominios_relevantes_lab2": {
+    "fluidos": {"relevance": "SIM (central - aerodinamica Savonius)", "cobertura": "95%", "modulos": ["l2_aerodinamica/savonius.py", "l2_aerodinamica/perfil.py"]},
+    "mecanica": {"relevance": "SIM (estrutura pa + torre)", "cobertura": "85%", "modulos": ["l2_estrutural/pa.py"]},
+    "eletricidade": {"relevance": "SIM (PMG + retificador)", "cobertura": "90%", "modulos": ["l2_gerador/pmg.py", "l2_gerador/integrador.py"]},
+    "energia": {"relevance": "SIM (balanco energetico)", "cobertura": "90%", "modulos": ["l2_gerador/lab_orchestrator.py"]},
+    "economico": {"relevance": "SIM (orcamento + viabilidade)", "cobertura": "85%", "modulos": ["l2_economico/orcamento.py", "l2_economico/viabilidade_lab1.py"]},
+    "normativo": {"relevance": "SIM (IEC 61400-2)", "cobertura": "75%", "modulos": ["referencia estatica"]}
+  },
+  "dominios_herdados_lab1": ["materiais", "termo", "ambiente", "construcao"],
+  "next": "F3"
+}
