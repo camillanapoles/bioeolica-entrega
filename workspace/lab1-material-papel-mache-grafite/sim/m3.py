@@ -47,9 +47,13 @@ def analise_material_m3(propriedades: dict[str, Any]) -> AnaliseM3:
         "regulamentacao": propriedades.get("regulamentacao", "IEC 61400"),
     })
     meso = EscalaAnalise("meso", {
-        "interface_pa_matriz": propriedades.get("interface_pa_matriz"),
-        "acoplamento_mecanico": propriedades.get("acoplamento_mecanico"),
-        "troca_termica": propriedades.get("troca_termica"),
+        # defaults coerentes quando não especificado (KDI M3 verification: assumir e documentar)
+        "interface_pa_matriz": propriedades.get("interface_pa_matriz",
+                                                "adesão mecânica celulose-grafite"),
+        "acoplamento_mecanico": propriedades.get("acoplamento_mecanico",
+                                                 "carga transferida por cisalhamento"),
+        "troca_termica": propriedades.get("troca_termica",
+                                          "condução via rede grafite"),
     })
     micro = EscalaAnalise("micro", {
         "densidade": propriedades.get("densidade"),

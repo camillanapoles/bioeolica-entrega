@@ -13,9 +13,14 @@ from dataclasses import dataclass
 
 @dataclass
 class PMGParams:
-    Ke: float            # constante de EMF/torque (V·s/rad = N·m/A)
-    R_interno_ohm: float
-    perdas_constantes_w: float = 5.0
+    """Constantes de um PMG (PMSG) de pequeno porte.
+
+    Defaults: Ke=2.0 V·s/rad (típico PMG ~100-500W), R=1.5 ohm, perdas 3W.
+    Refs: Boldea, I. Variable Speed Generators (CRC 2015); IEC 61400-2.
+    """
+    Ke: float = 2.0              # V·s/rad = N·m/A
+    R_interno_ohm: float = 1.5
+    perdas_constantes_w: float = 3.0
 
 
 def fem(omega_rad_s: float, p: PMGParams) -> float:

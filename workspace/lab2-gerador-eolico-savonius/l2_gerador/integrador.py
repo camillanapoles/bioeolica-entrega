@@ -24,7 +24,7 @@ class SistemaEolico:
         if self.curve is None:
             self.curve = SavoniusCurve()
         if self.pmg is None:
-            self.pmg = PMGParams(Ke=0.4, R_interno_ohm=2.0)
+            self.pmg = PMGParams()  # usa defaults realistas da dataclass (Ke=2.0, R=1.5)
 
 
 def varrer_vento(s: SistemaEolico, v_list: list[float]) -> list[dict]:
