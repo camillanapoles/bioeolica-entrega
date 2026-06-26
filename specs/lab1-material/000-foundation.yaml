@@ -1,0 +1,20 @@
+id: lab1-material/000-foundation
+title: "Fundação do Lab1 — core (db SQLite + json_store SSOT + config declarativa)"
+lab: lab1-material
+status: specified
+owner: coordinator
+modules:
+  - workspace/lab1-material-papel-mache-grafite/core/db.py
+  - workspace/lab1-material-papel-mache-grafite/core/json_store.py
+  - workspace/lab1-material-papel-mache-grafite/core/config.py
+  - workspace/lab1-material-papel-mache-grafite/core/schema.sql
+acceptance:
+  - "core/db.py abre SQLite em :memory: e cria schema versionado (PRAGMA user_version)"
+  - "core/json_store.py espelha entidade em documento JSON (SSOT P$0)"
+  - "core/config.py carrega config YAML/JSON sem hardcoded (P$1)"
+  - "pytest tests/ exit code 0 (M1/M5)"
+  - "Nenhum valor hardcoded em módulos (P$1) — tudo via config"
+references:
+  - "Princípio $0 INPUT.md: dados em JSON provido por SQLite"
+  - "CONVENTIONS.md M5: validação por pytest"
+notes: "Camada fundacional. Sem dependências. Deve ser a Layer 1 do plano TDD."

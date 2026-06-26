@@ -1,0 +1,94 @@
+name: Spec Gate
+# CONVENTIONS.md M7: Spec Phase Gate com HUMAN_GATE obrigatório.
+# Valida specs em specs/*.yaml e exige approval via environment 'approval'.
+
+on:
+  pull_request:
+    paths:
+      - "specs/**"
+      - "workspace/*/spec/**"
+  workflow_dispatch:
+    inputs:
+      spec_path:
+        description: "Caminho do spec a validar (ex: specs/lab1-material/001-tracao.yaml)"
+        required: false
+        default: "specs/"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install deps
+        run: pip install pyyaml jsonschema
+      - name: Validate specs (schema + campos obrigatórios)
+        id: validate
+        run: |
+          python - <<'PY'
+          import sys, glob, yaml, json, pathlib
+          schema = {
+            "type": "object",
+            "required": ["id", "title", "lab", "status", "owner"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "lab": {"type": "string"},
+              "status": {"enum": ["draft", "specified", "planned", "implemented", "validated", "to-validate"]},
+              "owner": {"type": "string"},
+              "modules": {"type": "array", "items": {"type": "string"}},
+              "acceptance": {"type": "array", "items": {"type": "string"}},
+            },
+          }
+          try:
+            import jsonschema
+          except ImportError:
+            jsonschema = None
+          paths = []
+          base = "${{ github.event.inputs.spec_path }}" or "specs/"
+          for p in glob.glob(f"{base}/**/*.yaml", recursive=True) + glob.glob(f"{base}/**/*.yml", recursive=True):
+              paths.append(p)
+          errs = 0
+          for p in paths:
+              try:
+                  doc = yaml.safe_load(open(p))
+                  if jsonschema:
+                      jsonschema.validate(doc, schema)
+                  print(f"OK  {p}")
+              except Exception as e:
+                  errs += 1
+                  print(f"FAIL {p}: {e}")
+          if errs:
+              print(f"::error::{errs} spec(s) inválidos")
+              sys.exit(1)
+          print(f"Validados {len(paths)} spec(s)")
+          PY
+      - name: Post PR comment (gate status)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `🚦 **Spec Gate (M7)**: validação de schema concluída.\n\nApós merge, abrir HUMAN_GATE manualmente: *Actions → Spec Gate → Run workflow* com environment \`approval\` para liberar implementação.`
+            })
+
+  human-gate:
+    # Gate manual. Quem aprova = usuário (P10: checkpoints humanos).
+    needs: validate-spec
+    environment:
+      name: approval
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - run: |
+          echo "✅ HUMAN_GATE aprovado por ${{ github.actor }} para ${{ github.event.inputs.spec_path }}"
+          echo "Spec liberado para IMPLEMENT (M7)."

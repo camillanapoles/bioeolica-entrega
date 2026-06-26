@@ -1,0 +1,12 @@
+{
+  "id": "setup-gitops-lab",
+  "title": "Provisionar GitOps + CI/CD + Actions para Laboratório Virtual Multi-Agente (Lab1 Material + Lab2 Gerador)",
+  "status": "in_progress",
+  "complexity": "M",
+  "risk": "medium",
+  "domain": "infra",
+  "currentPhase": "analysis",
+  "nextAction": "Análise dual CCG (antigravity+claude) sobre design GitOps + criação workflows Actions",
+  "createdAt": "2026-06-26T02:30:00Z",
+  "branch": "main"
+}

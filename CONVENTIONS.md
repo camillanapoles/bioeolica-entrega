@@ -1,8 +1,8 @@
 # CONVENTIONS.md — Manual de Conduta Rígido
 
-> **Bioeólica Dev2** — instância do framework PAI 5.0 + Engine Omnibus v3.0 (KDI `mech-electro-materials-scientist`).
+> **Bioeólica Dev2** — instância + Engine Omnibus v3.0 (KDI `mech-electro-materials-scientist`).
 > Este documento é **obrigatório**. Toda ação neste repositório está sujeita às regras abaixo.
-> Em conflito entre documentos, a precedência é: System Prompt (PAI) > CONVENTIONS.md > AGENTS.md/INSTRUCTIONS.md > specs/Plans > memória de sessão.
+> Em conflito entre documentos, a precedência é: System Prompt ➞ ESPLORE PROJETO COM gitnexus + historico 
 
 ---
 
@@ -110,8 +110,8 @@ Cada problema/tarefa segue o ciclo. Retornos são permitidos conforme `return_co
 ## 4. Regras de Código — Obrigatórias
 
 ### Linguagens e Ferramentas
-- **Python 3.11+** first (project default).
-- **TypeScript + bun** quando CLAUDE.md PAI exige. **Nunca npm/npx.**
+- **Python 3.11+** SEMPRE USAR ambiente virtal uv. first (project default). verifificar uv venv criado, e ativo . `python -V` antes de executar ➞ Semore usar uv ativado!
+- **TypeScript + bun** quando CLAUDE.md OU gitnexus e ou ferramebtas habilitadas exige. **Nunca npm/npx.**
 - `pytest` como única métrica de sucesso.
 - `rg` > `grep`, `fd` > `find`, `bat` > `cat` em Bash.
 

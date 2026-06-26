@@ -1,0 +1,17 @@
+id: lab1-material/001-tracao
+title: "Ensaio de tração — regras de mistura + Halpin-Tsai para compósito papel-machê+grafite"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/tracao.py
+acceptance:
+  - "Calcular modulo de Young (E_c) via regra de misturas (Voigt/Reuss bounds)"
+  - "Refinar via Halpin-Tsai com parametro xi configuravel"
+  - "Inputs 100% via config JSON (P$1)"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0"
+references:
+  - "Halpin, J.C.; Kardos, J.L. (1976). The Halpin-Tsai equations: a review. Polym. Eng. Sci."
+  - "ASTM D638"
+notes: "Depende de 000-foundation."

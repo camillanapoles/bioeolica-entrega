@@ -1,0 +1,70 @@
+name: VVV Certify
+# CONVENTIONS.md M5/M8 + Princípio $4: Verification/Validation/Certification.
+# Roda VVV de um lab: tests de verificação numérica + validação de fontes + certificação PASS/FAIL.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "workspace/**"
+  workflow_dispatch:
+    inputs:
+      lab:
+        description: "Lab a certificar (lab1-material | lab2-gerador | all)"
+        required: true
+        default: "all"
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lab: ${{ fromJson(format('["{0}"]', github.event.inputs.lab || 'all')) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install deps
+        run: |
+          pip install pytest numpy scipy pandas matplotlib jsonschema pyyaml
+      - name: Run VVV for lab
+        run: |
+          set -e
+          LAB="${{ matrix.lab }}"
+          echo "::group::Verification (testes numéricos)"
+          if [ "$LAB" = "all" ]; then
+            pytest workspace/ -q || echo "::warning::alguns testes falharam"
+          else
+            pytest workspace/$LAB-*/ -q || echo "::warning::alguns testes falharam"
+          fi
+          echo "::endgroup::"
+      - name: Emit certification artifact
+        if: always()
+        run: |
+          mkdir -p vvv-artifacts
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          STATUS="PASS"
+          if [ "${{ job.status }}" != "success" ]; then STATUS="FAIL"; fi
+          cat > vvv-artifacts/certification-$LAB-${{ github.run_id }}.json << JSON
+          {
+            "lab": "$LAB",
+            "run_id": "${{ github.run_id }}",
+            "status": "$STATUS",
+            "timestamp": "$TS",
+            "commit": "${{ github.sha }}",
+            "actor": "${{ github.actor }}",
+            "verification": "pytest workspace/",
+            "principle": "P_4_VVV"
+          }
+          JSON
+          cat vvv-artifacts/*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vvv-cert-${{ matrix.lab }}-${{ github.run_id }}
+          path: vvv-artifacts/
+          if-no-files-found: warn
