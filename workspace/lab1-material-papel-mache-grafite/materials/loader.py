@@ -18,7 +18,7 @@ def load_catalog(db: Database, catalog_path: Path | None = None) -> int:
         try:
             db.insert_material(m)
             n += 1
-        except Exception as exc:  # noqa: BLE001
+        except Exception:  # noqa: BLE001
             # código duplicado -> skip; não quebra o setup
             existing = db.connection.execute(
                 "SELECT id FROM materials WHERE codigo=?", (m["codigo"],)

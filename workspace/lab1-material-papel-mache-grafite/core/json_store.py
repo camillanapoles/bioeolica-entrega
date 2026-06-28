@@ -12,6 +12,9 @@ from typing import Any
 
 from .db import Database
 
+# Whitelist de tabelas permitidas no espelho SSOT (P$0: SELECT só sobre nomes validados).
+ALLOWED_TABLES = frozenset({"materials", "ensaios", "results", "simulacoes"})
+
 
 class JsonStore:
     """Materializa tabelas do SQLite num documento JSON (Single Source of Truth)."""
@@ -21,9 +24,11 @@ class JsonStore:
         self.path = Path(path)
 
     def dump(self, table: str | None = None) -> Path:
-        tables = [table] if table else ["materials", "ensaios", "results", "simulacoes"]
+        tables = [table] if table else list(ALLOWED_TABLES)
         doc: dict[str, Any] = {}
         for t in tables:
+            if t not in ALLOWED_TABLES:
+                raise ValueError(f"Tabela não permitida no SSOT: {t!r}")
             rows = self.db.connection.execute(f"SELECT * FROM {t}").fetchall()
             doc[t] = [dict(r) for r in rows]
         doc["_meta"] = {

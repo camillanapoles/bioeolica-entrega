@@ -7,18 +7,18 @@ LAB2 = Path(__file__).resolve().parents[1].parent / "lab2-gerador-eolico-savoniu
 if str(LAB2) not in sys.path:
     sys.path.insert(0, str(LAB2))
 
+from core.build_ssot import build_ssot
 from core.db import Database
 from core.orchestrator import LabOrchestrator
-from core.build_ssot import build_ssot
-from materials.loader import load_catalog
-from ensaios.tracao import MisturaInputs, halpin_tsai
+from economico.viabilidade import CustoComposicao, custo_por_kg, escalabilidade_comunitaria
 from ensaios.fadiga import BasquinParams, ciclos_para_falha_basquin
 from ensaios.termico import condutividade_efetiva
-from sim.envelhecimento import simular_vida_util, EnvelhecimentoConfig
-from economico.viabilidade import CustoComposicao, custo_por_kg, escalabilidade_comunitaria
-from l2_gerador.integrador import SistemaEolico, varrer_vento
-from l2_estrutural.pa import PaCompuesto, massa_pa
+from ensaios.tracao import MisturaInputs, halpin_tsai
 from l2_economico.orcamento import OrcamentoGerador, custo_total
+from l2_estrutural.pa import PaCompuesto
+from l2_gerador.integrador import SistemaEolico, varrer_vento
+from materials.loader import load_catalog
+from sim.envelhecimento import EnvelhecimentoConfig, simular_vida_util
 
 
 def test_pipeline_completo_lab1_lab2(tmp_path):

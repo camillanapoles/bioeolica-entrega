@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "doc": "Schema Unificado de Constantes — SSOT de todos os parâmetros físico-científicos e de modelo (Mandato P$1: ZERO hardcoded em código).",
+    "version": 1,
+    "principio": "Código importa de core.constants; valores vivem AQUI. Mudança de parâmetro = editar este JSON, não o .py.",
+    "carregado_por": "core/constants.py (via core/config.py)",
+    "fontes": [
+      "Gibson & Ashby, Cellular Solids (2ed, Cambridge)",
+      "Callister & Rethwisch, Materials Science and Engineering (10ed, Wiley)",
+      "Halpin & Kardos (1976) Polym. Eng. Sci. 16(5):344-352",
+      "Norton (1929); Hertzberg, Deformation of Engineering Materials",
+      "Boldea, Variable Speed Generators (CRC 2015); IEC 61400-2",
+      "Ashby, Materials Selection in Mechanical Design"
+    ]
+  },
+  "fisica": {
+    "R_GAS": 8.31446,
+    "BETZ": 0.5925925925925926,
+    "rho_ar": 1.225
+  },
+  "ensaios": {
+    "tracao": {"xi_halpin_tsai": 1.0},
+    "fadiga": {
+      "basquin_b_padrao": -0.1,
+      "coffin_manson_c_padrao": -0.6
+    },
+    "impacto": {"fator_geometrico": 1.0},
+    "dureza": {
+      "shore_d_coef_a": 12.0,
+      "shore_d_intercepto_b": 38.0,
+      "pa_para_mpa": 1000000.0,
+      "shore_d_max": 100.0,
+      "shore_d_min": 0.0,
+      "brinell_coef": 3.0,
+      "brinell_escala": 100.0
+    },
+    "termico": {"hashin_dim": 3.0}
+  },
+  "fabricacao": {
+    "moldagem": {
+      "cura_pre_fator_A": 1000000.0,
+      "cura_energia_ativacao_Ea": 60000.0,
+      "pressao_threshold_consolidacao": 0.5,
+      "pressao_fator_escala": 2.0,
+      "pressao_max_pa": 500000.0
+    },
+    "sinterizacao": {
+      "energia_ativacao_Q": 200000.0,
+      "pre_fator_K0": 0.001,
+      "densidade_relativa_max": 1.0
+    },
+    "ultrassom": {"energia_ref_J_m3": 1000000000.0}
+  },
+  "sim": {
+    "envelhecimento": {
+      "taxa_base_degrad": 0.000000001,
+      "sigma_ruido": 0.4,
+      "ciclos_max": 1000000000
+    },
+    "macro": {
+      "dias_por_ano": 365,
+      "delta_t_normalizacao_c": 25.0
+    }
+  },
+  "economico": {
+    "custo_processo_brl_kg": 5.0,
+    "taxa_desconto": 0.10,
+    "custo_baseline_pa_brl": 50.0,
+    "biodegradabilidade": 0.8,
+    "sustentabilidade": {
+      "escala_custo": 20.0,
+      "ref_densidade": 400.0,
+      "escala_densidade": 1000.0,
+      "escala_energia": 30.0,
+      "peso_custo": 0.3,
+      "peso_densidade": 0.2,
+      "peso_energia": 0.2,
+      "peso_biodeg": 0.3
+    }
+  },
+  "lab2": {
+    "savonius": {"Cp_max": 0.25, "lambda_opt": 0.8, "sigma_curva": 0.35},
+    "arquimedes": {"Cp_max": 0.33, "lambda_opt": 2.5, "sigma_curva": 1.0},
+    "pmg": {"Ke": 2.0, "R_interno_ohm": 1.5, "perdas_constantes_w": 3.0},
+    "orcamento": {
+      "n_pas": 3,
+      "custo_kg_composito": 12.0,
+      "custo_kg_fibra": 30.0,
+      "custo_pmg_brl": 800.0,
+      "custo_estrutura_brl": 600.0,
+      "densidade_fibra_vidro": 2550.0
+    }
+  }
+}
