@@ -1,9 +1,9 @@
 """TDD: fabricacao/ — modelos de processo."""
+from fabricacao.extrusao import tensao_cisalhamento_parede, vazao_laminar
 from fabricacao.moldagem import grau_cura, pressao_recomendada
-from fabricacao.extrusao import vazao_laminar, tensao_cisalhamento_parede
 from fabricacao.sinterizacao import densificacao_relativa
-from fabricacao.ultrassom import energia_volumetrica, indice_dispersao
 from fabricacao.spray_grafite import espessura_depositada, fracao_vol_superficial
+from fabricacao.ultrassom import energia_volumetrica, indice_dispersao
 
 
 def test_grau_cura_mono_crescente():

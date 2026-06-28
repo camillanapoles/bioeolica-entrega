@@ -6,7 +6,9 @@ from __future__ import annotations
 
 import math
 
-R_GAS = 8.31446
+from core.constants import get
+
+R_GAS = get("fisica.R_GAS")  # schema unificado (P$1)
 
 
 def densificacao_relativa(t: float, T_K: float, D0: float, Q: float = 200e3,
