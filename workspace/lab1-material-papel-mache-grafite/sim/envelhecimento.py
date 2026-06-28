@@ -9,7 +9,9 @@ Refs: Ashby, Materials Selection in Mechanical Design, cap. 6 (degradação).
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
@@ -18,9 +20,9 @@ class EnvelhecimentoConfig:
     limiar_frac: float              # fração de E0 considerado fim de vida (ex: 0.7)
     n_amostras: int = 1000
     # taxa fractional base: polímero perde ~30% em ~3e8 ciclos -> taxa ~ 1e-9/ciclo
-    taxa_base_degrad: float = 1e-9  # 1/ciclo (fractional)
-    sigma_ruido: float = 0.4        # variabilidade relativa (lognormal)
-    ciclos_max: int = 1_000_000_000  # 1e9 (teto físico)
+    taxa_base_degrad: float = field(default_factory=lambda: get("sim.envelhecimento.taxa_base_degrad"))
+    sigma_ruido: float = field(default_factory=lambda: get("sim.envelhecimento.sigma_ruido"))
+    ciclos_max: int = field(default_factory=lambda: int(get("sim.envelhecimento.ciclos_max")))
     seed: int = 42
 
 

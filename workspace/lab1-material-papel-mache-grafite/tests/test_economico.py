@@ -1,8 +1,14 @@
 """TDD: economico/viabilidade.py — payback, VPL, escalabilidade, sustentabilidade."""
 import math
 
-from economico.viabilidade import (CustoComposicao, custo_por_kg, payback_simples, vpl,
-                                   escalabilidade_comunitaria, indice_sustentabilidade)
+from economico.viabilidade import (
+    CustoComposicao,
+    custo_por_kg,
+    escalabilidade_comunitaria,
+    indice_sustentabilidade,
+    payback_simples,
+    vpl,
+)
 
 
 def test_custo_por_kg_positivo():
