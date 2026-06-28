@@ -1,0 +1,2 @@
+history/commits.jsonl merge=union
+history/archives/*.jsonl merge=union
