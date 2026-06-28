@@ -18,12 +18,12 @@ from core.constants import get
 class EnvelhecimentoConfig:
     E0: float                       # módulo inicial (Pa) — referência
     limiar_frac: float              # fração de E0 considerado fim de vida (ex: 0.7)
-    n_amostras: int = 1000
+    n_amostras: int = field(default_factory=lambda: int(get("sim.envelhecimento.n_amostras")))
     # taxa fractional base: polímero perde ~30% em ~3e8 ciclos -> taxa ~ 1e-9/ciclo
     taxa_base_degrad: float = field(default_factory=lambda: get("sim.envelhecimento.taxa_base_degrad"))
     sigma_ruido: float = field(default_factory=lambda: get("sim.envelhecimento.sigma_ruido"))
     ciclos_max: int = field(default_factory=lambda: int(get("sim.envelhecimento.ciclos_max")))
-    seed: int = 42
+    seed: int = field(default_factory=lambda: int(get("sim.envelhecimento.seed")))
 
 
 def simular_vida_util(cfg: EnvelhecimentoConfig, rng=None) -> dict:

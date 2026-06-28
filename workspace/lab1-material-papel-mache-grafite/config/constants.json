@@ -55,7 +55,9 @@
     "envelhecimento": {
       "taxa_base_degrad": 0.000000001,
       "sigma_ruido": 0.4,
-      "ciclos_max": 1000000000
+      "ciclos_max": 1000000000,
+      "n_amostras": 1000,
+      "seed": 42
     },
     "macro": {
       "dias_por_ano": 365,
