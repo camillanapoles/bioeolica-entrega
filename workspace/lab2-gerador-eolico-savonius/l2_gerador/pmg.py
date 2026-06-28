@@ -8,7 +8,9 @@ Relações (máquina CC/PMSG idealizada):
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
@@ -18,9 +20,9 @@ class PMGParams:
     Defaults: Ke=2.0 V·s/rad (típico PMG ~100-500W), R=1.5 ohm, perdas 3W.
     Refs: Boldea, I. Variable Speed Generators (CRC 2015); IEC 61400-2.
     """
-    Ke: float = 2.0              # V·s/rad = N·m/A
-    R_interno_ohm: float = 1.5
-    perdas_constantes_w: float = 3.0
+    Ke: float = field(default_factory=lambda: get("lab2.pmg.Ke"))              # V·s/rad = N·m/A
+    R_interno_ohm: float = field(default_factory=lambda: get("lab2.pmg.R_interno_ohm"))
+    perdas_constantes_w: float = field(default_factory=lambda: get("lab2.pmg.perdas_constantes_w"))
 
 
 def fem(omega_rad_s: float, p: PMGParams) -> float:

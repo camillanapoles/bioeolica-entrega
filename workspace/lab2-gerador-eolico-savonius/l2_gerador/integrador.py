@@ -4,16 +4,22 @@ Equilibra torque da turbina com torque resistivo do PMG para um dado vento.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-from l2_aerodinamica.savonius import (SavoniusCurve, coeficiente_potencia,
-                                   potencia_disponivel, potencia_turbina)
-from l2_gerador.pmg import PMGParams, potencia_saida, eficiencia
+from core.constants import get
+from l2_aerodinamica.savonius import (
+    SavoniusCurve,
+    coeficiente_potencia,
+    potencia_disponivel,
+    potencia_turbina,
+)
+
+from l2_gerador.pmg import PMGParams, eficiencia, potencia_saida
 
 
 @dataclass
 class SistemaEolico:
-    rho_ar: float = 1.225            # kg/m3
+    rho_ar: float = field(default_factory=lambda: get("fisica.rho_ar"))  # kg/m3 — schema unificado (P$1)
     diametro_m: float = 1.0
     altura_m: float = 1.5
     tsr: float = 0.8

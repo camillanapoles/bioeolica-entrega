@@ -5,18 +5,20 @@ reportada em literatura para spiral turbines (Cp ~0.30-0.35).
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
 class ArquimedesCurve:
-    Cp_max: float = 0.33
-    lambda_opt: float = 2.5
+    Cp_max: float = field(default_factory=lambda: get("lab2.arquimedes.Cp_max"))
+    lambda_opt: float = field(default_factory=lambda: get("lab2.arquimedes.lambda_opt"))
 
 
 def cp_arquimedes(tsr: float, curve: ArquimedesCurve | None = None) -> float:
     """Proxy simples: Cp = Cp_max * exp(-((λ-λopt)/σ)^2)."""
     import math
     curve = curve or ArquimedesCurve()
-    sigma = 1.0
+    sigma = get("lab2.arquimedes.sigma_curva")
     return curve.Cp_max * math.exp(-((tsr - curve.lambda_opt) / sigma) ** 2)

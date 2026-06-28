@@ -1,6 +1,6 @@
 """TDD: economico/orcamento.py — viabilidade compósito vs fibra."""
-from l2_estrutural.pa import PaCompuesto
 from l2_economico.orcamento import OrcamentoGerador, custo_total
+from l2_estrutural.pa import PaCompuesto
 
 
 def test_orcamento_economia():

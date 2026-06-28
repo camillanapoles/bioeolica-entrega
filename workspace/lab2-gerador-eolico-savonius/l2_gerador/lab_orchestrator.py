@@ -12,8 +12,8 @@ for p in (str(_LAB1), str(_THIS.parents[0])):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from core.db import Database                        # noqa: E402
-from core.json_store import JsonStore                # noqa: E402
+from core.db import Database  # noqa: E402
+from core.json_store import JsonStore  # noqa: E402
 
 
 class Lab2Orchestrator:

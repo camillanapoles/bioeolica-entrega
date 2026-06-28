@@ -5,7 +5,6 @@ inércia, tensão de flap e fator de segurança.
 """
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 
 

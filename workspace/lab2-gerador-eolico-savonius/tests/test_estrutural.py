@@ -1,5 +1,5 @@
 """TDD: estrutural/pa.py — pá em compósito."""
-from l2_estrutural.pa import PaCompuesto, massa_pa, tensao_flap, fator_seguranca
+from l2_estrutural.pa import PaCompuesto, fator_seguranca, massa_pa, tensao_flap
 
 
 def test_massa_pa():
