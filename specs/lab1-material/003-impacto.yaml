@@ -1,0 +1,16 @@
+id: lab1-material/003-impacto
+title: "Ensaio de impacto Charpy — energia absorvida (proxy proporcional via K_c)"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/impacto.py
+acceptance:
+  - "Calcular energia absorvida CV ~ K_c^2 * A * fg (proxy proporcional, sem E)"
+  - "Suportar comparação relativa entre materiais (modelo semi-empírico)"
+  - "Inputs 100% via config JSON (P$1) — fator_geometrico do constants"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_impacto.py"
+references:
+  - "ASTM D256 (Izod/Charpy impact resistance)"
+notes: "Modelo semi-empírico sem E explícito; proxy para comparação entre materiais."

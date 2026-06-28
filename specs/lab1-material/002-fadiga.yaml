@@ -1,0 +1,18 @@
+id: lab1-material/002-fadiga
+title: "Ensaio de fadiga — Basquin (alta ciclagem) + Coffin-Manson (baixa ciclagem)"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/fadiga.py
+acceptance:
+  - "Calcular ciclos para falha Nf via Basquin: Nf = (sigma_f'/delta_sigma)^(1/b)"
+  - "Combinar Basquin + Coffin-Manson no regime de transição (lifecycle completo)"
+  - "sigma_f' deve respeitar 1.0-1.5 * sigma_uts (Callister cap. 8)"
+  - "Inputs 100% via config JSON (P) — basquin_b_padrao do constants"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_fadiga.py"
+references:
+  - "Basquin (1910); Callister, W.D. Materials Science and Engineering, cap. 8"
+  - "Coffin-Manson (1954) low-cycle fatigue"
+notes: "Depende de 000-foundation. Coeficiente b vem de core/constants (P$1)."

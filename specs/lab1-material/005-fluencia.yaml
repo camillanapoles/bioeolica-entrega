@@ -1,0 +1,17 @@
+id: lab1-material/005-fluencia
+title: "Ensaio de fluência — regime secundário (lei de potência de Norton)"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/fluencia.py
+acceptance:
+  - "Calcular taxa de fluência: epsilon_ponto = A * sigma^n * exp(-Q/(R*T))"
+  - "Validar regime secundário ( Norton steady-state)"
+  - "R_GAS via core/constants (P$1), não hardcoded"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_fluencia.py"
+references:
+  - "Norton, F.H. (1929) creep power law"
+  - "Hertzberg, R.W. Deformation of Engineering Materials"
+notes: "A (pré-fator), n (expoente tensão), Q (energia ativação) parametrizáveis."

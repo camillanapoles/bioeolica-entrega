@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Update FSM state to DONE."""
-import json, os
+import json
+import os
+
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 with open(STATE_FILE) as f:
     state = json.load(f)

@@ -1,0 +1,17 @@
+id: lab1-material/007-atrito
+title: "Ensaio de atrito — coeficiente de Coulomb + desgaste por Archard"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/atrito.py
+acceptance:
+  - "Força de atrito por Coulomb: F = mu * N"
+  - "Volume de desgaste por Archard: V = K_desgaste * carga * deslizamento / dureza"
+  - "K_desgaste adimensional ~ 1e-3 a 1e-8 (faixa fisicamente válida)"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_atrito.py"
+references:
+  - "Archard, J.F. (1953) J. Appl. Phys. 24:981-988"
+  - "Coulomb law of friction"
+notes: "Dureza aproximada por sigma_y (escoamento)."

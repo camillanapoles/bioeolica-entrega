@@ -15,7 +15,7 @@ import json
 import logging
 import sqlite3
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
@@ -120,7 +120,7 @@ def do_migration(dry_run: bool, backup_dir: Path, force: bool) -> int:
     # Backup canonical DB
     backup_dir = Path(backup_dir)
     backup_dir.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     backup_path = backup_dir / f"bioeolica_pre_migration_{ts}.db"
     canon_hash_before = sha256(canon)
     backup_path.write_bytes(canon.read_bytes())
