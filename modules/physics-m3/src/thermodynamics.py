@@ -16,9 +16,21 @@ Usage:
     )
 """
 
+import sys
+from pathlib import Path
+
 import numpy as np
 from dataclasses import dataclass
 from typing import Dict
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -37,7 +49,7 @@ def convection(h_Wm2K: float, A_m2: float, dT_K: float) -> float:
 
 def radiation(epsilon: float, A_m2: float, T1_K: float, T2_K: float) -> float:
     """Radiation heat transfer (W), Stefan-Boltzmann."""
-    sigma = 5.67e-8
+    sigma = get("fisica.sigma_sb")
     return epsilon * sigma * A_m2 * (T1_K**4 - T2_K**4)
 
 

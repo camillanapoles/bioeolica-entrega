@@ -30,8 +30,19 @@ References
 from __future__ import annotations
 
 import math
+import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Tuple
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 
 # ============================================================================
@@ -410,11 +421,11 @@ def estimate_adhesion_strength(
         )
 
     # --- Reference parameters ---
-    p_ref = 2.0   # bar (reference pressure)
-    s_opt = 150.0  # mm (optimal standoff for this coating method)
-    s_crit = 200.0 # mm (standoff beyond which adhesion drops significantly)
-    d_ref = 100.0  # um (reference particle size)
-    sigma_0 = 2.5  # MPa (baseline adhesion for paper mache + graphite)
+    p_ref = get("modules.coating_interface.p_ref_bar")   # bar (reference pressure)
+    s_opt = get("modules.coating_interface.s_opt_mm")  # mm (optimal standoff)
+    s_crit = get("modules.coating_interface.s_crit_mm") # mm (critical standoff)
+    d_ref = get("modules.coating_interface.d_ref_um")  # um (reference particle size)
+    sigma_0 = get("modules.coating_interface.sigma_0_mpa")  # MPa (baseline adhesion)
 
     # --- Pressure factor ---
     # Adhesion increases with pressure due to greater kinetic energy

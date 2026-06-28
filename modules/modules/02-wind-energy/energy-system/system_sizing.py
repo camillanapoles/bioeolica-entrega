@@ -19,10 +19,21 @@ from src.common.database import database
 
 # ---- inputs ---- #
 
-WEIBULL_K = 2.0
-WEIBULL_C = 6.5
-AIR_DENSITY = 1.105  # kg/m³ at 40°C, 500m elevation
-SHEAR_ALPHA = 0.20
+from pathlib import Path
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
+
+WEIBULL_K = get("modules.h_rotor.weibull_k")
+WEIBULL_C = get("modules.h_rotor.weibull_c")
+AIR_DENSITY = get("modules.h_rotor.air_density")  # kg/m^3 at 40C, 500m elevation
+SHEAR_ALPHA = get("modules.h_rotor.shear_alpha")
 
 # Demand (from T047: Assentamento Sertao Sustentavel)
 COMMUNITY_ID = "085e0235-5726-4faf-ac93-198cc60924bc"
@@ -36,10 +47,10 @@ ROTOR_DIAMETER = 3.5  # m
 BLADE_LENGTH = 3.5  # m
 NUM_BLADES = 3
 SWEPT_AREA = 9.62  # m² (2 * R * H)
-CP_MAX = 0.30  # conservative H-rotor Darrieus Cp
-CUT_IN = 3.0  # m/s
-CUT_OUT = 25.0  # m/s
-RATED_WS = 8.0  # m/s
+CP_MAX = get("modules.h_rotor.cp_max")  # H-rotor Darrieus Cp
+CUT_IN = get("modules.h_rotor.cut_in_ms")  # m/s
+CUT_OUT = get("modules.h_rotor.cut_out_ms")  # m/s
+RATED_WS = get("modules.h_rotor.rated_ws_ms")  # m/s
 
 
 @dataclass

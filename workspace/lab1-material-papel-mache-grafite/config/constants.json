@@ -16,7 +16,8 @@
   "fisica": {
     "R_GAS": 8.31446,
     "BETZ": 0.5925925925925926,
-    "rho_ar": 1.225
+    "rho_ar": 1.225,
+    "sigma_sb": 5.67e-08
   },
   "ensaios": {
     "tracao": {"xi_halpin_tsai": 1.0},
@@ -91,6 +92,32 @@
       "custo_pmg_brl": 800.0,
       "custo_estrutura_brl": 600.0,
       "densidade_fibra_vidro": 2550.0
+    }
+  },
+  "modules": {
+    "sensitivity": {
+      "sigma_ref_mpa": 12.5,
+      "d_ref_um": 100.0,
+      "adh_ref_mpa": 4.5,
+      "t_ref_mm": 0.5,
+      "p_ref_bar": 4.0
+    },
+    "coating_interface": {
+      "sigma_0_mpa": 2.5,
+      "p_ref_bar": 2.0,
+      "s_opt_mm": 150.0,
+      "s_crit_mm": 200.0,
+      "d_ref_um": 100.0
+    },
+    "h_rotor": {
+      "cp_max": 0.30,
+      "cut_in_ms": 3.0,
+      "cut_out_ms": 25.0,
+      "rated_ws_ms": 8.0,
+      "weibull_k": 2.0,
+      "weibull_c": 6.5,
+      "air_density": 1.105,
+      "shear_alpha": 0.20
     }
   }
 }
