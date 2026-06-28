@@ -1,15 +1,25 @@
 """TDD: ensaios/ — validação de modelos analíticos (P$4 VVV)."""
 import math
 
-from ensaios.tracao import (MisturaInputs, regra_voigt, regra_reuss, halpin_tsai,
-                            densidade_composita, tensao_ruptura_mistura)
-from ensaios.fadiga import (BasquinParams, ciclos_para_falha_basquin,
-                            CoffinMansonParams, ciclos_para_falha_cm)
-from ensaios.impacto import CharpyInputs, energia_absorvida
+from ensaios.atrito import ArchardInputs, forca_atrito, volume_desgaste
 from ensaios.dureza import shore_d_from_young
-from ensaios.atrito import forca_atrito, ArchardInputs, volume_desgaste
-from ensaios.fluencia import NortonParams, taxa_fluencia, deformacao_acumulada
+from ensaios.fadiga import (
+    BasquinParams,
+    CoffinMansonParams,
+    ciclos_para_falha_basquin,
+    ciclos_para_falha_cm,
+)
+from ensaios.fluencia import NortonParams, deformacao_acumulada, taxa_fluencia
+from ensaios.impacto import CharpyInputs, energia_absorvida
 from ensaios.termico import condutividade_efetiva, cte_efetiva, fluxo_calor_q
+from ensaios.tracao import (
+    MisturaInputs,
+    densidade_composita,
+    halpin_tsai,
+    regra_reuss,
+    regra_voigt,
+    tensao_ruptura_mistura,
+)
 
 
 def test_voigt_reuss_bounds():

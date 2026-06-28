@@ -8,18 +8,29 @@ from __future__ import annotations
 
 import math
 
+from core.constants import get
 
-def shore_d_from_young(E_pa: float, a: float = 12.0, b: float = 38.0) -> float:
+# Constantes de domínio vindas do schema unificado (P$1: zero hardcoded)
+_PA_MPA = get("ensaios.dureza.pa_para_mpa")
+_SHORE_D_MAX = get("ensaios.dureza.shore_d_max")
+_SHORE_D_MIN = get("ensaios.dureza.shore_d_min")
+_BRINELL_COEF = get("ensaios.dureza.brinell_coef")
+_BRINELL_ESCALA = get("ensaios.dureza.brinell_escala")
+
+
+def shore_d_from_young(E_pa: float,
+                       a: float = get("ensaios.dureza.shore_d_coef_a"),
+                       b: float = get("ensaios.dureza.shore_d_intercepto_b")) -> float:
     """Estima dureza Shore D a partir do módulo de Young (Pa)."""
     if E_pa <= 0:
         return 0.0
-    E_mpa = E_pa / 1e6
+    E_mpa = E_pa / _PA_MPA
     sd = a * math.log10(E_mpa) + b
-    return max(0.0, min(100.0, sd))
+    return max(_SHORE_D_MIN, min(_SHORE_D_MAX, sd))
 
 
 def brinell_from_young(E_pa: float, sigma_y_pa: float) -> float:
     """Proxy Brinell (HB) proporcional: HB ~ 3*sigma_y/E*100."""
     if E_pa <= 0:
         return 0.0
-    return 3.0 * sigma_y_pa / E_pa * 100.0
+    return _BRINELL_COEF * sigma_y_pa / E_pa * _BRINELL_ESCALA
