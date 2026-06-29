@@ -36,6 +36,17 @@ from scipy.integrate import solve_ivp
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
 
+# P$1: rotear constantes pelo schema unificado
+import sys
+from pathlib import Path
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
+
 
 class CFDSolver:
     """Finite difference solver for 2D incompressible Navier-Stokes.
@@ -206,7 +217,7 @@ class CFDSolver:
             u_max = max(float(np.max(np.abs(u))), 0.01)
             v_max = max(float(np.max(np.abs(v))), 0.01)
             cfl = min(dx / u_max, dy / v_max) * 0.5
-            diff = 0.5 / (nu * (1.0 / dx**2 + 1.0 / dy**2) + 1e-30)
+            diff = 0.5 / (nu * (1.0 / dx**2 + 1.0 / dy**2) + get("modules.physics_m3.cfd.safety_epsilon"))
             local_dt = min(dt, cfl, diff)
 
             # --- u-momentum predictor ---

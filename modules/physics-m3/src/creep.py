@@ -35,6 +35,16 @@ from typing import Callable, Literal, Optional
 import numpy as np
 from scipy.integrate import solve_ivp
 
+# P$1: rotear constantes pelo schema unificado
+import sys
+from pathlib import Path
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 # ---------------------------------------------------------------------------
 #  Norton-Bailey creep strain rate
@@ -581,7 +591,7 @@ if __name__ == "__main__":
 
     # Creep model for Cr1Mo steel at 550 C
     cm = CreepModel(A=5.7e-18, n=5.5, m=0.0, Q=380e3, E=210e3)
-    T = 823.15  # 550 C
+    T = get("modules.physics_m3.creep.temp_ref_K")  # 550 C
 
     # Creep strain
     t, eps = cm.creep_strain(sigma=100.0, t_total=10000.0, T=T)

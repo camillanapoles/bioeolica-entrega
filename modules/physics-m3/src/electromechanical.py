@@ -21,6 +21,16 @@ import numpy as np
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
+# P$1: rotear constantes pelo schema unificado
+import sys
+from pathlib import Path
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 # ═══════════════════════════════════════════════════════════════
 #  PERMANENT MAGNET SYNCHRONOUS GENERATOR (PMSG)
@@ -58,7 +68,7 @@ class PMSG:
         if output_W <= 0:
             return 0
         # Copper losses + iron losses
-        I = output_W / (self.voltage_V * np.sqrt(3) * 0.85)
+        I = output_W / (self.voltage_V * np.sqrt(3) * get("modules.physics_m3.electromechanical.power_factor"))
         P_cu = 3 * I**2 * self.R_s_ohm
         P_fe = 0.02 * self.power_rated_W
         P_loss = P_cu + P_fe

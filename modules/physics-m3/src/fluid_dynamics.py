@@ -21,6 +21,16 @@ import numpy as np
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
+# P$1: rotear constantes pelo schema unificado
+import sys
+from pathlib import Path
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 # ═══════════════════════════════════════════════════════════════
 #  ATMOSPHERIC BOUNDARY LAYER
@@ -34,15 +44,20 @@ def wind_profile(z_m: float, v_ref_ms: float, z_ref_m: float = 10.0,
       - open: 0.14 (open water, flat terrain)
       - suburban: 0.22 (suburban, woodland)
       - urban: 0.33 (city center, tall buildings)
+
+    Uses SSOT constants (modules.physics_m3.fluid_dynamics.terrain_alpha).
     """
-    alpha_map = {"open": 0.14, "suburban": 0.22, "urban": 0.33}
+    alpha_map = get("modules.physics_m3.fluid_dynamics.terrain_alpha")
     a = alpha_map.get(terrain, alpha)
     return v_ref_ms * (z_m / z_ref_m) ** a
 
 
 def atmospheric_boundary_layer_height(terrain: str = "open") -> float:
-    """Estimate ABL height (m) by terrain type."""
-    heights = {"open": 300, "suburban": 400, "urban": 500}
+    """Estimate ABL height (m) by terrain type.
+
+    Uses SSOT constants (modules.physics_m3.fluid_dynamics.abl_heights_m).
+    """
+    heights = get("modules.physics_m3.fluid_dynamics.abl_heights_m")
     return heights.get(terrain, 300)
 
 

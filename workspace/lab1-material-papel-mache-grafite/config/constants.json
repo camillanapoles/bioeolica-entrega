@@ -118,6 +118,36 @@
       "weibull_c": 6.5,
       "air_density": 1.105,
       "shear_alpha": 0.20
+    },
+    "physics_m3": {
+      "_doc": "physics-m3 computational models — P$1 compliance constants",
+      "creep": {
+        "temp_ref_K": 823.15,
+        "_source": "ASTM E139-11 — creep test standard temperature"
+      },
+      "fatigue": {
+        "D_initial": 0.0,
+        "_source": "Zero initial damage (pristine material)"
+      },
+      "fluid_dynamics": {
+        "terrain_alpha": {"open": 0.14, "suburban": 0.22, "urban": 0.33},
+        "abl_heights_m": {"open": 300, "suburban": 400, "urban": 500},
+        "_source": "ASHRAE wind profile — terrain roughness categories"
+      },
+      "fem": {
+        "E_default_GPa": 10.0,
+        "E_default_Pa": 10000000000.0,
+        "default_I_m4": 1.0e-6,
+        "default_L_m": 1.0,
+        "_source": "Default beam properties for structural verification"
+      },
+      "cfd": {
+        "tolerance_default": 1.0e-6,
+        "safety_epsilon": 1.0e-30
+      },
+      "electromechanical": {
+        "power_factor": 0.85
+      }
     }
   }
 }
