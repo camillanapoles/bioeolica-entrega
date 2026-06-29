@@ -4,76 +4,113 @@
 > Auto-generated skill from repository analysis
 
 ## Overview
-This skill teaches the core development patterns and conventions used in the `bioeolica-entrega` Python repository. You'll learn how to structure code, write and organize commits, follow naming conventions, and understand the project's approach to testing and workflows. While no external frameworks are detected, the repository enforces clear, maintainable standards for collaborative Python development.
+
+This skill introduces the core development patterns and workflows used in the `bioeolica-entrega` TypeScript codebase. It covers coding conventions, file organization, commit practices, and the process for adding new ECC bundles (skills) to the system. This guide is intended to help contributors maintain consistency and efficiency when working on the project.
 
 ## Coding Conventions
 
 ### File Naming
-- Use **snake_case** for all Python file names.
-  - Example: `data_processor.py`, `wind_analysis.py`
+
+- Use **camelCase** for file names.
+  - Example: `windFarmModel.ts`, `energyOutputCalculator.ts`
 
 ### Import Style
-- Use **relative imports** within the package.
+
+- Use **relative imports** for modules within the project.
   - Example:
-    ```python
-    from .utils import calculate_power
+    ```typescript
+    import { calculateEnergy } from './energyOutputCalculator';
     ```
 
 ### Export Style
-- Use **named exports** (explicitly define what is exported).
+
+- Use **named exports** to expose functions, classes, or constants.
   - Example:
-    ```python
-    __all__ = ['calculate_power', 'WindTurbine']
+    ```typescript
+    // In windFarmModel.ts
+    export function createWindFarm() { ... }
+    export const DEFAULT_TURBINE_COUNT = 10;
     ```
 
 ### Commit Messages
-- Follow **conventional commit** style.
-- Allowed prefixes: `fix`, `feat`
-- Keep commit messages concise (average ~70 characters).
+
+- Follow **Conventional Commits** with the `feat` prefix for features.
   - Example:
     ```
-    feat: add wind speed normalization function
-    fix: correct power output calculation in turbine module
+    feat: add wind speed normalization utility
     ```
 
 ## Workflows
 
-### Code Contribution
-**Trigger:** When adding new features or fixing bugs  
-**Command:** `/contribute`
+### Add ECC Bundle
 
-1. Create a new branch for your feature or fix.
-2. Write code following the coding conventions.
-3. Use relative imports and snake_case file names.
-4. Add or update tests as needed.
-5. Commit changes using conventional commit messages (e.g., `feat: ...`, `fix: ...`).
-6. Push your branch and open a pull request.
+**Trigger:** When introducing a new skill or capability as an ECC bundle to the system.  
+**Command:** `/add-ecc-bundle`
 
-### Code Review
-**Trigger:** When reviewing a pull request  
-**Command:** `/review`
+1. **Register the ECC bundle:**
+   - Edit or create `.claude/ecc-tools.json` to include the new bundle.
+2. **Document the skill:**
+   - Add or update `.claude/skills/<skill-name>/SKILL.md` for Claude skill documentation.
+   - Add or update `.agents/skills/<skill-name>/SKILL.md` for agent skill documentation.
+3. **Configure the agent:**
+   - Add or update `.agents/skills/<skill-name>/agents/openai.yaml` for agent configuration.
+4. **Update identity information:**
+   - Edit `.claude/identity.json` as needed.
+5. **Configure Codex:**
+   - Update `.codex/config.toml` for Codex configuration.
+6. **Document agents:**
+   - Edit `.codex/AGENTS.md` to include new or updated agents.
+   - Update or add `.codex/agents/<agent>.toml` for each relevant agent (e.g., `explorer`, `reviewer`, `docs-researcher`).
+7. **Define instincts:**
+   - Add or update `.claude/homunculus/instincts/inherited/<skill>-instincts.yaml` for skill-specific instincts.
 
-1. Check that file names use snake_case.
-2. Ensure imports are relative.
-3. Verify that exports are named and explicit.
-4. Confirm commit messages follow the conventional pattern.
-5. Run tests to ensure correctness.
-6. Leave feedback or approve the pull request.
+**Example Directory Structure:**
+```
+.claude/
+  ecc-tools.json
+  skills/
+    mySkill/
+      SKILL.md
+  identity.json
+  homunculus/
+    instincts/
+      inherited/
+        mySkill-instincts.yaml
+.agents/
+  skills/
+    mySkill/
+      SKILL.md
+      agents/
+        openai.yaml
+.codex/
+  config.toml
+  AGENTS.md
+  agents/
+    explorer.toml
+    reviewer.toml
+    docs-researcher.toml
+```
 
 ## Testing Patterns
 
-- **Framework:** Unknown (no standard framework detected)
-- **Test File Pattern:** Files are named with the `*.test.ts` pattern (note: this suggests possible TypeScript tests, but the main codebase is Python).
-- **Best Practice:** Place test files alongside the code they test or in a dedicated `tests/` directory. Use descriptive names.
+- Test files use the pattern `*.test.*` (e.g., `energyOutputCalculator.test.ts`).
+- The specific testing framework is not specified, but tests are colocated with source files or in dedicated test directories.
+- Example test file:
+  ```typescript
+  // energyOutputCalculator.test.ts
+  import { calculateEnergy } from './energyOutputCalculator';
 
-  Example test file:
-  ```
-  wind_analysis.test.ts
+  describe('calculateEnergy', () => {
+    it('should return correct output for standard input', () => {
+      expect(calculateEnergy(10, 5)).toBe(50);
+    });
+  });
   ```
 
 ## Commands
-| Command      | Purpose                                      |
-|--------------|----------------------------------------------|
-| /contribute  | Start the code contribution workflow         |
-| /review      | Begin the code review workflow               |
+
+| Command           | Purpose                                                      |
+|-------------------|--------------------------------------------------------------|
+| /add-ecc-bundle   | Add a new ECC bundle (skill) with configuration and docs     |
+
 ```
