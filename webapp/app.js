@@ -159,6 +159,7 @@
     };
     document.getElementById("fileImport").onchange = importarJSON;
     document.getElementById("btnReport").onclick = toggleReport;
+    document.getElementById("btnCatalogo").onclick = toggleCatalogo;
     document.getElementById("btnDownloadSqlite").onclick = baixarSqlite;
   }
 
@@ -330,7 +331,159 @@
     }).join(" ");
   }
 
-  // ---- Report ------------------------------------------------------------
+  // ---- Catálogo R&D ------------------------------------------------------
+  function toggleCatalogo() {
+    var box = document.getElementById("catalogoView");
+    var report = document.getElementById("report");
+    if (report) report.style.display = "none";
+    if (box.style.display === "block") { box.style.display = "none"; return; }
+    box.style.display = "block";
+    box.innerHTML = "";
+    box.appendChild(renderCatalogoHead());
+    box.appendChild(renderCatalogoTable());
+    box.appendChild(renderCatalogoAlertas());
+    box.appendChild(renderCatalogoBotoes());
+  }
+
+  function renderCatalogoHead() {
+    var C = window.CATALOGO;
+    var m = C.SEED.meta;
+    var total = C.totalGeral(C.SEED.itens);
+    var div = document.createElement("div");
+    div.style.cssText = "background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:12px";
+    div.innerHTML =
+      "<b>" + m.titulo + "</b> <span class='meta-row'>· base " + m.base + "</span><br>" +
+      "<span class='meta-row'>" + m.nota + "</span><br>" +
+      "<b>TOTAL CATÁLOGO:</b> <span class='big' style='font-size:18px'>" + window.fmtBRL(total) + "</span>";
+    return div;
+  }
+
+  function renderCatalogoTable() {
+    var C = window.CATALOGO;
+    var itens = C.SEED.itens;
+    var porGrupo = {};
+    itens.forEach(function (it) {
+      (porGrupo[it.grupo] = porGrupo[it.grupo] || []).push(it);
+    });
+    var tbl = document.createElement("table");
+    tbl.innerHTML =
+      "<thead><tr>" +
+      "<th>Item</th><th>Categoria</th><th>Grupo</th><th>Tipo cobrança</th>" +
+      "<th>Preço unit.</th><th>Qtd/CP</th><th>Ensaios/Duração</th>" +
+      "<th>Custo médio</th><th>Total</th><th>Justificativa</th>" +
+      "</tr></thead><tbody></tbody>";
+    var body = tbl.querySelector("tbody");
+    Object.keys(porGrupo).forEach(function (g) {
+      porGrupo[g].forEach(function (it) {
+        var total = C.calcularTotal(it);
+        var acima = it.custo_medio && parseFloat(it.preco_unitario) > parseFloat(it.custo_medio) && !it.justificativa;
+        var tr = document.createElement("tr");
+        if (acima) tr.className = "linhaRuim";
+        var tcampos = "";
+        if (it.tipo_cobranca === "ensaio") tcampos = it.ensaios + " rounds";
+        else if (it.tipo_cobranca === "tempo") tcampos = it.duracao + " h";
+        else if (it.tipo_cobranca === "mensal") tcampos = it.quantidade + " meses";
+        else tcampos = "—";
+        tr.innerHTML =
+          "<td>" + it.descricao + "</td>" +
+          "<td><code>" + it.categoria + "</code></td>" +
+          "<td>" + it.grupo + "</td>" +
+          "<td><code>" + it.tipo_cobranca + "</code><br><small style='color:var(--muted)'>" + (C.TIPOS_COBRANCA[it.tipo_cobranca] || {}).label + "</small></td>" +
+          "<td style='text-align:right'>" + window.fmtBRL(it.preco_unitario) + "</td>" +
+          "<td style='text-align:right'>" + (it.quantidade || "—") + " " + (it.unidade || "") + "</td>" +
+          "<td style='text-align:right'>" + tcampos + "</td>" +
+          "<td style='text-align:right'>" + (it.custo_medio ? window.fmtBRL(it.custo_medio) : "—") + "</td>" +
+          "<td style='text-align:right'><b>" + window.fmtBRL(total) + "</b></td>" +
+          "<td class='motivo'>" + (it.justificativa || (acima ? "⚠ acima do custo médio sem justificativa" : "")) + "</td>";
+        body.appendChild(tr);
+      });
+    });
+    return tbl;
+  }
+
+  function renderCatalogoAlertas() {
+    var C = window.CATALOGO;
+    var div = document.createElement("div");
+    div.style.cssText = "margin-top:10px;font-size:12px";
+    var alertas = C.itensAcimaCustoMedio(C.SEED.itens);
+    var porCat = {};
+    C.SEED.itens.forEach(function (it) {
+      var t = C.calcularTotal(it);
+      porCat[it.categoria] = (porCat[it.categoria] || 0) + t;
+    });
+    var linhas = ["<b>Resumo por categoria (rubrica):</b>"];
+    Object.keys(porCat).forEach(function (c) {
+      linhas.push("· <code>" + c + "</code>: " + window.fmtBRL(porCat[c]));
+    });
+    if (alertas.length) {
+      linhas.push("<br><b style='color:var(--nao)'>⚠ " + alertas.length + " item(ns) acima do custo médio sem justificativa:</b>");
+      alertas.forEach(function (it) { linhas.push("· " + it.descricao + " (" + window.fmtBRL(it.preco_unitario) + " > " + window.fmtBRL(it.custo_medio) + ")"); });
+    } else {
+      linhas.push("<br><span class='tagOK'>✓ Todo item acima do custo médio tem justificativa.</span>");
+    }
+    div.innerHTML = linhas.join("<br>");
+    return div;
+  }
+
+  function renderCatalogoBotoes() {
+    var wrap = document.createElement("div");
+    wrap.style.cssText = "margin-top:12px;display:flex;gap:8px";
+    var bMd = document.createElement("button");
+    bMd.textContent = "📄 Exportar Relatório (Markdown)";
+    bMd.onclick = function () {
+      var blob = new Blob([gerarRelatorioCatalogo()], { type: "text/markdown" });
+      download(blob, "catalogo-rd-bioeolica.md");
+    };
+    var bJson = document.createElement("button");
+    bJson.textContent = "⬇ Exportar JSON";
+    bJson.onclick = function () {
+      var blob = new Blob([JSON.stringify(window.CATALOGO.SEED, null, 2)], { type: "application/json" });
+      download(blob, "catalogo-rd-bioeolica.json");
+    };
+    wrap.appendChild(bMd); wrap.appendChild(bJson);
+    return wrap;
+  }
+
+  function gerarRelatorioCatalogo() {
+    var C = window.CATALOGO;
+    var itens = C.SEED.itens;
+    var m = C.SEED.meta;
+    var total = C.totalGeral(itens);
+    var L = [];
+    L.push("# " + m.titulo);
+    L.push("_Base " + m.base + " — " + m.nota + "_");
+    L.push("");
+    L.push("**Total do catálogo:** " + window.fmtBRL(total));
+    L.push("");
+    L.push("| Item | Categoria | Grupo | Tipo | Preço unit. | Qtd | Ensaios/Duração | Custo médio | Total | Justificativa |");
+    L.push("|---|---|---|---|---:|---:|---:|---:|---:|---|");
+    itens.forEach(function (it) {
+      var t = C.calcularTotal(it);
+      var extra = it.tipo_cobranca === "ensaio" ? it.ensaios + " rnd"
+        : it.tipo_cobranca === "tempo" ? it.duracao + " h"
+        : it.tipo_cobranca === "mensal" ? it.quantidade + " mêses" : "—";
+      L.push("| " + it.descricao + " | " + it.categoria + " | " + it.grupo + " | " + it.tipo_cobranca +
+        " | " + window.fmtBRL(it.preco_unitario) + " | " + (it.quantidade || "—") + " " + (it.unidade || "") +
+        " | " + extra + " | " + (it.custo_medio ? window.fmtBRL(it.custo_medio) : "—") +
+        " | " + window.fmtBRL(t) + " | " + (it.justificativa || "") + " |");
+    });
+    L.push("");
+    L.push("## Resumo por rubrica");
+    var porCat = {};
+    itens.forEach(function (it) { var t = C.calcularTotal(it); porCat[it.categoria] = (porCat[it.categoria] || 0) + t; });
+    Object.keys(porCat).forEach(function (c) { L.push("- **" + c + ":** " + window.fmtBRL(porCat[c])); });
+    L.push("");
+    var alertas = C.itensAcimaCustoMedio(itens);
+    if (alertas.length) {
+      L.push("## ⚠ Itens acima do custo médio sem justificativa");
+      alertas.forEach(function (it) { L.push("- **" + it.descricao + "** (" + window.fmtBRL(it.preco_unitario) + " > " + window.fmtBRL(it.custo_medio) + ")"); });
+    } else {
+      L.push("_✓ Todo item acima do custo médio tem justificativa técnica._");
+    }
+    return L.join("\n");
+  }
+
+
   function toggleReport() {
     var rep = document.getElementById("report");
     if (rep.style.display === "block") { rep.style.display = "none"; return; }

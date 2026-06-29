@@ -82,6 +82,7 @@
   </header>
 
   <div class="toolbar">
+    <button id="btnCatalogo">📦 Catálogo R&D</button>
     <button id="btnReport">📋 Relatório</button>
     <button id="btnExport">⬇ Exportar JSON</button>
     <button id="btnImport">⬆ Importar JSON</button>
@@ -99,6 +100,7 @@
 
     <div id="totais"></div>
     <div id="tabela"></div>
+    <div id="catalogoView"></div>
     <pre id="report"></pre>
 
     <footer>
@@ -107,9 +109,10 @@
     </footer>
   </main>
 
-  <!-- Ordem: regras → seed → app -->
+  <!-- Ordem: regras → seed → catalogo → app -->
   <script src="edital-rules.js"></script>
   <script src="seed.js"></script>
+  <script src="catalogo.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
