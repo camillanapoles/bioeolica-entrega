@@ -10,7 +10,7 @@ From INSTRUCTIONS.md:
 
 from __future__ import annotations
 
-import os, math, json
+import os, sys, math, json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Optional
@@ -96,7 +96,7 @@ class MultiPhysicsAnalysis:
                 "Reynolds": Re,
                 "boundary_layer_thickness_m": round(delta, 4),
                 "skin_friction": round(Cf, 6),
-                "pressure_drop_Pa": round(0.5 * get("modules.kdi_m3_bridge.rho_air_ref") * U**2 * Cf, 2),
+                "pressure_drop_Pa": round(0.5 * get("modules.physics_m3.kdi_m3_bridge.rho_air_ref") * U**2 * Cf, 2),
                 "status": "PASS",
             }
         except Exception as e:

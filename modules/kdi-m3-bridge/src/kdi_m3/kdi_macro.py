@@ -58,12 +58,12 @@ class MacroEnvironment:
 
     def terrain_roughness(self) -> float:
         """Terrain roughness length z0 (m) per wind class."""
-        z0_map = get("modules.kdi_m3_bridge.wind_class_z0")
+        z0_map = get("modules.physics_m3.kdi_m3_bridge.wind_class_z0")
         return z0_map.get(self.wind_class, 0.05)
 
     def gust_factor(self) -> float:
         """Gust factor for peak wind loading."""
-        gust_map = get("modules.kdi_m3_bridge.gust_factor_map")
+        gust_map = get("modules.physics_m3.kdi_m3_bridge.gust_factor_map")
         return gust_map.get(self.exposure, 1.40)
 
     def wind_pressure_kPa(self, height_m: float) -> float:
@@ -72,8 +72,8 @@ class MacroEnvironment:
         q(z) = 0.5 * rho * V(z)^2
         V(z) = V_ref * (z/10)^alpha  (power law wind profile)
         """
-        rho = get("modules.kdi_m3_bridge.rho_air_ref")
-        alpha_map = get("modules.kdi_m3_bridge.terrain_alpha_map")
+        rho = get("modules.physics_m3.kdi_m3_bridge.rho_air_ref")
+        alpha_map = get("modules.physics_m3.kdi_m3_bridge.terrain_alpha_map")
         alpha = alpha_map.get(self.wind_class, 0.15)
         vz = self.wind_speed_ref_ms * max((height_m / 10) ** alpha, 0.5)
         gust = self.gust_factor()
