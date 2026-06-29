@@ -24,7 +24,27 @@ import sys
 import os
 import json
 from dataclasses import dataclass, field
-from typing import List, Optional, Tuple
+from pathlib import Path
+from typing import Any, List, Optional, Tuple
+
+# P$1: Carregar constantes do schema unificado (JSON SSOT)
+_PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent.parent.parent
+_CONSTANTS_JSON: Path = (
+    _PROJECT_ROOT / "workspace" / "lab1-material-papel-mache-grafite"
+    / "config" / "constants.json"
+)
+
+
+def _get_constants(path_dotted: str, default: Any = None) -> Any:
+    """P$1: acessar constante do SSOT por caminho pontuado."""
+    try:
+        node: Any = json.loads(_CONSTANTS_JSON.read_text())
+        for part in path_dotted.split("."):
+            node = node[part]
+        return node
+    except Exception:
+        return default
+
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from src.common.registry import create_object
@@ -58,14 +78,14 @@ class LCAMaterial:
 
 # ---- Paper mache composite inventory (per blade, per 3-blade turbine) ---- #
 
-BLADE_COUNT = 3  # 3-blade H-rotor Darrieus
-BLADE_MASS_KG = 8.5  # kg per blade (paper mache + graphite coating, 3.5m length)
+BLADE_COUNT = _get_constants("modules.lca.BLADE_COUNT", 3)
+BLADE_MASS_KG = _get_constants("modules.lca.BLADE_MASS_KG", 8.5)
 
 # Per-blade material breakdown (from blade geometry / manufacturing estimate)
-PAPER_MASS_PER_BLADE_KG = 3.8       # recycled office paper / cardboard
-PVA_MASS_PER_BLADE_KG = 2.2         # polyvinyl acetate adhesive (white glue)
-GRAPHITE_MASS_PER_BLADE_KG = 0.8    # graphite powder coating (jateamento)
-WATER_MASS_PER_BLADE_KG = 1.7       # water in PVA dilution / paper soaking (evaporated)
+PAPER_MASS_PER_BLADE_KG = _get_constants("modules.lca.PAPER_MASS_PER_BLADE_KG", 3.8)
+PVA_MASS_PER_BLADE_KG = _get_constants("modules.lca.PVA_MASS_PER_BLADE_KG", 2.2)
+GRAPHITE_MASS_PER_BLADE_KG = _get_constants("modules.lca.GRAPHITE_MASS_PER_BLADE_KG", 0.8)
+WATER_MASS_PER_BLADE_KG = _get_constants("modules.lca.WATER_MASS_PER_BLADE_KG", 1.7)
 
 
 def build_inventory() -> dict:

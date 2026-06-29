@@ -17,7 +17,29 @@ References:
 from __future__ import annotations
 
 import sys
-from typing import Optional
+from pathlib import Path
+from typing import Any, Optional
+
+
+# P$1: Carregar constantes do schema unificado (JSON SSOT)
+_PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent.parent.parent
+_CONSTANTS_JSON: Path = (
+    _PROJECT_ROOT / "workspace" / "lab1-material-papel-mache-grafite"
+    / "config" / "constants.json"
+)
+
+
+def _get_constants(path_dotted: str, default: Any = None) -> Any:
+    """P$1: acessar constante do SSOT por caminho pontuado."""
+    import json
+    try:
+        node: Any = json.loads(_CONSTANTS_JSON.read_text())
+        for part in path_dotted.split("."):
+            node = node[part]
+        return node
+    except Exception:
+        return default
+
 
 _project_root: str = __file__
 for _ in range(4):
@@ -33,24 +55,24 @@ from src.common.provenance import record_edge
 # Design parameters (from blade_geometry.py + US2 spec)
 # ------------------------------------------------------------------
 
-BLADE_LENGTH_M: float = 3.5
-AIRFOIL_PROFILE: str = "NACA 0018"
-NUM_BLADES: int = 3
+BLADE_LENGTH_M: float = _get_constants("modules.blade_design.BLADE_LENGTH_M", 3.5)
+AIRFOIL_PROFILE: str = _get_constants("modules.blade_design.AIRFOIL_PROFILE", "NACA 0018")
+NUM_BLADES: int = _get_constants("modules.blade_design.NUM_BLADES", 3)
 MATERIAL_ID: str = ""       # Set at runtime via --material-id or env
 
 # IEC 61400-2 design wind speeds
-DESIGN_WIND_SPEED_MS: float = 8.0
-EXTREME_WIND_SPEED_MS: float = 40.0
+DESIGN_WIND_SPEED_MS: float = _get_constants("modules.blade_design.DESIGN_WIND_SPEED_MS", 8.0)
+EXTREME_WIND_SPEED_MS: float = _get_constants("modules.blade_design.EXTREME_WIND_SPEED_MS", 40.0)
 
 # Safety factors (initial PENDING, updated after FEM analysis)
-SAFETY_FACTOR_STATIC: float = 2.5   # Target >= 2.0 per IEC 61400-2
-SAFETY_FACTOR_FATIGUE: float = 2.0  # Target >= 2.0
+SAFETY_FACTOR_STATIC: float = _get_constants("modules.blade_design.SAFETY_FACTOR_STATIC", 2.5)
+SAFETY_FACTOR_FATIGUE: float = _get_constants("modules.blade_design.SAFETY_FACTOR_FATIGUE", 2.0)
 
 # Geometry reference
-GEOMETRY_FILE: str = "data/geometry/blade_3.5m.stp"
+GEOMETRY_FILE: str = _get_constants("modules.blade_design.GEOMETRY_FILE", "data/geometry/blade_3.5m.stp")
 
 # Blade mass estimate (from T043 cost estimation)
-BLADE_MASS_KG: float = 12.10
+BLADE_MASS_KG: float = _get_constants("modules.blade_design.BLADE_MASS_KG", 12.10)
 
 BLADE_DESIGN_COLS: list[str] = [
     "id", "blade_length_m", "airfoil_profile", "num_blades",
