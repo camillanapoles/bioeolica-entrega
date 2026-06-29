@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento FINEP AgriFam-ICT 2026 — Bioeólica (Linha 2)</title>
+  <style>
+    :root {
+      --ok: #1a7f37; --nao: #cf222e; --warn: #9a6700;
+      --bg: #f6f8fa; --card: #ffffff; --line: #d0d7de;
+      --ink: #1f2328; --muted: #656d76;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font: 14px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--ink);
+    }
+    header.topbar {
+      background: #0d2f1c; color: #fff; padding: 14px 22px;
+      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    }
+    header.topbar h1 { font-size: 17px; margin: 0; flex: 1 1 auto; }
+    header.topbar .meta { font-size: 12px; opacity: .85; }
+    .toolbar { background: var(--card); border-bottom: 1px solid var(--line); padding: 10px 22px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .toolbar button, .toolbar label.btn {
+      background: #fff; border: 1px solid var(--line); border-radius: 6px;
+      padding: 6px 12px; cursor: pointer; font-size: 13px;
+    }
+    .toolbar button:hover { background: #eaeef2; }
+    #status { margin-left: auto; color: var(--muted); font-size: 12px; }
+    main { padding: 18px 22px 60px; max-width: 1280px; margin: 0 auto; }
+
+    .meta-row { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .meta-row b { color: var(--ink); }
+
+    #totais {
+      background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 18px;
+    }
+    #totais .big { font-size: 22px; font-weight: 700; }
+    #totais .resumo { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+    #totais .globais { margin-top: 8px; color: var(--nao); font-size: 12px; }
+    .pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+    .pill.ok { color: var(--ok); border-color: #aceebb; background: #ecfdf2; }
+    .pill.nao { color: var(--nao); border-color: #ffb8b0; background: #fff0f0; }
+
+    .rubrica { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px; overflow: hidden; }
+    .rubrica.rim { border-color: #ffb8b0; }
+    .rubrica-head { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 14px; background: #f0f3f6; border-bottom: 1px solid var(--line); gap: 12px; flex-wrap: wrap; }
+    .rubrica-head h3 { margin: 0; font-size: 14px; }
+    .rubrica-totais { font-size: 13px; color: var(--muted); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: #fbfcfd; }
+    td input, td select { width: 100%; font: inherit; padding: 4px 6px; border: 1px solid var(--line); border-radius: 4px; }
+    td input[type="number"] { width: 130px; text-align: right; }
+    td.motivo { font-size: 12px; color: var(--nao); }
+    td.status { white-space: nowrap; }
+    tr.linhaRuim { background: #fff5f5; }
+    tr.linhaAdd { background: #fbfcfd; }
+    tr.linhaAdd input, tr.linhaAdd select { border-style: dashed; }
+
+    .tagOK { color: var(--ok); font-weight: 600; font-size: 11px; }
+    .tagNAO { color: var(--nao); font-weight: 700; font-size: 11px; }
+
+    #report {
+      display: none; margin-top: 18px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px;
+      white-space: pre-wrap; font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 12px; line-height: 1.6;
+    }
+    footer { text-align: center; color: var(--muted); font-size: 11px; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Orçamento FINEP AgriFam-ICT 2026 — Bioeólica (PM-15G + Savonius) · Linha 2</h1>
+    <div class="meta">
+      <span id="metaProj"></span> · <b id="metaVer"></b> · base <span id="metaData"></span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button id="btnReport">📋 Relatório</button>
+    <button id="btnExport">⬇ Exportar JSON</button>
+    <button id="btnImport">⬆ Importar JSON</button>
+    <button id="btnDownloadSqlite">🗄 Baixar SQLite</button>
+    <button id="btnReset">↺ Restaurar v2.0</button>
+    <input type="file" id="fileImport" accept="application/json" hidden>
+    <span id="status"></span>
+  </div>
+
+  <main>
+    <div class="meta-row">
+      Validação ao vivo conforme regras do edital (item 6: tetos por rubrica; 6.6.2: equip &lt;R$50K só permitidos; 2.1.24: sistema composto; 11.2.2: valor inabilitado &gt;30% ⇒ eliminação R4).
+      Itens fora da categoria (ex.: mão-de-obra em Material) ou acima do teto aparecem como <b>NÃO APROVADO</b> com o valor máximo permitido.
+    </div>
+
+    <div id="totais"></div>
+    <div id="tabela"></div>
+    <pre id="report"></pre>
+
+    <footer>
+      Fonte: <code>docs/projetos/orcamento-versionado-finep-agrifam.md</code> (v2.0 RETIFICADA).
+      Persistência local: SQLite (sql.js WASM) em localStorage. GitHub Pages.
+    </footer>
+  </main>
+
+  <!-- Ordem: regras → seed → app -->
+  <script src="edital-rules.js"></script>
+  <script src="seed.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
