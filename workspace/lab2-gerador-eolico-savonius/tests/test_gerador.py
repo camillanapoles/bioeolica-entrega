@@ -1,6 +1,6 @@
 """TDD: gerador/pmg.py + integrador.py."""
-from l2_gerador.pmg import PMGParams, fem, corrente, potencia_saida, eficiencia
 from l2_gerador.integrador import SistemaEolico, varrer_vento
+from l2_gerador.pmg import PMGParams, corrente, eficiencia, fem, potencia_saida
 
 
 def test_fem_linear():

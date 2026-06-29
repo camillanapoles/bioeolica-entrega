@@ -8,7 +8,9 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-R_GAS = 8.31446  # J/(mol.K)
+from core.constants import get
+
+R_GAS = get("fisica.R_GAS")  # J/(mol.K) — schema unificado (P$1)
 
 
 @dataclass

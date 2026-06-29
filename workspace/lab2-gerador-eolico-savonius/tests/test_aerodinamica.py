@@ -1,10 +1,15 @@
 """TDD: aerodinamica/savonius.py — modelo de potência + Betz."""
 import math
 
-from l2_aerodinamica.savonius import (SavoniusCurve, BETZ, potencia_disponivel,
-                                   coeficiente_potencia, potencia_turbina,
-                                   area_varrida_savonius)
-from l2_aerodinamica.perfil import cp_arquimedes, ArquimedesCurve
+from l2_aerodinamica.perfil import ArquimedesCurve, cp_arquimedes
+from l2_aerodinamica.savonius import (
+    BETZ,
+    SavoniusCurve,
+    area_varrida_savonius,
+    coeficiente_potencia,
+    potencia_disponivel,
+    potencia_turbina,
+)
 
 
 def test_betz_limite():

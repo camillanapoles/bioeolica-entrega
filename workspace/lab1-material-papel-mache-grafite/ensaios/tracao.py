@@ -6,8 +6,9 @@ Refs VVV:
 """
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
+
+from core.constants import get
 
 
 @dataclass
@@ -29,7 +30,7 @@ def regra_reuss(x: MisturaInputs) -> float:
     return 1.0 / ((1 - x.V_carga) / x.E_matriz + x.V_carga / x.E_carga)
 
 
-def halpin_tsai(x: MisturaInputs, xi: float = 1.0) -> float:
+def halpin_tsai(x: MisturaInputs, xi: float = get("ensaios.tracao.xi_halpin_tsai")) -> float:
     """Halpin-Tsai: E = Em*(1 + xi*eta*Vf)/(1 - eta*Vf);  eta=(Ef/Em - 1)/(Ef/Em + xi)."""
     if x.E_matriz == 0:
         return 0.0

@@ -11,11 +11,9 @@ Gera relatório de compliance com:
 """
 from __future__ import annotations
 
-import json
 import os
 import sys
-from datetime import datetime, timezone
-from typing import Dict, List, Optional
+from datetime import UTC, datetime
 
 # ─── Configuration ──────────────────────────────────────────────────────────
 
@@ -31,7 +29,7 @@ FDCU_WEIGHTS = {
 }
 
 # Current state — update as non-conformances are resolved
-NON_CONFORMANCES: List[Dict] = [
+NON_CONFORMANCES: list[dict] = [
     {"id": "NC-001", "description": "Testes fracos com asserts genéricos (erosion.py)", "status": "CLOSED", "phase": "US1"},
     {"id": "NC-002", "description": "Cross-workspace importlib hack", "status": "CLOSED", "phase": "US2"},
     {"id": "NC-003", "description": "Benchmarks analíticos ausentes (cantilever, Kirsch, NBR6123)", "status": "CLOSED", "phase": "US1"},
@@ -53,15 +51,15 @@ OBJECTIVE_SCORES = {
 }
 
 
-def calculate_pqms(scores: Dict[str, float]) -> float:
+def calculate_pqms(scores: dict[str, float]) -> float:
     return sum(FDCU_WEIGHTS[k] * scores[k] for k in FDCU_WEIGHTS)
 
 
-def get_current_scores() -> Dict[str, float]:
+def get_current_scores() -> dict[str, float]:
     return {k: v["current"] for k, v in OBJECTIVE_SCORES.items()}
 
 
-def get_target_scores() -> Dict[str, float]:
+def get_target_scores() -> dict[str, float]:
     return {k: v["target"] for k, v in OBJECTIVE_SCORES.items()}
 
 
@@ -80,7 +78,7 @@ def report() -> str:
     lines = []
     lines.append("═" * 60)
     lines.append("  COMPLIANCE REPORT — Quality & Compliance Optimization")
-    lines.append(f"  Generated: {datetime.now(timezone.utc).isoformat()}")
+    lines.append(f"  Generated: {datetime.now(UTC).isoformat()}")
     lines.append("═" * 60)
     lines.append("")
     lines.append(f"  PQMS: {pqms_baseline:.1f}% → {pqms_current:.1f}% (target: {pqms_target:.1f}%)")
@@ -101,7 +99,7 @@ def report() -> str:
         lines.append(f"    {marker} {nc['id']} [{nc['phase']}] {nc['description']}")
 
     lines.append("")
-    lines.append(f"  ── Verdict ──")
+    lines.append("  ── Verdict ──")
     if open_nc == 0 and pqms_current >= pqms_target:
         lines.append(f"  ✅ PASS — All {total_nc} non-conformances closed, PQMS {pqms_current:.1f}% >= {pqms_target:.0f}%")
     else:
@@ -114,7 +112,7 @@ def report() -> str:
     return "\n".join(lines)
 
 
-def save_report(text: str, path: Optional[str] = None) -> str:
+def save_report(text: str, path: str | None = None) -> str:
     if path is None:
         log_dir = os.path.join(PROJECT_ROOT, "docs", "logs")
         os.makedirs(log_dir, exist_ok=True)
@@ -129,5 +127,5 @@ if __name__ == "__main__":
     print(text)
     report_path = save_report(text)
     print(f"\nSaved to: {report_path}")
-    print(f"\nPASS ✅" if "✅ PASS" in text else "\nFAIL ❌")
+    print("\nPASS ✅" if "✅ PASS" in text else "\nFAIL ❌")
     sys.exit(0 if "✅ PASS" in text else 1)

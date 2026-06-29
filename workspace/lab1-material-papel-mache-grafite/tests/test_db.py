@@ -1,8 +1,5 @@
 """TDD: core/db.py — SQLite com schema versionado (P$0, M1/M5)."""
-import sqlite3
-from pathlib import Path
 
-import pytest
 
 
 def test_db_abre_em_memoria_e_cria_schema():
@@ -55,6 +52,7 @@ def test_crud_resultado_ensaio():
         "valor": 25e6,
         "unidade": "Pa",
     })
+    assert rid > 0
     rows = db.list_results(material_id=mid)
     assert len(rows) == 1
     assert rows[0]["valor"] == 25e6

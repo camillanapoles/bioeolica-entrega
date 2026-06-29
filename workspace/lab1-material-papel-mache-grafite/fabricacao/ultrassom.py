@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import math
 
+from core.constants import get
+
 
 def energia_volumetrica(potencia_w: float, volume_m3: float, tempo_s: float) -> float:
     """E = P*t/V (J/m^3)."""
@@ -15,7 +17,8 @@ def energia_volumetrica(potencia_w: float, volume_m3: float, tempo_s: float) -> 
     return potencia_w * tempo_s / volume_m3
 
 
-def indice_dispersao(energia_J_m3: float, E_ref_J_m3: float = 1e9) -> float:
+def indice_dispersao(energia_J_m3: float,
+                     E_ref_J_m3: float = get("fabricacao.ultrassom.energia_ref_J_m3")) -> float:
     """Índice em [0,1] saturado por energia de referência."""
     if E_ref_J_m3 <= 0:
         return 0.0

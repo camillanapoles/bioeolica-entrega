@@ -1,6 +1,10 @@
 """ensaios/termico.py — condutividade efetiva (regra de misturas) + expansão térmica."""
 from __future__ import annotations
 
+from core.constants import get
+
+_HASHIN_DIM = get("ensaios.termico.hashin_dim")  # dimensionalidade (n=3 esférico)
+
 
 def condutividade_efetiva(k_m: float, k_f: float, Vf: float) -> float:
     """Born superior para condutividade térmica."""
@@ -36,4 +40,4 @@ def condutividade_efetiva_hashin_shtrikman(k_m: float, k_f: float, Vf: float) ->
     k_low = min(k_m, k_f)
     k_high = max(k_m, k_f)
     # HS lower bound
-    return k_low + Vf / (1.0 / (k_high - k_low) + (1 - Vf) / (3 * k_low))
+    return k_low + Vf / (1.0 / (k_high - k_low) + (1 - Vf) / (_HASHIN_DIM * k_low))

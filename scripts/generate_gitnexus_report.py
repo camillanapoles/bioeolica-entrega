@@ -5,7 +5,6 @@ Fallback when `gitnexus` CLI is not available.
 """
 
 import subprocess
-import sys
 from pathlib import Path
 
 REPORT_PATH = Path("gitnexus_report.txt")

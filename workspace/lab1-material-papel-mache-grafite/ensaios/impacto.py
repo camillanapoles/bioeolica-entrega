@@ -4,14 +4,16 @@ Ref VVV: ASTM D256 (Izod/Charpy). Modelo semi-empírico sem E -> proxy proporcio
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
 class CharpyInputs:
     K_c: float            # tenacidade à fratura (Pa*sqrt(m))
     area_secao_m2: float
-    fator_geometrico: float = 1.0
+    fator_geometrico: float = field(default_factory=lambda: get("ensaios.impacto.fator_geometrico"))
 
 
 def energia_absorvida(cv: CharpyInputs) -> float:

@@ -1,8 +1,7 @@
 """TDD: materials/loader.py — carga do catalog JSON no SQLite."""
-from pathlib import Path
 
 from core.db import Database
-from materials.loader import load_catalog, get_by_codigo
+from materials.loader import get_by_codigo, load_catalog
 
 
 def test_load_catalog_insere_materiais():

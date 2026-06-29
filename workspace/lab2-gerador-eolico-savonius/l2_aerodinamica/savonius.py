@@ -8,9 +8,11 @@ Refs: Savonius (1931); Wilson & Lissaman (1974); IEC 61400-2 (small wind).
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-BETZ = 16.0 / 27.0
+from core.constants import get
+
+BETZ = get("fisica.BETZ")  # 16/27 — limite teórico, schema unificado (P$1)
 
 
 def potencia_disponivel(rho_ar: float, area_varrida_m2: float, v_mps: float) -> float:
@@ -20,9 +22,9 @@ def potencia_disponivel(rho_ar: float, area_varrida_m2: float, v_mps: float) -> 
 
 @dataclass
 class SavoniusCurve:
-    Cp_max: float = 0.25      # Savonius típico 0.20-0.30
-    lambda_opt: float = 0.8   # TSR ótimo Savonius (~0.5-1.0)
-    sigma: float = 0.35       # largura da curva (dispersão)
+    Cp_max: float = field(default_factory=lambda: get("lab2.savonius.Cp_max"))
+    lambda_opt: float = field(default_factory=lambda: get("lab2.savonius.lambda_opt"))
+    sigma: float = field(default_factory=lambda: get("lab2.savonius.sigma_curva"))
 
 
 def coeficiente_potencia(tsr: float, curve: SavoniusCurve) -> float:

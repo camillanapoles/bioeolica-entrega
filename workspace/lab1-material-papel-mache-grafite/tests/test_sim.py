@@ -1,8 +1,7 @@
 """TDD: sim/ — análise M3 + envelhecimento Monte Carlo."""
-import math
 
-from sim.m3 import analise_material_m3, AnaliseM3, EscalaAnalise
-from sim.envelhecimento import simular_vida_util, EnvelhecimentoConfig
+from sim.envelhecimento import EnvelhecimentoConfig, simular_vida_util
+from sim.m3 import AnaliseM3, EscalaAnalise, analise_material_m3
 from sim.macro import ciclos_termicos_anuais, fator_envelhecimento_uv
 
 

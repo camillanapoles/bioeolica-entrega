@@ -1,0 +1,8 @@
+current/
+**/session.log
+**/session.raw.log
+**/*.session.log
+**/*.raw.log
+**/*.tmp
+**/*.bak
+**/*.swp

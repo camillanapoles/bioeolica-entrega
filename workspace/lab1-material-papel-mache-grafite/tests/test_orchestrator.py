@@ -3,8 +3,8 @@ import json
 
 from core.db import Database
 from core.orchestrator import LabOrchestrator
-from materials.loader import load_catalog
 from ensaios.tracao import MisturaInputs, halpin_tsai
+from materials.loader import load_catalog
 
 
 def test_pipeline_ensaio_persiste_e_espelha(tmp_path):

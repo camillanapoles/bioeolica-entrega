@@ -1,0 +1,19 @@
+id: lab1-material/004-dureza
+title: "Ensaio de dureza — Shore D via correlação empírica com módulo de Young"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/dureza.py
+acceptance:
+  - "Estimar Shore D via ShoreD = a*log10(E[MPa]) + b (correlação Ashby)"
+  - "Calibração a=12, b=38 -> E=3.4GPa dá ShoreD~80 (polímero rígido típico)"
+  - "Limitar Shore D em [shore_d_min, shore_d_max] do constants"
+  - "Inputs 100% via config JSON (P$1) — brinell_coef, brinell_escala, etc"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_dureza.py"
+references:
+  - "ASTM D2240 (Shore D durometer)"
+  - "Ashby, M.F. Materials Selection in Mechanical Design"
+  - "Briscoe, B.J.; Sebastian, P.J. (1996)"
+notes: "Constantes de domínio (pa_para_mpa, shore_d_max, brinell_*) via core/constants."

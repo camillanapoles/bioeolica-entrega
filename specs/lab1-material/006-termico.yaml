@@ -1,0 +1,19 @@
+id: lab1-material/006-termico
+title: "Ensaios térmicos — condutividade efetiva (regra de misturas) + CTE + Fourier"
+lab: lab1-material
+status: draft
+owner: agent-materiais
+modules:
+  - workspace/lab1-material-papel-mache-grafite/ensaios/termico.py
+acceptance:
+  - "Condutividade efetiva: k_eff = k_m*(1-Vf) + k_f*Vf (Born superior, Voigt)"
+  - "Condutividade Reuss (Born inferior, média harmônica) para particulados desalinhados"
+  - "CTE efetiva via regra de misturas: alpha_eff = alpha_m*(1-Vf) + alpha_f*Vf"
+  - "Fluxo de calor q = -k*dT/dx (Fourier)"
+  - "hashin_dim via core/constants (P$1) — dimensionalidade (n=3 esférico)"
+  - "Persistir resultado em SQLite + espelhar em JSON (P$0)"
+  - "pytest exit code 0 em tests/test_termico.py"
+references:
+  - "Hashin, Z.; Shtrikman, S. (1962) variational bounds"
+  - "Fourier law of heat conduction"
+notes: "Fornece bounds superior (Voigt) e inferior (Reuss) para condutividade."

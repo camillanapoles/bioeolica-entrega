@@ -11,8 +11,10 @@ Uso:
     python fsm_orchestrator.py execute   # Inicia EXECUTE
     python fsm_orchestrator.py status    # Mostra estado atual
 """
-import json, os, sys
-from datetime import datetime, timezone
+import json
+import os
+import sys
+from datetime import UTC, datetime
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "..", "state.json")
 
@@ -34,7 +36,7 @@ def save_state(state: dict):
 def run_specify():
     state = load_state()
     state["phase"] = "SPECIFY"
-    state["started_at"] = datetime.now(timezone.utc).isoformat()
+    state["started_at"] = datetime.now(UTC).isoformat()
     print("SPECIFY >> Phase: SPECIFY")
     print("SPECIFY >> Gerando especificação...")
     save_state(state)

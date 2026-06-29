@@ -1,8 +1,9 @@
 """ensaios/fadiga.py — fadiga virtual: Basquin (alta ciclagem) + Coffin-Manson (baixa ciclagem)."""
 from __future__ import annotations
 
-import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
@@ -13,7 +14,7 @@ class BasquinParams:
     Para o composto (sigma_uts=30MPa): sigma_f_linha ~ 40MPa (nao > sigma_uts).
     """
     sigma_f_linha: float   # coeficiente de resistência à fadiga (Pa), <= 1.5*sigma_uts
-    b: float               # expoente de Basquin (negativo, ~ -0.05 a -0.12)
+    b: float = field(default_factory=lambda: get("ensaios.fadiga.basquin_b_padrao"))
 
 
 def ciclos_para_falha_basquin(delta_sigma: float, p: BasquinParams) -> float:
@@ -29,7 +30,7 @@ def ciclos_para_falha_basquin(delta_sigma: float, p: BasquinParams) -> float:
 @dataclass
 class CoffinMansonParams:
     epsilon_f_linha: float  # ductilidade em fadiga (~0.2-1.0)
-    c: float                # expoente de Coffin-Manson (~ -0.5 a -0.7)
+    c: float = field(default_factory=lambda: get("ensaios.fadiga.coffin_manson_c_padrao"))
 
 
 def ciclos_para_falha_cm(delta_epsilon_plastico: float, p: CoffinMansonParams) -> float:

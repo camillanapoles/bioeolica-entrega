@@ -28,6 +28,16 @@ from __future__ import annotations
 
 import math
 import sys
+from pathlib import Path
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 import os
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Tuple
@@ -136,8 +146,8 @@ def _strength_vs_particle_size(size_um: float) -> float:
 
     Baseline at 100 um -> 12.5 MPa.
     """
-    d_ref = 100.0
-    sigma_ref = 12.5
+    d_ref = get("modules.sensitivity.d_ref_um")
+    sigma_ref = get("modules.sensitivity.sigma_ref_mpa")
     # Hall-Petch-like scaling: sigma ~ 1 / sqrt(d)
     if size_um <= 0:
         return sigma_ref * 2.0  # Bounded maximum
@@ -151,8 +161,8 @@ def _adhesion_vs_particle_size(size_um: float) -> float:
 
     Smaller particles increase surface area and mechanical interlocking.
     """
-    d_ref = 100.0
-    adh_ref = 4.5
+    d_ref = get("modules.sensitivity.d_ref_um")
+    adh_ref = get("modules.sensitivity.adh_ref_mpa")
     if size_um <= 0:
         return adh_ref * 1.8
     ratio = math.sqrt(d_ref / size_um)
@@ -180,8 +190,8 @@ def _strength_vs_coating_thickness(thick_mm: float) -> float:
     Thicker coating provides more reinforcement but with diminishing
     returns (logarithmic saturation).
     """
-    t_ref = 0.5
-    sigma_ref = 12.5
+    t_ref = get("modules.sensitivity.t_ref_mm")
+    sigma_ref = get("modules.sensitivity.sigma_ref_mpa")
     ratio = 1.0 + 0.35 * math.log(max(thick_mm / t_ref, 0.01) + 1.0) / math.log(2.0)
     ratio = max(0.85, min(ratio, 1.4))
     return round(sigma_ref * ratio, 2)
@@ -219,8 +229,8 @@ def _strength_vs_blasting_pressure(p_bar: float) -> float:
     Higher pressure embeds particles more deeply, improving reinforcement
     up to a saturation point (diminishing returns + potential damage).
     """
-    p_ref = 4.0
-    sigma_ref = 12.5
+    p_ref = get("modules.sensitivity.p_ref_bar")
+    sigma_ref = get("modules.sensitivity.sigma_ref_mpa")
     # Sigmoidal approach to saturation
     ratio = 1.0 + 0.3 * (p_bar - p_ref) / (abs(p_bar - p_ref) + 3.0)
     ratio = max(0.85, min(ratio, 1.25))

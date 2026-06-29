@@ -1,6 +1,5 @@
 """TDD: core/json_store.py — JSON espelha SQLite (SSOT espelho, P$0)."""
 import json
-from pathlib import Path
 
 
 def test_json_store_dump_espelha_tabela(tmp_path):
@@ -25,3 +24,14 @@ def test_json_store_load_para_dict(tmp_path):
     store.dump(table="materials")
     data = store.load()
     assert "materials" in data
+
+
+def test_json_store_reject_tabela_fora_whitelist(tmp_path):
+    """P$0: dump() só aceita tabelas na whitelist (sem SELECT arbitrário)."""
+    from core.db import Database
+    from core.json_store import JsonStore
+    db = Database(":memory:")
+    store = JsonStore(db, tmp_path / "ssot.json")
+    import pytest
+    with pytest.raises(ValueError):
+        store.dump(table="sqlite_master")  # tentativa de injeção fora da whitelist

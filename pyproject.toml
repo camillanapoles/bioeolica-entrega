@@ -30,6 +30,23 @@ extend-exclude = ["modules", "docs-nav", ".archives"]
 select = ["E", "F", "I", "B", "UP", "N"]
 ignore = ["E501"]
 
+[tool.ruff.lint.per-file-ignores]
+# Módulos físicos/científicos usam simbologia convencional (T_K, Vf, E_pa, D0, Q, K0).
+# Renomear para snake_case degradaria legibilidade científica — exceção documentada (N803/N806/N802/N815).
+# I = corrente elétrica, A = área, D = diâmetro: não ambíguos no domínio (E741).
+"workspace/lab1-material-papel-mache-grafite/ensaios/**" = ["N803", "N806", "N802", "N815", "E741"]
+"workspace/lab1-material-papel-mache-grafite/fabricacao/**" = ["N803", "N806", "N802", "N815", "E741"]
+"workspace/lab1-material-papel-mache-grafite/sim/**" = ["N803", "N806", "N802", "N815", "E741"]
+"workspace/lab1-material-papel-mache-grafite/economico/**" = ["N803", "N806", "N802", "N815", "E741"]
+"workspace/lab2-gerador-eolico-savonius/**" = ["N803", "N806", "N802", "N815", "E741"]
+# Testes espelham a simbologia científica dos módulos sob teste
+"workspace/**/tests/**" = ["N803", "N806", "N802", "N815", "E741"]
+# Pontes Lab2->Lab1 e geradores SSOT inserem sys.path antes de importar core (intencional)
+"workspace/lab1-material-papel-mache-grafite/core/build_ssot.py" = ["E402"]
+"workspace/lab1-material-papel-mache-grafite/tests/test_ssot_e2e.py" = ["E402"]
+"workspace/lab2-gerador-eolico-savonius/l2_gerador/lab_orchestrator.py" = ["E402"]
+"workspace/lab2-gerador-eolico-savonius/l2_economico/viabilidade_lab1.py" = ["E402"]
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"

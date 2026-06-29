@@ -14,3 +14,12 @@ node_modules/
 workspace/**/data/*.db
 workspace/**/logs/*.log
 .cache/
+
+# Backups / snapshots (never commit)
+*.bak
+**/.snapshots/*.patch.bak
+
+# CCG runtime task state (mutates every turn — track via .context/ instead)
+.ccg/tasks/
+
+# uv project lock is tracked explicitly (committed below for repro)

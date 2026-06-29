@@ -10,6 +10,11 @@ _LAB1_VIAB = _WORKSPACE / "lab1-material-papel-mache-grafite" / "economico" / "v
 
 _spec = importlib.util.spec_from_file_location("lab1_viabilidade", _LAB1_VIAB)
 _mod = importlib.util.module_from_spec(_spec)
+# Registrar em sys.modules ANTES de exec: dataclasses com defaults precisam
+# resolver cls.__module__ (senão: AttributeError em __init__). Padrão importlib.
+import sys
+
+sys.modules["lab1_viabilidade"] = _mod
 _spec.loader.exec_module(_mod)
 
 CustoComposicao = _mod.CustoComposicao

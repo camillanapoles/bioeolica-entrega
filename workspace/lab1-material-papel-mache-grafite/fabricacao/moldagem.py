@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import math
 
-R_GAS = 8.31446
+from core.constants import get
+
+R_GAS = get("fisica.R_GAS")  # schema unificado (P$1)
 
 
 def grau_cura(tempo_s: float, T_K: float, A: float = 1e6, Ea: float = 60e3) -> float:

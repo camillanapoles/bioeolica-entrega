@@ -6,7 +6,9 @@ do Nordeste/CO. Métricas: custo/kg, payback anos, VPL, custo-benefício vs base
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+from core.constants import get
 
 
 @dataclass
@@ -16,7 +18,7 @@ class CustoComposicao:
     fracao_vol_carga: float
     rho_matriz: float
     rho_carga: float
-    custo_processo_brl_kg: float = 5.0
+    custo_processo_brl_kg: float = field(default_factory=lambda: get("economico.custo_processo_brl_kg"))
 
 
 def custo_por_kg(c: CustoComposicao) -> float:
@@ -38,7 +40,7 @@ def payback_simples(investimento_brl: float, economia_anual_brl: float) -> float
 
 
 def vpl(investimento_brl: float, economia_anual_brl: float, anos: int,
-        taxa_desconto: float = 0.10) -> float:
+        taxa_desconto: float = get("economico.taxa_desconto")) -> float:
     """VPL: -I + sum(economia/(1+r)^t)."""
     if anos <= 0:
         return -investimento_brl
@@ -49,7 +51,7 @@ def vpl(investimento_brl: float, economia_anual_brl: float, anos: int,
 
 
 def escalabilidade_comunitaria(custo_kg: float, massa_pa_kg: float, n_pas: int,
-                               custo_baseline_pa: float = 50.0) -> dict:
+                               custo_baseline_pa: float = get("economico.custo_baseline_pa_brl")) -> dict:
     """Compara custo total de pás em compósito vs baseline (fibra de vidro)."""
     custo_total = custo_kg * massa_pa_kg * n_pas
     baseline_total = custo_baseline_pa * n_pas
@@ -63,9 +65,12 @@ def escalabilidade_comunitaria(custo_kg: float, massa_pa_kg: float, n_pas: int,
 
 def indice_sustentabilidade(custo_kg: float, densidade_kg_m3: float,
                             energia_fabricacao_kWh_kg: float,
-                            biodegradabilidade: float = 0.8) -> float:
+                            biodegradabilidade: float = get("economico.biodegradabilidade")) -> float:
     """Índice agregado em [0,1]: custo baixo + baixa densidade + baixa energia + bio."""
-    c = math.exp(-custo_kg / 20.0)            # barato sobe
-    d = math.exp(-(densidade_kg_m3 - 400) / 1000.0)
-    e = math.exp(-energia_fabricacao_kWh_kg / 30.0)
-    return max(0.0, min(1.0, 0.3 * c + 0.2 * d + 0.2 * e + 0.3 * biodegradabilidade))
+    esc = get("economico.sustentabilidade")
+    c = math.exp(-custo_kg / esc["escala_custo"])            # barato sobe
+    d = math.exp(-(densidade_kg_m3 - esc["ref_densidade"]) / esc["escala_densidade"])
+    e = math.exp(-energia_fabricacao_kWh_kg / esc["escala_energia"])
+    return max(0.0, min(1.0,
+                        esc["peso_custo"] * c + esc["peso_densidade"] * d
+                        + esc["peso_energia"] * e + esc["peso_biodeg"] * biodegradabilidade))

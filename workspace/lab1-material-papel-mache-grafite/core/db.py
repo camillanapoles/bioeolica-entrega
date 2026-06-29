@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import sqlite3
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 SCHEMA_VERSION = 1
 DEFAULT_SCHEMA = Path(__file__).parent / "schema.sql"
@@ -113,7 +113,7 @@ class Database:
     def close(self) -> None:
         self.connection.close()
 
-    def __enter__(self) -> "Database":
+    def __enter__(self) -> Database:
         return self
 
     def __exit__(self, *exc: Any) -> None:
