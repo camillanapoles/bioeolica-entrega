@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """KDI Forwarder — reads config.json, dispatches M³ analyses."""
 from __future__ import annotations
-import os, sys, importlib.util as _ilu
+import os, sys
 from typing import Any
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
@@ -11,11 +11,14 @@ _PROJ = os.path.abspath(os.path.join(_WS, ".."))
 for _p in [_WS]:
     if _p not in sys.path: sys.path.insert(0, _p)
 
-from kdi_m3.config_manager import ConfigManager
+# cad-cae-platform for CadModel
+sys.path.insert(0, os.path.join(_PROJ, "modules", "cad-cae-platform", "src"))
 
-def _imp(rel, name):
-    s = _ilu.spec_from_file_location(name, os.path.join(_PROJ, rel))
-    m = _ilu.module_from_spec(s); sys.modules.setdefault(name, m); s.loader.exec_module(m); return m
+from kdi_m3.config_manager import ConfigManager
+from kdi_m3.kdi_macro import MacroEnvironment, MacroAnalysis
+from kdi_m3.kdi_meso import MesoAnalysis
+from kdi_m3.kdi_micro import MicroAnalysis
+from cad_cae.cad_bridge import CadModel
 
 class KDIForwarder:
     def __init__(self, config_path=""):
@@ -23,27 +26,23 @@ class KDIForwarder:
         self._results: dict[str, Any] = {}
 
     def run_macro(self):
-        kdi_macro = _imp("kdi-m3-bridge/modules/kdi_macro.py", "kdi_macro")
-        cad_bridge = _imp("cad-cae-platform/modules/cad_bridge.py", "cad_bridge")
-        env = kdi_macro.MacroEnvironment(
+        env = MacroEnvironment(
             altitude_m=self.cfg.get("environment.altitude_m", 100),
             wind_class=self.cfg.get("environment.wind_class", "II"),
             wind_speed_ref_ms=self.cfg.get("environment.wind_speed_ref_ms", 30),
             exposure=self.cfg.get("environment.exposure", "rural"),
         )
         g = self.cfg.section("geometry")
-        model = cad_bridge.CadModel().box(g.get("length_mm", 100), g.get("width_mm", 20), g.get("height_mm", 20))
-        ma = kdi_macro.MacroAnalysis(cad_model=model, env=env, structure_type=g.get("type", "box"))
+        model = CadModel().box(g.get("length_mm", 100), g.get("width_mm", 20), g.get("height_mm", 20))
+        ma = MacroAnalysis(cad_model=model, env=env, structure_type=g.get("type", "box"))
         result = ma.run(); self._results["macro"] = result; return result
 
     def run_meso(self, fem_results=None):
-        kdi_meso = _imp("kdi-m3-bridge/modules/kdi_meso.py", "kdi_meso")
-        r = kdi_meso.MesoAnalysis().run(); self._results["meso"] = r; return r
+        r = MesoAnalysis().run(); self._results["meso"] = r; return r
 
     def run_micro(self):
-        kdi_micro = _imp("kdi-m3-bridge/modules/kdi_micro.py", "kdi_micro")
         mat = self.cfg.section("material")
-        r = kdi_micro.MicroAnalysis(
+        r = MicroAnalysis(
             fiber=mat.get("fiber", "waste_paper"), matrix=mat.get("matrix", "pva"),
             coating=mat.get("coating", "graphite_coating"), V_f=mat.get("V_f", 0.15)
         ).run()

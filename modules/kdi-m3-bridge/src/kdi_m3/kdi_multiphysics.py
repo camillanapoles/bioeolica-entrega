@@ -12,10 +12,21 @@ from __future__ import annotations
 
 import os, math, json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Optional
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 _WS = os.path.abspath(os.path.join(_THIS, ".."))
+sys.path.insert(0, os.path.join(_THIS, "..", "..", "physics-m3", "src"))
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 
 
@@ -69,7 +80,7 @@ class MultiPhysicsAnalysis:
             Pressure field, velocity field, forces on walls.
         """
         import numpy as np
-        from physics_m3.fluid_dynamics import boundary_layer_thickness, reynolds_number
+        from fluid_dynamics import boundary_layer_thickness, reynolds_number
 
         p = params or {}
         Re = p.get("Reynolds", 1e5)
@@ -85,7 +96,7 @@ class MultiPhysicsAnalysis:
                 "Reynolds": Re,
                 "boundary_layer_thickness_m": round(delta, 4),
                 "skin_friction": round(Cf, 6),
-                "pressure_drop_Pa": round(0.5 * 1.225 * U**2 * Cf, 2),
+                "pressure_drop_Pa": round(0.5 * get("modules.kdi_m3_bridge.rho_air_ref") * U**2 * Cf, 2),
                 "status": "PASS",
             }
         except Exception as e:
@@ -108,7 +119,7 @@ class MultiPhysicsAnalysis:
             Temperature field, heat flux, thermal gradient.
         """
         import numpy as np
-        from physics_m3.thermodynamics import conduction_1D
+        from thermodynamics import conduction_1D
 
         p = params or {}
         q = p.get("heat_flux_Wm2", 1000)

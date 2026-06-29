@@ -2,30 +2,36 @@
 """Test E2E Completo — valida toda a cadeia de valor do sistema.
 
 Cobre: Material → CAD → Macro → Meso → Micro → Falha → Testes Mecânicos → KDI
-Usa importlib para evitar conflito modules/ entre workspaces.
 """
 
-import importlib.util, sys, os, json, math, pytest
-_PROJ = "/home/cnmfs/bioeolica-dev2/workspaces"
+import sys, os, json, math, pytest
 
-def _import(rel, name):
-    spec = importlib.util.spec_from_file_location(name, os.path.join(_PROJ, rel))
-    mod = importlib.util.module_from_spec(spec)
-    sys.modules[name] = mod; spec.loader.exec_module(mod); return mod
+_THIS = os.path.dirname(os.path.abspath(__file__))
+_PROJ = os.path.abspath(os.path.join(_THIS, "..", ".."))
+_PHYSICS = os.path.join(_PROJ, "physics-m3", "src")
+_CAE = os.path.join(_PROJ, "cad-cae-platform", "src")
+_BRIDGE = os.path.join(_PROJ, "kdi-m3-bridge", "src")
 
-cb = _import("cad-cae-platform/modules/cad_bridge.py", "cb")
-km = _import("kdi-m3-bridge/modules/kdi_macro.py", "km")
-kme = _import("kdi-m3-bridge/modules/kdi_meso.py", "kme")
-kmi = _import("kdi-m3-bridge/modules/kdi_micro.py", "kmi")
-gf = _import("cad-cae-platform/modules/gpu_accelerator.py", "gf")
-dq = _import("cad-cae-platform/modules/design_optimizer.py", "dq")
+for _p in [_PHYSICS, _CAE, _BRIDGE]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
+from cad_cae.cad_bridge import CadModel as _CadModel
+from cad_cae.gpu_accelerator import GPUAccelerator
+from cad_cae.design_optimizer import DesignSpace, DesignOptimizer
 
-# ── 1. MATERIAL ──
-sys.path.insert(0, os.path.join(_PROJ, "physics-m3"))
-from modules.composite_model import CompositeMaterial
-from modules.mechanical_tests import tensile_test, flexure_test
-from modules.structural_analysis import von_mises_stress, safety_factor, tsai_wu_failure
+# kdi-m3-bridge module aliases (keep short names for test clarity)
+import kdi_m3.kdi_macro as km
+import kdi_m3.kdi_meso as kme
+import kdi_m3.kdi_micro as kmi
+
+# physics-m3 modules
+from composite_model import CompositeMaterial
+from mechanical_tests import tensile_test, flexure_test
+from structural_analysis import von_mises_stress, safety_factor, tsai_wu_failure
+
+# cad_bridge helpers
+cb = _CadModel
 
 def test_01_material():
     mat = CompositeMaterial(fiber='waste_paper', matrix='pva', coating='graphite_coating')
@@ -98,8 +104,8 @@ def test_07_micro():
 
 # ── 8. DESIGN OPTIMIZATION ──
 def test_08_design_optimization():
-    ds = dq.DesignSpace({"L": (1, 10), "w": (1, 5)})
-    opt = dq.DesignOptimizer(ds, ["mass", "stiffness"])
+    ds = DesignSpace({"L": (1, 10), "w": (1, 5)})
+    opt = DesignOptimizer(ds, ["mass", "stiffness"])
     results = opt.run_doe(lambda p: {"mass": p["L"] * p["w"], "stiffness": 1 / (p["L"] * p["w"])})
     assert len(results) == 9
     pareto = opt.pareto_frontier()
@@ -110,10 +116,10 @@ def test_08_design_optimization():
 # ── 9. CADASTRO COMPLETO ──
 def test_09_full_kdi():
     """Fluxo completo: config.json → Forwarder → Macro + Meso + Micro + Report."""
-    cfg_path = os.path.join(_PROJ, "kdi-m3-bridge/config.json")
-    _import("kdi-m3-bridge/modules/config_manager.py", "config_manager")
-    kf_mod = _import("kdi-m3-bridge/modules/kdi_forwarder.py", "kdi_forwarder")
-    kf = kf_mod.KDIForwarder(cfg_path)
+    cfg_path = os.path.join(_PROJ, "kdi-m3-bridge", "config.json")
+    from kdi_m3.config_manager import ConfigManager
+    from kdi_m3.kdi_forwarder import KDIForwarder
+    kf = KDIForwarder(cfg_path)
     r = kf.run_all()
     assert "macro" in r
     assert "meso" in r
@@ -124,8 +130,8 @@ def test_09_full_kdi():
 
 # ── 10. GPU ──
 def test_10_gpu():
-    if gf.GPUAccelerator.is_available():
-        accel = gf.GPUAccelerator()
+    if GPUAccelerator.is_available():
+        accel = GPUAccelerator()
         results = accel.benchmark(n=200, density=0.03)
         print(f"  ✅ GPU: speedup={results.get('speedup_vs_cpu', 0)}x, solve={results.get('solve_time_s', 0):.4f}s")
     else:

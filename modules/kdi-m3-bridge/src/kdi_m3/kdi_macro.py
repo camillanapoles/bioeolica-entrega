@@ -16,11 +16,21 @@ from dataclasses import dataclass
 from typing import Any, Optional
 
 import numpy as np
+from pathlib import Path
 
 # Import physics-m3 modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3", "src"))
 
-from modules.m3_analysis import MacroScale
+from m3_analysis import MacroScale
+
+# P$1: rotear constantes pelo schema unificado
+_CORE = Path(__file__).resolve()
+while not (_CORE / "workspace").exists() and _CORE.parent != _CORE:
+    _CORE = _CORE.parent
+_CORE = _CORE / "workspace" / "lab1-material-papel-mache-grafite"
+if str(_CORE) not in sys.path:
+    sys.path.insert(0, str(_CORE))
+from core.constants import get
 
 
 @dataclass
@@ -48,12 +58,13 @@ class MacroEnvironment:
 
     def terrain_roughness(self) -> float:
         """Terrain roughness length z0 (m) per wind class."""
-        z0_map = {"I": 0.01, "II": 0.05, "III": 0.30, "IV": 1.0, "V": 2.5}
+        z0_map = get("modules.kdi_m3_bridge.wind_class_z0")
         return z0_map.get(self.wind_class, 0.05)
 
     def gust_factor(self) -> float:
         """Gust factor for peak wind loading."""
-        return {"offshore": 1.35, "rural": 1.40, "urban": 1.50}.get(self.exposure, 1.40)
+        gust_map = get("modules.kdi_m3_bridge.gust_factor_map")
+        return gust_map.get(self.exposure, 1.40)
 
     def wind_pressure_kPa(self, height_m: float) -> float:
         """Dynamic wind pressure at a given height (kPa).
@@ -61,8 +72,8 @@ class MacroEnvironment:
         q(z) = 0.5 * rho * V(z)^2
         V(z) = V_ref * (z/10)^alpha  (power law wind profile)
         """
-        rho = 1.225  # kg/m³ at sea level
-        alpha_map = {"I": 0.10, "II": 0.15, "III": 0.21, "IV": 0.30, "V": 0.43}
+        rho = get("modules.kdi_m3_bridge.rho_air_ref")
+        alpha_map = get("modules.kdi_m3_bridge.terrain_alpha_map")
         alpha = alpha_map.get(self.wind_class, 0.15)
         vz = self.wind_speed_ref_ms * max((height_m / 10) ** alpha, 0.5)
         gust = self.gust_factor()
@@ -139,7 +150,7 @@ class MacroAnalysis:
             )
             rho_air = self._macro_scale.density_air()
         except Exception:
-            rho_air = 1.225
+            rho_air = get("modules.kdi_m3_bridge.rho_air_ref")
 
         self._results = {
             "dimensions_mm": bb,

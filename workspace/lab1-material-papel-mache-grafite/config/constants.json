@@ -147,6 +147,14 @@
       },
       "electromechanical": {
         "power_factor": 0.85
+      },
+      "kdi_m3_bridge": {
+        "_doc": "KDI M³ Bridge — constants for macro/meso/micro environmental analysis",
+        "wind_class_z0": {"I": 0.01, "II": 0.05, "III": 0.30, "IV": 1.0, "V": 2.5},
+        "gust_factor_map": {"offshore": 1.35, "rural": 1.40, "urban": 1.50},
+        "terrain_alpha_map": {"I": 0.10, "II": 0.15, "III": 0.21, "IV": 0.30, "V": 0.43},
+        "rho_air_ref": 1.225,
+        "_source": "NBR 6123 / IEC 61400-2 — wind loading standards"
       }
     }
   }

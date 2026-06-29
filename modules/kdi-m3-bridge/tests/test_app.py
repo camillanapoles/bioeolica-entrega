@@ -21,20 +21,19 @@ def test_has_tabs():
 
 
 def test_imports_resolve():
-    import importlib.util
-    _PROJ = "/home/cnmfs/bioeolica-dev2/workspaces"
-    ok = True
-    for rel, name in [
-        ("kdi-m3-bridge/modules/kdi_forwarder.py", "kdi_forwarder"),
-        ("cad-cae-platform/modules/cad_bridge.py", "cad_bridge"),
-    ]:
-        try:
-            spec = importlib.util.spec_from_file_location(name, os.path.join(_PROJ, rel))
-            m = importlib.util.module_from_spec(spec)
-            sys.modules[name] = m
-            spec.loader.exec_module(m)
-        except Exception:
-            ok = False
+    _THIS = os.path.dirname(os.path.abspath(__file__))
+    _PROJ = os.path.abspath(os.path.join(_THIS, "..", ".."))
+    _BRIDGE = os.path.join(_PROJ, "kdi-m3-bridge", "src")
+    _CAE = os.path.join(_PROJ, "cad-cae-platform", "src")
+    for _p in [_BRIDGE, _CAE]:
+        if _p not in sys.path:
+            sys.path.insert(0, _p)
+    try:
+        from kdi_m3.kdi_forwarder import KDIForwarder
+        from cad_cae.cad_bridge import CadModel
+        ok = True
+    except Exception:
+        ok = False
     assert ok
 
 

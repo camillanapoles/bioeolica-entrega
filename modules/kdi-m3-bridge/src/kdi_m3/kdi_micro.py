@@ -7,9 +7,9 @@ From INSTRUCTIONS.md:
 from __future__ import annotations
 
 import sys, os, math
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3", "src"))
 
-from modules.composite_model import CompositeMaterial
+from composite_model import CompositeMaterial
 
 
 class MicroAnalysis:
