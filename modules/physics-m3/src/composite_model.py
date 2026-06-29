@@ -20,12 +20,44 @@ Usage:
     strength = mat.estimate_strength()
 """
 
-from dataclasses import dataclass
-from typing import Dict, Optional
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+import numpy as np
 
 
 # ═══════════════════════════════════════════════════════════════
-#  MATERIAL PROPERTIES DATABASE   (fallback – cfg override)
+#  P$1: Carregar constantes do schema unificado (JSON SSOT)
+# ═══════════════════════════════════════════════════════════════
+
+_PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent.parent
+_CONSTANTS_JSON: Path = (
+    _PROJECT_ROOT / "workspace" / "lab1-material-papel-mache-grafite"
+    / "config" / "constants.json"
+)
+
+
+def _get_constants(path_dotted: str, default: Any = None) -> Any:
+    """P$1: acessar constante do SSOT por caminho pontuado.
+
+    Fallback para o valor hardcoded se o JSON não estiver disponível
+    (compatibilidade reversa durante migração).
+    """
+    import json  # noqa  — local import evita circularidade
+    try:
+        node: Any = json.loads(_CONSTANTS_JSON.read_text())
+        for part in path_dotted.split("."):
+            node = node[part]
+        return node
+    except Exception:
+        return default
+
+
+# ═══════════════════════════════════════════════════════════════
+#  MATERIAL PROPERTIES DATABASE   ══ P$1: fallback apenas ══
+#  Os valores canônicos estão em config/constants.json,
+#  módulo "modules.physics_m3.composite.material_db".
 # ═══════════════════════════════════════════════════════════════
 
 MATERIAL_DB = {
@@ -90,14 +122,30 @@ MATERIAL_DB = {
 @dataclass
 class FabricationProcess:
     """Simulate the fabrication process and its effect on final properties."""
-    shredding_time_min: float = 15       # Paper shredding time
-    mixing_time_min: float = 10           # PVA + water + paper mixing
-    molding_pressure_MPa: float = 0.5     # Molding pressure
-    drying_temp_C: float = 60             # Drying temperature
-    drying_time_h: float = 24             # Drying duration
-    coating_layers: int = 2               # Graphite coating layers
-    curing_temp_C: float = 25             # Curing temperature
-    curing_time_h: float = 48             # Curing duration
+    shredding_time_min: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.shredding_time_min", 15.0))
+    mixing_time_min: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.mixing_time_min", 10.0))
+    molding_pressure_MPa: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.molding_pressure_MPa", 0.5))
+    drying_temp_C: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.drying_temp_C", 60.0))
+    drying_time_h: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.drying_time_h", 24.0))
+    coating_layers: int = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.coating_layers", 2))
+    curing_temp_C: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.curing_temp_C", 25.0))
+    curing_time_h: float = field(
+        default_factory=lambda: _get_constants(
+            "modules.physics_m3.composite.fabrication.curing_time_h", 48.0))
 
     def water_content_kg(self, paper_mass_kg: float, ratio: float = 2.0) -> float:
         """Water needed for slurry (ratio = water:paper by mass)."""
@@ -123,17 +171,35 @@ class FabricationProcess:
 # ═══════════════════════════════════════════════════════════════
 
 class CompositeMaterial:
-    """Model a fiber-reinforced composite material with M³ integration."""
+    """Model a fiber-reinforced composite material with M³ integration.
+
+    P$1 compliance: all numeric defaults sourced from config/constants.json
+    (modules.physics_m3.composite.*). Hardcoded fallbacks preserved for
+    backward compatibility during migration.
+    """
 
     def __init__(
         self,
-        fiber: str = "waste_paper",
-        matrix: str = "pva",
-        coating: str = "graphite_coating",
-        fiber_volume_fraction: float = 0.15,
-        void_fraction: float = 0.05,
+        fiber: str = "",
+        matrix: str = "",
+        coating: str = "",
+        fiber_volume_fraction: Optional[float] = None,
+        void_fraction: Optional[float] = None,
         cfg: Optional[object] = None,      # ConfigManager (optional)
     ):
+        # P$1: defaults from SSOT, fallback hardcoded
+        if not fiber:
+            fiber = _get_constants("modules.physics_m3.composite.fiber_default", "waste_paper")
+        if not matrix:
+            matrix = _get_constants("modules.physics_m3.composite.matrix_default", "pva")
+        if not coating:
+            coating = _get_constants("modules.physics_m3.composite.coating_default", "graphite_coating")
+        if fiber_volume_fraction is None:
+            fiber_volume_fraction = _get_constants(
+                "modules.physics_m3.composite.fiber_volume_fraction_default", 0.15)
+        if void_fraction is None:
+            void_fraction = _get_constants(
+                "modules.physics_m3.composite.void_fraction_default", 0.05)
         self.cfg = cfg
         self.fiber_name = fiber
         self.matrix_name = matrix
@@ -167,7 +233,7 @@ class CompositeMaterial:
         E1 = self.Vf * Ef + self.Vm * Em
 
         # Transverse modulus (Halpin-Tsai)
-        xi = 2.0  # Circular fiber
+        xi = _get_constants("modules.physics_m3.composite.xi_halpin_tsai", 2.0)
         eta = (Ef / Em - 1) / (Ef / Em + xi)
         E2 = Em * (1 + xi * eta * self.Vf) / (1 - eta * self.Vf)
 
@@ -208,7 +274,8 @@ class CompositeMaterial:
 
         # Compressive strength (approx)
         E1 = self.Vf * Ef + self.Vm * Em
-        s_1c = 0.3 * E1  # Microbuckling estimate
+        microbuckling = _get_constants("modules.physics_m3.composite.microbuckling_factor", 0.3)
+        s_1c = microbuckling * E1
 
         # Interlaminar shear strength (approx)
         s_12 = 0.5 * s_m
@@ -238,10 +305,16 @@ class CompositeMaterial:
 
 
     def _resolve_material(self, name: str, mat_type: str) -> Optional[dict]:
-        """Try to read material from cfg; return None if not available."""
-        if self.cfg is None:
-            return None
-        try:
-            return self.cfg.get(f"material_db.{mat_type}.{name}", None)
-        except Exception:
-            return None
+        """Try to read material from cfg (ConfigManager) or SSOT constants.json."""
+        # Priority 1: ConfigManager
+        if self.cfg is not None:
+            try:
+                return self.cfg.get(f"material_db.{mat_type}.{name}", None)
+            except Exception:
+                pass
+        # Priority 2: SSOT constants.json (flat by material name, not nested by type)
+        ssot = _get_constants(f"modules.physics_m3.composite.material_db.{name}", None)
+        if ssot is not None:
+            return ssot
+        # Priority 3: hardcoded fallback (compat)
+        return None

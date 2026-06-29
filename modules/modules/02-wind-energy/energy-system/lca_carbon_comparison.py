@@ -20,7 +20,27 @@ import sys
 import os
 import json
 from dataclasses import dataclass, field
-from typing import Dict, List, Tuple
+from pathlib import Path
+from typing import Any, Dict, List, Tuple
+
+# P$1: Carregar constantes do schema unificado (JSON SSOT)
+_PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent.parent.parent
+_CONSTANTS_JSON: Path = (
+    _PROJECT_ROOT / "workspace" / "lab1-material-papel-mache-grafite"
+    / "config" / "constants.json"
+)
+
+
+def _get_constants(path_dotted: str, default: Any = None) -> Any:
+    """P$1: acessar constante do SSOT por caminho pontuado."""
+    try:
+        node: Any = json.loads(_CONSTANTS_JSON.read_text())
+        for part in path_dotted.split("."):
+            node = node[part]
+        return node
+    except Exception:
+        return default
+
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from src.common.registry import create_object
@@ -49,48 +69,54 @@ class FiberglassData:
                                 + self.eol_kgco2e_per_kg)
 
 
-FIBERGLASS_BASELINE = {
-    "production": FiberglassData(
-        name="Fiberglass blade production (hand layup, polyester resin)",
-        mass_kg=10.0,
-        production_kgco2e_per_kg=9.5,        # 8.5-12.0, midpoint
-        transport_kgco2e_per_kg=0.5,          # regional transport
-        eol_kgco2e_per_kg=0.8,                # landfill (non-biodegradable)
-        recyclable_pct=5.0,                    # fiberglass recycling < 5% globally
-        biodegradable_pct=0.0,                 # thermoset polymer, not biodegradable
-        source_quality=9,
-        notes="Hand lay-up fiberglass (polyester resin + E-glass fiber). "
-              "Dominant in small wind blades (<5 kW).",
-    ),
-    "transport": FiberglassData(
-        name="Fiberglass transport (factory → community, 500 km)",
-        mass_kg=10.0,
-        production_kgco2e_per_kg=0.0,         # accounted in production
-        transport_kgco2e_per_kg=0.5,
-        eol_kgco2e_per_kg=0.0,
-        recyclable_pct=0.0,
-        biodegradable_pct=0.0,
-        source_quality=9,
-        notes="Same transport distance as paper mache — identical logistics.",
-    ),
-    "eol": FiberglassData(
-        name="Fiberglass end-of-life (landfill, non-biodegradable)",
-        mass_kg=10.0,
-        production_kgco2e_per_kg=0.0,
-        transport_kgco2e_per_kg=0.0,
-        eol_kgco2e_per_kg=0.8,               # landfill emissions
-        recyclable_pct=5.0,
-        biodegradable_pct=0.0,
-        source_quality=7,
-        notes="Thermoset composites cannot be remelted. "
-              "Most end in landfill. Incineration adds 1.5 kg CO2e/kg.",
-    ),
-}
+def _build_fiberglass_baseline() -> Dict[str, FiberglassData]:
+    """P$1: Build FIBERGLASS_BASELINE from SSOT constants.json, fallback hardcoded."""
+    baseline: Dict[str, FiberglassData] = {}
+    for key in ("production", "transport", "eol"):
+        raw = _get_constants(f"modules.lca.fiberglass_baseline.{key}", None)
+        if raw is not None and isinstance(raw, dict):
+            baseline[key] = FiberglassData(
+                name=raw.get("name", ""),
+                mass_kg=raw.get("mass_kg", 10.0),
+                production_kgco2e_per_kg=raw.get("production_kgco2e_per_kg", 9.5),
+                transport_kgco2e_per_kg=raw.get("transport_kgco2e_per_kg", 0.5),
+                eol_kgco2e_per_kg=raw.get("eol_kgco2e_per_kg", 0.8),
+                recyclable_pct=raw.get("recyclable_pct", 0.0),
+                biodegradable_pct=raw.get("biodegradable_pct", 0.0),
+                source_quality=raw.get("source_quality", 7),
+                notes=raw.get("notes", ""),
+            )
+        else:
+            # Hardcoded fallback (compat)
+            if key == "production":
+                baseline[key] = FiberglassData(
+                    name="Fiberglass blade production (hand layup, polyester resin)",
+                    mass_kg=10.0, production_kgco2e_per_kg=9.5,
+                    transport_kgco2e_per_kg=0.5, eol_kgco2e_per_kg=0.8,
+                    recyclable_pct=5.0, biodegradable_pct=0.0, source_quality=9,
+                    notes="Hand lay-up fiberglass (polyester resin + E-glass fiber).")
+            elif key == "transport":
+                baseline[key] = FiberglassData(
+                    name="Fiberglass transport (factory → community, 500 km)",
+                    mass_kg=10.0, production_kgco2e_per_kg=0.0,
+                    transport_kgco2e_per_kg=0.5, eol_kgco2e_per_kg=0.0,
+                    recyclable_pct=0.0, biodegradable_pct=0.0, source_quality=9,
+                    notes="Same transport distance as paper mache.")
+            elif key == "eol":
+                baseline[key] = FiberglassData(
+                    name="Fiberglass end-of-life (landfill, non-biodegradable)",
+                    mass_kg=10.0, production_kgco2e_per_kg=0.0,
+                    transport_kgco2e_per_kg=0.0, eol_kgco2e_per_kg=0.8,
+                    recyclable_pct=5.0, biodegradable_pct=0.0, source_quality=7,
+                    notes="Thermoset composites cannot be remelted.")
+    return baseline
+
+FIBERGLASS_BASELINE = _build_fiberglass_baseline()
 
 # Paper mache inventory data (from lca_inventory.py, 3-blade turbine)
-PAPER_MACHE_BLADE_MASS_KG = 8.5      # per blade (lighter than fiberglass)
-FIBERGLASS_BLADE_MASS_KG = 10.0       # per blade
-BLADE_COUNT = 3
+PAPER_MACHE_BLADE_MASS_KG = _get_constants("modules.lca.PAPER_MACHE_BLADE_MASS_KG", 8.5)
+FIBERGLASS_BLADE_MASS_KG = _get_constants("modules.lca.FIBERGLASS_BLADE_MASS_KG", 10.0)
+BLADE_COUNT = _get_constants("modules.lca.BLADE_COUNT", 3)
 
 
 @dataclass
@@ -112,29 +138,44 @@ class LCAComparison:
 def compare_carbon() -> LCAComparison:
     """Compare paper mache composite vs. fiberglass carbon footprint."""
     # Paper mache per-blade carbon (aggregated from lca_inventory)
-    # Re-derive from the known inventory data
-    # Raw materials + production + transport + installation per blade
+    # P$1: masses from SSOT constants.json; emission factors from SSOT
+    pm = _get_constants("modules.lca.PAPER_MASS_PER_BLADE_KG", 3.8)
+    pva = _get_constants("modules.lca.PVA_MASS_PER_BLADE_KG", 2.2)
+    gr = _get_constants("modules.lca.GRAPHITE_MASS_PER_BLADE_KG", 0.8)
+    wt = _get_constants("modules.lca.WATER_MASS_PER_BLADE_KG", 1.7)
+    bm = _get_constants("modules.lca.BLADE_MASS_KG", 8.5)
+    cc = _get_constants("modules.lca.carbon_comparison", {})
+    raw_ef = cc.get("paper_raw_ef", {"waste_paper": 0.024, "pva": 2.3, "graphite": 1.8, "water": 0.001})
+    prod_ef = cc.get("paper_prod_ef", {"shredding": 0.002, "mixing": 0.004, "molding": 0.006, "drying": 0.02, "coating": 0.002})
+    trans_ef = cc.get("paper_transport_ef", {"paper_collection": 0.015, "graphite_transport": 0.06, "blade_delivery": 0.15})
+    install = cc.get("installation", {"foundation_kg": 4800.0, "foundation_ef": 0.15, "steel_kg": 350.0,
+                                       "steel_ef": 2.8, "assembly_kgco2e": 40.0})
+
     paper_raw_carbon = (
-        3.8 * 0.024 +      # waste paper
-        2.2 * 2.3 +        # PVA
-        0.8 * 1.8 +        # graphite
-        1.7 * 0.001        # water
+        pm * raw_ef.get("waste_paper", 0.024) +
+        pva * raw_ef.get("pva", 2.3) +
+        gr * raw_ef.get("graphite", 1.8) +
+        wt * raw_ef.get("water", 0.001)
     )
     paper_prod_carbon = (
-        3.8 * 0.002 +      # shredding
-        8.5 * 0.004 +      # mixing (total batch mass)
-        8.5 * 0.006 +      # molding
-        8.5 * 0.02 +       # drying
-        0.8 * 0.002        # graphite coating
+        pm * prod_ef.get("shredding", 0.002) +
+        bm * prod_ef.get("mixing", 0.004) +
+        bm * prod_ef.get("molding", 0.006) +
+        bm * prod_ef.get("drying", 0.02) +
+        gr * prod_ef.get("coating", 0.002)
     )
     paper_transport_carbon = (
-        3.8 * 0.015 +      # paper collection
-        0.8 * 0.06 +       # graphite transport
-        8.5 * 0.15         # blade delivery
+        pm * trans_ef.get("paper_collection", 0.015) +
+        gr * trans_ef.get("graphite_transport", 0.06) +
+        bm * trans_ef.get("blade_delivery", 0.15)
     )
     # Installation is shared across turbine (tower+foundation amortized)
     # Per blade: share of tower+foundation / 3
-    paper_install_carbon = (4800 * 0.15 + 350 * 2.8 + 40.0) / 3  # foundation + steel + assembly / 3 blades
+    paper_install_carbon = (
+        install.get("foundation_kg", 4800.0) * install.get("foundation_ef", 0.15)
+        + install.get("steel_kg", 350.0) * install.get("steel_ef", 2.8)
+        + install.get("assembly_kgco2e", 40.0)
+    ) / _get_constants("modules.lca.BLADE_COUNT", 3)
     paper_per_blade = {
         "raw_materials": round(paper_raw_carbon, 3),
         "production": round(paper_prod_carbon, 3),
@@ -182,19 +223,19 @@ def compare_carbon() -> LCAComparison:
     sc010_carbon = blade_only_reduction >= 60  # SC-010 uses blade material comparison
 
     # Biodegradability comparison (blade-only, excludes water which evaporates during drying)
-    blade_dry_mass = 3.8 + 2.2 + 0.8  # paper + PVA + graphite (water evaporates)
+    blade_dry_mass = pm + pva + gr  # paper + PVA + graphite (water evaporates)
     paper_biodeg = (
-        3.8 * 1.0 +     # paper: 100%
-        2.2 * 0.3 +     # PVA: 30%
-        0.8 * 0.0       # graphite: 0%
+        pm * 1.0 +     # paper: 100%
+        pva * 0.3 +    # PVA: 30%
+        gr * 0.0       # graphite: 0%
     ) / blade_dry_mass
     fg_biodeg = 0.0  # fiberglass: 0% biodegradable
 
     # Recyclability (blade-only, excludes water)
     paper_recycle = (
-        3.8 * 0.9 +     # paper: 90%
-        2.2 * 0.2 +     # PVA: 20%
-        0.8 * 0.85      # graphite: 85%
+        pm * 0.9 +     # paper: 90%
+        pva * 0.2 +    # PVA: 20%
+        gr * 0.85      # graphite: 85%
     ) / blade_dry_mass
     fg_recycle = 0.05   # fiberglass: 5% recyclable
 

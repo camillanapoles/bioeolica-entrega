@@ -50,7 +50,7 @@ def test_densidade_e_resistencia_mistura():
 
 
 def test_basquin_decrescente():
-    p = BasquinParams(sigma_f_linha=100e6, b=-0.1)
+    p = BasquinParams(sigma_f_linha=40e6, b=-0.1)
     n1 = ciclos_para_falha_basquin(50e6, p)
     n2 = ciclos_para_falha_basquin(20e6, p)
     assert n2 > n1, "menor tensão -> mais ciclos até falha"

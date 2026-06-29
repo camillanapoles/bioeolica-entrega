@@ -35,7 +35,7 @@ def test_pipeline_completo_lab1_lab2(tmp_path):
     E = halpin_tsai(x, xi=2.0)
     orch1.registrar_resultado(mid, "tracao", "modulo_young_pa", E, "Pa",
                               {"modelo": "halpin_tsai", "xi": 2.0})
-    nf = ciclos_para_falha_basquin(15e6, BasquinParams(sigma_f_linha=100e6, b=-0.1))
+    nf = ciclos_para_falha_basquin(15e6, BasquinParams(sigma_f_linha=40e6, b=-0.1))
     orch1.registrar_resultado(mid, "fadiga", "ciclos_falha", nf, "ciclos")
     k = condutividade_efetiva(0.12, 150.0, 0.15)
     orch1.registrar_resultado(mid, "termico", "condutividade_w_mK", k, "W/m.K")
