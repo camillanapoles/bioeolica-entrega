@@ -16,7 +16,10 @@ for _p in [_PHYSICS, _CAE, _BRIDGE]:
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-from cad_cae.cad_bridge import CadModel as _CadModel
+from cad_cae import cad_bridge as _cad_bridge
+_CadModel = _cad_bridge.CadModel
+_CAD_OK = _cad_bridge._CADQUERY_AVAILABLE
+
 from cad_cae.gpu_accelerator import GPUAccelerator
 from cad_cae.design_optimizer import DesignSpace, DesignOptimizer
 
@@ -52,6 +55,7 @@ def test_02_mechanical_tests():
 
 
 # ── 3. CAD ──
+@pytest.mark.skipif(not _CAD_OK, reason="CadQuery not installed")
 def test_03_cad():
     viga = cb.cantilever_beam(length=100, width=10, height=5)
     assert abs(viga.volume - 5000) < 1, "Volume da viga deve ser 5000 mm³"
@@ -73,6 +77,7 @@ def test_04_failure():
 
 
 # ── 5. KDI MACRO ──
+@pytest.mark.skipif(not _CAD_OK, reason="CadQuery not installed")
 def test_05_macro():
     env = km.MacroEnvironment(altitude_m=500, wind_speed_ref_ms=40, wind_class="I")
     viga = cb.cantilever_beam(length=100, width=10, height=5)
@@ -114,6 +119,7 @@ def test_08_design_optimization():
 
 
 # ── 9. CADASTRO COMPLETO ──
+@pytest.mark.skipif(not _CAD_OK, reason="CadQuery not installed")
 def test_09_full_kdi():
     """Fluxo completo: config.json → Forwarder → Macro + Meso + Micro + Report."""
     cfg_path = os.path.join(_PROJ, "kdi-m3-bridge", "config.json")

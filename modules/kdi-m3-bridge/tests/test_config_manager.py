@@ -1,8 +1,10 @@
 """Tests for ConfigManager module."""
 
-import json, tempfile, os
+import json, sys, tempfile, os
 import pytest
-from modules.config_manager import ConfigManager, create_default_config
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+from kdi_m3.config_manager import ConfigManager, create_default_config
 
 
 class TestInit:
@@ -17,7 +19,6 @@ class TestInit:
         assert cfg.get("material.E_GPa", 0) == 210
 
     def test_create_default(self):
-        from modules.config_manager import create_default_config
         with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
             create_default_config(f.name)
             cfg = ConfigManager.load(f.name)
