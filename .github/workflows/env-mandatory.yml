@@ -1,0 +1,116 @@
+name: Env-Mandatory
+
+# Mandato: TODO ambiente deve ser reproduzível via CI/CD. Nenhum estado
+# local/runtime vaza para o git. Este gate é a camada assertiva (data-driven)
+# que roda em TODA branch (incl. feat/**) — garantindo que o repo permaneça
+# limpo independente de onde o trabalho aconteça.
+#
+# Falha (exit 1) se detectar: artefatos de build trackeados, estado runtime
+# trackeado (.ccg/tasks, .ssot_check.py, dumps ANALISE_*), backups deprecated
+# (.old.modules), ou binários grandes não-entregáveis (>10MB fora da allowlist).
+#
+# Persistência: relatório JSON + checksum do tracking são salvos em cache
+# (actions/cache) e publicados como artifact, para auditoria entre execuções.
+
+on:
+  push:
+    branches: [main, develop, "feat/**", "fix/**", "chore/**"]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Auditoria semanal — captura regressões que entrem via merge sem PR.
+    - cron: "23 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: env-mandatory-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run env-mandatory gate (human report)
+        run: python scripts/check_env_mandatory.py
+
+      - name: Run env-mandatory gate (JSON para persistência)
+        if: always()
+        run: |
+          python scripts/check_env_mandatory.py --json > "$RUNNER_TEMP/env-mandatory.json"
+          echo "## Env-Mandatory Report" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/env-mandatory.json" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Snapshot do tracking (auditoria entre execuções)
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/snapshot"
+          git ls-files > "$RUNNER_TEMP/snapshot/tracked-files.txt"
+          git ls-files | wc -l > "$RUNNER_TEMP/snapshot/tracked-count.txt"
+          sha256sum "$RUNNER_TEMP/snapshot/tracked-files.txt" > "$RUNNER_TEMP/snapshot/tracked.sha256"
+
+      - name: Cache do snapshot (persistência entre execuções)
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/snapshot
+          key: env-mandatory-snapshot-${{ github.sha }}
+          restore-keys: |
+            env-mandatory-snapshot-
+
+      - name: Upload artifact (relatório + snapshot)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: env-mandatory-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/env-mandatory.json
+            ${{ runner.temp }}/snapshot
+          retention-days: 30
+
+      - name: Abrir issue em regressão (somente schedule/main)
+        if: failure() && (github.event_name == 'schedule' || github.ref == 'refs/heads/main')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = {};
+            try { report = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/env-mandatory.json', 'utf8')); } catch (e) {}
+            const v = report.violations || {};
+            const body = [
+              '## ❌ Regressão de ambiente detectada',
+              '',
+              'O gate `env-mandatory` falhou. Estado local/runtime ou binário não-entregável vazou para o tracking.',
+              '',
+              '### Artefatos/state proibidos trackeados',
+              '```',
+              ...(v.forbidden_tracked || []).map(p => '- ' + p),
+              '```',
+              '### Binários grandes não-entregáveis',
+              '```',
+              ...((v.large_non_deliverable || []).map(f => '- ' + f.file + ' (' + f.mb + ' MB)')),
+              '```',
+              '',
+              'Rodar localmente: `python scripts/check_env_mandatory.py`',
+              `Run: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+            ].join('\n');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Regressão env-mandatory: estado local/runtime trackeado',
+              body,
+              labels: ['env-mandatory', 'hygiene']
+            });
