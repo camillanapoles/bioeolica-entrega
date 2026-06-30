@@ -1,0 +1,565 @@
+{
+  "chunk": "02",
+  "nodes": [
+    {
+      "id": "edital_extracao_latest_edital_ret_editalagrifam",
+      "label": "Edital AgriFam-ICT 2026 (Chamada MCTI/FINEP/FNDCT)",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Chamada Pública MCTI/FINEP/FNDCT Cadeias Socioprodutivas da Agricultura Familiar e Sistemas Agroalimentares Sustentáveis para ICTs 2026. Documento normativo mestre (rubricas 1-18). Lançamento 25/03/2026, propostas até 03/07/2026, valor total FNDCT R$150.000.000, faixa R$1M-R$7M por proposta.",
+        "tags": ["edital", "finep", "agrifam-ict", "2026", "fndct", "documento-mestre"],
+        "legal_refs": ["Lei 10.973/2004", "Lei 8.958/1994", "Lei 14.133/2021", "Lei 15.321/2025 (LDO 2026)", "Decreto 12.807/2025"]
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_linhatematica1_bioinsumos",
+      "label": "Linha Temática 1 - Bioinsumos (R$50.000.000)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Linha Temática 1: P&D de bioinsumos aplicáveis na agropecuária, biomas brasileiros, baixa toxicidade, produção On-Farm por fermentação de resíduos orgânicos. Dotação FNDCT R$50.000.000 (item 4.1.1).",
+        "tags": ["linha-tematica", "lt1", "bioinsumos", "tetolinha"],
+        "teto": "R$50.000.000",
+        "item_ref": "4.1.1"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_linhatematica2_agroecologica",
+      "label": "Linha Temática 2 - Sistema de produção agroecológica e orgânica (R$50.000.000)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Linha Temática 2: transição agroecológica, conhecimento tradicional, minimização de insumos agroquímicos/energéticos externos, desenvolvimento de culturas e processos biológicos naturais. Dotação FNDCT R$50.000.000 (item 4.1.2).",
+        "tags": ["linha-tematica", "lt2", "agroecologica", "organica", "tetolinha"],
+        "teto": "R$50.000.000",
+        "item_ref": "4.1.2"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_linhatematica3_digitais",
+      "label": "Linha Temática 3 - Soluções digitais para a pequena propriedade rural (R$25.000.000)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Linha Temática 3: conectividade no campo, assistência técnica, equipamentos/tecnologias digitais com energias renováveis, software de gestão e produção. Dotação FNDCT R$25.000.000 (item 4.1.3).",
+        "tags": ["linha-tematica", "lt3", "solucoes-digitais", "tetolinha"],
+        "teto": "R$25.000.000",
+        "item_ref": "4.1.3"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_linhatematica4_aquicultura",
+      "label": "Linha Temática 4 - Aquicultura de espécies nativas (R$25.000.000)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Linha Temática 4: controle/mitigação de impactos ambientais aquícolas, gestão ambiental, cultivo de espécies nativas, técnicas de reprodução/nutrição/saúde, automação. Dotação FNDCT R$25.000.000 (item 4.1.4).",
+        "tags": ["linha-tematica", "lt4", "aquicultura", "tetolinha"],
+        "teto": "R$25.000.000",
+        "item_ref": "4.1.4"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_faixavalorproposta",
+      "label": "Faixa de valor por proposta (R$1M - R$7M)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 7.1 (rerratificado): valor solicitado à Finep/FNDCT deve ser de no mínimo R$1.000.000,00 até no máximo R$7.000.000,00. Fora da faixa = eliminação (7.2). Rerratificação baixou o mínimo de R$3M para R$1M.",
+        "tags": ["teto", "faixa-valor", "eliminatoria", "rerratificado"],
+        "min": "R$1.000.000,00",
+        "max": "R$7.000.000,00",
+        "item_ref": "7.1, 7.2"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_tetopropostasict",
+      "label": "Teto de propostas por ICT Executora Principal (máx 2)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 5.2 (rerratificado): cada ICT executora pode participar de até 02 propostas como Executora Principal, podendo ambas na mesma linha temática. Mais de 2 = eliminação de TODAS suas propostas (5.2.1). Máximo 3 coexecutoras (5.4).",
+        "tags": ["teto", "elegibilidade", "eliminatoria", "rerratificado"],
+        "max_propostas": 2,
+        "max_coexecutoras": 3,
+        "item_ref": "5.2, 5.2.1, 5.4"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_materialconsumo",
+      "label": "Rubrica: Material de Consumo",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.1). Documentação conforme Anexo 3 item 6: orçamento (nacionais) ou proforma invoice (importados); itens <R$100.000 anexados em Anexos Gerais.",
+        "tags": ["rubrica", "despesa-corrente", "material-consumo"],
+        "item_ref": "6.5.1; Anexo3 item 6"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_ostj",
+      "label": "Rubrica: Serviços de Terceiros de Pessoa Jurídica (OSTJ)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.2). Tipos: serviços especializados, manutenção de equipamentos, instalação, software, PI, divulgação, capacitação. Anexo 3 item 7: tipo manutenção=Proposta Técnica+Orçamentária; tipo outros=orçamento (<R$100.000 em Anexos Gerais).",
+        "tags": ["rubrica", "despesa-corrente", "ostj", "servicos-pj"],
+        "item_ref": "6.5.2; Anexo3 item 7"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_despopadmin",
+      "label": "Rubrica: Despesas Operacionais Administrativas (5%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.3). Limite 5% do valor solicitado, conforme Lei 10.973/04 (Marco Legal de CTI).",
+        "tags": ["rubrica", "despesa-corrente", "administrativas", "teto-percentual"],
+        "teto_percentual": "5%",
+        "item_ref": "6.5.3",
+        "legal_ref": "Lei 10.973/2004"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_despacessorias",
+      "label": "Rubrica: Despesas Acessórias de Importação (20%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.4). Limite 20% do valor dos itens importados.",
+        "tags": ["rubrica", "despesa-corrente", "importacao", "teto-percentual"],
+        "teto_percentual": "20% (sobre importados)",
+        "item_ref": "6.5.4"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_pagamentopessoal",
+      "label": "Rubrica: Pagamento de Pessoal (até 30%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.5.2). Limite até 30% do valor solicitado. Valores limite por categoria/hora conforme Anexo 5 (CLT).",
+        "tags": ["rubrica", "despesa-corrente", "pessoal", "teto-percentual"],
+        "teto_percentual": "30%",
+        "item_ref": "6.5.5.2; Anexo5"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_diariaspassagens",
+      "label": "Rubrica: Diárias e Passagens (10%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.6.1). Limite 10% (5% diárias + 5% passagens).",
+        "tags": ["rubrica", "despesa-corrente", "diarias", "passagens", "teto-percentual"],
+        "teto_percentual": "10% (5+5)",
+        "item_ref": "6.5.6.1"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_bolsas",
+      "label": "Rubrica: Bolsas (até 30%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa Corrente (6.5.7.6). Limite até 30% do valor solicitado. Admitidas somente se Proponente for Fundação de Apoio ou ICT Pública (Lei 10.973/04, Lei 8.958/94). Valores/modalidades conforme Anexo 6 (CNPq Portaria 2262/2025).",
+        "tags": ["rubrica", "despesa-corrente", "bolsas", "teto-percentual"],
+        "teto_percentual": "30%",
+        "item_ref": "6.5.7.6; Anexo6",
+        "legal_ref": "Lei 10.973/2004; Lei 8.958/1994; CNPq Portaria 2262/2025"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_equipamentos",
+      "label": "Rubrica: Equipamentos e Material Permanente (>= R$50.000 unitário)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa de Capital (6.6.1, rerratificado). Equipamentos/materiais permanentes com valor unitário >= R$50.000. Sistema composto por equipamentos de pequeno porte admitido (6.6.1.1, def 2.1.24). Equipamentos <R$50.000 só nobreaks/chillers/condicionadores ar/casas vegetação/sistemas irrigação/acessórios (6.6.2).",
+        "tags": ["rubrica", "despesa-capital", "equipamentos", "rerratificado"],
+        "teto_unitario": ">= R$50.000,00",
+        "item_ref": "6.6.1, 6.6.1.1, 6.6.2, 2.1.24; Anexo3 item 5"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_sistemacomposto",
+      "label": "Sistema composto por equipamentos de pequeno porte (def 2.1.24)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Definição 2.1.24 (incluída por rerratificação): conjunto integrado de equipamentos de pequeno porte cujo valor total e capacidade técnica agregada permitem desempenho/escopo equivalente a equipamento de maior porte (>R$50.000). Deve ser solicitado como item ÚNICO (Anexo3 5.2.2); separar componentes = eliminação dos itens.",
+        "tags": ["definicao", "sistema-composto", "rerratificado", "eliminatoria"],
+        "item_ref": "2.1.24; Anexo3 5.2.1-5.2.3"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rubrica_obras",
+      "label": "Rubrica: Obras e Instalações (pequenas adaptações, máx 10%)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Despesa de Capital (6.6.3). Apenas pequenas adaptações de espaços físicos existentes (def 2.1.8), únicas por ambiente, vinculadas à instalação de equipamentos. Limitadas a 10% do valor total do projeto (6.6.3.4). Valor máx por item R$392.952,63 (Lei 14.133/2021 art.75 IV c, Decreto 12.807/2025).",
+        "tags": ["rubrica", "despesa-capital", "obras", "teto-percentual"],
+        "teto_percentual": "10% do projeto",
+        "teto_unitario": "R$392.952,63",
+        "item_ref": "2.1.8, 6.6.3, 6.6.3.1, 6.6.3.4; Anexo4"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_contrapartida",
+      "label": "Contrapartida obrigatória (LDO 2026)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 8: contrapartida obrigatória para municipais/estaduais/DF conforme LDO 2026 (Lei 15.321/2025). Federais e privadas sem fins lucrativos ISENTAS (8.5). Ausência quando aplicável = eliminação (7.3, item 11.1).",
+        "tags": ["contrapartida", "eliminatoria", "ldo"],
+        "item_ref": "7.3, 8, 8.5, 11.1",
+        "legal_ref": "Lei 15.321/2025 (LDO 2026)"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_eliminatoria_habilitacaoproposta",
+      "label": "Eliminatória: Habilitação da Proposta (item 11.1)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 11.1 — 6 requisitos de habilitação da proposta: cadastro, elegibilidade institucional (3.x), máximo de propostas por ICT (5.2), máximo de coexecutoras (5.4), Política de Inovação ICTs públicas (5.7), contrapartida LDO (7.3/8). Falha em qualquer um = eliminação.",
+        "tags": ["eliminatoria", "habilitacao"],
+        "item_ref": "11.1"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_eliminatoria_habilitacaoitens",
+      "label": "Eliminatória: Habilitação dos Itens de Orçamento (item 11.2)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 11.2: itens inabilitados pela falta de documentação exigida. Mais de 30% dos itens inabilitados = eliminação da proposta (11.2.2). Vedada importação com similar nacional (11.2.3).",
+        "tags": ["eliminatoria", "habilitacao", "itens", "documentacao"],
+        "teto_percentual": "30% inabilitados",
+        "item_ref": "11.2, 11.2.2, 11.2.3"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_avaliacaomerito",
+      "label": "Avaliação de Mérito (5 critérios ponderados, item 11.3)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 11.3: 5 critérios ponderados (Critério1 peso5, Critério2 peso5, Critério3 peso5, Critério4 peso4, Critério5 peso2). Eliminação se média ponderada < 3,5 (11.3.1.1) OU nota 1 no Critério 3 (11.3.1.2).",
+        "tags": ["avaliacao", "merito", "eliminatoria"],
+        "item_ref": "11.3, 11.3.1.1, 11.3.1.2"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_cronograma",
+      "label": "Cronograma da Chamada (item 15.1)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 15.1: Lançamento 25/03/2026; Formulário 31/03/2026; Cadastro até 26/06/2026; Proposta até 03/07/2026; Habilitação Preliminar 20/07/2026; Habilitação Final 07/08/2026; Mérito Preliminar 02/10/2026; Mérito Final 04/11/2026. Limite 17h Brasília.",
+        "tags": ["cronograma", "prazos"],
+        "item_ref": "15.1"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_anexos_lista",
+      "label": "Lista de Anexos do Edital (item 18.11)",
+      "type": "concept",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt",
+      "attributes": {
+        "summary": "Item 18.11: Anexo 1 (Minuta Convênio), Anexo 2 (Detalhamento LTs), Anexo 3 (Exigências Itens Orçamento), Anexo 4 (Projeto Resumido Obras), Anexo 5 (Pagamento Pessoal), Anexo 6 (Bolsas), Anexo 7 (Checklist).",
+        "tags": ["anexos", "indice"],
+        "item_ref": "18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo1_ret_minutaconvenio",
+      "label": "Anexo 1 - Minuta Padrão de Convênio",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO1_RET.txt",
+      "attributes": {
+        "summary": "Minuta de Convênio entre CONCEDENTE (Finep/FNDCT), CONVENENTE, EXECUTOR e COEXECUTOR. Cláusulas: 2 Recursos; 3 Condicionantes Desembolso (FGTS, tributos, licenciamento, CADIN/SIAFI); 4 Contrapartida; 5 Prazos (prestação contas final 60 dias, art.57 Dec 9.283/2018); 10 Bens/Serviços (cotação mínima 3 fornecedores p/ privada); 11 Bolsas; 12 PI; 13 Condutas Vedadas; 14 Prestação Contas (manter docs 5 anos); 17 LGPD; 18 Foro Rio de Janeiro.",
+        "tags": ["anexo1", "convenio", "instrumento-juridico"],
+        "item_ref": "Anexo 1; item 18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo2_ret_detalhamentolts",
+      "label": "Anexo 2 - Detalhamento das Linhas Temáticas",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO2_RET.txt",
+      "attributes": {
+        "summary": "Detalhamento técnico das 4 LTs: LT1 Bioinsumos (P&D, biomas, On-Farm); LT2 Agroecológica/Orgânica (transição, conhecimento tradicional); LT3 Soluções digitais (conectividade, energias renováveis, software); LT4 Aquicultura nativas (controle impactos, gestão ambiental, automação).",
+        "tags": ["anexo2", "linhas-tematicas", "detalhamento-tecnico"],
+        "item_ref": "Anexo 2; item 18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo3_ret_exigenciasitens",
+      "label": "Anexo 3 - Exigências para avaliação dos Itens de Orçamento",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt",
+      "attributes": {
+        "summary": "Documentação exigida por rubrica. Obras: Projeto Resumido Anexo4, máx R$392.952,63/item, único por ambiente (2.2). Equipamentos: orçamento (nacionais) ou proforma (importados) (5.1); sistema composto como item único sob pena de eliminação (5.2.2); PDF agrupado (5.2.3). Material consumo: <R$100.000 em Anexos Gerais (6.2). OSTJ: manutenção=Proposta Técnica+Orçamentária (7.1); outros=orçamento (7.2). Orientações gerais: orçamentos data >01/01/2026, identificação fornecedor, descrição, câmbio data Chamada (1.3).",
+        "tags": ["anexo3", "exigencias", "documentacao", "itens"],
+        "item_ref": "Anexo 3; item 18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo4_ret_projitoresumidoobras",
+      "label": "Anexo 4 - Projeto Resumido de Obras (R$392.952,63/ambiente)",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO4_RET.txt",
+      "attributes": {
+        "summary": "Documentos: Declarações (Anexo A pequeno porte sem complexidade), Planta Baixa, Orçamento Sintético, Cronograma de Execução. Valor máx por item R$392.952,63 (art.75 IV c Lei 14.133/2021, Decreto 12.807/2025). Orçamento com máx 6 meses de defasagem. PDF único por obra. Anexo B: assunção obrigação aporte recursos adicionais se orçado > apoiado.",
+        "tags": ["anexo4", "obras", "projeto-resumido", "teto"],
+        "teto_unitario": "R$392.952,63",
+        "item_ref": "Anexo 4; item 18.11",
+        "legal_ref": "Lei 14.133/2021 art.75 IV c; Decreto 12.807/2025; CONFEA Res.361/91"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo5_ret_pagamentopessoal",
+      "label": "Anexo 5 - Requisitos e Valores para Pagamento de Pessoal",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO5_RET.txt",
+      "attributes": {
+        "summary": "Tabela CLT de categorias e valor limite por hora: AT1 R$39,40 (Ens. fundamental+5a); AT2 R$79,90 (Ens. médio+8a); AP1 R$99,60 (Superior); AP2 R$119,30 (Superior+espec./Mestrando); DT1 R$140,10 (Mestrado/5a); DT2 R$179,50 (Mestrado+10a/Doutorado); DT3 R$218,90 (Doutorado+5a/Superior+14a). Valor compreende Vencimentos+Obrigações Patronais+Benefícios. Anexo A (Autorização direção ICT) e Anexo B (Declaração beneficiário máx 40h/semana).",
+        "tags": ["anexo5", "pagamento-pessoal", "valores", "clt"],
+        "item_ref": "Anexo 5; item 18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo6_ret_bolsas",
+      "label": "Anexo 6 - Orientações para Despesas com Bolsas (CNPq 2262/2025)",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO6_RET.txt",
+      "attributes": {
+        "summary": "Bolsas operadas por Fundação de Apoio ou ICT Pública (Lei 10.973/04, Lei 8.958/94). Modalidades e valores mensais (CNPq Portaria 2262/2025): DTI A R$5.200 / B R$3.900 / C R$1.430; EV 1 R$6.500 / 2 R$4.550 / 3 R$3.250; EXP A R$5.200 / B R$3.900 / C R$1.430; SET A R$7.800 ... I R$1.040. Coordenador pode receber bolsa (máx 60 mensalidades). Anexo A (Declaração bolsista) e Anexo B (Declaração coordenador).",
+        "tags": ["anexo6", "bolsas", "valores", "cnpq"],
+        "item_ref": "Anexo 6; item 18.11",
+        "legal_ref": "Lei 10.973/2004; Lei 8.958/1994; CNPq Portaria 2262/2025; CNPq Portaria 1369/2023"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo7_ret_checklist",
+      "label": "Anexo 7 - Check-list Preventivo de Propostas",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO7_RET.txt",
+      "attributes": {
+        "summary": "Checklist de autoavaliação por tema com consequência 'NÃO' e base legal: Elegibilidade Institucional (3.1-3.6); Cadastro/Submissão/Prazos (10.4, 10.6, 15.1); Enquadramento Financeiro (7.2, 7.3); Linha Temática/Aderência (1.x, Anexo2); Orçamento (11.2, 6.6, Anexo3); Obras (6.6.3, Anexo4); Pagamento Pessoal (6.5.5.2, Anexo5); Bolsas (6.5.7, Anexo6).",
+        "tags": ["anexo7", "checklist", "conformidade"],
+        "item_ref": "Anexo 7; item 18.11"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_com_ret_rerratificacao",
+      "label": "RERRATIFICAÇÃO do Edital (24 alterações)",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt",
+      "attributes": {
+        "summary": "Rerratificação com 24 pontos: 2.1.6 (entidade com várias ICTs); 2.1.24 (inclui def sistema composto); 3.6 (privadas s/fins 3 anos); 5.2/5.3 (até 2 propostas/ICT); 5.6.1.1 (quesitos formais parcerias, validade >=36m); 6.6.1/6.6.2 (equip >=R$50.000 e lista <R$50.000); 6.6.3.1 (Decreto 12.807/2025); exclui 6.6.4 (70% capital); 7.1 (mínimo R$1M); 15.1 (prazos prorrogados); Anexo3 1-7 (orçamento/proforma data >01/01/2026); Anexo4 item3 (R$392.952,63); inclusão Anexo7. CRÍTICO: o teto de capital 70% foi EXCLUÍDO.",
+        "tags": ["rerratificacao", "alteracao-normativa", "critico"],
+        "item_ref": "Rerratificação (24 pontos)"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_guia_fap_guiaplataforma",
+      "label": "Guia FAP - Telas do Formulário de Apoio e Financiamento",
+      "type": "concept",
+      "file_type": "image",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/GUIA_FAP.txt",
+      "attributes": {
+        "summary": "Capturas das telas do FAP e limites de caracteres por campo. Seções: Dados Gerais (limite 3 coexecutores item 5.4; seleção Linha Temática irreversível após recebimento); Metas e Cronograma Físico (Infraestrutura); Relação de Itens (rubricas item 6 + Anexo3); Pagamento Pessoal Anexo5; Bolsas Anexo6; Orçamento Consolidado; Exigências Documentais (Anexos Gerais); Consolidação e Aprovação (representantes legais).",
+        "tags": ["guia", "fap", "formulario", "plataforma"],
+        "item_ref": "Guia FAP"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_tetocapitalexcluido",
+      "label": "Teto de 70% Despesa de Capital - EXCLUÍDO por rerratificação",
+      "type": "concept",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt",
+      "attributes": {
+        "summary": "RATIONALE (porque é uma decisão de trade-off normativa): O antigo item 6.6.4 ('valor total das Despesas de Capital não poderá exceder 70% do valor solicitado') foi EXCLUÍDO pela rerratificação (ponto 8). Reenumeração: antigo 6.6.5->6.6.4, 6.6.6->6.6.5. IMPACTO: propostas podem agora alocar mais de 70% em capital (equipamentos/obras) sem eliminação por teto de capital.",
+        "tags": ["rationale", "exclusao", "teto-capital", "rerratificado", "critico"],
+        "item_ref": "Rerratificação ponto 8; exclui antigo 6.6.4"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_edital_ret_rationale_tetobaixoequip",
+      "label": "Rationale: abaixamento do teto de equipamento de R$200k para R$50k",
+      "type": "concept",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt",
+      "attributes": {
+        "summary": "RATIONALE: A rerratificação baixou o teto de equipamento permanente de R$200.000 para R$50.000 (itens 6.6.1/6.6.2 e Anexo3 item 5.3). TRADE-OFF: amplia o leque de equipamentos elegíveis como item permanente individual, mas exige que sistemas compostos (2.1.24) sejam justificados e solicitados como item único. Lista de <R$50k agora inclui casas de vegetação e sistemas de irrigação.",
+        "tags": ["rationale", "teto", "equipamento", "rerratificado"],
+        "item_ref": "Rerratificação pontos 6, 19"
+      }
+    },
+    {
+      "id": "edital_extracao_latest_anexo3_ret_rationale_proforma",
+      "label": "Rationale: padronização documental orçamento/proforma (data >01/01/2026)",
+      "type": "concept",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt",
+      "attributes": {
+        "summary": "RATIONALE: A rerratificação centralizou exigências documentais (Anexo3 item 1.3 e item 7.3 suprimido): todos orçamentos/proformas devem ter data >01/01/2026, identificação fornecedor, descrição, e câmbio da data de lançamento da Chamada para proformas. TRADE-OFF: simplifica (remove distinção tipo 'outros' com >=R$100k) mas torna obrigatórios os 4 requisitos formais para TODOS os itens documentados.",
+        "tags": ["rationale", "documentacao", "proforma", "rerratificado"],
+        "item_ref": "Anexo3 item 1.3; Rerratificação ponto 17"
+      }
+    },
+    {
+      "id": "docs_nav_pages_23_status_final_engineomnibusv3",
+      "label": "Engine Omnibus v3.0 - Status Final (PQMS 9.85/10)",
+      "type": "concept",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/docs-nav/pages/23-status-final.md",
+      "attributes": {
+        "summary": "Origem INSTRUCTIONS.md linhas 3081-3084. Declara Engine Omnibus v3.0 COMPLETA com 12 critérios (C1-C10 + C11 Documentação + C12 Testabilidade). PQMS 9.85/10 — target 9.5 superado. Pronta para uso operacional do agente mech-electro-materials-scientist.",
+        "tags": ["engine", "omnibus", "v3", "pqms", "agentic"]
+      }
+    },
+    {
+      "id": "workspace_spec_014_configmanager_config_projetoconfig",
+      "label": "Configuração projeto bioeolica-dev (config.yaml)",
+      "type": "concept",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/workspace/spec-014-configmanager/config.yaml",
+      "attributes": {
+        "summary": "Single source of truth do projeto bioeolica-dev v0.1.0. Workspaces: physics-m3, cad-cae-platform, kdi-m3-bridge. physics_m3.fem default_mesh_size 0.1, solver calculix. kdi_m3_bridge: map_unico_path data/mapa_unico.json, knowledge_base_path data/knowledge/rag_index.json, log_level INFO. logging.file_path logs/bioeolica.log.",
+        "tags": ["config", "ssot", "yaml", "bioeolica-dev"],
+        "workspaces": ["physics-m3", "cad-cae-platform", "kdi-m3-bridge"]
+      }
+    }
+  ],
+  "edges": [
+    {"source": "edital_extracao_latest_edital_ret_editalagrifam", "target": "edital_extracao_latest_edital_ret_linhatematica1_bioinsumos", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_editalagrifam", "target": "edital_extracao_latest_edital_ret_linhatematica2_agroecologica", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_editalagrifam", "target": "edital_extracao_latest_edital_ret_linhatematica3_digitais", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_editalagrifam", "target": "edital_extracao_latest_edital_ret_linhatematica4_aquicultura", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_editalagrifam", "target": "edital_extracao_latest_edital_ret_anexos_lista", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo1_ret_minutaconvenio", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo2_ret_detalhamentolts", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo3_ret_exigenciasitens", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo4_ret_projitoresumidoobras", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo5_ret_pagamentopessoal", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo6_ret_bolsas", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_anexos_lista", "target": "edital_extracao_latest_anexo7_ret_checklist", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+
+    {"source": "edital_extracao_latest_anexo2_ret_detalhamentolts", "target": "edital_extracao_latest_edital_ret_linhatematica1_bioinsumos", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO2_RET.txt"},
+    {"source": "edital_extracao_latest_anexo2_ret_detalhamentolts", "target": "edital_extracao_latest_edital_ret_linhatematica2_agroecologica", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO2_RET.txt"},
+    {"source": "edital_extracao_latest_anexo2_ret_detalhamentolts", "target": "edital_extracao_latest_edital_ret_linhatematica3_digitais", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO2_RET.txt"},
+    {"source": "edital_extracao_latest_anexo2_ret_detalhamentolts", "target": "edital_extracao_latest_edital_ret_linhatematica4_aquicultura", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO2_RET.txt"},
+
+    {"source": "edital_extracao_latest_anexo3_ret_exigenciasitens", "target": "edital_extracao_latest_edital_ret_rubrica_materialconsumo", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt"},
+    {"source": "edital_extracao_latest_anexo3_ret_exigenciasitens", "target": "edital_extracao_latest_edital_ret_rubrica_ostj", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt"},
+    {"source": "edital_extracao_latest_anexo3_ret_exigenciasitens", "target": "edital_extracao_latest_edital_ret_rubrica_equipamentos", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt"},
+    {"source": "edital_extracao_latest_anexo3_ret_exigenciasitens", "target": "edital_extracao_latest_edital_ret_sistemacomposto", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt"},
+    {"source": "edital_extracao_latest_anexo3_ret_exigenciasitens", "target": "edital_extracao_latest_anexo4_ret_projitoresumidoobras", "type": "references", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO3_RET.txt"},
+
+    {"source": "edital_extracao_latest_anexo4_ret_projitoresumidoobras", "target": "edital_extracao_latest_edital_ret_rubrica_obras", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO4_RET.txt"},
+    {"source": "edital_extracao_latest_anexo5_ret_pagamentopessoal", "target": "edital_extracao_latest_edital_ret_rubrica_pagamentopessoal", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO5_RET.txt"},
+    {"source": "edital_extracao_latest_anexo6_ret_bolsas", "target": "edital_extracao_latest_edital_ret_rubrica_bolsas", "type": "specifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO6_RET.txt"},
+
+    {"source": "edital_extracao_latest_anexo7_ret_checklist", "target": "edital_extracao_latest_edital_ret_faixavalorproposta", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO7_RET.txt"},
+    {"source": "edital_extracao_latest_anexo7_ret_checklist", "target": "edital_extracao_latest_edital_ret_tetopropostasict", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO7_RET.txt"},
+    {"source": "edital_extracao_latest_anexo7_ret_checklist", "target": "edital_extracao_latest_edital_ret_contrapartida", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO7_RET.txt"},
+    {"source": "edital_extracao_latest_anexo7_ret_checklist", "target": "edital_extracao_latest_edital_ret_eliminatoria_habilitacaoproposta", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO7_RET.txt"},
+
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_faixavalorproposta", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_tetopropostasict", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_rubrica_equipamentos", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_sistemacomposto", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_rubrica_obras", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_tetocapitalexcluido", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+    {"source": "edital_extracao_latest_com_ret_rerratificacao", "target": "edital_extracao_latest_edital_ret_rationale_tetobaixoequip", "type": "modifies", "confidence_score": 1.0, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/COM_RET.txt"},
+
+    {"source": "edital_extracao_latest_guia_fap_guiaplataforma", "target": "edital_extracao_latest_anexo3_ret_exigenciasitens", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/GUIA_FAP.txt"},
+    {"source": "edital_extracao_latest_guia_fap_guiaplataforma", "target": "edital_extracao_latest_anexo5_ret_pagamentopessoal", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/GUIA_FAP.txt"},
+    {"source": "edital_extracao_latest_guia_fap_guiaplataforma", "target": "edital_extracao_latest_anexo6_ret_bolsas", "type": "references", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/GUIA_FAP.txt"},
+
+    {"source": "edital_extracao_latest_edital_ret_rubrica_equipamentos", "target": "edital_extracao_latest_edital_ret_sistemacomposto", "type": "conceptually_related_to", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_eliminatoria_habilitacaoproposta", "target": "edital_extracao_latest_edital_ret_faixavalorproposta", "type": "conceptually_related_to", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_edital_ret_eliminatoria_habilitacaoproposta", "target": "edital_extracao_latest_edital_ret_contrapartida", "type": "conceptually_related_to", "confidence_score": 0.85, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+
+    {"source": "edital_extracao_latest_edital_ret_rubrica_obras", "target": "edital_extracao_latest_edital_ret_tetocapitalexcluido", "type": "semantically_similar_to", "confidence_score": 0.75, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"},
+    {"source": "edital_extracao_latest_anexo5_ret_pagamentopessoal", "target": "edital_extracao_latest_anexo6_ret_bolsas", "type": "semantically_similar_to", "confidence_score": 0.75, "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/ANEXO5_RET.txt"}
+  ],
+  "hyperedges": [
+    {
+      "id": "hyper_tetos_despesa_corrente",
+      "participants": [
+        "edital_extracao_latest_edital_ret_rubrica_despopadmin",
+        "edital_extracao_latest_edital_ret_rubrica_despacessorias",
+        "edital_extracao_latest_edital_ret_rubrica_pagamentopessoal",
+        "edital_extracao_latest_edital_ret_rubrica_diariaspassagens",
+        "edital_extracao_latest_edital_ret_rubrica_bolsas"
+      ],
+      "label": "Rubricas de Despesa Corrente com tetos percentuais (5/20/30/10/30)",
+      "type": "teto_group",
+      "confidence_score": 0.95,
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"
+    },
+    {
+      "id": "hyper_rubricas_capital",
+      "participants": [
+        "edital_extracao_latest_edital_ret_rubrica_equipamentos",
+        "edital_extracao_latest_edital_ret_sistemacomposto",
+        "edital_extracao_latest_edital_ret_rubrica_obras"
+      ],
+      "label": "Rubricas de Despesa de Capital (equipamentos, sistema composto, obras)",
+      "type": "rubrica_group",
+      "confidence_score": 0.95,
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"
+    },
+    {
+      "id": "hyper_linhas_tematicas",
+      "participants": [
+        "edital_extracao_latest_edital_ret_linhatematica1_bioinsumos",
+        "edital_extracao_latest_edital_ret_linhatematica2_agroecologica",
+        "edital_extracao_latest_edital_ret_linhatematica3_digitais",
+        "edital_extracao_latest_edital_ret_linhatematica4_aquicultura"
+      ],
+      "label": "As 4 Linhas Temáticas da Chamada AgriFam-ICT 2026 (R$150M total)",
+      "type": "linha_tematica_group",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/edital/extracao/latest/EDITAL_RET.txt"
+    }
+  ]
+}

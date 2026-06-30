@@ -1,0 +1,17 @@
+/home/cnmfs/bioeolica-entrega/INPUT.md
+/home/cnmfs/bioeolica-entrega/INSTRUCTIONS.md
+/home/cnmfs/bioeolica-entrega/ORQUESTRACAO_PROCESSO_LAB.md
+/home/cnmfs/bioeolica-entrega/docs-nav/assets/engine-omnibus-v3.DIAGNOSTIC.md
+/home/cnmfs/bioeolica-entrega/docs-nav/index.md
+/home/cnmfs/bioeolica-entrega/docs-nav/mkdocs.yml
+/home/cnmfs/bioeolica-entrega/docs/ANALISE_20260628_224507.md
+/home/cnmfs/bioeolica-entrega/docs/ANALISE_20260628_224847.md
+/home/cnmfs/bioeolica-entrega/docs/FLUXO_CANONICO_INSTRUCTIONS.md
+/home/cnmfs/bioeolica-entrega/edital/AGENTS.md
+/home/cnmfs/bioeolica-entrega/llm-wiki.md
+/home/cnmfs/bioeolica-entrega/modules/ai_assist_cad/viewer_template.html
+/home/cnmfs/bioeolica-entrega/modules/cad-cae-platform/README.md
+/home/cnmfs/bioeolica-entrega/specs/README.md
+/home/cnmfs/bioeolica-entrega/webapp/index.html
+/home/cnmfs/bioeolica-entrega/workspace/README.md
+/home/cnmfs/bioeolica-entrega/docs/paper/pm-graphite-composite-savonius.pdf

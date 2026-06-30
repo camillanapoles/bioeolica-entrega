@@ -1,0 +1,772 @@
+{
+  "nodes": [
+    {
+      "id": "archives_knowledge_t069_final_audit_doctype",
+      "label": "T069 Final Project Documentation Audit",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/T069_FINAL_AUDIT.md",
+      "source_location": "audit report",
+      "source_url": null,
+      "captured_at": "2026-06-14",
+      "author": "SPEC1 Phase 8",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_materials_readme_doctype",
+      "label": "Knowledge Base — Materials Science README",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/materials/README.md",
+      "source_location": "RAG index",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_readme_doctype",
+      "label": "Knowledge Base — Wind Energy README",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/README.md",
+      "source_location": "RAG index",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_assumptions_doctype",
+      "label": "Assumptions — Turbine Upscaling Analysis (T018)",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/assumptions.md",
+      "source_location": "Fase 6 T018 premissas",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T018",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_baseline_verification_doctype",
+      "label": "Baseline Verification — bioeolica.db (T005)",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/baseline_verification.md",
+      "source_location": "Fase 2 T005",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T005",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_cost_model_report_doctype",
+      "label": "Cost Model Report — Upscaling Cost Analysis (T013)",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "Fase 4 T013",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T013",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "label": "Topology Recommendation — Upscaling Analysis (T010)",
+      "file_type": "document",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/topology_recommendation.md",
+      "source_location": "Fase 3 T010",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T010",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_llm_pdf",
+      "label": "Multi-agent LLM framework integrating CAD, FEA, and optimization",
+      "file_type": "paper",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/llm.pdf",
+      "source_location": "Structural Engineering and Mechanics Vol 96 No 6 (2025) 523-533",
+      "source_url": "https://doi.org/10.12989/sem.2025.96.6.523",
+      "captured_at": "2025",
+      "author": "Hojun Lee, Hyo-Jin Kim, Jaeho Jung",
+      "contributor": "Chungbuk National University; KAIST InnoCORE PRISM-AI Center"
+    },
+    {
+      "id": "specs_lab1_material_000_foundation_concept",
+      "label": "Lab1 Foundation — SQLite db + json_store SSOT + declarative config",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/000-foundation.yaml",
+      "source_location": "spec id lab1-material/000-foundation",
+      "source_url": null,
+      "captured_at": null,
+      "author": "coordinator",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_001_tracao_ensaiotracao",
+      "label": "Ensaio de tração — regras de mistura + Halpin-Tsai",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/001-tracao.yaml",
+      "source_location": "spec id lab1-material/001-tracao",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_002_fadiga_ensaiofadiga",
+      "label": "Ensaio de fadiga — Basquin + Coffin-Manson",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/002-fadiga.yaml",
+      "source_location": "spec id lab1-material/002-fadiga",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_003_impacto_ensaioimpacto",
+      "label": "Ensaio de impacto Charpy — energia absorvida (proxy K_c)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/003-impacto.yaml",
+      "source_location": "spec id lab1-material/003-impacto",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_004_dureza_ensaiodureza",
+      "label": "Ensaio de dureza — Shore D via correlação Ashby com módulo de Young",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/004-dureza.yaml",
+      "source_location": "spec id lab1-material/004-dureza",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_005_fluencia_ensaiofluencia",
+      "label": "Ensaio de fluência — regime secundário (lei de Norton)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/005-fluencia.yaml",
+      "source_location": "spec id lab1-material/005-fluencia",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_006_termico_ensaiotermico",
+      "label": "Ensaios térmicos — condutividade efetiva (Voigt/Reuss) + CTE + Fourier",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/006-termico.yaml",
+      "source_location": "spec id lab1-material/006-termico",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_007_atrito_ensaioatrito",
+      "label": "Ensaio de atrito — coeficiente de Coulomb + desgaste por Archard",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/007-atrito.yaml",
+      "source_location": "spec id lab1-material/007-atrito",
+      "source_url": null,
+      "captured_at": null,
+      "author": "agent-materiais",
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_001_tracao_ensaiotracao_concept",
+      "label": "Concept: Ensaio de tração (tensile test, regra de misturas + Halpin-Tsai)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/001-tracao.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_002_fadiga_ensaiofadiga_concept",
+      "label": "Concept: Ensaio de fadiga (Basquin + Coffin-Manson fatigue)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/002-fadiga.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_003_impacto_ensaioimpacto_concept",
+      "label": "Concept: Ensaio de impacto Charpy (ASTM D256)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/003-impacto.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_004_dureza_ensaiodureza_concept",
+      "label": "Concept: Ensaio de dureza Shore D (ASTM D2240)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/004-dureza.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_005_fluencia_ensaiofluencia_concept",
+      "label": "Concept: Ensaio de fluência (Norton creep power law)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/005-fluencia.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_006_termico_ensaiotermico_concept",
+      "label": "Concept: Ensaios térmicos (condutividade Hashin-Shtrikman + Fourier)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/006-termico.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "specs_lab1_material_007_atrito_ensaioatrito_concept",
+      "label": "Concept: Ensaio de atrito/desgaste (Coulomb + Archard)",
+      "file_type": "concept",
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/007-atrito.yaml",
+      "source_location": "test concept",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_ci_yml",
+      "label": "CI workflow — pytest matrix (root, lab1, lab2)",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/ci.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_audit_edital_yml",
+      "label": "audit-edital — FINEP AgriFam-ICT 2026 conformity gate",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/audit-edital.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_deploy_pages_yml",
+      "label": "deploy-pages — Deploy Webapp Orçamento (GitHub Pages)",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/deploy-pages.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_gitnexus_impact_yml",
+      "label": "gitnexus-impact — blast-radius analysis on .py PRs (M0/M4)",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/gitnexus-impact.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_spec_gate_yml",
+      "label": "spec-gate — Spec Phase Gate com HUMAN_GATE (M7)",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/spec-gate.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_sync_ssot_yml",
+      "label": "sync-ssot — SSOT → webapp continuous-integration sync (Mandato B.0)",
+      "file_type": "code",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/sync-ssot.yml",
+      "source_location": "GitHub Actions workflow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_topology_recommendation_concept",
+      "label": "Concept: HAWT 20kW topology recommendation (Sertão NE, LCOE $0.0138/kWh)",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/topology_recommendation.md",
+      "source_location": "rationale: HAWT supera VAWT em todas as métricas; economias de escala 5→20kW -44%",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T010",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_assumptions_concept",
+      "label": "Concept: Turbine upscaling assumptions (Weibull k=2.0, c=6.5 m/s, IEC 61400-2)",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/assumptions.md",
+      "source_location": "rationale: premissas eólico/aero/custo/financeiras/estruturais",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T018",
+      "contributor": null
+    },
+    {
+      "id": "archives_knowledge_wind_energy_cost_model_report_concept",
+      "label": "Concept: SC-004 economic targets (cost/kW <$3000, LCOE <$0.15/kWh) PASS",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "rationale: 20kW HAWT LCOE $0.0138/kWh, bateria domina BOM 67%",
+      "source_url": null,
+      "captured_at": "2026-06-13",
+      "author": "T013",
+      "contributor": null
+    },
+    {
+      "id": "github_workflows_audit_edital_concept",
+      "label": "Concept: FINEP AgriFam-ICT 2026 edital conformity (faixa, duração, caps, R4)",
+      "file_type": "rationale",
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/audit-edital.yml",
+      "source_location": "rationale: gate fails CI on any violation of FINEP rules",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "target": "archives_knowledge_wind_energy_cost_model_report_doctype",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "Anexos: knowledge/wind-energy/topology_recommendation.md",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_wind_energy_cost_model_report_doctype",
+      "target": "archives_knowledge_wind_energy_baseline_verification_doctype",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "Anexos: Baseline DB knowledge/wind-energy/baseline_verification.md",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "target": "archives_knowledge_wind_energy_baseline_verification_doctype",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/topology_recommendation.md",
+      "source_location": "Anexos: Baseline DB knowledge/wind-energy/baseline_verification.md",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_wind_energy_cost_model_report_doctype",
+      "target": "archives_knowledge_wind_energy_assumptions_doctype",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "sensitivity analysis uses assumptions (discount rate, O&M, lifetime)",
+      "weight": 0.9
+    },
+    {
+      "source": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "target": "archives_knowledge_wind_energy_assumptions_doctype",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/topology_recommendation.md",
+      "source_location": "uses Weibull k=2.0, shear alpha=0.20 from assumptions",
+      "weight": 0.9
+    },
+    {
+      "source": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "target": "archives_knowledge_wind_energy_topology_recommendation_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/topology_recommendation.md",
+      "source_location": "rationale attribute on concept node",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_wind_energy_assumptions_doctype",
+      "target": "archives_knowledge_wind_energy_assumptions_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/assumptions.md",
+      "source_location": "rationale attribute on concept node",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_wind_energy_cost_model_report_doctype",
+      "target": "archives_knowledge_wind_energy_cost_model_report_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/cost_model_report.md",
+      "source_location": "rationale attribute on concept node",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_t069_final_audit_doctype",
+      "target": "archives_knowledge_wind_energy_baseline_verification_doctype",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/T069_FINAL_AUDIT.md",
+      "source_location": "audit executed against live SQLite data/bioeolica.db (baseline verified in T005)",
+      "weight": 0.8
+    },
+    {
+      "source": "archives_knowledge_t069_final_audit_doctype",
+      "target": "archives_knowledge_wind_energy_cost_model_report_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/T069_FINAL_AUDIT.md",
+      "source_location": "SC-004 economic LCOE <$0.15/kWh, cost <$3,000/kW PASS",
+      "weight": 0.8
+    },
+    {
+      "source": "archives_knowledge_wind_energy_readme_doctype",
+      "target": "archives_knowledge_wind_energy_assumptions_doctype",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/README.md",
+      "source_location": "wind-energy RAG index references workstream contents",
+      "weight": 0.6
+    },
+    {
+      "source": "archives_knowledge_wind_energy_readme_doctype",
+      "target": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/README.md",
+      "source_location": "wind-energy RAG index references workstream contents",
+      "weight": 0.6
+    },
+    {
+      "source": "archives_knowledge_materials_readme_doctype",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/materials/README.md",
+      "source_location": "materials RAG covers ASTM D638/D790/D695/D2240/D7774 used by lab1 specs",
+      "weight": 0.7
+    },
+    {
+      "source": "specs_lab1_material_001_tracao_ensaiotracao",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/001-tracao.yaml",
+      "source_location": "notes: Depende de 000-foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_002_fadiga_ensaiotracao",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/002-fadiga.yaml",
+      "source_location": "notes: Depende de 000-foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_003_impacto_ensaioimpacto",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/003-impacto.yaml",
+      "source_location": "all lab1 ensaios persist via core db/json_store from foundation",
+      "weight": 0.9
+    },
+    {
+      "source": "specs_lab1_material_004_dureza_ensaiodureza",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/004-dureza.yaml",
+      "source_location": "uses core/constants (P$1) from foundation",
+      "weight": 0.9
+    },
+    {
+      "source": "specs_lab1_material_005_fluencia_ensaiofluencia",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/005-fluencia.yaml",
+      "source_location": "R_GAS via core/constants (P$1) from foundation",
+      "weight": 0.9
+    },
+    {
+      "source": "specs_lab1_material_006_termico_ensaiotermico",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/006-termico.yaml",
+      "source_location": "hashin_dim via core/constants (P$1) from foundation",
+      "weight": 0.9
+    },
+    {
+      "source": "specs_lab1_material_007_atrito_ensaioatrito",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/007-atrito.yaml",
+      "source_location": "all lab1 ensaios persist via core db/json_store from foundation",
+      "weight": 0.9
+    },
+    {
+      "source": "specs_lab1_material_001_tracao_ensaiotracao",
+      "target": "specs_lab1_material_001_tracao_ensaiotracao_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/001-tracao.yaml",
+      "source_location": "spec implements tracao test concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_002_fadiga_ensaiotracao",
+      "target": "specs_lab1_material_002_fadiga_ensaiofadiga_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/002-fadiga.yaml",
+      "source_location": "spec implements fadiga test concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_003_impacto_ensaioimpacto",
+      "target": "specs_lab1_material_003_impacto_ensaioimpacto_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/003-impacto.yaml",
+      "source_location": "spec implements impacto Charpy test concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_004_dureza_ensaiodureza",
+      "target": "specs_lab1_material_004_dureza_ensaiodureza_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/004-dureza.yaml",
+      "source_location": "spec implements dureza Shore D test concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_005_fluencia_ensaiofluencia",
+      "target": "specs_lab1_material_005_fluencia_ensaiofluencia_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/005-fluencia.yaml",
+      "source_location": "spec implements fluencia Norton creep concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_006_termico_ensaiotermico",
+      "target": "specs_lab1_material_006_termico_ensaiotermico_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/006-termico.yaml",
+      "source_location": "spec implements termico condutividade concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_007_atrito_ensaioatrito",
+      "target": "specs_lab1_material_007_atrito_ensaioatrito_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/007-atrito.yaml",
+      "source_location": "spec implements atrito/Archard wear concept",
+      "weight": 1.0
+    },
+    {
+      "source": "specs_lab1_material_001_tracao_ensaiotracao_concept",
+      "target": "specs_lab1_material_002_fadiga_ensaiofadiga_concept",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/001-tracao.yaml",
+      "source_location": "both composite mechanical tests; fadiga requires sigma_uts from tracao",
+      "weight": 0.7
+    },
+    {
+      "source": "specs_lab1_material_003_impacto_ensaioimpacto_concept",
+      "target": "specs_lab1_material_004_dureza_ensaiodureza_concept",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/003-impacto.yaml",
+      "source_location": "both proxy via K_c / hardness correlations",
+      "weight": 0.65
+    },
+    {
+      "source": "github_workflows_spec_gate_yml",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/spec-gate.yml",
+      "source_location": "spec-gate validates specs/*.yaml schema including lab1-material specs",
+      "weight": 0.8
+    },
+    {
+      "source": "github_workflows_ci_yml",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/ci.yml",
+      "source_location": "CI matrix runs lab1 suite (workspace/lab1-material-papel-mache-grafite)",
+      "weight": 0.8
+    },
+    {
+      "source": "github_workflows_sync_ssot_yml",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/sync-ssot.yml",
+      "source_location": "syncs workspace/lab1-material-papel-mache-grafite/config/constants.json (SSOT)",
+      "weight": 0.8
+    },
+    {
+      "source": "github_workflows_audit_edital_yml",
+      "target": "github_workflows_audit_edital_concept",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/audit-edital.yml",
+      "source_location": "rationale attribute on concept node",
+      "weight": 1.0
+    },
+    {
+      "source": "archives_knowledge_llm_pdf",
+      "target": "specs_lab1_material_000_foundation_concept",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/llm.pdf",
+      "source_location": "LLM multi-agent CAD/FEA/optimization framework conceptually aligned with agentic lab orchestration",
+      "weight": 0.5
+    },
+    {
+      "source": "archives_knowledge_llm_pdf",
+      "target": "archives_knowledge_wind_energy_topology_recommendation_doctype",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/llm.pdf",
+      "source_location": "paper integrates CAD/FEA/optimization; topology_recommendation is optimization output",
+      "weight": 0.5
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "he_lab1_material_spec_suite",
+      "label": "lab1-material spec suite (foundation + 7 ensaios)",
+      "nodes": [
+        "specs_lab1_material_000_foundation_concept",
+        "specs_lab1_material_001_tracao_ensaiotracao",
+        "specs_lab1_material_002_fadiga_ensaiotracao",
+        "specs_lab1_material_003_impacto_ensaioimpacto",
+        "specs_lab1_material_004_dureza_ensaiodureza",
+        "specs_lab1_material_005_fluencia_ensaiofluencia",
+        "specs_lab1_material_006_termico_ensaiotermico",
+        "specs_lab1_material_007_atrito_ensaioatrito"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/cnmfs/bioeolica-entrega/specs/lab1-material/000-foundation.yaml"
+    },
+    {
+      "id": "he_ci_workflow_pipeline",
+      "label": "CI/CD workflow pipeline (conformity + spec + impact + sync + deploy + test)",
+      "nodes": [
+        "github_workflows_ci_yml",
+        "github_workflows_audit_edital_yml",
+        "github_workflows_deploy_pages_yml",
+        "github_workflows_gitnexus_impact_yml",
+        "github_workflows_spec_gate_yml",
+        "github_workflows_sync_ssot_yml"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.github/workflows/ci.yml"
+    },
+    {
+      "id": "he_wind_energy_knowledge_suite",
+      "label": "wind-energy knowledge suite (RAG + baseline + assumptions + cost + topology)",
+      "nodes": [
+        "archives_knowledge_wind_energy_readme_doctype",
+        "archives_knowledge_wind_energy_baseline_verification_doctype",
+        "archives_knowledge_wind_energy_assumptions_doctype",
+        "archives_knowledge_wind_energy_cost_model_report_doctype",
+        "archives_knowledge_wind_energy_topology_recommendation_doctype"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/cnmfs/bioeolica-entrega/.archives/knowledge/wind-energy/README.md"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
