@@ -52,3 +52,7 @@ modules/MathematicalEngineeringDeepLearning/
 .claude
 
 # uv project lock is tracked explicitly (committed below for repro)
+
+# Agent/tooling local configs (ambiente-local, never commit) — best practice
+.agents/
+.codex/
