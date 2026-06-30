@@ -24,6 +24,7 @@ workspace/**/logs/*.log
 
 # Ephemeral analysis dumps / stray check scripts (regenerable, never commit)
 .ssot_check.py
+scripts/check_env_mandatory.py
 docs/ANALISE_*.md
 docs/ANALISE_*.json
 docs/wiki/.pending/
