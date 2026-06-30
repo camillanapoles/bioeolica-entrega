@@ -1,0 +1,1192 @@
+CHAMADA PÚBLICA MCTI/FINEP/FNDCT CADEIAS SOCIOPRODUTIVAS DA
+AGRICULTURA FAMILIAR E SISTEMAS AGROALIMENTARES SUSTENTÁVEIS
+PARA ICTS 2026
+
+1. OBJETIVO E LINHAS TEMÁTICAS
+1.1. Selecionar propostas para concessão de apoio financeiro à execução de projetos
+institucionais voltados ao desenvolvimento de soluções científicas e tecnológicas para
+enfrentar desafios na estruturação e no fortalecimento de cadeias socioprodutivas
+baseadas na biodiversidade brasileira.
+1.2. As iniciativas devem promover a pesquisa e o desenvolvimento de produtos, processos,
+tecnologias e serviços que agreguem e retenham valor nos elos iniciais das cadeias
+produtivas e dos sistemas agroalimentares, contribuindo para a inclusão socioprodutiva, a
+melhoria da qualidade de vida das populações atendidas, a ampliação da oferta de
+alimentos, fibras e outros produtos e serviços, o aumento da eficiência produtiva e a
+promoção da sustentabilidade nos sistemas agroalimentares e florestais, incluindo o
+estímulo à produtividade na agricultura familiar e na pesca artesanal.
+1.3. Para fins desta Seleção Pública, serão passíveis de apoio as propostas aderentes às
+seguintes linhas temáticas
+1.3.1. Linha Temática 1 - Bioinsumos: Projetos envolvendo a caracterização de
+bioinsumos existentes, ou formulação de novos, com ingredientes novos ou
+aprimorados, considerando diferentes culturas alimentares, contextos territoriais,
+biomas e os saberes tradicionais, conforme detalhamento descrito no Anexo 2.
+1.3.2. Linha Temática 2 - Sistemas de produção agroecológicos e orgânicos: Projetos
+envolvendo o desenvolvimento, implementação e fortalecimento de sistemas de
+produção agroecológicos e orgânicos, com foco na transição agroecológica em
+unidades familiares e comunitárias, conforme detalhamento descrito no Anexo 2.
+
+1.3.3. Linha Temática 3 - Soluções digitais para a pequena propriedade rural: Projetos
+envolvendo o desenvolvimento de soluções digitais para diferentes usos na
+economia da pequena propriedade rural, conforme detalhamento descrito no Anexo
+2.
+1.3.4. Linha Temática 4 - Aquicultura de espécies nativas: Projetos envolvendo o
+desenvolvimento de pacotes tecnológicos para a produção aquícola de espécies
+nativas, conforme detalhamento descrito no Anexo 2.
+1.4. Resultados Esperados
+Os projetos deverão ser analisados sob a perspectiva de potencial impacto positivo quanto
+a pelo menos um dos seguintes pontos:
+•
+
+Aumento da independência e da qualidade de vida das comunidades locais atendidas,
+com geração de renda;
+
+•
+
+Fortalecimento das associações de produtores, cooperativas de produção, centrais
+de vendas, federações, e da agricultura familiar;
+
+•
+
+Aproveitamento das vocações naturais dos territórios atendidos nos biomas
+brasileiros;
+
+•
+
+Aumento da eficiência e da produtividade de sistemas orgânicos;
+
+•
+
+Criação de novos conhecimentos em bioeconomia e no uso racional e sustentável da
+biodiversidade brasileira;
+
+•
+
+Desenvolvimento de novos bioprodutos, bioinsumos, biomateriais e serviços,
+ampliando a eficiência produtiva dos sistemas agroalimentares;
+
+•
+
+Concepção de técnicas de manejo sustentável de solos, águas, recursos pesqueiros
+e florestais;
+
+•
+
+Fomento à digitalização das cadeias socioprodutivas da agricultura familiar;
+
+•
+
+Aumento de parcerias entre setores público, privado, academia e sociedade civil em
+bioeconomia, entidades de assistência técnica e extensão rural; e
+
+•
+
+Promoção do uso e conservação das sementes crioulas.
+
+2. DEFINIÇÕES
+2.1. No âmbito da presente Chamada Pública, serão adotadas as seguintes definições:
+2.1.1
+
+Instituições Científicas, Tecnológicas e de Inovação (ICTs) Públicas ou Privadas:
+órgão ou entidade da administração pública direta ou indireta ou pessoa jurídica
+de direito privado sem fins lucrativos legalmente constituída sob as leis brasileiras,
+com sede e foro no País, que inclua em sua missão institucional ou em seu
+objetivo social ou estatutário a pesquisa básica ou aplicada de caráter científico
+ou tecnológico ou o desenvolvimento de novos produtos, serviços ou processos,
+em observância ao disposto no art. 2, inciso V, da Lei n° 10.973/2004.
+
+2.1.2
+
+Instituição de Apoio: instituição criada com a finalidade de dar apoio a projetos
+de pesquisa, ensino e extensão, projetos de desenvolvimento institucional,
+científico, tecnológico e projetos de estímulo à inovação de interesse das ICTs,
+registrada e credenciada no Ministério da Educação e no Ministério da Ciência,
+Tecnologia e Inovação, nos termos da Lei nº 8.958, de 20 de dezembro de 1994,
+e das demais legislações pertinentes nas esferas estadual, distrital e municipal;
+(Redação pela Lei nº 13.243, de 2016) (Vide Decreto nº 9.841, de 2019).
+
+2.1.3
+
+Instituição Proponente: Instituição de apoio ou ICT que manifeste interesse em
+celebrar instrumento contratual com a Concedente para execução de projeto,
+observado o disposto no Item 3 deste Edital, sendo responsável por sua gestão
+administrativa e financeira.
+
+2.1.4
+
+Instituição Executora Principal: ICT responsável pela execução do objeto do
+instrumento contratual, observado o disposto no Item 3 deste Edital.
+
+2.1.5
+
+Instituição Coexecutora: ICT parceira que irá contribuir para o desenvolvimento
+do objeto do instrumento contratual, assumindo a execução de atividades no
+projeto.
+
+2.1.6
+
+Entidade: pessoa jurídica pública ou privada, dotada de personalidade jurídica
+própria. Uma entidade pode possuir em sua estrutura mais de uma unidade
+vinculada que se caracterize como ICT executora.
+
+2.1.7
+
+Infraestrutura de Pesquisa: instalações físicas georreferenciadas que fornecem à
+comunidade científica condições para realizar atividades de pesquisa e
+desenvolvimento (P&D) e fomentar a inovação.
+
+2.1.8
+
+Pequenas adaptações de espaço físico: obras de pequeno porte, isoladas e sem
+complexidade técnica, limitadas ao valor previsto no art. 75, inciso IV, alínea c,
+da Lei nº 14.133/2021 (considerando a atualização monetária prevista em
+decreto), estritamente relacionadas com a instalação dos equipamentos
+solicitados, desde que não impliquem em acréscimos de volume ou área do
+espaço físico. Serão permitidos serviços como: reparo, revisão e adaptação em
+revestimentos de paredes e pisos, em instalações prediais elétricas, hidráulicas,
+instalações mecânicas e especiais (exemplo: gases); readequação de layout com
+instalação de divisórias.
+
+2.1.9
+
+Bioeconomia: modelo econômico que leva em conta a origem da matéria-prima
+e as atividades econômicas associadas aos recursos biológicos (ecossistemas),
+sejam terrestres (verde), recursos marinhos e costeiros (azul) ou recursos de rios,
+lagos e ecossistemas de água doce (águas internas);
+
+2.1.10
+
+Agricultura Familiar: Praticada por agricultor familiar e empreendedor familiar
+rural que atenda aos requisitos definidos na Lei nº 11.326/2006;
+
+2.1.11
+
+Agricultura urbana e periurbana (AUP): envolve o cultivo de plantas e a criação
+de pequenos animais dentro (urbana) ou ao redor (periurbana) das cidades,
+integrada ao sistema ecológico e econômico local. Destina-se ao consumo
+próprio, trocas ou comercialização, utilizando recursos locais para promover
+segurança alimentar, geração de renda e sustentabilidade ambiental.
+
+2.1.12
+
+Sistemas Agroalimentares: Conjunto de elementos e atividades relacionados à
+produção, processamento, distribuição, preparação e consumo de alimentos,
+incluindo seus resultados socioeconômicos e ambientais;
+
+2.1.13
+
+Cadeia de Valor: Articulação de atividades e atores que geram, agregam e
+distribuem valor econômico, social, ambiental e cultural ao longo da produção,
+beneficiamento
+
+e
+
+comercialização,
+
+promovendo
+
+inclusão
+
+fortalecimento da renda e autonomia da agricultura familiar.
+
+produtiva
+
+e
+
+2.1.14
+
+Cadeias Socioprodutivas da Bioeconomia e da Agricultura Familiar: Cadeias de
+valor integradas que envolvem extração, beneficiamento, produção agroindustrial
+e comercialização de produtos baseados no uso sustentável da biodiversidade
+brasileira;
+
+2.1.15
+
+Biomas Brasileiros: Amazônia, Mata Atlântica, Caatinga, Cerrado, Pantanal,
+Pampa e Sistema Costeiro-Marinho;
+
+2.1.16
+
+Produtos da Sociobiodiversidade: Bens e serviços gerados a partir de recursos da
+biodiversidade, destinados à formação de cadeias produtivas de interesse dos
+beneficiários da Lei nº 11.326/2006, conforme Decreto nº 7.794/2012;
+
+2.1.17
+
+Produção de Base Agroecológica: Produção que busca otimizar a integração entre
+capacidade produtiva, uso e conservação da biodiversidade e dos recursos
+naturais, equilíbrio ecológico, eficiência econômica e justiça social, conforme
+Decreto nº 7.794/2012;
+
+2.1.18
+
+Transição Agroecológica: Processo gradual de mudança de práticas e manejo de
+agroecossistemas, incorporando princípios e tecnologias de base ecológica,
+conforme Decreto nº 7.794/2012;
+
+2.1.19
+
+Agregação de valor: Desenvolvimento de novos conhecimentos e tecnologias para
+novos produtos, materiais e serviços, para o aumento de produtividade,
+beneficiamento, processamento, reaproveitamento, melhoria na qualidade dos
+produtos,
+
+embalagem,
+
+novas
+
+certificações,
+
+verticalização
+
+da
+
+produção,
+
+encurtamento da cadeia e comercialização;
+2.1.20
+
+Plataforma de Apoio e Financiamento: sistema para operações não reembolsáveis
+da Finep, onde serão realizadas as análises dos projetos, cadastro das
+instituições, preenchimento e envio da proposta, habilitação, avaliação de mérito,
+interposição de recursos, contratação, acompanhamento, além da prestação de
+contas dos projetos apoiados (https://financiamento.finep.gov.br).
+
+2.1.21
+
+Comitê de Avaliação: composto por consultores externos com conhecimento
+técnico na(s) área(s) de conhecimento(s) específica(s), que serão acompanhados
+pelos analistas da Finep. Ele é presidido pela Finep, Patrocinadora da Chamada
+Pública, que organiza as reuniões entre os membros do Comitê para estabelecer
+o modus operandi e critérios específicos de avaliação das propostas da Chamada,
+
+a distribuição destas entre os consultores e as responsabilidades de cada
+membro, com registro em Ata do que for mais relevante;
+2.1.22
+
+Material de Consumo: produtos essenciais ao desenvolvimento das atividades de
+pesquisas que, com o uso ou manuseio, esgotam-se ou perdem a identidade física
+em razão de suas características de mutabilidade, perecimento e fragilidade.
+
+2.1.23
+
+Material Permanente: é aquele que, em razão de seu uso corrente, não perde a
+sua identidade física e/ou tem uma durabilidade superior a dois anos e é
+fundamental para facilitar, otimizar e garantir a qualidade do trabalho de
+pesquisa.
+
+2.1.24
+
+Sistema composto por equipamentos de pequeno porte: conjunto integrado de
+equipamentos de pequeno porte cujo valor total do arranjo e a capacidade técnica
+agregada resultante da integração permitem um desempenho operacional e um
+escopo de aplicação em pesquisa equivalente ao de um equipamento de maior
+porte (valor unitário maior que R$ 50.000,00).
+
+3. CRITÉRIOS DE ELEGIBILIDADE
+3.1. São elegíveis para apresentar proposta ICTs públicas ou ICTs privadas, cadastradas na
+Plataforma Finep de apoio e financiamento, observados o conceito do item 2.1.1, deste
+edital.
+3.2. Somente serão admitidas propostas cujo(s) dirigente(s) comprove(m) poderes legais para
+representação das instituições partícipes, observado o disposto no item 10.4 deste edital.
+3.3. As executoras públicas federais deverão necessariamente apresentar proposta em parceria
+com instituição de apoio que, neste caso, atuará obrigatoriamente como proponente,
+enquanto a ICT figurará apenas como executora.
+3.4. Uma mesma instituição de apoio poderá participar em mais de 01 (uma) proposta.
+3.5. Instituições de apoio a ICTs federais deverão ser credenciadas ou autorizadas perante o
+Ministério da Educação (MEC) e o Ministério da Ciência, Tecnologia e Inovações (MCTI),
+conforme art. 2º, inciso III, da Lei nº8.958/1994 e art. 1º da Portaria Interministerial
+nº191/2012 do MCTI, e seu respectivo comprovante de credenciamento ou autorização
+deverá ser apresentado no momento da contratação.
+
+3.6. As entidades privadas sem fins lucrativos deverão ter funcionamento regular nos últimos
+três anos, em observância ao disposto no art. 94, inciso VIII, da Lei nº 15.321/2025 (Lei
+de Diretrizes Orçamentárias - LDO 2026).
+
+4. RECURSOS FINANCEIROS A SEREM CONCEDIDOS
+4.1. No âmbito desta Chamada Pública, serão comprometidos recursos não reembolsáveis do
+Fundo Nacional de Desenvolvimento Científico e Tecnológico (FNDCT), até o limite de R$
+150.000.000,00 (cento e cinquenta milhões de reais), sendo:
+4.1.1. Linha Temática 1 – R$ 50.000.000,00 (cinquenta milhões de reais)
+4.1.2. Linha Temática 2 - R$ 50.000.000,00 (cinquenta milhões de reais)
+4.1.3. Linha Temática 3 - R$ 25.000.000,00 (vinte e cinco milhões de reais)
+4.1.4. Linha Temática 4 - R$ 25.000.000,00 (vinte e cinco milhões de reais)
+4.2. Não havendo demanda qualificada suficiente nas Linhas Temáticas, os valores poderão ser
+realocados entre as linhas, respeitados os critérios de ranqueamento do edital.
+4.3. No mínimo 30% dos recursos destinados a cada Linha Temática deverão ser aplicados em
+propostas de ICTs executoras sediadas nas regiões Norte, Nordeste e Centro-Oeste,
+incluindo as respectivas áreas de abrangência das Agências de Desenvolvimento Regional,
+desde que haja propostas consideradas meritórias, conforme os critérios estabelecidos
+nesta Chamada;
+4.4. A contratação das propostas dependerá da disponibilidade orçamentária e financeira do
+MCTI/Finep/FNDCT, respeitando-se o valor limite aprovado para cada proposta e a ordem
+de classificação definida na Avaliação de Mérito;
+4.5. Caso haja disponibilidade de recursos adicionais, decorrente de acréscimos orçamentários,
+outras propostas recomendadas na etapa de Avaliação de Mérito, respeitada a ordem de
+classificação, poderão ser consideradas qualificadas e submetidas à deliberação da
+Diretoria Executiva da Finep.
+
+5. CARACTERÍSTICAS GERAIS DA PROPOSTA
+5.1. Serão avaliadas solicitações para concessão de apoio financeiro a projetos de pesquisa
+que promovam soluções científicas e tecnológicas para dificuldades enfrentadas na
+estruturação e fortalecimento de cadeias socioprodutivas baseadas na biodiversidade
+brasileira, aderentes a um ou mais dos desafios nas linhas temáticas previstas no item 1.
+5.2. Cada ICT executora poderá participar de até 02 (duas) propostas como Executora
+Principal, nas linhas temáticas de sua preferência, sendo também permitido apresentar as
+duas propostas na mesma linha temática.
+5.2.1. A apresentação de mais de 02 (duas) propostas de uma mesma ICT como
+Executora Principal acarretará a eliminação de todas as suas propostas.
+5.3. Ao término da avaliação das propostas, poderá ser apoiado até 1 (um) projeto por linha
+temática de ICTs executoras distintas vinculadas a uma mesma entidade, conforme item
+2.1.6.
+5.3.1. O limite previsto no item acima se aplica a todos os projetos de ICTs (órgãos,
+departamentos, unidades, filiais etc.) vinculadas a uma mesma entidade, ainda que
+possuam CNPJ próprio, porém derivado do CNPJ da entidade dotada de
+personalidade jurídica própria.
+5.3.1.1.
+
+Exemplo: uma Entidade X possui 5 (cinco) ICTs vinculadas e cada
+
+uma apresentou 2 (duas) propostas na chamada pública. Após a
+avaliação das propostas, verifica-se que as ICTs vinculadas à Entidade X
+tiveram 7 (sete) propostas classificadas dentro do limite orçamentário da
+chamada pública sendo, 3 (três) na Linha Temática 1, 1 (uma) na Linha
+Temática 2, 1 (uma) na Linha Temática 3 e 2 (duas) na Linha Temática
+4. Poderão ser apoiadas 4 (quatro) propostas da Entidade X, sendo uma
+em cada linha temática. No caso das linhas temáticas 1 e 4, onde a
+Entidade X teve mais de uma proposta classificada, apenas a proposta
+mais bem ranqueada em cada uma dessas linhas temáticas poderá ser
+apoiada.
+
+5.4. A proposta poderá conter até 3 (três) coexecutores.
+5.4.1. A participação de uma ICT como Executora Principal, não impede sua participação
+como Coexecutora em outras propostas.
+5.4.2. Os Coexecutores deverão estar devidamente cadastrados na Plataforma de Apoio
+e Financiamento, com todas as informações e documentos exigidos para a
+submissão da proposta.
+5.5. As propostas devem apresentar os requisitos técnicos e informações solicitados no
+Formulário de Apresentação de Propostas e deverá conter objetivamente suas referências
+metodológicas, indicadores e mecanismos de certificação – quando for o caso – das
+soluções inovadoras a serem desenvolvidas.
+5.6. Serão consideradas na avaliação de mérito da proposta parcerias celebradas pela ICT com
+Entidades de assistência técnica e extensão rural; Cooperativas; Organizações da
+sociedade civil; Organizações comunitárias; Movimentos sociais; Entidades representativas
+de coletivos de Agricultores(as) Familiares, Pescadores(as) Artesanais, Aquicultores(as),
+Povos Indígenas, Comunidades Quilombolas e Povos e Comunidades Tradicionais, nos
+termos da Lei nº 11.326/2006.
+5.6.1. Essas parcerias deverão ser comprovadas por meio de carta de anuência,
+contratos, acordos de cooperação, protocolos de intenções ou quaisquer
+instrumentos jurídicos vigentes no momento da apresentação da proposta, devendo
+tais documentos serem anexados ao Formulário de Apresentação de Propostas.
+5.6.1.1.
+
+Serão considerados como instrumentos jurídicos válidos, para fins
+
+de atendimento do item 5.6, aqueles que atenderem aos seguintes
+quesitos formais: i) indicação expressa da ICT e demais atores
+institucionais do item 5.6.1, com os respectivos CNPJs, ii) assinaturas
+digitais oficiais de todos os representantes legais da parceria, com as
+respectivas datas e iii) o prazo de validade da parceria, que não poderá
+ser inferior a 36 meses.
+5.6.1.2.
+
+O descumprimento dos quesitos formais do item 5.6.1.1 inabilita o
+
+documento de parceria para fins deste Edital e da avaliação de mérito da
+
+proposta.
+5.6.2. No caso das parcerias previstas no item 5.6, deverão ser apresentadas as
+estratégias que indiquem como os resultados obtidos com o projeto serão
+disponibilizados pela ICT executora para seus parceiros.
+5.7. As propostas que indicarem ICTs públicas como executoras deverão apresentar cópia da
+sua Política de Inovação, em atendimento ao previsto no art. 15-A da Lei n° 10.973/2004
+c/c art. §2º do art. 14, do Decreto n° 9.283/2018, que será considerada na avaliação de
+mérito da proposta.
+6. DESPESAS APOIÁVEIS
+6.1. É permitida a destinação de itens apenas para as ICTs Executora Principal e Coexecutoras,
+exceto as Despesas Operacionais e Administrativas, que serão destinadas para a
+Proponente.
+6.2. Os itens solicitados deverão ter relação direta com a execução do projeto de pesquisa
+aplicada e/ou com a preparação da infraestrutura de pesquisa necessária para sua
+execução.
+6.3. Sempre que possível, as despesas de natureza semelhante deverão ser aglutinadas na
+Relação de Itens Solicitados no Formulário de Apresentação da Proposta.
+6.4. O Anexo 3 apresenta os documentos necessários e orientações pertinentes para o caso de
+itens que possuem exigências específicas.
+6.5. Despesas Correntes
+6.5.1. Material de consumo (nacional ou importado).
+6.5.2. Outros Serviços de Terceiros (Pessoa Jurídica):
+6.5.2.1.
+
+Para despesas com contratação de serviços especializados
+
+necessários à execução do projeto de pesquisa;
+6.5.2.2.
+
+Para manutenção de equipamentos, que deverão englobar todos
+
+os elementos necessários à prestação do serviço;
+
+6.5.2.3.
+
+Serviços
+
+de
+
+instalação
+
+de
+
+equipamentos
+
+associado
+
+ao
+
+associado
+
+ao
+
+desenvolvimento do projeto de pesquisa;
+6.5.2.4.
+
+Aquisição
+
+de
+
+software
+
+especializado
+
+desenvolvimento do projeto de pesquisa;
+6.5.2.5.
+
+Serviços relacionados à proteção da propriedade intelectual dos
+
+resultados do projeto;
+6.5.2.6.
+
+Serviços relacionados à divulgação dos resultados do projeto /
+
+inscrição em congressos.
+6.5.2.7.
+
+Despesas com capacitação/treinamento para os membros das
+
+equipes
+6.5.3. Despesas operacionais e administrativas de caráter indivisível: previstas na Lei
+nº10.973/04, no valor de 5% dos recursos solicitados à Finep, para cobertura de
+custos da proponente relacionados ao projeto
+6.5.4. Despesas acessórias com importação (frete, seguros, despesas alfandegárias),
+limitadas a 20% do valor dos itens importados, observado o Anexo 3.
+6.5.4.1.
+
+Caso a instituição opte por não solicitar despesas acessórias de
+
+importação para os itens importados ou solicite um valor abaixo do limite
+informado pelo sistema, deverá obrigatoriamente ser apresentada
+justificativa indicando como as despesas serão cobertas a fim de garantir
+a execução da proposta.
+6.5.5. Pagamento de pessoal:
+6.5.5.1.
+
+A proposta poderá prever a concessão pagamento de pessoal
+
+(Vencimentos, Vantagens e Encargos), nos termos do Anexo 5.
+6.5.5.2.
+
+O pagamento de pessoal limita-se a até 30% do valor dos recursos
+
+solicitados à Finep.
+
+6.5.6. Diárias e Passagens:
+6.5.6.1.
+
+Destinadas somente aos membros da equipe executora, para
+
+capacitação/treinamento, participação em eventos e congressos e para
+atividades de pesquisa e para o desenvolvimento de recursos humanos,
+até os limites de 10% do valor da proposta, sendo 5% para Diárias e 5%
+para passagens.
+6.5.7. Bolsas
+6.5.7.1.
+
+A proposta poderá prever a concessão de bolsas de pesquisa, nos
+
+termos do Anexo 6.
+6.5.7.2.
+
+A despesa com bolsas será admitida somente em projetos cuja
+
+proponente seja fundação de apoio ou ICT Pública, nos termos da Lei nº
+10.973/2004 e da Lei nº 8.958/1994.
+6.5.7.3.
+
+Os valores e tipos das bolsas a serem concedidas deverão ter
+
+como referência as bolsas de pesquisa de Fomento Tecnológico e
+Extensão Inovadora no Brasil do CNPq, conforme Anexo 6.
+6.5.7.4.
+
+A gestão das bolsas (seleção, pagamento, entre outras
+
+providências) é de responsabilidade da instituição proponente.
+6.5.7.5.
+
+A declaração do bolsista, conforme Anexo 6, deverá ser
+
+obrigatoriamente apresentada à convenente responsável pela gestão das
+bolsas, que prestará contas à Finep quando da apresentação dos
+formulários de resultado parcial de execução do projeto.
+6.5.7.6.
+
+O pagamento de bolsas limita-se a até 30% do valor dos recursos
+
+solicitados à Finep.
+6.5.7.7.
+
+Os bolsistas devem estar vinculados a atividades e metas do Plano
+
+de Trabalho.
+
+6.6. Despesas de Capital:
+6.6.1. Equipamentos e materiais permanentes, nacionais ou importados, incluindo
+eventuais acessórios previstos no mesmo item com valor unitário igual ou superior
+a R$ 50.000,00.
+6.6.1.1.
+
+Serão admitidos sistemas compostos por equipamentos de
+
+pequeno porte, conforme item 2.1.24.
+6.6.2. Aquisição de equipamentos de valor inferior a R$ 50.000,00 exclusivamente que
+se caracterizem como: nobreaks, chillers, condicionadores de ar, casas de
+vegetação, sistemas de irrigação, ou acessórios de um equipamento de valor
+superior a R$ 50.000,00;
+6.6.3. Obras e instalações
+6.6.3.1.
+
+Serão aceitas como obras e instalações apenas as pequenas
+
+adaptações de espaços físicos existentes, nos termos do item 2.1.8 por
+item de adaptação de espaço físico, devendo ser única por ambiente,
+conforme art. 75, inciso IV, alínea c, da Lei nº 14.133/2021 (atualizado
+pelo Decreto nº 12.807/2025).
+6.6.3.2.
+
+É permitido o apoio de obras e instalações apenas em locais em
+
+que a Proponente, a Executora ou eventuais Coexecutoras tenham o
+direito de propriedade do imóvel.
+6.6.3.3.
+
+Caso as obras e instalações, nos termos do item 2.1.8,
+
+caracterizem a ampliação de área construída ou a instalação de novas
+estruturas físicas em imóveis cuja propriedade pertença à entidade
+privada sem fins lucrativos, a liberação de recursos ficará condicionada à
+apresentação da Certidão do Registro Geral de Imóveis da matrícula do
+bem com inclusão de cláusula de inalienabilidade ou de promessa de
+transferência da propriedade à Administração Pública, na hipótese de
+falência, dissolução ou extinção, nos termos do art. 45, § 5º, inciso I, do
+Decreto nº 9.283/2018.
+
+6.6.3.4.
+
+As despesas classificadas na rubrica de Obras e Instalações estarão
+
+limitadas a 10% do valor solicitado.
+6.6.4. Fica vedada a concessão de recursos para apoio à complementação de obras em
+andamento e/ou obras inacabadas.
+6.6.5. São vedadas despesas com obras que não se enquadrem no disposto no item
+6.6.3. e que não se enquadrem no escopo dos objetivos de pesquisa da proposta.
+7. VALOR SOLICITADO À FINEP
+7.1. O valor solicitado à Finep/FNDCT deverá ser de, no mínimo, R$1.000.000,00 (um milhão
+de reais) até, no máximo, R$ 7.000.000,00 (sete milhões de reais) exclusivamente para o
+desenvolvimento do projeto.
+7.2. As propostas que não observarem os limites do item acima serão eliminadas.
+7.3. Caso a proposta seja apresentada por proponente estadual, municipal ou do Distrito
+Federal, será obrigatória a apresentação de contrapartida financeira pela instituição
+convenente, nos percentuais previstos no art. 97, §3º, da LDO 2026, sob pena de
+eliminação da proposta, não sendo admitida a inclusão de apoio previamente à
+contratação.
+7.4. Os itens de orçamento deverão observar, obrigatoriamente, os requisitos de documentação
+elencados no Anexo 3, sob risco de inabilitação, nos termos do item 11.2 deste edital.
+8. CONTRAPARTIDA FINANCEIRA
+8.1. As propostas apresentadas por convenente estadual, municipal ou do Distrito Federal
+deverão prever contrapartida financeira, a ser apresentada pela convenente ou pela
+executora, nos percentuais abaixo, estabelecidos pela Lei nº 15.321/2025 (Lei de Diretrizes
+Orçamentárias – LDO 2026):
+8.2. Instituições Municipais:
+8.2.1. Municípios com até 50.000 (cinquenta mil) habitantes: 0,1% a 4%;
+
+8.2.2. Municípios acima de 50.000 (cinquenta mil) habitantes localizados nas áreas
+prioritárias definidas no âmbito da Política Nacional de Desenvolvimento Regional –
+PNDR, nas áreas da Superintendência do Desenvolvimento do Nordeste – SUDENE,
+da Superintendência do Desenvolvimento da Amazônia – SUDAM e da
+Superintendência do Desenvolvimento do Centro-Oeste – SUDECO: 0,2% a 8%;
+8.2.3. Municípios com até 200.000 (duzentos mil) habitantes, situados em áreas
+vulneráveis a eventos extremos, tais como secas, deslizamentos e inundações,
+incluídas na lista classificatória de vulnerabilidade e recorrência de mortes por
+desastres naturais fornecida pelo Ministério da Ciência, Tecnologia e Inovações: 0,1% a 5%;
+8.2.4. Municípios com até 200.000 (duzentos mil) habitantes, situados em região
+costeira, ou de estuário, com áreas de risco provocadas por elevações do nível do
+mar, ou por eventos meteorológicos extremos, incluídos na lista classificatória de
+vulnerabilidade fornecida pelo Ministério do Meio Ambiente: 0,1% a 5%;
+8.2.5. Demais Municípios:1% a 20%.
+8.3. Instituições Estaduais e do Distrito Federal:
+8.3.1. Localizados nas áreas prioritárias definidas no âmbito da PNDR, nas áreas da
+SUDENE, da SUDAM e SUDECO: 0,1% a 10%;
+8.3.2. Demais Estados: 2% a 20%.
+8.4. Para fins de atendimento aos itens 8.2 e 8.3, serão aceitas, dentre outras, despesas com
+Pessoal e Encargos Sociais (Vencimentos e Vantagens Fixas, Obrigações Patronais e
+Pagamento de Pessoal), desde que destinadas aos pesquisadores alocados em atividades
+do projeto;
+8.5. As propostas apresentadas por ICT federal ou instituição privada sem fins lucrativos, na
+qualidade de convenente, são isentas de contrapartida.
+
+9. PRAZO DE EXECUÇÃO DOS PROJETOS
+9.1. O prazo de execução da proposta deverá ser de até 36 (trinta e seis) meses, prorrogável,
+justificadamente, a critério da Finep.
+10. APRESENTAÇÃO DA PROPOSTA E SUA DOCUMENTAÇÃO
+10.1. A proposta deverá ser preenchida na plataforma da Finep disponível no endereço
+https://financiamento.finep.gov.br e enviada até a data e horário limites estabelecidos no
+item 15;
+10.2. O preenchimento das informações da proposta deverá ser realizado de acordo com as
+orientações contidas no Manual da Plataforma de Apoio e Financiamento, disponibilizado
+em
+
+https://legacy.finep.gov.br/area-para-clientes-externo/financiamento-nao-
+
+reembolsavel, observando as regras deste Edital.
+10.3. Informações e Documentos Adicionais que a instituição julgar necessário para análise da
+proposta poderão ser anexados ao Formulário;
+10.4. Para preenchimento e envio da proposta, as Instituições envolvidas deverão estar
+previamente cadastradas na plataforma disponibilizada pela Finep, disponível no endereço
+https://cadastro.finep.gov.br. Deverão ser preenchidos e enviados os segmentos "Básico
+de Pessoa Jurídica" e "Documentos Institucionais", até o prazo previsto no item 15,
+observando-se o seguinte:
+10.4.1. O acesso ao preenchimento de proposta para a chamada está condicionado à
+análise prévia e aprovação pela Finep desse cadastro;
+10.4.2. A Finep analisará o cadastro apenas quando os segmentos "Básico de Pessoa
+Jurídica" e "Documentos Institucionais" tiverem sido enviados, dentro do prazo,
+retornando pelo sistema caso sejam necessários ajustes;
+10.4.3. A conclusão da avaliação de cadastro pela Finep e, consequentemente, a
+possibilidade de envio de propostas, só fica assegurada para os casos em que os
+dados de cadastro completos e eventuais ajustes solicitados, sejam encaminhados
+com antecedência mínima de 5 (cinco) dias úteis do Término do prazo para envio
+eletrônico da proposta.
+
+10.5. Após o término dos prazos estabelecidos no item 15, nenhuma outra proposta será
+recebida, assim como não serão aceitos adendos ou esclarecimentos que não forem
+solicitados pela Finep;
+10.6. Não serão aceitas propostas e documentações encaminhadas por qualquer outro meio que
+não seja a plataforma disponibilizada para apresentação das propostas, seja meio físico,
+mídia digital etc.
+11. PROCESSO DE SELEÇÃO E AVALIAÇÃO DAS PROPOSTAS
+11.1. Habilitação da Proposta: Essa etapa é eliminatória e consistirá no exame formal da
+proposta segundo os critérios abaixo definidos na presente Chamada, cabendo à Finep
+sua realização:
+Nº
+
+Item de
+
+Requisitos Formais para Habilitação da Proposta
+
+Referência
+
+1
+
+Cadastro das instituições dentro do prazo
+
+2
+
+Elegibilidade
+executora.
+
+3
+
+Quantidade máxima de propostas por ICT
+
+5.2
+
+4
+
+Quantidade máxima de coexecutores
+
+5.4
+
+5
+
+Apresentação de cópia da Política de Inovação (exclusivo para
+ICTs públicas)
+
+5.7
+
+6
+
+Atendimento à LDO 2026, quanto à contrapartida exigida a ser
+aportada na proposta.
+
+7.3 e 8
+
+das
+
+instituições
+
+proponente/convenente
+
+10.4 e 15
+e
+
+3
+
+11.1.1. O exame dos requisitos formais previstos nestes Edital poderá, total ou
+parcialmente, ser realizado de forma automática pela Plataforma de Apoio e
+Financiamento, durante o preenchimento do Formulário de Apresentação de
+Proposta;
+
+11.1.2. Os requisitos que não possam ser verificados de forma automática, serão objeto
+de Formulário de Habilitação da proposta, que embasará a decisão de habilitação;
+11.1.3. As propostas que não atenderem a pelo menos um dos Requisitos Formais para
+Habilitação da Proposta, serão eliminadas.
+11.2. Habilitação dos Itens de Orçamento: Essa etapa é eliminatória e consistirá no exame
+formal dos itens de orçamento segundo os critérios abaixo definidos na presente Chamada,
+cabendo à Finep sua realização:
+Nº
+
+Requisitos Formais para Habilitação dos Itens de
+Orçamento
+
+Item de
+Referência
+7.4 e Anexo
+3
+
+1
+
+Adequação dos documentos previstos para a proposta.
+
+2
+
+Atendimento ao tipo de despesas apoiadas
+
+6
+
+3
+
+Percentual de itens de orçamento eliminados
+
+11.2.2
+
+11.2.1. Somente os itens de orçamento habilitados nesta etapa estarão aptos a participar
+da etapa seguinte de avaliação de mérito;
+11.2.2. A proposta será eliminada nesta etapa de Habilitação, caso o valor consolidado
+dos itens de orçamento inabilitados supere 30% do valor solicitado;
+11.2.3. Não será permitida a importação de bens ou serviços com similar nacional
+detentor de qualidade e preço equivalentes, exceto se constatada a impossibilidade
+do fornecimento do bem ou da prestação do serviço por empresa nacional,
+conforme disposto no art. 138, §1º, inciso III da Lei de Diretrizes Orçamentárias de
+2026 (Lei n° 15.321/2025);
+11.2.4. As propostas e itens de orçamento que atenderem aos requisitos formais estarão
+habilitados para a etapa de Avaliação de Mérito e serão analisados quanto ao mérito
+pelo Comitê de Avaliação.
+
+11.3. Processo de Análise de Mérito: O Comitê de Avaliação analisará separadamente o mérito
+das propostas, segundo os critérios a seguir:
+
+Critérios para Avaliação de Mérito
+
+Notas Pesos
+
+1. Aderência ao Edital, Desenvolvimento C&T e Resultados
+Esperados:
+(i) Alinhamento do projeto ao objeto da Chamada e à Linha Temática
+a que concorre;
+(ii) Contribuição para o desenvolvimento científico e tecnológico nos
+âmbitos nacional, regional e local;
+(iii) Resultados e impactos esperados decorrentes do
+desenvolvimento das atividades de pesquisa que serão realizadas
+(item 1.4);
+(iv) Aderência do projeto à Política de Inovação da Executora
+
+1-5
+
+5
+
+2. Equipe:
+(i) Composição e vínculo;
+(ii) Tempo de Dedicação dos membros da equipe ao projeto;
+(iii) Aderência dos membros da equipe ao projeto;
+(iv) Qualificação e produtividade
+
+1-5
+
+5
+
+3. Consistência e adequação do Projeto:
+(i) Adequação do cronograma físico, do prazo de execução, do
+orçamento apresentado e dos itens solicitados ao desenvolvimento
+das atividades de pesquisa, de extensão e ao alcance dos objetivos;
+(ii) Compatibilidade da metodologia proposta aos objetivos do
+projeto;
+(iii) Compatibilidade da infraestrutura disponível para o
+desenvolvimento das pesquisas
+
+1-5
+
+5
+
+4. Contribuição do projeto aos objetivos do Setor:
+(i) Abrangência e público-alvo;
+(ii) Aderência e relevância à estratégia nacional de C,T&I e às
+Políticas que vem tratando do mesmo Tema (NIB, Programa Nacional
+de Bioinsumos, PLANAPO, PNPIAF e ENECI);
+(iii) Contribuição na qualidade de vida e na renda do produtor
+familiar;
+(iv) Contribuição para o desenvolvimento sustentável
+
+1-5
+
+4
+
+5. Parcerias previstas, conforme item 5.6
+
+0-5
+
+2
+
+11.3.1. Serão eliminadas as propostas que:
+11.3.1.1.
+
+Obtenção de média ponderada inferior a 3,5 (três pontos e meio),
+
+considerando-se a totalidade dos critérios de avaliação;
+11.3.1.2.
+
+Obtenção de nota 1 (um) no critério 3 - Consistência e
+
+adequação do Projeto, que será atribuída quando o conjunto de cortes
+dos itens do orçamento passíveis de recomendação inviabilize a execução
+da proposta ou ficar caracterizada na proposta a inviabilidade de
+execução da proposta.
+11.3.2. Será atribuída nota zero ao critério 5, caso a proposta não traga as informações
+solicitadas nos itens 5.6.1
+11.3.3. As propostas não eliminadas serão classificadas em ordem decrescente, em cada
+Linha Temática;
+11.3.4. Nesta etapa de classificação, serão considerados como critérios de desempate:
+11.3.4.1.
+
+A maior nota no critério 1;
+
+11.3.4.2.
+
+Persistindo o empate, a maior nota no critério 2, e assim
+
+sucessivamente;
+11.3.4.3.
+
+Persistindo o empate até o critério 5, a proposta de menor valor
+
+após a Avaliação de Mérito;
+11.3.4.4.
+
+Ainda persistindo o empate, será considerada a proposta que
+
+tenha sido recebida pela Finep com maior antecedência.
+11.3.5. Serão eliminadas as propostas que não atendam às disposições gerais da Seleção
+Pública e da legislação vigente ou que apresentem impeditivos à aprovação;
+11.3.6. Após classificadas, as propostas recomendadas para esta Seleção Pública serão
+submetidas a uma análise técnica e jurídica.
+
+12. RESULTADOS
+12.1. O Resultado Preliminar e o Resultado Final das etapas de Habilitação e Avaliação de Mérito
+serão divulgados na página da Finep na Internet nas datas estabelecidas no item 15 e
+caberá às instituições interessadas sua verificação para atendimento dos prazos
+estabelecidos nesta Seleção Pública;
+12.2. No Resultado Preliminar da Habilitação, serão relacionadas as propostas que atenderem
+às exigências formais de apresentação e, após análise dos recursos interpostos para esta
+etapa, haverá a divulgação do Resultado Final da Habilitação na página da Finep na
+internet;
+12.3. No Resultado Preliminar da Avaliação de Mérito, será disponibilizada a ordem de
+classificação provisória das propostas por Linha Temática. A inclusão de uma proposta na
+lista provisória não assegura sua permanência no rol de contemplados, tendo em vista a
+possibilidade de alteração da ordem de classificação após o julgamento dos recursos;
+12.4. Após o exame dos recursos, o Resultado Final da Avaliação de Mérito será divulgado na
+página da Finep com a ordem de classificação das propostas.
+13. INTERPOSIÇÃO DE RECURSOS
+13.1. Após a divulgação dos resultados preliminares das etapas de Habilitação e Avaliação de
+Mérito, eventual recurso poderá ser apresentado exclusivamente pela Plataforma de Apoio
+e Financiamento;
+13.2. O prazo para interposição do recurso será de até 10 (dez) dias corridos a contar da data
+de divulgação do resultado preliminar de cada etapa no Portal da Finep na internet;
+13.3. Considera-se prorrogado o prazo até o primeiro dia útil seguinte se o vencimento cair em
+dia em que não houver expediente ou este for encerrado antes da hora normal;
+13.4. O recurso deverá obedecer aos requisitos dos artigos 58, inciso I, e 60, da Lei nº
+9.784/1999;
+13.5. No texto do pedido de recurso, não serão aceitas informações adicionais de qualquer
+natureza que modifiquem a proposta original, nem o envio de documentos
+
+complementares àqueles originalmente encaminhados;
+13.6. Recursos apresentados por meio diverso do estabelecido ou fora dos prazos definidos (item
+O prazo para interposição do recurso será de até 10 (dez) dias corridos a contar da data
+de divulgação do resultado preliminar de cada etapa no Portal da Finep na internet) não
+serão admitidos;
+13.7. No recurso do resultado preliminar da etapa de Avaliação de Mérito, não poderão ser
+abordadas questões referentes à etapa de Habilitação;
+13.8. Poderá ser apresentado um único recurso por proposta referente à etapa de Habilitação e
+um único recurso por proposta referente à etapa de Avaliação de Mérito;
+13.9. Caso ocorra a aceitação de um ou mais recursos interpostos na etapa de Avaliação de
+Mérito, poderá haver alteração dos graus originalmente atribuídos às propostas objeto
+desses recursos e, consequentemente, poderá haver alteração na classificação geral das
+propostas. Desta forma, o Resultado Final poderá, eventualmente, diferir do Resultado
+Preliminar divulgado.
+14. ACOMPANHAMENTO
+14.1. O acompanhamento técnico e financeiro das propostas apoiadas será feito pela Finep, por
+meio de formulários de resultados, de visitas de acompanhamento, reuniões técnicas ou
+outros mecanismos de avaliação, a critério da Finep.
+15. CRONOGRAMA
+15.1. Prazos do cronograma da Seleção Pública:
+Fase
+
+Data
+
+Lançamento da Chamada
+
+25/03/2026
+
+Disponibilização do Formulário de Apresentação de Proposta na
+Plataforma de Apoio e Financiamento
+
+31/03/2026
+
+Término do prazo para envio do Cadastro na Plataforma de Apoio e
+Financiamento (segmentos "Básico de Pessoa Jurídica" e "Documentos
+Institucionais")
+
+26/06/2026
+
+Término do prazo para envio da proposta na Plataforma de Apoio e
+Financiamento
+
+03/07/2026
+
+Divulgação do Resultado Preliminar da Habilitação
+
+20/07/2026
+
+Divulgação do Resultado Final da Habilitação
+
+07/08/2026
+
+Divulgação do Resultado Preliminar da Avaliação de Mérito
+
+02/10/2026
+
+Divulgação do Resultado Final da Avaliação de Mérito
+
+04/11/2026
+
+15.2. O horário limite para envio do cadastro se encerra às 17h00 (horário de Brasília).
+15.3. O horário limite para envio da proposta se encerra às 17h00 (horário de Brasília).
+15.4. O horário limite para envio de recursos frente aos resultados divulgados se encerra às
+17h00 (horário de Brasília).
+15.5. A Finep não se responsabilizará por solicitação de inscrição de propostas não recebidas
+por
+
+motivo
+
+de
+
+ordem
+
+técnica
+
+dos
+
+computadores,
+
+falhas
+
+de
+
+comunicação,
+
+congestionamento das linhas de comunicação, bem como por outros fatores que
+impossibilitem a transferência de dados.
+15.6. Esta Seleção Pública tem validade de 18 (dezoito) meses.
+16. CONTRATAÇÃO E REPASSE DE RECURSOS
+16.1. As propostas aprovadas nos termos do item Após o exame dos recursos, o Resultado Final
+da Avaliação de Mérito será divulgado na página da Finep com a ordem de classificação
+das propostas. da chamada deverão ser contratadas em 60 (sessenta) dias contados a
+partir da Decisão da Diretoria Executiva da Finep que aprova as condições para o apoio de
+cada proposta. As propostas não contratadas nesse prazo poderão ser arquivadas a critério
+da Finep.
+16.2. Se houver atraso na contratação causado pela Finep, o prazo de contratação será
+prorrogado pelo período correspondente ao atraso ocorrido.
+16.3. Eventuais condicionantes para a contratação e/ou primeira liberação de recursos de cada
+
+proposta serão definidas conforme Decisão da Diretoria Executiva da Finep, após a adoção
+dos fluxos de contratação usuais da Finep.
+16.4. A Finep poderá acrescentar condições específicas para apoio a cada instituição, diante de
+suas especificidades ou da proposta aprovada, e poderá atualizar a minuta padrão até a
+data da celebração do instrumento contratual, além das condições contratuais gerais
+constantes do Anexo 1 – Minuta Padrão de Convênio.
+16.5. A aprovação final da proposta não garante a contratação, que não será realizada nas
+hipóteses:
+16.5.1. Da instituição convenente não apresentar regularidade jurídica diante das normas
+legais
+
+e
+
+regulamentares
+
+para
+
+receber
+
+financiamento
+
+público,
+
+verificada,
+
+principalmente, por meio dos seguintes documentos, conforme natureza jurídica da
+instituição:
+a) Credenciamento ou Autorização da fundação de apoio a IFES ou ICT federal perante o
+MEC/MCTI;
+b) Formulário de Dados Cadastrais com a Informação de Conta Bancária e Designação do
+Ordenador de Despesas;
+c) Lei Orçamentária Anual (LOA) onde conste a previsão orçamentária de contrapartida em
+caso de convenente estadual, municipal ou do Distrito Federal;
+d) Adimplência com a Finep referente à prestação de contas financeira de convênios
+anteriormente firmados;
+e) Certidão de Débitos relativos aos Tributos Federais e à Dívida Ativa da União;
+f) Certificado de Regularidade do FGTS;
+g) Adimplência da convenente com a União por meio de consulta ao CADIN;
+h) Adimplência da convenente com a União por meio de consulta ao SIAFI;
+i)
+
+Cadastro Nacional de Condenações Cíveis por Ato de Improbidade Administrativa e
+Inelegibilidade (CNCIAI);
+
+j) Cadastro de empregadores que tenham submetido trabalhadores a condições análogas à de
+escravo;
+
+k) Sistema Auxiliar de Informações para Transferências Voluntárias (CAUC);
+l)
+
+Cadastro de Entidades Privadas sem Fins Lucrativos Impedidas (CEPIM);
+
+m) Certificado de Regularidade Previdenciária (CRP);
+n) Verificação da regularidade quanto ao pagamento de precatórios judiciais;
+o) Cadastro de Entidades Devedoras (CEDIN);
+p) Cadastro Nacional de Empresas Inidôneas e Suspensas (CEIS);
+
+q) Cadastro Nacional de Empresas Punidas (CNEP);
+r) Certidão Negativa de Débitos Trabalhistas;
+s) Sistema de Cadastramento Unificado de Fornecedores (SICAF);
+t) Verificação de ausência de omissão no dever de prestar contas de convênio ou qualquer
+outro tipo de parceria anteriormente celebrada ou ausência de contas rejeitadas pela
+Administração Pública federal nos últimos cinco anos, nos termos do art. 40, I, do Decreto
+n° 9.283/16;
+u) Verificação de inexistência de contas julgadas irregulares ou rejeitadas pelo Tribunal de
+Contas da União, em decisão irrecorrível, nos últimos cinco anos, nos termos do art. 40, II,
+do Decreto n° 9.283/16;
+
+v) Verificação da situação dos dirigentes da convenente que não poderão (i) ter contas relativas
+a convênios rejeitadas pelo TCU em decisão irrecorrível nos últimos oito anos; (ii) estar
+inabilitados para o exercício de cargo em comissão ou função de confiança, enquanto durar
+a inabilitação; (iii) ter sido condenados por ato de improbidade enquanto durarem os prazos
+estabelecidos nos incisos I, II e III do caput do art. 12 da Lei nº 8.429/92;
+w) Formulário de Dados Pessoais dos Dirigentes da ICT Privada ou da entidade gestora privada;
+x) Licenciamento ambiental e/ou documento regulatório válido e adequado para o
+desenvolvimento das atividades do Convênio ou declaração de sua desnecessidade emitida
+pela autoridade competente;
+y) Comprovação do exercício pleno dos poderes inerentes à propriedade do imóvel onde as
+intervenções serão realizadas.
+16.5.2. A apresentação dos documentos indicados nas alíneas ‘x’ e ‘y’, do item anterior,
+poderá ser postergada para a liberação de recursos, observados os normativos
+aplicáveis.
+16.5.3. Da desistência, por qualquer motivo, da organização parceira indicada na forma
+do item 5.6 e signatária do documento apresentado conforme item 5.6.1, hipótese
+em que a proposta será eliminada, ainda que previamente selecionada para apoio.
+
+16.5.4. Das instituições deixarem de apresentar quaisquer dos documentos cuja
+apresentação seja exigida nesta Chamada ou não comprovarem a sua capacidade
+para a execução da proposta, ainda que previamente selecionada para apoio;
+16.6. A Finep poderá solicitar documentos e informações adicionais para a contratação de
+propostas;
+16.7. A liberação de recursos depende da disponibilidade orçamentária e financeira da
+Finep/FNDCT, bem como do cumprimento das condições prévias fixadas no instrumento
+contratual.
+17. BASE LEGAL
+17.1. A presente seleção pública tem como base legal a seguinte legislação, em especial: Lei nº
+10.973/2004, regulamentada pelo Decreto nº 9.283/2018; Lei nº 11.540/2007,
+regulamentada pelo Decreto nº 6.938/2009; Instrução Normativa nº 01/2010, do
+Conselho Diretor do FNDCT; Lei n° 8.958/1994, regulamentada pelo Decreto n°
+7.423/2010; Lei n° 15.321/2025 (Lei de Diretrizes Orçamentárias – LDO 2026); Lei n°
+13.709/2018 (Lei Geral de Proteção de Dados Pessoais - LGPD).
+18. DISPOSIÇÕES FINAIS
+18.1. Serão desconsideradas as propostas que estejam em desacordo com quaisquer itens desta
+Seleção Pública;
+18.2. Ao preencher o formulário, as instituições se comprometem com a veracidade das
+informações declaradas;
+18.3. A Seleção Pública poderá ser revogada ou anulada a qualquer tempo, no todo ou em parte,
+por motivo de interesse público ou exigência legal, sem que isso implique direito à
+indenização ou reclamação de qualquer natureza;
+18.4. Com a inscrição nesta Seleção Pública, as instituições participantes obrigam-se a obter o
+consentimento dos titulares dos dados pessoais que serão disponibilizados em suas
+propostas, salvo nos casos em que opere outra hipótese legal de tratamento que dispense
+o referido consentimento. Caberá à proponente, ainda, cientificar o titular sobre o
+compartilhamento de seus dados pessoais com a FINEP e quanto ao Aviso de Privacidade
+
+disponível no sítio eletrônico da Finep (https://legacy.finep.gov.br/aviso-de-privacidadelei-geral-de-protecao-de-dados-lgpd), como fonte de informações acerca dos tratamentos
+de tais dados realizados pela Finep;
+
+18.5. Na hipótese de descumprimento dessa obrigação, as Instituições proponentes sujeitar-seão às penalidades previstas na Lei 13.709/2018, ou em outra lei que a suceda, sem
+prejuízo da obrigação de reparar eventuais perdas e danos causados à Finep;
+18.6. Dúvidas a respeito do conteúdo da presente Seleção Pública deverão ser dirigidas
+exclusivamente para a caixa postal eletrônica cp_af2026@finep.gov.br. A Finep, a seu
+critério, poderá divulgar formulário de perguntas e respostas frequentes;
+18.7. O encaminhamento de questionamentos à caixa postal não exime as instituições
+participantes de observarem os prazos determinados para a chamada;
+18.8. Os casos omissos serão dirimidos pela Diretoria Executiva da Finep;
+18.9. Fica eleito o foro da cidade do Rio de Janeiro para dirimir qualquer controvérsia oriunda
+do presente Edital, que não puder ser resolvida de comum acordo entre as partes,
+podendo a Finep optar pelo foro de sua sede;
+18.10. Eventuais irregularidades ou descumprimentos da chamada ou da legislação vigente
+podem
+
+ser
+
+denunciados
+
+à
+
+Ouvidoria,
+
+https://faleconosco.finep.gov.br/ouvidoria.
+
+por
+
+meio
+
+do
+
+endereço
+
+18.11. Os anexos listados a seguir integram esta Seleção Pública:
+Anexo 1 – Minuta Padrão de Convênio
+Anexo 2 – Detalhamento das Linhas Temáticas
+Anexo 3 - Exigências para avaliação dos itens de Orçamento
+Anexo 4 – Orientações para Apresentação de Projeto Resumido de Obras
+Anexo 5 - Tabela com Requisitos e Valores para Pagamento de Pessoal
+Anexo 6 – Orientações para Despesas Relativas a Bolsas;
+Anexo 7 – Checklist de apresentação de proposta
+Rio de Janeiro,
+
+Luiz Antonio Rodrigues Elias
+Presidente
+Financiadora de Estudos e Projetos – Finep
+Empresa vinculada ao Ministério da Ciência, Tecnologia e Inovação
+
+

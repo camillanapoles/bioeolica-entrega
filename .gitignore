@@ -22,6 +22,20 @@ workspace/**/logs/*.log
 # CCG runtime task state (mutates every turn — track via .context/ instead)
 .ccg/tasks/
 
+# Ephemeral analysis dumps / stray check scripts (regenerable, never commit)
+.ssot_check.py
+docs/ANALISE_*.md
+docs/ANALISE_*.json
+docs/wiki/.pending/
+
+# Deprecated module backups
+**/.old.modules/
+
+# Distinct consultation repository (brought in without git) — externalização como
+# submodule/link pendente. Não é entregável deste repo; fica no disco apenas como
+# fonte de consulta para os agentes. Ver docs/CI-CD-MANDATORY.md.
+modules/MathematicalEngineeringDeepLearning/
+
 # Home-directory / editor / tooling junk that leaked into the worktree.
 # NEVER commit personal dotfiles or local tool configs.
 .bash_profile
