@@ -22,4 +22,19 @@ workspace/**/logs/*.log
 # CCG runtime task state (mutates every turn — track via .context/ instead)
 .ccg/tasks/
 
+# Home-directory / editor / tooling junk that leaked into the worktree.
+# NEVER commit personal dotfiles or local tool configs.
+.bash_profile
+.bashrc
+.zshrc
+.zprofile
+.profile
+.gitconfig
+.ripgreprc
+.gitmodules
+.idea
+.vscode
+.mcp.json
+.claude
+
 # uv project lock is tracked explicitly (committed below for repro)

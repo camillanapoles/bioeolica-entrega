@@ -9,7 +9,12 @@ from __future__ import annotations
 from typing import Optional
 import numpy as np
 
-import cadquery as cq
+try:
+    import cadquery as cq
+    _CADQUERY_AVAILABLE = True
+except ImportError:
+    _CADQUERY_AVAILABLE = False
+    cq = None  # type: ignore[assignment]
 
 
 class CadModel:
@@ -24,6 +29,8 @@ class CadModel:
     """
 
     def __init__(self, workplane: str = "XY", origin: tuple = (0, 0, 0)):
+        if not _CADQUERY_AVAILABLE:
+            raise RuntimeError("CadQuery is required for 3D modeling. Install with: pip install cadquery")
         self.wp = cq.Workplane(workplane).workplane(offset=origin[2])
         if origin[:2] != (0, 0):
             self.wp = self.wp.center(origin[0], origin[1])

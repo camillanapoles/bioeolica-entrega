@@ -17,11 +17,11 @@ def _import_by_path(rel_path: str, mod_name: str):
     return mod
 
 
-_kf_mod = _import_by_path("kdi-m3-bridge/modules/kdi_forwarder.py", "kdi_forwarder")
-_macro_mod = _import_by_path("kdi-m3-bridge/modules/kdi_macro.py", "kdi_macro")
-_meso_mod = _import_by_path("kdi-m3-bridge/modules/kdi_meso.py", "kdi_meso")
-_micro_mod = _import_by_path("kdi-m3-bridge/modules/kdi_micro.py", "kdi_micro")
-_cad_mod = _import_by_path("cad-cae-platform/modules/cad_bridge.py", "cad_bridge")
+_kf_mod = _import_by_path("kdi-m3-bridge/src/kdi_m3/kdi_forwarder.py", "kdi_forwarder")
+_macro_mod = _import_by_path("kdi-m3-bridge/src/kdi_m3/kdi_macro.py", "kdi_macro")
+_meso_mod = _import_by_path("kdi-m3-bridge/src/kdi_m3/kdi_meso.py", "kdi_meso")
+_micro_mod = _import_by_path("kdi-m3-bridge/src/kdi_m3/kdi_micro.py", "kdi_micro")
+_cad_mod = _import_by_path("cad-cae-platform/src/cad_cae/cad_bridge.py", "cad_bridge")
 
 import streamlit as st
 

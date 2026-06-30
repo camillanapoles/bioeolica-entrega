@@ -1,5 +1,7 @@
-import pytest
-from modules.kdi_meso import MesoAnalysis
+import sys, os, pytest
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
+from kdi_m3.kdi_meso import MesoAnalysis
 
 def test_defaults():
     ma = MesoAnalysis()
