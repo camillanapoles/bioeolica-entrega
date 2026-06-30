@@ -1,0 +1,188 @@
+{
+  "chunk": "07",
+  "nodes": [
+    {"id": "edital_analise_checklist_checklist", "type": "document", "label": "Checklist 9 temas do edital FINEP AgriFam-ICT 2026", "source": "edital/analise/checklist.md", "confidence": 1.0},
+    {"id": "edital_analise_checklist_elegibilidade", "type": "concept", "label": "Elegibilidade ICT (proponente/executora/coexecutora)", "source": "edital/analise/checklist.md", "confidence": 1.0},
+    {"id": "edital_analise_checklist_prazos", "type": "concept", "label": "Cadastro e prazos submissão", "source": "edital/analise/checklist.md", "confidence": 1.0},
+    {"id": "edital_analise_checklist_enquadramento", "type": "concept", "label": "Enquadramento financeiro", "source": "edital/analise/checklist.md", "confidence": 1.0},
+    {"id": "edital_analise_checklist_parcerias", "type": "concept", "label": "Parcerias (max 3 coexecutoras)", "source": "edital/analise/checklist.md", "confidence": 1.0},
+
+    {"id": "edital_analise_cronograma_cronograma", "type": "document", "label": "Cronograma retificado FINEP AgriFam-ICT 2026", "source": "edital/analise/cronograma.md", "confidence": 1.0},
+    {"id": "edital_analise_cronograma_prazo_cadastro", "type": "concept", "label": "Prazo cadastro 26/06/2026", "source": "edital/analise/cronograma.md", "confidence": 1.0},
+    {"id": "edital_analise_cronograma_prazo_proposta", "type": "concept", "label": "Prazo proposta 03/07/2026", "source": "edital/analise/cronograma.md", "confidence": 1.0},
+    {"id": "edital_analise_cronograma_execucao_36m", "type": "concept", "label": "Execução máxima 36 meses", "source": "edital/analise/cronograma.md", "confidence": 1.0},
+
+    {"id": "edital_analise_elegibilidade_elegibilidade", "type": "document", "label": "Análise de elegibilidade ICT", "source": "edital/analise/elegibilidade.md", "confidence": 1.0},
+    {"id": "edital_analise_elegibilidade_estrutura", "type": "concept", "label": "Estrutura proponente/executora/coexecutora", "source": "edital/analise/elegibilidade.md", "confidence": 1.0},
+    {"id": "edital_analise_elegibilidade_max_propostas", "type": "concept", "label": "Max 2 propostas/ICT executora", "source": "edital/analise/elegibilidade.md", "confidence": 1.0},
+
+    {"id": "edital_analise_inconsistencias_inconsistencias", "type": "document", "label": "Análise inconsistencias + pendencias Bioeólica", "source": "edital/analise/inconsistencias.md", "confidence": 1.0},
+    {"id": "edital_analise_inconsistencias_no_critical", "type": "rationale", "label": "Sem inconsistências críticas; pendências e riscos Bioeólica", "source": "edital/analise/inconsistencias.md", "confidence": 1.0},
+
+    {"id": "edital_analise_indice_tematico_indice", "type": "document", "label": "Índice temático + hierarquia documental", "source": "edital/analise/indice_tematico.md", "confidence": 1.0},
+    {"id": "edital_analise_indice_tematico_rerratificacao", "type": "concept", "label": "10 mudanças críticas da rerratificação", "source": "edital/analise/indice_tematico.md", "confidence": 1.0},
+    {"id": "edital_analise_indice_tematico_hierarquia", "type": "concept", "label": "Hierarquia COM_RET > EDITAL_RET > ANEXO_RET", "source": "edital/analise/indice_tematico.md", "confidence": 1.0},
+
+    {"id": "edital_analise_linhas_tematicas_linhas", "type": "document", "label": "Linhas temáticas FINEP AgriFam-ICT 2026", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+    {"id": "edital_analise_linhas_tematicas_linha1", "type": "concept", "label": "Linha 1: Bioinsumos (R$50M)", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+    {"id": "edital_analise_linhas_tematicas_linha2", "type": "concept", "label": "Linha 2: Agroecológicos/Orgânicos (R$50M)", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+    {"id": "edital_analise_linhas_tematicas_linha3", "type": "concept", "label": "Linha 3: Soluções digitais (R$25M)", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+    {"id": "edital_analise_linhas_tematicas_linha4", "type": "concept", "label": "Linha 4: Aquicultura (R$25M)", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+    {"id": "edital_analise_linhas_tematicas_bioeolica_adere", "type": "rationale", "label": "Bioeólica adere à Linha 1 ou 2", "source": "edital/analise/linhas_tematicas.md", "confidence": 1.0},
+
+    {"id": "edital_analise_orcamento_orcamento", "type": "document", "label": "Orçamento consolidado FINEP AgriFam-ICT 2026", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_faixa", "type": "concept", "label": "Faixa R$1M-R$7M", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_tetos", "type": "concept", "label": "Tetos: pessoal/bolsas 30%, diárias/passagens 5%, obras 10%", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_equip50k", "type": "concept", "label": "Equipamentos threshold R$50K (livre vs lista permitida)", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_sistema_composto", "type": "concept", "label": "Sistemas compostos = item único (item 2.1.24)", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_anexo5", "type": "concept", "label": "Anexo 5 tabela pessoal", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+    {"id": "edital_analise_orcamento_anexo6", "type": "concept", "label": "Anexo 6 bolsas (Portaria CNPq)", "source": "edital/analise/orcamento.md", "confidence": 1.0},
+
+    {"id": "docs_projetos_anexo_etica_submissao_anexo", "type": "document", "label": "Anexo ética CEP SAVONIUS-PM-15G", "source": "docs/projetos/anexo-etica-submissao.md", "confidence": 1.0},
+    {"id": "docs_projetos_anexo_etica_submissao_cns510", "type": "concept", "label": "Resolução CNS 510/2016 + 466/2012", "source": "docs/projetos/anexo-etica-submissao.md", "confidence": 1.0},
+    {"id": "docs_projetos_anexo_etica_submissao_tcle", "type": "concept", "label": "TCLE (Termo de Consentimento Livre e Esclarecido)", "source": "docs/projetos/anexo-etica-submissao.md", "confidence": 1.0},
+
+    {"id": "docs_projetos_documentacao_holistica_agrifam_doc", "type": "document", "label": "Documentação holística AgriFam — Lab1+Lab2 projeto único", "source": "docs/projetos/documentacao_holistica_agrifam.md", "confidence": 1.0},
+    {"id": "docs_projetos_documentacao_holistica_agrifam_integracao", "type": "rationale", "label": "Decisão estratégica: Lab1+Lab2 = UM projeto integrado (Linha 2)", "source": "docs/projetos/documentacao_holistica_agrifam.md", "confidence": 1.0},
+    {"id": "docs_projetos_documentacao_holistica_agrifam_6wps", "type": "concept", "label": "6 WPs ao longo de 36 meses", "source": "docs/projetos/documentacao_holistica_agrifam.md", "confidence": 1.0},
+
+    {"id": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "type": "document", "label": "Proposta canônica FINEP AgriFam Bioeólica Linha 2", "source": "docs/projetos/finep-agrifam-bioeolica-linha2.md", "confidence": 1.0},
+    {"id": "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "type": "concept", "label": "Valor R$7M v2.0 retificada / 36 meses", "source": "docs/projetos/finep-agrifam-bioeolica-linha2.md", "confidence": 1.0},
+    {"id": "docs_projetos_finep_agrifam_bioeolica_linha2_ict_go_pe", "type": "concept", "label": "ICT GO (proponente) + ICT PE (coexecutora), 5 comunidades PE/BA", "source": "docs/projetos/finep-agrifam-bioeolica-linha2.md", "confidence": 1.0},
+    {"id": "docs_projetos_finep_agrifam_bioeolica_linha2_gerador_composto", "type": "concept", "label": "Gerador Savonius = item composto único [2.1.24]", "source": "docs/projetos/finep-agrifam-bioeolica-linha2.md", "confidence": 1.0},
+    {"id": "docs_projetos_finep_agrifam_bioeolica_linha2_ssot_p1", "type": "concept", "label": "SSOT P$1 constants.json (zero hardcoded)", "source": "docs/projetos/finep-agrifam-bioeolica-linha2.md", "confidence": 0.95},
+
+    {"id": "docs_projetos_finep_pm_grafite_savonius_doc", "type": "document", "label": "Proposta DESCONTINUADA Savonius-PM-Grafite", "source": "docs/projetos/finep-pm-grafite-savonius.md", "confidence": 1.0},
+    {"id": "docs_projetos_finep_pm_grafite_savonius_violacoes", "type": "rationale", "label": "4-5 violações eliminatórias (R$847K<piso, edital errado, 24m, bolsas 42,5%)", "source": "docs/projetos/finep-pm-grafite-savonius.md", "confidence": 1.0},
+
+    {"id": "docs_projetos_log_versoes_orcamento_log", "type": "document", "label": "Log versionamento orçamento FINEP AgriFam", "source": "docs/projetos/log-versoes-orcamento.md", "confidence": 1.0},
+    {"id": "docs_projetos_log_versoes_orcamento_v1_superseded", "type": "concept", "label": "v1.0 R$4.5M (superseded)", "source": "docs/projetos/log-versoes-orcamento.md", "confidence": 1.0},
+    {"id": "docs_projetos_log_versoes_orcamento_v2_corrente", "type": "concept", "label": "v2.0 R$7M (corrente/retificada)", "source": "docs/projetos/log-versoes-orcamento.md", "confidence": 1.0},
+    {"id": "docs_projetos_log_versoes_orcamento_9_consideracoes", "type": "rationale", "label": "9 considerações do time incorporadas (PI, HPC, 2 ambientes, COP)", "source": "docs/projetos/log-versoes-orcamento.md", "confidence": 1.0},
+
+    {"id": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "type": "document", "label": "Orçamento versionado FINEP AgriFam (v2.0)", "source": "docs/projetos/orcamento-versionado-finep-agrifam.md", "confidence": 1.0},
+    {"id": "docs_projetos_orcamento_versionado_finep_agrifam_v2_0", "type": "concept", "label": "v2.0 R$7M detalhado por rubrica", "source": "docs/projetos/orcamento-versionado-finep-agrifam.md", "confidence": 1.0},
+    {"id": "docs_projetos_orcamento_versionado_finep_agrifam_pi220", "type": "concept", "label": "PI nacional + internacional R$220K", "source": "docs/projetos/orcamento-versionado-finep-agrifam.md", "confidence": 1.0},
+    {"id": "docs_projetos_orcamento_versionado_finep_agrifam_conformidade", "type": "rationale", "label": "Conformidade revisão hostil (todas rubricas nos tetos)", "source": "docs/projetos/orcamento-versionado-finep-agrifam.md", "confidence": 1.0},
+
+    {"id": "github_workflows_vvv_certify_workflow", "type": "code", "label": "Workflow VVV Certify (CI PASS/FAIL labs)", "source": ".github/workflows/vvv-certify.yml", "confidence": 1.0},
+    {"id": "github_workflows_vvv_certify_p4", "type": "concept", "label": "Princípio P$4 Verification/Validation/Certification", "source": ".github/workflows/vvv-certify.yml", "confidence": 1.0},
+
+    {"id": "modules_physics_m3_readme_doc", "type": "document", "label": "Physics M³ workspace README", "source": "modules/physics-m3/README.md", "confidence": 1.0},
+    {"id": "modules_physics_m3_readme_m3_scope", "type": "concept", "label": "Escopo M³: material char, FEM, CFD, topol opt, VVV", "source": "modules/physics-m3/README.md", "confidence": 1.0},
+    {"id": "modules_physics_m3_app_requirements_deps", "type": "code", "label": "Deps app physics-m3 (streamlit/numpy/scipy/matplotlib/plotly)", "source": "modules/physics-m3/app/requirements.txt", "confidence": 1.0},
+    {"id": "modules_physics_m3_requirements_deps", "type": "code", "label": "Deps core physics-m3 (numpy/scipy/matplotlib/pytest/jupyter)", "source": "modules/physics-m3/requirements.txt", "confidence": 1.0},
+    {"id": "modules_physics_m3_github_workflows_ci_ci", "type": "code", "label": "CI physics-m3 (pytest, Python 3.11-3.13)", "source": "modules/physics-m3/.github/workflows/ci.yml", "confidence": 1.0},
+
+    {"id": "modules_mathematicalengineeringdeeplearning_readme_doc", "type": "document", "label": "MathematicalEngineeringDeepLearning README (livro/curso)", "source": "modules/MathematicalEngineeringDeepLearning/README.md", "confidence": 1.0},
+    {"id": "modules_mathematicalengineeringdeeplearning_readme_course_material", "type": "concept", "label": "Material de apoio ao livro (Julia/Python/R/TikZ)", "source": "modules/MathematicalEngineeringDeepLearning/README.md", "confidence": 1.0},
+
+    {"id": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_doc", "type": "document", "label": "Auditoria FSM F1-F9 Lab1 papel-machê-grafite", "source": "workspace/lab1-material-papel-mache-grafite/context/AUDITORIA_FSM_F1_F9.md", "confidence": 1.0},
+    {"id": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_parcial", "type": "rationale", "label": "Status PARCIALMENTE CONFORME F1-F9 canônico", "source": "workspace/lab1-material-papel-mache-grafite/context/AUDITORIA_FSM_F1_F9.md", "confidence": 1.0},
+    {"id": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_gap", "type": "concept", "label": "Gap: artefatos FSM (context_map..F9) a materializar", "source": "workspace/lab1-material-papel-mache-grafite/context/AUDITORIA_FSM_F1_F9.md", "confidence": 1.0}
+  ],
+  "edges": [
+    {"source": "edital_analise_checklist_checklist", "target": "edital_analise_elegibilidade_elegibilidade", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_checklist_checklist", "target": "edital_analise_orcamento_orcamento", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_checklist_checklist", "target": "edital_analise_linhas_tematicas_linhas", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_checklist_checklist", "target": "edital_analise_cronograma_cronograma", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_checklist_elegibilidade", "target": "edital_analise_elegibilidade_estrutura", "relation": "conceptually_related_to", "confidence": 1.0},
+    {"source": "edital_analise_checklist_prazos", "target": "edital_analise_cronograma_prazo_proposta", "relation": "conceptually_related_to", "confidence": 1.0},
+    {"source": "edital_analise_checklist_parcerias", "target": "edital_analise_elegibilidade_max_propostas", "relation": "conceptually_related_to", "confidence": 1.0},
+
+    {"source": "edital_analise_cronograma_cronograma", "target": "edital_analise_cronograma_prazo_cadastro", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_cronograma_cronograma", "target": "edital_analise_cronograma_prazo_proposta", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_cronograma_cronograma", "target": "edital_analise_cronograma_execucao_36m", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_cronograma_execucao_36m", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "relation": "conceptually_related_to", "confidence": 0.95},
+
+    {"source": "edital_analise_elegibilidade_elegibilidade", "target": "edital_analise_elegibilidade_estrutura", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_elegibilidade_elegibilidade", "target": "edital_analise_elegibilidade_max_propostas", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_elegibilidade_estrutura", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_ict_go_pe", "relation": "conceptually_related_to", "confidence": 0.95},
+
+    {"source": "edital_analise_inconsistencias_inconsistencias", "target": "docs_projetos_finep_pm_grafite_savonius_violacoes", "relation": "references", "confidence": 0.85},
+    {"source": "edital_analise_inconsistencias_inconsistencias", "target": "edital_analise_orcamento_orcamento", "relation": "references", "confidence": 0.95},
+
+    {"source": "edital_analise_indice_tematico_indice", "target": "edital_analise_indice_tematico_rerratificacao", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_indice_tematico_indice", "target": "edital_analise_indice_tematico_hierarquia", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_indice_tematico_hierarquia", "target": "edital_analise_checklist_checklist", "relation": "conceptually_related_to", "confidence": 0.85},
+
+    {"source": "edital_analise_linhas_tematicas_linhas", "target": "edital_analise_linhas_tematicas_linha1", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_linhas_tematicas_linhas", "target": "edital_analise_linhas_tematicas_linha2", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_linhas_tematicas_linhas", "target": "edital_analise_linhas_tematicas_linha3", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_linhas_tematicas_linhas", "target": "edital_analise_linhas_tematicas_linha4", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_linhas_tematicas_bioeolica_adere", "target": "edital_analise_linhas_tematicas_linha2", "relation": "rationale_for", "confidence": 1.0},
+    {"source": "edital_analise_linhas_tematicas_bioeolica_adere", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "relation": "rationale_for", "confidence": 0.95},
+
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_faixa", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_tetos", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_equip50k", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_sistema_composto", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_anexo5", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_orcamento", "target": "edital_analise_orcamento_anexo6", "relation": "references", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_faixa", "target": "docs_projetos_orcamento_versionado_finep_agrifam_v2_0", "relation": "conceptually_related_to", "confidence": 1.0},
+    {"source": "edital_analise_orcamento_tetos", "target": "docs_projetos_orcamento_versionado_finep_agrifam_conformidade", "relation": "rationale_for", "confidence": 0.95},
+    {"source": "edital_analise_orcamento_equip50k", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_gerador_composto", "relation": "conceptually_related_to", "confidence": 0.95},
+    {"source": "edital_analise_orcamento_sistema_composto", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_gerador_composto", "relation": "rationale_for", "confidence": 1.0},
+
+    {"source": "docs_projetos_anexo_etica_submissao_anexo", "target": "docs_projetos_anexo_etica_submissao_cns510", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_anexo_etica_submissao_anexo", "target": "docs_projetos_anexo_etica_submissao_tcle", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_anexo_etica_submissao_anexo", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "relation": "references", "confidence": 0.95},
+
+    {"source": "docs_projetos_documentacao_holistica_agrifam_doc", "target": "docs_projetos_documentacao_holistica_agrifam_integracao", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_documentacao_holistica_agrifam_doc", "target": "docs_projetos_documentacao_holistica_agrifam_6wps", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_documentacao_holistica_agrifam_integracao", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "relation": "rationale_for", "confidence": 1.0},
+
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "edital_analise_orcamento_orcamento", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "edital_analise_linhas_tematicas_linha2", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_ict_go_pe", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_gerador_composto", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_finep_pm_grafite_savonius_doc", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "target": "docs_projetos_log_versoes_orcamento_log", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_agrifam_bioeolica_linha2_ssot_p1", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "relation": "shares_data_with", "confidence": 0.95},
+
+    {"source": "docs_projetos_finep_pm_grafite_savonius_doc", "target": "docs_projetos_finep_pm_grafite_savonius_violacoes", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_finep_pm_grafite_savonius_doc", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_proposal", "relation": "conceptually_related_to", "confidence": 1.0},
+    {"source": "docs_projetos_finep_pm_grafite_savonius_violacoes", "target": "edital_analise_orcamento_tetos", "relation": "conceptually_related_to", "confidence": 0.85},
+    {"source": "docs_projetos_finep_pm_grafite_savonius_doc", "target": "edital_analise_cronograma_execucao_36m", "relation": "conceptually_related_to", "confidence": 0.85},
+
+    {"source": "docs_projetos_log_versoes_orcamento_log", "target": "docs_projetos_log_versoes_orcamento_v1_superseded", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_log_versoes_orcamento_log", "target": "docs_projetos_log_versoes_orcamento_v2_corrente", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_log_versoes_orcamento_log", "target": "docs_projetos_log_versoes_orcamento_9_consideracoes", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_log_versoes_orcamento_v2_corrente", "target": "docs_projetos_orcamento_versionado_finep_agrifam_v2_0", "relation": "rationale_for", "confidence": 1.0},
+    {"source": "docs_projetos_log_versoes_orcamento_v1_superseded", "target": "docs_projetos_documentacao_holistica_agrifam_doc", "relation": "semantically_similar_to", "confidence": 0.75},
+
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "target": "docs_projetos_orcamento_versionado_finep_agrifam_v2_0", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "target": "docs_projetos_orcamento_versionado_finep_agrifam_pi220", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "target": "docs_projetos_orcamento_versionado_finep_agrifam_conformidade", "relation": "references", "confidence": 1.0},
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "relation": "semantically_similar_to", "confidence": 1.0},
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_doc", "target": "docs_projetos_log_versoes_orcamento_log", "relation": "semantically_similar_to", "confidence": 1.0},
+    {"source": "docs_projetos_orcamento_versionado_finep_agrifam_v2_0", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "relation": "semantically_similar_to", "confidence": 1.0},
+
+    {"source": "github_workflows_vvv_certify_workflow", "target": "github_workflows_vvv_certify_p4", "relation": "references", "confidence": 1.0},
+    {"source": "github_workflows_vvv_certify_p4", "target": "modules_physics_m3_readme_m3_scope", "relation": "conceptually_related_to", "confidence": 0.75},
+    {"source": "github_workflows_vvv_certify_p4", "target": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_doc", "relation": "conceptually_related_to", "confidence": 0.85},
+
+    {"source": "modules_physics_m3_readme_doc", "target": "modules_physics_m3_readme_m3_scope", "relation": "references", "confidence": 1.0},
+    {"source": "modules_physics_m3_readme_doc", "target": "modules_physics_m3_app_requirements_deps", "relation": "references", "confidence": 0.85},
+    {"source": "modules_physics_m3_readme_doc", "target": "modules_physics_m3_requirements_deps", "relation": "references", "confidence": 0.95},
+    {"source": "modules_physics_m3_readme_doc", "target": "modules_physics_m3_github_workflows_ci_ci", "relation": "references", "confidence": 0.85},
+    {"source": "modules_physics_m3_requirements_deps", "target": "modules_physics_m3_app_requirements_deps", "relation": "semantically_similar_to", "confidence": 0.85},
+    {"source": "modules_physics_m3_github_workflows_ci_ci", "target": "github_workflows_vvv_certify_workflow", "relation": "semantically_similar_to", "confidence": 0.65},
+
+    {"source": "modules_mathematicalengineeringdeeplearning_readme_doc", "target": "modules_mathematicalengineeringdeeplearning_readme_course_material", "relation": "references", "confidence": 1.0},
+    {"source": "modules_mathematicalengineeringdeeplearning_readme_doc", "target": "modules_physics_m3_readme_doc", "relation": "semantically_similar_to", "confidence": 0.55},
+
+    {"source": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_doc", "target": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_parcial", "relation": "references", "confidence": 1.0},
+    {"source": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_doc", "target": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_gap", "relation": "references", "confidence": 1.0},
+    {"source": "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_gap", "target": "docs_projetos_finep_agrifam_bioeolica_linha2_ssot_p1", "relation": "conceptually_related_to", "confidence": 0.75}
+  ],
+  "hyperedges": [
+    {"id": "he_finep_edital_analysis_suite", "nodes": ["edital_analise_checklist_checklist", "edital_analise_cronograma_cronograma", "edital_analise_elegibilidade_elegibilidade", "edital_analise_inconsistencias_inconsistencias", "edital_analise_indice_tematico_indice", "edital_analise_linhas_tematicas_linhas", "edital_analise_orcamento_orcamento"], "label": "Suíte análise FINEP AgriFam-ICT 2026 (edital/analise)"},
+    {"id": "he_orcamento_versioning_suite", "nodes": ["docs_projetos_orcamento_versionado_finep_agrifam_doc", "docs_projetos_log_versoes_orcamento_log", "docs_projetos_finep_agrifam_bioeolica_linha2_v2_7m", "docs_projetos_log_versoes_orcamento_v1_superseded", "docs_projetos_log_versoes_orcamento_v2_corrente"], "label": "Suíte versionamento orçamento (v1→v2)"},
+    {"id": "he_vvv_ci_suite", "nodes": ["github_workflows_vvv_certify_workflow", "modules_physics_m3_github_workflows_ci_ci", "workspace_lab1_material_papel_mache_grafite_context_auditoria_fsm_f1_f9_doc"], "label": "VVV/CI: workflows + auditoria FSM Lab1"}
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

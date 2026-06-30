@@ -1,0 +1,22 @@
+/home/cnmfs/bioeolica-entrega/edital/edital/25_03_2026_AgriFam-ICT_2026_Anexo_4.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/25_03_2026_AgriFam-ICT_2026_Edital.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Comunicado AgriFam-ICT 2026 Rerratificacao.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 1 - Minuta Padrão de Convênio.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 2 -Detalhamento das Linhas Temáticas.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 3 - Exigências para Avaliação dos Itens de Orçamento.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 4 - Projeto Resumido de Obras.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 5 - Tabela Pagamento de Pessoal.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 6 - Orientações para Despesas Relativas a Bolsas.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação - Anexo 7 - Checklist Preventivo.pdf
+/home/cnmfs/bioeolica-entrega/edital/edital/Edital AgriFam-ICT 2026 Rerratificação.pdf
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/.archive/INPUT.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/.memory/CONTINUITY.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/.memory/HARNESS.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/.memory/INPUT.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/README.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/data/TASKS.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/data/logs/wal_20260625_01_pre.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/data/logs/wal_20260625_retificacao_co.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/data/mapa_unico_informacao.md
+/home/cnmfs/bioeolica-entrega/workspace/bioeolica-nordeste-irrigacao/publications/sintese-research-ops.md
+/home/cnmfs/bioeolica-entrega/.archives/knowledge/RESEARCH_DECISIONS.md
