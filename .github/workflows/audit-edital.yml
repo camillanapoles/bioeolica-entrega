@@ -1,0 +1,119 @@
+# Edital conformity gate (Mandato: GARANTIR CONFORMIDADE COM O EDITAL).
+#
+# Runs the webapp's OWN validarProposta engine (headless, via Node) against the
+# canonical orcamento (webapp/seed.js) on every change and weekly. FAILS CI on
+# any violation of FINEP AgriFam-ICT 2026 rules (faixa, duração, caps, R4).
+# This is the persistent guarantee: the orcamento cannot drift out of compliance
+# without a red check.
+name: audit-edital
+
+on:
+  push:
+    paths:
+      - "webapp/seed.js"
+      - "webapp/edital-rules.js"
+      - "scripts/audit_edital_conformity.js"
+      - ".github/workflows/audit-edital.yml"
+    branches: [main, "feat/**"]
+  pull_request:
+    paths:
+      - "webapp/seed.js"
+      - "webapp/edital-rules.js"
+      - "scripts/audit_edital_conformity.js"
+  schedule:
+    # Weekly drift check — Mondays ~03:17 UTC (off the :00 mark).
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-edital-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Auditoria de conformidade com o edital
+        id: audit
+        run: |
+          echo "::group::validarProposta (orcamento vs regras AgriFam-ICT 2026)"
+          node scripts/audit_edital_conformity.js
+          echo "::endgroup::"
+
+      - name: Snapshot JSON para artefato
+        run: |
+          mkdir -p "$TMPDIR/audit"
+          node scripts/audit_edital_conformity.js --json > "$TMPDIR/audit/conformity.json" || true
+          cat "$TMPDIR/audit/conformity.json"
+
+      - name: Anexar relatório ao summary
+        if: always()
+        run: |
+          node -e '
+          const fs = require("fs");
+          const j = JSON.parse(fs.readFileSync(process.env.TMPDIR + "/audit/conformity.json", "utf8"));
+          const fmt = v => "R$ " + Number(v||0).toLocaleString("pt-BR", {minimumFractionDigits:2, maximumFractionDigits:2});
+          const lines = [];
+          lines.push("### Auditoria de conformidade — FINEP AgriFam-ICT 2026");
+          lines.push("");
+          lines.push("| Verificação | Resultado |");
+          lines.push("|---|---|");
+          lines.push(`| Total (${fmt(j.total)}) na faixa | ${j.faixa_ok ? "✅" : "❌"} |`);
+          lines.push(`| Duração ≤ 36 meses | ${j.duracao_ok ? "✅" : "❌"} |`);
+          lines.push(`| Rubricas dentro dos tetos | ${j.rubrica_failures.length === 0 ? "✅" : "❌ (" + j.rubrica_failures.length + ")"} |`);
+          lines.push(`| R4 eliminação (inabilitado ≤30%) | ${!j.r4_eliminacao ? "✅" : "❌"} (inabilitado ${(j.pct_inabilitado*100).toFixed(2)}%) |`);
+          if (j.rubrica_failures.length) {
+            lines.push("");
+            lines.push("**Falhas de rubrica:**");
+            for (const f of j.rubrica_failures) {
+              lines.push(`- \`${f.rubrica}\` (${fmt(f.valor)}, ${(f.pct*100).toFixed(2)}%): ${(f.motivos||[]).join("; ")}`);
+            }
+          }
+          if (j.globais.length) {
+            lines.push("");
+            lines.push("**Globais:** " + j.globais.join("; "));
+          }
+          lines.push("");
+          lines.push(j.passed ? "_✅ Proposta conforme o edital._" : "_❌ Proposta NÃO conforme — corrigir antes de submeter._");
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join("\n") + "\n");
+          '
+
+      - name: Abrir issue em caso de não-conformidade (apenas schedule/main)
+        if: failure() && (github.event_name == 'schedule' || github.ref == 'refs/heads/main')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const j = JSON.parse(fs.readFileSync(process.env.TMPDIR + '/audit/conformity.json', 'utf8'));
+            const fails = j.rubrica_failures.map(f => `- **${f.rubrica}** (${(f.pct*100).toFixed(2)}%): ${(f.motivos||[]).join('; ')}`).join('\n');
+            const body = [
+              '🚨 **Auditoria de conformidade falhou** (FINEP AgriFam-ICT 2026).',
+              '',
+              `Total: R$ ${j.total.toLocaleString('pt-BR')} | R4 inabilitado: ${(j.pct_inabilitado*100).toFixed(2)}%`,
+              '',
+              fails || ('Globais: ' + j.globais.join('; ')),
+              '',
+              'Rode localmente: `node scripts/audit_edital_conformity.js`',
+              `[Fluxo](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            ].join('\n');
+            const existing = await github.rest.issues.listForRepo({
+              ...context.repo, state: 'open', labels: ['edital-conformidade'],
+            });
+            if (existing.data.length === 0) {
+              await github.rest.issues.create({
+                ...context.repo,
+                title: '🚨 Proposta não-conforme ao edital FINEP AgriFam-ICT 2026',
+                body, labels: ['edital-conformidade', 'bug'],
+              });
+            }

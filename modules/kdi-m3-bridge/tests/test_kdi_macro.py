@@ -1,12 +1,13 @@
 """Tests for KDI Macro Bridge module."""
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "cad-cae-platform"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "cad-cae-platform", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 import numpy as np
 import pytest
 
-from modules.kdi_macro import MacroAnalysis, MacroEnvironment, macro_from_cad_and_env
+from kdi_m3.kdi_macro import MacroAnalysis, MacroEnvironment, macro_from_cad_and_env
 
 
 class TestEnvironment:

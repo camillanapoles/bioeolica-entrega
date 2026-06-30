@@ -1,7 +1,11 @@
 """Tests for KDI Multi-Physics coupling."""
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
 import pytest
-from modules.kdi_multiphysics import MultiPhysicsAnalysis, MultiPhysicsConfig
+from kdi_m3.kdi_multiphysics import MultiPhysicsAnalysis, MultiPhysicsConfig
 
 
 class TestFluid:

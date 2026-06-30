@@ -82,6 +82,36 @@
       "peso_biodeg": 0.3
     }
   },
+  "paper": {
+    "_doc": "P$1 SSOT — parâmetros do paper docs/paper/generate_figures.py. ZERO hardcoded no script; toda parametrização das figuras vive aqui (editar JSON, não o .py).",
+    "mc": {
+      "_doc": "Monte Carlo fig1 — resolução amostral e coeficientes de variação (UQ).",
+      "n_amostras": 10000,
+      "CV_E": 0.10,
+      "CV_Vf": 0.05
+    },
+    "aging_fig": {
+      "_doc": "fig3 — fração de dano crítico à falha (modelo de fadiga Miner).",
+      "phi_critico": 0.7
+    },
+    "targets": {
+      "_doc": "Metas de projeto exibidas como linhas de referência nas figuras.",
+      "E_GPa": 3.0,
+      "P_kw": 0.083,
+      "v_design": 8.0
+    },
+    "lca_fig": {
+      "_doc": "fig4 — comparativo LCA por estágio (kg CO2e por pá). PM-15G vs E-glass.",
+      "stages": ["Raw mat.", "Production", "Transport", "Install.", "EOL"],
+      "pm15g":   [5.8, 4.2, 8.5, 2.5, 0.6],
+      "fiberglass": [25.0, 70.0, 5.0, 2.5, 8.0]
+    },
+    "cost_fig": {
+      "_doc": "fig5 — decomposição de custo PM-15G (R$ por componente, share do kg).",
+      "labels": ["Waste paper", "PVA binder", "Graphite\npowder", "Processing"],
+      "values": [0.50, 2.50, 4.80, 4.20]
+    }
+  },
   "lab2": {
     "savonius": {"Cp_max": 0.25, "lambda_opt": 0.8, "sigma_curva": 0.35},
     "arquimedes": {"Cp_max": 0.33, "lambda_opt": 2.5, "sigma_curva": 1.0},
@@ -190,8 +220,34 @@
         }
       }
     },
+    "composite_model": {
+      "_doc": "P$1: composite_model.py — Halpin-Tsai model parameters (derived from material_db defaults). These are effective model-level values used in paper MC simulation — differ from raw db values because they represent the composite-in-a-composite effective medium.",
+      "E_matrix": 2500000000.0,
+      "E_filler": 11000000000.0,
+      "V_f": 0.15,
+      "xi": 2.0,
+      "microbuckling_factor": 0.3,
+      "_raw_sources": {
+        "E_matrix_raw_db": "modules.physics_m3.composite.material_db.pva.E_GPa (2.0 GPa)",
+        "E_filler_raw_db": "modules.physics_m3.composite.material_db.graphite_coating.E_GPa (8.0 GPa)",
+        "V_f_default": "modules.physics_m3.composite.fiber_volume_fraction_default",
+        "xi_default": "modules.physics_m3.composite.xi_halpin_tsai"
+      }
+    },
     "blade_design": {
-      "_doc": "P$1: register_blade.py — IEC 61400-2 blade parameters (migrated from hardcoded)",
+      "_doc": "P$1: Savonius blade-design aerodynamic + PMG parameters (rotor geometry, power, generator coupling)",
+      "_source": "IEC 61400-2 / Boldea (2015) Variable Speed Generators",
+      "rho_air": 1.105,
+      "Cp_max": 0.25,
+      "lambda_opt": 0.8,
+      "sigma_Cp": 0.35,
+      "rotor_D": 1.0,
+      "rotor_H": 1.5,
+      "Ke": 2.0,
+      "R_int": 1.5,
+      "P_loss_const": 3.0,
+      "_sources_note": "rho_air=1.105 corrected for 35°C semi-arid; PMG params from lab2.pmg/{Ke,R_interno_ohm,perdas_constantes_w}",
+      "_iec61400_2_register_note": "P$1: register_blade.py horizontal-axis registry params. Disjoint field names coexist with Savonius aero/PMG params above.",
       "BLADE_LENGTH_M": 3.5,
       "AIRFOIL_PROFILE": "NACA 0018",
       "NUM_BLADES": 3,
@@ -255,6 +311,51 @@
           "notes": "Thermoset composites cannot be remelted. Most end in landfill. Incineration adds 1.5 kg CO2e/kg."
         }
       }
+    }
+  },
+  "projeto": {
+    "_doc": "P$1 SSOT — dados do projeto FINEP AgriFam-ICT 2026 (Linha 2). Fonte canônica do webapp via CI/CD sync → webapp/_seed_from_ssot.json → SQLite orc_finep_v2. ZERO hardcoded no webapp; toda mudança de cronograma/roadmap/catálogo acontece AQUI.",
+    "meta": {
+      "edital": "FINEP AgriFam-ICT 2026",
+      "linha": "2 — Sistemas Agroecológicos/Orgânicos",
+      "instrumento": "Convênio (Anexo I)",
+      "duracao_meses": 36,
+      "faixa_min_brl": 1000000,
+      "faixa_max_brl": 7000000,
+      "executor_ict": "Goiânia-GO (Centro-Oeste)",
+      "coexecutor": "PE (Nordeste)",
+      "comunidades": "5 comunidades PE/BA + 1 protótipo",
+      "submissao": "2026-07-03T17:00",
+      "cadastro": "2026-06-26T17:00"
+    },
+    "cronograma": {
+      "_doc": "Marcos M1–M6 conforme docs/projetos/finep-agrifam-bioeolica-linha2.md §4. Duracao máx edital item 9.1.",
+      "duracao_meses": 36,
+      "marcos": [
+        { "id": "M1", "titulo": "Conformidade", "mes_ini": 1, "mes_fim": 2, "cor": "info",
+          "entregas": ["Cadastro Finep (PRIORITÁRIO — risco R1)", "Política de Inovação ICT (5.7)", "Submissão CEP / anexo ética"] },
+        { "id": "M2", "titulo": "Material PM-15G", "mes_ini": 2, "mes_fim": 9, "cor": "ok",
+          "entregas": ["Fabricação do compósito (papel machê + 15% vol grafite)", "Ensaios mecânicos ASTM D638/D790/D256/D2240/D7774", "Microestrutura MEV/TGA/DSC/FTIR", "Depósito INPI (PI/TALCX)"] },
+        { "id": "M3", "titulo": "Protótipo", "mes_ini": 6, "mes_fim": 14, "cor": "ok",
+          "entregas": ["Protótipo de bancada", "Túnel de vento + banco de carga", "Curva P(v)"] },
+        { "id": "M4", "titulo": "Durabilidade", "mes_ini": 9, "mes_fim": 24, "cor": "warn",
+          "entregas": ["END (ultrassom phased-array + termografia)", "Envelhecimento UV/umidade/salt-spray/ciclagem térmica", "Fluência (Norton)"] },
+        { "id": "M5", "titulo": "Campo — Implementação", "mes_ini": 12, "mes_fim": 30, "cor": "nao",
+          "entregas": ["Instalação nas 5 comunidades (PE/BA) — obra civil + mão-de-obra", "Comissionamento dos 6 sistemas (5 comunidades + 1 protótipo)", "Capacitação comunitária inicial"] },
+        { "id": "M6", "titulo": "Acompanhamento", "mes_ini": 18, "mes_fim": 36, "cor": "info",
+          "entregas": ["Monitoramento GSM 24 meses", "ATER contínua (30 meses)", "Laudos finais · encerramento"] }
+      ]
+    },
+    "roadmap": {
+      "_doc": "Fases de implementação (topologia DAG). Entrega final = 6 sistemas no campo (mandato orçamento realista).",
+      "fases": [
+        { "fase": "1 · Material (Lab1)", "quando": "M2–M9", "cor": "ok", "oque": "Fabricação PM-15G + ensaios + microestrutura + depósito INPI", "depende": "Política de Inovação ICT aprovada (M1)", "saida": "Compósito caracterizado + PI depositada" },
+        { "fase": "2 · Protótipo (Lab1→Lab2)", "quando": "M6–M14", "cor": "ok", "oque": "Protótipo de bancada, túnel de vento, banco de carga, curva P(v)", "depende": "Material M2 caracterizado", "saida": "Curva de potência validada" },
+        { "fase": "3 · Durabilidade", "quando": "M9–M24", "cor": "warn", "oque": "END + envelhecimento (UV/umidade/salt-spray) + fluência Norton; re-análise pós-envelhecimento", "depende": "Protótipo M3", "saida": "Vida útil predita (mandato: ensaios repetidos)" },
+        { "fase": "4 · IMPLEMENTAÇÃO — Fabricação dos 6 sistemas", "quando": "M12–M18", "cor": "nao", "oque": "Fabricar 6 sistemas completos (rotor/pás + PMG + torre + baterias + instrumentação + irrigação)", "depende": "Durabilidade M4 parcial", "saida": "6 kits prontos para campo" },
+        { "fase": "5 · IMPLEMENTAÇÃO — Instalação em campo", "quando": "M18–M30", "cor": "nao", "oque": "Obra civil + fundação + mão-de-obra de instalação nas 5 comunidades PE/BA + 1 protótipo", "depende": "Sistemas fabricados (fase 4) + cartas de anuência (5.6.1.2)", "saida": "6 sistemas comissionados" },
+        { "fase": "6 · Operação · ATER · Monitoramento", "quando": "M18–M36", "cor": "info", "oque": "Capacitação comunitária (30 meses ATER) + monitoramento GSM (24 meses) + laudos finais", "depende": "Sistemas instalados (fase 5)", "saida": "Sustentabilidade pós-entrega · encerramento" }
+      ]
     }
   }
 }

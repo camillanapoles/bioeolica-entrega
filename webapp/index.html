@@ -5,72 +5,214 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orçamento FINEP AgriFam-ICT 2026 — Bioeólica (Linha 2)</title>
   <style>
+    /* ===== Design tokens (ui-aesthetics: 60-30-10 HSL, grid 8px, modular type) ===== */
     :root {
-      --ok: #1a7f37; --nao: #cf222e; --warn: #9a6700;
+      /* semântica */
+      --ok: #1a7f37; --ok-bg: #ecfdf2; --ok-line: #aceebb;
+      --nao: #cf222e; --nao-bg: #fff0f0; --nao-line: #ffb8b0;
+      --warn: #9a6700; --warn-bg: #fff8c5; --warn-line: #f4d97a;
+      --info: #0969da; --info-bg: #ddf4ff; --info-line: #b6e3ff;
+      /* neutros (claro) */
       --bg: #f6f8fa; --card: #ffffff; --line: #d0d7de;
-      --ink: #1f2328; --muted: #656d76;
+      --ink: #1f2328; --muted: #656d76; --faint: #8c959f;
+      --brand: #0d2f1c; --brand-2: #176930; --accent: #2da44e;
+      /* escala tipográfica modular (base 16) */
+      --fs-0: .75rem;  /* 12 */
+      --fs-1: .875rem; /* 14 base */
+      --fs-2: 1rem; --fs-3: 1.125rem; --fs-4: 1.375rem; --fs-5: 1.75rem;
+      /* grid 8px */
+      --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+      --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
+      /* sombras 5 níveis */
+      --shadow-1: 0 1px 0 rgba(31,35,40,.04);
+      --shadow-2: 0 1px 3px rgba(31,35,40,.12), 0 1px 2px rgba(31,35,40,.06);
+      --shadow-3: 0 3px 6px rgba(140,149,159,.15), 0 1px 3px rgba(31,35,40,.08);
+      --shadow-4: 0 8px 24px rgba(140,149,159,.2);
+      --radius: 8px; --radius-sm: 4px;
+      --touch: 44px;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:#0d1117; --card:#161b22; --line:#30363d;
+        --ink:#e6edf3; --muted:#8b949e; --faint:#6e7681;
+        --brand:#1f6feb; --brand-2:#2ea043; --accent:#2ea043;
+        --ok-bg:rgba(46,160,67,.15); --ok-line:#1f6feb;
+        --nao-bg:rgba(248,81,73,.15); --nao-line:#f85149;
+        --warn-bg:rgba(187,128,9,.18); --warn-line:#bb8009;
+        --info-bg:rgba(56,139,253,.18); --info-line:#388bfd;
+      }
     }
     * { box-sizing: border-box; }
     body {
-      margin: 0; font: 14px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg); color: var(--ink);
+      margin:0; font: var(--fs-1)/1.55 -apple-system,"Segoe UI",Roboto,sans-serif;
+      background:var(--bg); color:var(--ink);
     }
+    a { color:var(--info); }
+
+    /* ===== Topbar ===== */
     header.topbar {
-      background: #0d2f1c; color: #fff; padding: 14px 22px;
-      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+      background:var(--brand); color:#fff; padding:var(--sp-4) var(--sp-5);
+      display:flex; flex-wrap:wrap; gap:var(--sp-3); align-items:center;
     }
-    header.topbar h1 { font-size: 17px; margin: 0; flex: 1 1 auto; }
-    header.topbar .meta { font-size: 12px; opacity: .85; }
-    .toolbar { background: var(--card); border-bottom: 1px solid var(--line); padding: 10px 22px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .toolbar button, .toolbar label.btn {
-      background: #fff; border: 1px solid var(--line); border-radius: 6px;
-      padding: 6px 12px; cursor: pointer; font-size: 13px;
+    header.topbar h1 { font-size:var(--fs-3); margin:0; flex:1 1 auto; font-weight:650; }
+    header.topbar .meta { font-size:var(--fs-0); opacity:.85; }
+
+    /* ===== Tabs (Nielsen 4 consistência; profundidade ≤3) ===== */
+    nav.tabs {
+      background:var(--card); border-bottom:1px solid var(--line);
+      padding:0 var(--sp-5); display:flex; gap:var(--sp-1); flex-wrap:wrap; position:sticky; top:0; z-index:20;
     }
-    .toolbar button:hover { background: #eaeef2; }
-    #status { margin-left: auto; color: var(--muted); font-size: 12px; }
-    main { padding: 18px 22px 60px; max-width: 1280px; margin: 0 auto; }
-
-    .meta-row { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
-    .meta-row b { color: var(--ink); }
-
-    #totais {
-      background: var(--card); border: 1px solid var(--line); border-radius: 8px;
-      padding: 14px 16px; margin-bottom: 18px;
+    nav.tabs button {
+      background:transparent; border:none; border-bottom:2px solid transparent;
+      padding:var(--sp-3) var(--sp-4); cursor:pointer; font:inherit; color:var(--muted);
+      min-height:var(--touch); display:flex; align-items:center; gap:var(--sp-1);
+      white-space:nowrap;
     }
-    #totais .big { font-size: 22px; font-weight: 700; }
-    #totais .resumo { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
-    #totais .globais { margin-top: 8px; color: var(--nao); font-size: 12px; }
-    .pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
-    .pill.ok { color: var(--ok); border-color: #aceebb; background: #ecfdf2; }
-    .pill.nao { color: var(--nao); border-color: #ffb8b0; background: #fff0f0; }
+    nav.tabs button:hover { color:var(--ink); background:var(--bg); }
+    nav.tabs button.ativo { color:var(--accent); border-bottom-color:var(--accent); font-weight:600; }
+    nav.tabs .kbd { font:var(--fs-0) var(--mono); background:var(--bg); border:1px solid var(--line);
+      border-radius:var(--radius-sm); padding:0 5px; color:var(--faint); }
 
-    .rubrica { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px; overflow: hidden; }
-    .rubrica.rim { border-color: #ffb8b0; }
-    .rubrica-head { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 14px; background: #f0f3f6; border-bottom: 1px solid var(--line); gap: 12px; flex-wrap: wrap; }
-    .rubrica-head h3 { margin: 0; font-size: 14px; }
-    .rubrica-totais { font-size: 13px; color: var(--muted); }
+    /* ===== Toolbar ===== */
+    .toolbar { background:var(--card); border-bottom:1px solid var(--line);
+      padding:var(--sp-2) var(--sp-5); display:flex; gap:var(--sp-2); flex-wrap:wrap; align-items:center; }
+    #status { margin-left:auto; color:var(--muted); font-size:var(--fs-0); min-width:0;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:40vw; }
 
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
-    th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: #fbfcfd; }
-    td input, td select { width: 100%; font: inherit; padding: 4px 6px; border: 1px solid var(--line); border-radius: 4px; }
-    td input[type="number"] { width: 130px; text-align: right; }
-    td.motivo { font-size: 12px; color: var(--nao); }
-    td.status { white-space: nowrap; }
-    tr.linhaRuim { background: #fff5f5; }
-    tr.linhaAdd { background: #fbfcfd; }
-    tr.linhaAdd input, tr.linhaAdd select { border-style: dashed; }
-
-    .tagOK { color: var(--ok); font-weight: 600; font-size: 11px; }
-    .tagNAO { color: var(--nao); font-weight: 700; font-size: 11px; }
-
-    #report {
-      display: none; margin-top: 18px; background: var(--card);
-      border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px;
-      white-space: pre-wrap; font-family: ui-monospace, "SF Mono", Menlo, monospace;
-      font-size: 12px; line-height: 1.6;
+    /* botões: NUNCA cortam texto (white-space:nowrap) + touch ≥44px */
+    .btn, .toolbar button, .toolbar label.btn {
+      background:var(--card); border:1px solid var(--line); border-radius:6px;
+      padding:var(--sp-2) var(--sp-3); cursor:pointer; font:inherit; font-size:var(--fs-1);
+      min-height:var(--touch); display:inline-flex; align-items:center; gap:var(--sp-1);
+      white-space:nowrap; line-height:1.2;
     }
-    footer { text-align: center; color: var(--muted); font-size: 11px; padding: 20px; }
+    .btn:hover, .toolbar button:hover { background:var(--bg); border-color:var(--faint); }
+    .btn-sec { background:var(--bg); }
+    .btn-icone { min-width:var(--touch); justify-content:center; padding:0; color:var(--nao);
+      font-size:var(--fs-2); border:1px solid var(--nao-line); background:var(--nao-bg); }
+    .btn-icone:hover { background:var(--nao); color:#fff; }
+
+    main { padding:var(--sp-4) var(--sp-5) var(--sp-7); max-width:1440px; margin:0 auto; }
+    .meta-row { color:var(--muted); font-size:var(--fs-0); margin-bottom:var(--sp-2); }
+    .meta-row b { color:var(--ink); }
+
+    /* ===== Totais (sticky) ===== */
+    #totais { position:sticky; top:calc(var(--touch) + 1px); z-index:10;
+      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:var(--sp-3) var(--sp-4); margin-bottom:var(--sp-4); box-shadow:var(--shadow-2); }
+    .totais-linha { display:flex; flex-wrap:wrap; gap:var(--sp-3); align-items:center; justify-content:space-between; }
+    #totais .big { font-size:var(--fs-5); font-weight:800; letter-spacing:-.02em; }
+    .totais-badges { display:flex; gap:var(--sp-1); flex-wrap:wrap; }
+    #totais .resumo { margin-top:var(--sp-2); display:flex; flex-wrap:wrap; gap:var(--sp-1); }
+    #totais .globais { margin-top:var(--sp-2); color:var(--nao); font-size:var(--fs-0); }
+    .pill { font-size:var(--fs-0); padding:var(--sp-1) var(--sp-2); border-radius:12px;
+      border:1px solid var(--line); background:var(--card); display:inline-block; }
+    .pill.ok { color:var(--ok); border-color:var(--ok-line); background:var(--ok-bg); }
+    .pill.nao { color:var(--nao); border-color:var(--nao-line); background:var(--nao-bg); }
+    .pill.warn { color:var(--warn); border-color:var(--warn-line); background:var(--warn-bg); }
+    .pill.info { color:var(--info); border-color:var(--info-line); background:var(--info-bg); }
+    .tagOK { color:var(--ok); font-weight:600; font-size:var(--fs-0); }
+    .tagNAO { color:var(--nao); font-weight:700; font-size:var(--fs-0); }
+
+    /* ===== Painel anti-R4 ===== */
+    .painel-r4 { background:var(--nao-bg); border:1px solid var(--nao-line); border-radius:var(--radius);
+      padding:var(--sp-3) var(--sp-4); margin-bottom:var(--sp-4); }
+    .painel-r4 h3 { margin:0 0 var(--sp-2); font-size:var(--fs-2); color:var(--nao); }
+    .painel-r4-linha { padding:var(--sp-1) 0; font-size:var(--fs-1); border-bottom:1px dashed var(--nao-line); }
+    .painel-r4-linha:last-child { border-bottom:none; }
+    .painel-r4-linha.crit { color:var(--nao); font-weight:600; }
+    .painel-r4 small { color:var(--muted); }
+
+    /* ===== Rubricas ===== */
+    .rubrica { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      margin-bottom:var(--sp-3); overflow:hidden; box-shadow:var(--shadow-1); }
+    .rubrica.rim { border-color:var(--nao-line); }
+    .rubrica-head { display:flex; justify-content:space-between; align-items:baseline;
+      padding:var(--sp-2) var(--sp-4); background:var(--bg); border-bottom:1px solid var(--line);
+      gap:var(--sp-3); flex-wrap:wrap; }
+    .rubrica-head h3 { margin:0; font-size:var(--fs-2); }
+    .rubrica-totais { font-size:var(--fs-1); color:var(--muted); display:flex; gap:var(--sp-1); align-items:baseline; flex-wrap:wrap; }
+
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:var(--sp-1) var(--sp-2); border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
+    th { font-size:var(--fs-0); text-transform:uppercase; letter-spacing:.04em; color:var(--muted);
+      background:var(--card); position:sticky; top:0; }
+    td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:var(--fs-0); }
+    td input, td select { width:100%; font:inherit; padding:var(--sp-1) var(--sp-2);
+      border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--card); color:var(--ink);
+      min-height:32px; }
+    td input.inp-num, td input[type="number"] { width:clamp(90px,12vw,140px); text-align:right; }
+    td.motivo { font-size:var(--fs-0); color:var(--nao); max-width:280px; }
+    td.status { white-space:nowrap; }
+    tr.linhaRuim { background:var(--nao-bg); }
+    tr.linhaAdd { background:var(--bg); }
+    tr.linhaAdd input, tr.linhaAdd select { border-style:dashed; }
+    td code { font:var(--fs-0) var(--mono); background:var(--bg); padding:1px 5px; border-radius:var(--radius-sm); }
+
+    /* ===== Catálogo ===== */
+    .catalogo-head { display:flex; justify-content:space-between; align-items:flex-start; gap:var(--sp-4);
+      flex-wrap:wrap; background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:var(--sp-3) var(--sp-4); margin-bottom:var(--sp-3); box-shadow:var(--shadow-1); }
+    .catalogo-total { text-align:right; }
+    .catalogo-total .big { display:block; font-size:var(--fs-4); font-weight:800; }
+    .toolbar-cat { display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-bottom:var(--sp-3); }
+    details.grupo-cat { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      margin-bottom:var(--sp-2); box-shadow:var(--shadow-1); }
+    details.grupo-cat > summary { cursor:pointer; padding:var(--sp-2) var(--sp-4); font-size:var(--fs-2);
+      border-radius:var(--radius); user-select:none; }
+    details.grupo-cat > summary:hover { background:var(--bg); }
+    details.grupo-cat[open] > summary { border-bottom:1px solid var(--line); }
+    details.grupo-cat table { font-size:var(--fs-0); }
+
+    #report { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:var(--sp-4) var(--sp-5); white-space:pre-wrap; font-family:var(--mono);
+      font-size:var(--fs-0); line-height:1.6; overflow:auto; }
+
+    /* ===== Toast (ux-principles: feedback) ===== */
+    #toast { position:fixed; bottom:var(--sp-4); right:var(--sp-4); z-index:100;
+      display:flex; flex-direction:column; gap:var(--sp-1); max-width:90vw; }
+    .toast { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--info);
+      border-radius:var(--radius-sm); padding:var(--sp-2) var(--sp-3); box-shadow:var(--shadow-4);
+      font-size:var(--fs-1); transition:opacity .3s; }
+    .toast.ok { border-left-color:var(--ok); }
+    .toast.erro { border-left-color:var(--nao); }
+    .toast.fade { opacity:0; }
+
+    /* ===== Skeleton (evita flash em branco) ===== */
+    #skeleton { position:fixed; inset:0; background:var(--bg); z-index:200;
+      display:flex; align-items:center; justify-content:center; }
+    .skel-box { width:min(420px,80vw); }
+    .skel-bar { height:14px; border-radius:6px; margin-bottom:var(--sp-2);
+      background:linear-gradient(90deg,var(--line),var(--bg),var(--line)); background-size:200% 100%;
+      animation:shimmer 1.2s infinite; }
+    .skel-bar.lg { height:28px; } .skel-bar.wide { width:100%; } .skel-bar.med { width:60%; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    footer { text-align:center; color:var(--muted); font-size:var(--fs-0); padding:var(--sp-5); }
+
+    /* foco visível (WCAG) */
+    button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline:2px solid var(--info); outline-offset:1px; }
+
+    /* ===== Responsivo mobile-first (<720px) ===== */
+    @media (max-width:720px) {
+      header.topbar, .toolbar, nav.tabs, main { padding-left:var(--sp-3); padding-right:var(--sp-3); }
+      #totais { position:static; }
+      .totais-linha { flex-direction:column; align-items:flex-start; }
+      /* tabela → cards empilhados */
+      table, thead, tbody, tr, td { display:block; width:100%; }
+      thead { display:none; }
+      tr { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+        margin-bottom:var(--sp-2); padding:var(--sp-1); }
+      tr td { border:none; display:flex; gap:var(--sp-2); align-items:center; padding:var(--sp-1) var(--sp-2); }
+      tr td::before { content:attr(data-l); color:var(--muted); font-size:var(--fs-0); min-width:90px; }
+      tr td input, tr td select { width:auto; flex:1; }
+      td.num::before, td.motivo::before { display:none; }
+      .rubrica-head, .catalogo-head { flex-direction:column; }
+      .catalogo-total { text-align:left; }
+      #status { max-width:100%; }
+    }
   </style>
 </head>
 <body>
@@ -81,9 +223,15 @@
     </div>
   </header>
 
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button data-aba="orcamento" role="tab" aria-selected="true">💰 Orçamento <span class="kbd">1</span></button>
+    <button data-aba="catalogo" role="tab" aria-selected="false">📦 Catálogo R&amp;D <span class="kbd">2</span></button>
+    <button data-aba="cronograma" role="tab" aria-selected="false">📅 Cronograma <span class="kbd">4</span></button>
+    <button data-aba="roadmap" role="tab" aria-selected="false">🗺️ Roadmap <span class="kbd">5</span></button>
+    <button data-aba="relatorio" role="tab" aria-selected="false">📋 Relatório <span class="kbd">3</span></button>
+  </nav>
+
   <div class="toolbar">
-    <button id="btnCatalogo">📦 Catálogo R&D</button>
-    <button id="btnReport">📋 Relatório</button>
     <button id="btnExport">⬇ Exportar JSON</button>
     <button id="btnImport">⬆ Importar JSON</button>
     <button id="btnDownloadSqlite">🗄 Baixar SQLite</button>
@@ -94,20 +242,37 @@
 
   <main>
     <div class="meta-row">
-      Validação ao vivo conforme regras do edital (item 6: tetos por rubrica; 6.6.2: equip &lt;R$50K só permitidos; 2.1.24: sistema composto; 11.2.2: valor inabilitado &gt;30% ⇒ eliminação R4).
-      Itens fora da categoria (ex.: mão-de-obra em Material) ou acima do teto aparecem como <b>NÃO APROVADO</b> com o valor máximo permitido.
+      Validação ao vivo (item 6: tetos por rubrica · 6.6.2: equip &lt;R$50K só permitidos ·
+      2.1.24: sistema composto · 11.2.2: valor inabilitado &gt;30% ⇒ eliminação R4).
+      Itens fora da categoria ou acima do teto aparecem <b>NÃO APROVADO</b> com o valor máximo permitido.
+      Atalhos: <code>1/2/3/4/5</code> abas · <code>Ctrl+E</code> exportar · <code>Ctrl+I</code> importar.
     </div>
 
     <div id="totais"></div>
     <div id="tabela"></div>
     <div id="catalogoView"></div>
+    <div id="cronogramaView"></div>
+    <div id="roadmapView"></div>
     <pre id="report"></pre>
 
     <footer>
       Fonte: <code>docs/projetos/orcamento-versionado-finep-agrifam.md</code> (v2.0 RETIFICADA).
-      Persistência local: SQLite (sql.js WASM) em localStorage. GitHub Pages.
+      Persistência local: SQLite (sql.js WASM) em localStorage — <b>mesma DB</b>: orçamento + catálogo R&amp;D. GitHub Pages.
     </footer>
   </main>
+
+  <div id="toast"></div>
+
+  <div id="skeleton">
+    <div class="skel-box">
+      <div class="skel-bar lg med"></div>
+      <div class="skel-bar wide"></div>
+      <div class="skel-bar wide"></div>
+      <div class="skel-bar med"></div>
+      <div class="skel-bar wide"></div>
+      <div class="skel-bar med" style="margin-top:var(--sp-4)"></div>
+    </div>
+  </div>
 
   <!-- Ordem: regras → seed → catalogo → app -->
   <script src="edital-rules.js"></script>

@@ -1,5 +1,8 @@
-import pytest
-from modules.kdi_micro import MicroAnalysis
+import sys, os, pytest
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "physics-m3", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
+from kdi_m3.kdi_micro import MicroAnalysis
 
 def test_defaults():
     ma = MicroAnalysis()

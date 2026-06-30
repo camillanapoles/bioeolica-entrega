@@ -1,0 +1,283 @@
+{
+  "_meta": {
+    "doc": "Manifest derivado da SSOT (constants.json) pelo CI/CD sync-ssot.yml. Não editar à mão — regenerado a cada mudança da SSOT (Mandato B.0 / 'mesma DB').",
+    "gerado_por": "scripts/ssot_to_webapp_seed.py",
+    "ssot_source": "workspace/lab1-material-papel-mache-grafite/config/constants.json"
+  },
+  "catalogo": [
+    {
+      "id": "waste_paper",
+      "tipo": "fiber",
+      "E_GPa": 5.0,
+      "tensile_MPa": 30,
+      "density_kgm3": 800,
+      "cost_brl_kg": 0.05,
+      "descricao": "Recycled cellulose fiber (waste paper)",
+      "ssot_path": "modules.physics_m3.composite.material_db.waste_paper"
+    },
+    {
+      "id": "jute",
+      "tipo": "fiber",
+      "E_GPa": 26.5,
+      "tensile_MPa": 400,
+      "density_kgm3": 1460,
+      "cost_brl_kg": 0.5,
+      "descricao": "Natural jute fiber",
+      "ssot_path": "modules.physics_m3.composite.material_db.jute"
+    },
+    {
+      "id": "hemp",
+      "tipo": "fiber",
+      "E_GPa": 35.0,
+      "tensile_MPa": 550,
+      "density_kgm3": 1500,
+      "cost_brl_kg": 1.0,
+      "descricao": "Industrial hemp fiber",
+      "ssot_path": "modules.physics_m3.composite.material_db.hemp"
+    },
+    {
+      "id": "fiberglass_e",
+      "tipo": "fiber",
+      "E_GPa": 72.0,
+      "tensile_MPa": 2000,
+      "density_kgm3": 2540,
+      "cost_brl_kg": 2.5,
+      "descricao": "E-glass fiber (baseline comparison)",
+      "ssot_path": "modules.physics_m3.composite.material_db.fiberglass_e"
+    },
+    {
+      "id": "pva",
+      "tipo": "matrix",
+      "E_GPa": 2.0,
+      "tensile_MPa": 30,
+      "density_kgm3": 1200,
+      "cost_brl_kg": 3.0,
+      "descricao": "Polyvinyl acetate (white glue) binder",
+      "ssot_path": "modules.physics_m3.composite.material_db.pva"
+    },
+    {
+      "id": "epoxy",
+      "tipo": "matrix",
+      "E_GPa": 3.5,
+      "tensile_MPa": 60,
+      "density_kgm3": 1160,
+      "cost_brl_kg": 8.0,
+      "descricao": "Epoxy resin (baseline comparison)",
+      "ssot_path": "modules.physics_m3.composite.material_db.epoxy"
+    },
+    {
+      "id": "starch",
+      "tipo": "matrix",
+      "E_GPa": 1.5,
+      "tensile_MPa": 15,
+      "density_kgm3": 1500,
+      "cost_brl_kg": 0.8,
+      "descricao": "Biodegradable starch-based binder",
+      "ssot_path": "modules.physics_m3.composite.material_db.starch"
+    },
+    {
+      "id": "graphite_coating",
+      "tipo": "coating",
+      "E_GPa": 8.0,
+      "tensile_MPa": 15,
+      "density_kgm3": 2000,
+      "cost_brl_kg": 5.0,
+      "descricao": "Graphite powder + PVA protective coating",
+      "ssot_path": "modules.physics_m3.composite.material_db.graphite_coating"
+    },
+    {
+      "id": "bio_epoxy_coating",
+      "tipo": "coating",
+      "E_GPa": 3.0,
+      "tensile_MPa": 30,
+      "density_kgm3": 1150,
+      "cost_brl_kg": 12.0,
+      "descricao": "Bio-based epoxy protective coating",
+      "ssot_path": "modules.physics_m3.composite.material_db.bio_epoxy_coating"
+    }
+  ],
+  "hard_costs": {
+    "processo_brl_kg": 5.0,
+    "taxa_desconto": 0.1,
+    "baseline_pa_brl": 50.0,
+    "biodegradabilidade": 0.8,
+    "lab2_composito_brl_kg": 12.0,
+    "lab2_fibra_brl_kg": 30.0,
+    "lab2_pmg_brl": 800.0,
+    "lab2_estrutura_brl": 600.0,
+    "lab2_densidade_fibra": 2550.0
+  },
+  "paper_params": {
+    "rho_air": 1.105,
+    "Cp_max": 0.25,
+    "lambda_opt": 0.8,
+    "sigma_Cp": 0.35,
+    "rotor_D_m": 1.0,
+    "rotor_H_m": 1.5,
+    "Ke": 2.0,
+    "R_int_ohm": 1.5,
+    "P_loss_const_W": 3.0,
+    "E_matrix_Pa": 2500000000.0,
+    "E_filler_Pa": 11000000000.0,
+    "V_f": 0.15,
+    "xi": 2.0,
+    "blade_mass_kg": 8.5,
+    "paper_mass_kg": 3.8,
+    "pva_mass_kg": 2.2,
+    "graphite_mass_kg": 0.8
+  },
+  "aging_params": {
+    "taxa_base_degrad": 1e-09,
+    "sigma_ruido": 0.4,
+    "n_amostras": 1000,
+    "ciclos_max": 1000000000,
+    "seed": 42
+  },
+  "projeto": {
+    "meta": {
+      "edital": "FINEP AgriFam-ICT 2026",
+      "linha": "2 — Sistemas Agroecológicos/Orgânicos",
+      "instrumento": "Convênio (Anexo I)",
+      "duracao_meses": 36,
+      "faixa_min_brl": 1000000,
+      "faixa_max_brl": 7000000,
+      "executor_ict": "Goiânia-GO (Centro-Oeste)",
+      "coexecutor": "PE (Nordeste)",
+      "comunidades": "5 comunidades PE/BA + 1 protótipo",
+      "submissao": "2026-07-03T17:00",
+      "cadastro": "2026-06-26T17:00"
+    },
+    "cronograma": {
+      "_doc": "Marcos M1–M6 conforme docs/projetos/finep-agrifam-bioeolica-linha2.md §4. Duracao máx edital item 9.1.",
+      "duracao_meses": 36,
+      "marcos": [
+        {
+          "id": "M1",
+          "titulo": "Conformidade",
+          "mes_ini": 1,
+          "mes_fim": 2,
+          "cor": "info",
+          "entregas": [
+            "Cadastro Finep (PRIORITÁRIO — risco R1)",
+            "Política de Inovação ICT (5.7)",
+            "Submissão CEP / anexo ética"
+          ]
+        },
+        {
+          "id": "M2",
+          "titulo": "Material PM-15G",
+          "mes_ini": 2,
+          "mes_fim": 9,
+          "cor": "ok",
+          "entregas": [
+            "Fabricação do compósito (papel machê + 15% vol grafite)",
+            "Ensaios mecânicos ASTM D638/D790/D256/D2240/D7774",
+            "Microestrutura MEV/TGA/DSC/FTIR",
+            "Depósito INPI (PI/TALCX)"
+          ]
+        },
+        {
+          "id": "M3",
+          "titulo": "Protótipo",
+          "mes_ini": 6,
+          "mes_fim": 14,
+          "cor": "ok",
+          "entregas": [
+            "Protótipo de bancada",
+            "Túnel de vento + banco de carga",
+            "Curva P(v)"
+          ]
+        },
+        {
+          "id": "M4",
+          "titulo": "Durabilidade",
+          "mes_ini": 9,
+          "mes_fim": 24,
+          "cor": "warn",
+          "entregas": [
+            "END (ultrassom phased-array + termografia)",
+            "Envelhecimento UV/umidade/salt-spray/ciclagem térmica",
+            "Fluência (Norton)"
+          ]
+        },
+        {
+          "id": "M5",
+          "titulo": "Campo — Implementação",
+          "mes_ini": 12,
+          "mes_fim": 30,
+          "cor": "nao",
+          "entregas": [
+            "Instalação nas 5 comunidades (PE/BA) — obra civil + mão-de-obra",
+            "Comissionamento dos 6 sistemas (5 comunidades + 1 protótipo)",
+            "Capacitação comunitária inicial"
+          ]
+        },
+        {
+          "id": "M6",
+          "titulo": "Acompanhamento",
+          "mes_ini": 18,
+          "mes_fim": 36,
+          "cor": "info",
+          "entregas": [
+            "Monitoramento GSM 24 meses",
+            "ATER contínua (30 meses)",
+            "Laudos finais · encerramento"
+          ]
+        }
+      ]
+    },
+    "roadmap": {
+      "_doc": "Fases de implementação (topologia DAG). Entrega final = 6 sistemas no campo (mandato orçamento realista).",
+      "fases": [
+        {
+          "fase": "1 · Material (Lab1)",
+          "quando": "M2–M9",
+          "cor": "ok",
+          "oque": "Fabricação PM-15G + ensaios + microestrutura + depósito INPI",
+          "depende": "Política de Inovação ICT aprovada (M1)",
+          "saida": "Compósito caracterizado + PI depositada"
+        },
+        {
+          "fase": "2 · Protótipo (Lab1→Lab2)",
+          "quando": "M6–M14",
+          "cor": "ok",
+          "oque": "Protótipo de bancada, túnel de vento, banco de carga, curva P(v)",
+          "depende": "Material M2 caracterizado",
+          "saida": "Curva de potência validada"
+        },
+        {
+          "fase": "3 · Durabilidade",
+          "quando": "M9–M24",
+          "cor": "warn",
+          "oque": "END + envelhecimento (UV/umidade/salt-spray) + fluência Norton; re-análise pós-envelhecimento",
+          "depende": "Protótipo M3",
+          "saida": "Vida útil predita (mandato: ensaios repetidos)"
+        },
+        {
+          "fase": "4 · IMPLEMENTAÇÃO — Fabricação dos 6 sistemas",
+          "quando": "M12–M18",
+          "cor": "nao",
+          "oque": "Fabricar 6 sistemas completos (rotor/pás + PMG + torre + baterias + instrumentação + irrigação)",
+          "depende": "Durabilidade M4 parcial",
+          "saida": "6 kits prontos para campo"
+        },
+        {
+          "fase": "5 · IMPLEMENTAÇÃO — Instalação em campo",
+          "quando": "M18–M30",
+          "cor": "nao",
+          "oque": "Obra civil + fundação + mão-de-obra de instalação nas 5 comunidades PE/BA + 1 protótipo",
+          "depende": "Sistemas fabricados (fase 4) + cartas de anuência (5.6.1.2)",
+          "saida": "6 sistemas comissionados"
+        },
+        {
+          "fase": "6 · Operação · ATER · Monitoramento",
+          "quando": "M18–M36",
+          "cor": "info",
+          "oque": "Capacitação comunitária (30 meses ATER) + monitoramento GSM (24 meses) + laudos finais",
+          "depende": "Sistemas instalados (fase 5)",
+          "saida": "Sustentabilidade pós-entrega · encerramento"
+        }
+      ]
+    }
+  }
+}
